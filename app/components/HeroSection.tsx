@@ -1,37 +1,66 @@
+'use client';
+
 export function HeroSection() {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-      {/* Left: Name and Description */}
-      <div className="space-y-6">
-        <h1 className="text-6xl md:text-7xl font-bold text-white leading-tight">
-          WAYNE<br />HARKWOOD
-        </h1>
-        <p className="text-zinc-400 text-lg leading-relaxed">
-          Hey, I'm Wayne Harkwood, a web designer and developer from Portland with bold ideas.
-          I love creating digital experiences that are always focused on great user experiences. I'm
-          also into 3D graphics and interactive design.
-          Let's work together to build something cool and engaging.
-        </p>
-      </div>
-
-      {/* Right: Profile Photo */}
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-full max-w-md aspect-square bg-zinc-800 border border-zinc-700 rounded-sm overflow-hidden">
-          <div className="w-full h-full flex items-center justify-center text-zinc-600">
-            {/* Placeholder for profile photo */}
-            <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-            </svg>
+    <div className="p-6 sm:p-8 h-full flex flex-col">
+      <div className="flex-1 flex flex-col justify-center space-y-6">
+        <div className="flex items-start gap-4">
+          <div className="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center overflow-hidden shrink-0">
+            <span className="text-3xl">🐶</span>
+          </div>
+          <div className="flex-1">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+              Hi, I'm Ram — A Full Stack web developer.
+            </h1>
+            <p className="text-zinc-400 text-base sm:text-lg leading-relaxed">
+              I'm a Full Stack web developer and Open Source Contributor, I love building products to solve real-world problems. I'm specialized in building MVP's.
+            </p>
           </div>
         </div>
-        <p className="text-zinc-500 text-sm italic">Wanna get in touch?</p>
-        <button className="flex items-center gap-2 text-white hover:text-zinc-300 transition-colors group">
-          <span className="font-semibold">EMAIL ME</span>
-          <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </button>
+
+        <div className="flex flex-wrap gap-3">
+          <a
+            href="https://drive.google.com/file/d/1example"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-zinc-800 text-white rounded-lg hover:bg-zinc-700 transition-colors text-sm font-medium flex items-center gap-2"
+          >
+            <span>📄</span>
+            <span>Resume</span>
+          </a>
+          <a
+            href="https://linkedin.com/in/ramxcodes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center gap-2"
+          >
+            <span>💼</span>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+
+        <div className="flex flex-wrap gap-3 pt-2">
+          {[
+            { icon: '🐦', url: 'https://twitter.com/ramxcodes', label: 'Twitter' },
+            { icon: '📧', url: 'mailto:ramxcodes@gmail.com', label: 'Email' },
+            { icon: '💻', url: 'https://github.com/ramxcodes', label: 'GitHub' },
+            { icon: '📺', url: 'https://youtube.com/@ramxcodes', label: 'YouTube' },
+            { icon: '📷', url: 'https://instagram.com/ramxcodes', label: 'Instagram' },
+            { icon: '📌', url: 'https://pinterest.com/ramxcodes', label: 'Pinterest' },
+          ].map((social) => (
+            <a
+              key={social.label}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center hover:bg-zinc-700 transition-colors"
+              aria-label={social.label}
+            >
+              <span className="text-lg">{social.icon}</span>
+            </a>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -2,23 +2,43 @@
 
 export function Header() {
   return (
-    <header className="w-full py-6 px-8">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between bg-white">
-        <div className="text-xl font-bold text-white italic">
-          BENTO<span className="font-normal">PORTFOLIO</span>
+    <div className="p-4 sm:p-6 flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center overflow-hidden">
+          <span className="text-lg">🐶</span>
         </div>
-        <div className="flex gap-8">
-          <a href="#about" className="text-zinc-400 hover:text-white transition-colors">
-            ABOUT
-          </a>
-          <a href="#work" className="text-zinc-400 hover:text-white transition-colors">
-            WORK
-          </a>
-          <a href="#contact" className="text-zinc-400 hover:text-white transition-colors">
-            CONTACT
-          </a>
-        </div>
+        <h1 className="text-xl sm:text-2xl font-bold text-white">
+          Ram
+        </h1>
+      </div>
+
+      <nav className="hidden md:flex gap-6 lg:gap-8 text-zinc-400 text-sm lg:text-base">
+        <a href="#work" className="hover:text-white transition-colors">
+          Work
+        </a>
+        <a href="#blogs" className="hover:text-white transition-colors">
+          Blogs
+        </a>
+        <a href="#projects" className="hover:text-white transition-colors">
+          Projects
+        </a>
       </nav>
-    </header>
+
+      <button className="md:hidden text-zinc-400 hover:text-white transition-colors">
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
   );
 }

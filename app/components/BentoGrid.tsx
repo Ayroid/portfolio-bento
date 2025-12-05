@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { Header } from "./Header";
+import { HeroSection } from "./HeroSection";
+import { CurrentRole } from "./CurrentRole";
 
 interface BentoItemProps {
 	children?: React.ReactNode;
@@ -79,46 +82,7 @@ export function BentoGrid() {
 				{/* Full Width Header - Navigation */}
 				<div className="grid grid-cols-1 gap-2 ">
 					<BentoItem className="h-20" height={20}>
-						<div className="p-4 sm:p-6 flex items-center justify-between">
-							<h1 className="text-xl sm:text-2xl font-bold text-white">
-								Ram<span className="text-zinc-500">X</span>
-							</h1>
-							<nav className="hidden md:flex gap-2 lg:gap-8 text-zinc-400 text-sm lg:text-base">
-								<a href="#about" className="hover:text-white transition-colors">
-									About
-								</a>
-								<a href="#work" className="hover:text-white transition-colors">
-									Work
-								</a>
-								<a
-									href="#projects"
-									className="hover:text-white transition-colors"
-								>
-									Projects
-								</a>
-								<a
-									href="#contact"
-									className="hover:text-white transition-colors"
-								>
-									Contact
-								</a>
-							</nav>
-							<button className="md:hidden text-zinc-400">
-								<svg
-									className="w-6 h-6"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M4 6h16M4 12h16M4 18h16"
-									/>
-								</svg>
-							</button>
-						</div>
+						<Header />
 					</BentoItem>
 				</div>
 
@@ -132,50 +96,12 @@ export function BentoGrid() {
 				>
 					{/* Box 1: Hero Section - Row 1, Column 1 */}
 					<BentoItem colSpan={14} rowSpan={1} className="h-80">
-						<div className="p-8 h-full flex flex-col justify-between">
-							<div>
-								<h2 className="text-5xl font-bold text-white mb-4">
-									Ramkrishna Swarnkar
-								</h2>
-								<p className="text-xl text-zinc-400 mb-4">
-									Full Stack Web Developer & Open Source Contributor
-								</p>
-								<p className="text-zinc-500 leading-relaxed">
-									Building interactive web apps with emphasis on UI design and
-									solving real-world problems through MVPs. Passionate about
-									Three.js and modern web technologies.
-								</p>
-							</div>
-							<div className="flex gap-2">
-								<button className="px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-zinc-200 transition-colors">
-									View Resume
-								</button>
-								<button className="px-6 py-2 border border-zinc-700 text-white rounded-lg hover:border-zinc-500 transition-colors">
-									Contact Me
-								</button>
-							</div>
-						</div>
+						<HeroSection />
 					</BentoItem>
 
 					{/* Box 2: Current Role */}
 					<BentoItem colSpan={6} rowSpan={1}>
-						<div className="p-6 h-full flex flex-col justify-between">
-							<div>
-								<div className="w-3 h-3 rounded-full bg-green-500 mb-4"></div>
-								<h3 className="text-white font-bold text-lg mb-2">Currently</h3>
-								<p className="text-zinc-400 text-sm mb-2">
-									Founding Frontend Engineer
-								</p>
-								<p className="text-zinc-500 text-xs mb-4">
-									good day :3 · Remote (US)
-								</p>
-								<p className="text-zinc-500 text-sm">
-									Architecting frontend infrastructure for promotional campaign
-									platform
-								</p>
-							</div>
-							<p className="text-zinc-600 text-xs">August 2025 - Present</p>
-						</div>
+						<CurrentRole />
 					</BentoItem>
 
 					{/* Box 3: Quick Stats - Spans 2 rows in Column 3 */}
@@ -248,7 +174,7 @@ export function BentoGrid() {
 					</BentoItem>
 				</div>
 
-				{/* Row 3: Featured Work*/}
+				{/* Row 3: Featured Work - Projects & Experience */}
 				<div
 					className="grid gap-2"
 					style={{
@@ -257,73 +183,106 @@ export function BentoGrid() {
 					}}
 				>
 					<BentoItem colSpan={10} rowSpan={2} height={20}>
-						<div className="p-4 sm:p-6 flex items-center justify-center">
-							<p className="text-zinc-600 text-xs sm:text-sm text-center">
-								© 2025 Ram Swarnkar
+						<div className="p-4 sm:p-6">
+							<h3 className="text-white font-bold mb-2">NotesBuddy</h3>
+							<p className="text-zinc-400 text-sm mb-2">Study Platform</p>
+							<p className="text-zinc-600 text-xs">
+								Comprehensive platform with notes, flashcards, quizzes & AI chatbot
 							</p>
 						</div>
 					</BentoItem>
 
 					<BentoItem colSpan={10} rowSpan={10}>
-						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold mb-2">
-								Backend Developer Intern
-							</h3>
-							<p className="text-zinc-400 text-sm mb-4">Upsurge Labs</p>
-							<p className="text-zinc-500 text-xs mb-4">
-								June - July 2025 · Bangalore
-							</p>
-							<p className="text-zinc-600 text-sm">
-								Contributed to backend development and API integration projects.
-							</p>
+						<div className="p-4 sm:p-6 h-full flex flex-col">
+							<div className="mb-4">
+								<h3 className="text-white font-bold text-xl mb-2">Experience</h3>
+							</div>
+							<div className="space-y-4 flex-1 overflow-auto">
+								<div className="border-l-2 border-zinc-800 pl-4">
+									<h4 className="text-white font-bold text-sm">Founding Frontend Engineer</h4>
+									<p className="text-zinc-400 text-xs mb-1">good day :3</p>
+									<p className="text-zinc-600 text-xs">August 2025 - Present</p>
+								</div>
+								<div className="border-l-2 border-zinc-800 pl-4">
+									<h4 className="text-white font-bold text-sm">Backend Developer Intern</h4>
+									<p className="text-zinc-400 text-xs mb-1">Upsurge Labs</p>
+									<p className="text-zinc-600 text-xs">June - July 2025</p>
+								</div>
+								<div className="border-l-2 border-zinc-800 pl-4">
+									<h4 className="text-white font-bold text-sm">Founding Engineer</h4>
+									<p className="text-zinc-400 text-xs mb-1">Prepeasy</p>
+									<p className="text-zinc-600 text-xs">April - June 2025</p>
+								</div>
+								<div className="border-l-2 border-zinc-800 pl-4">
+									<h4 className="text-white font-bold text-sm">SDE-1 (Full Stack) Intern</h4>
+									<p className="text-zinc-400 text-xs mb-1">Expelee</p>
+									<p className="text-zinc-600 text-xs">Aug 2023 - April 2025</p>
+								</div>
+							</div>
 						</div>
 					</BentoItem>
+
 					<BentoItem colSpan={10} rowSpan={5}>
 						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold mb-2">
-								Backend Developer Intern
-							</h3>
-							<p className="text-zinc-400 text-sm mb-4">Upsurge Labs</p>
-							<p className="text-zinc-500 text-xs mb-4">
-								June - July 2025 · Bangalore
+							<h3 className="text-white font-bold mb-2">Appwrite MCP Server</h3>
+							<p className="text-zinc-400 text-sm mb-2">Model Context Protocol</p>
+							<p className="text-zinc-600 text-xs mb-3">
+								7 tools with 99.9% success rate
 							</p>
-							<p className="text-zinc-600 text-sm">
-								Contributed to backend development and API integration projects.
-							</p>
+							<div className="flex flex-wrap gap-2">
+								{["TypeScript", "Appwrite", "MCP"].map((tag) => (
+									<span key={tag} className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800">
+										{tag}
+									</span>
+								))}
+							</div>
 						</div>
 					</BentoItem>
+
 					<BentoItem colSpan={10} rowSpan={8}>
-						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold mb-2">
-								Backend Developer Intern
-							</h3>
-							<p className="text-zinc-400 text-sm mb-4">Upsurge Labs</p>
-							<p className="text-zinc-500 text-xs mb-4">
-								June - July 2025 · Bangalore
+						<div className="p-4 sm:p-6 h-full flex flex-col">
+							<h3 className="text-white font-bold text-xl mb-4">Bio</h3>
+							<div className="flex items-center gap-4 mb-4">
+								<div className="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center text-3xl shrink-0">
+									🐶
+								</div>
+								<div>
+									<h4 className="text-white font-bold">Ramkrishna Swarnkar</h4>
+									<p className="text-zinc-500 text-sm">@ramxcodes</p>
+								</div>
+							</div>
+							<p className="text-zinc-400 text-sm leading-relaxed flex-1">
+								Full Stack Web Developer & Open Source Contributor passionate about building
+								interactive web apps with emphasis on UI design. Specialized in creating MVPs
+								that solve real-world problems.
 							</p>
-							<p className="text-zinc-600 text-sm">
-								Contributed to backend development and API integration projects.
-							</p>
+							<div className="flex gap-2 mt-4">
+								<a href="https://github.com/ramxcodes" className="text-zinc-500 hover:text-white text-xs">GitHub</a>
+								<span className="text-zinc-700">•</span>
+								<a href="mailto:ramxcodes@gmail.com" className="text-zinc-500 hover:text-white text-xs">Email</a>
+							</div>
 						</div>
 					</BentoItem>
+
 					<BentoItem colSpan={10} rowSpan={5}>
 						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold mb-2">
-								Backend Developer Intern
-							</h3>
-							<p className="text-zinc-400 text-sm mb-4">Upsurge Labs</p>
-							<p className="text-zinc-500 text-xs mb-4">
-								June - July 2025 · Bangalore
+							<h3 className="text-white font-bold mb-2">Syncify</h3>
+							<p className="text-zinc-400 text-sm mb-2">Music Streaming</p>
+							<p className="text-zinc-600 text-xs mb-3">
+								Real-time platform with synchronized playback
 							</p>
-							<p className="text-zinc-600 text-sm">
-								Contributed to backend development and API integration projects.
-							</p>
+							<div className="flex flex-wrap gap-2">
+								{["React", "WebSockets", "Real-time"].map((tag) => (
+									<span key={tag} className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800">
+										{tag}
+									</span>
+								))}
+							</div>
 						</div>
 					</BentoItem>
 				</div>
 
-				{/* Row 4: ToolBox */}
-
+				{/* Row 4: ToolBox - Blogs, GitHub Activity, Setup */}
 				<div
 					className="grid gap-2"
 					style={{
@@ -332,74 +291,119 @@ export function BentoGrid() {
 					}}
 				>
 					<BentoItem colSpan={20} rowSpan={4} height={30}>
-						<div className="p-4 sm:p-6 flex items-center justify-center">
-							<p className="text-zinc-600 text-xs sm:text-sm text-center">
-								© 2025 Ram Swarnkar
-							</p>
+						<div className="p-4 sm:p-6">
+							<h3 className="text-white font-bold text-lg mb-3">Blogs</h3>
+							<div className="flex gap-4">
+								<div className="flex-1">
+									<h4 className="text-white font-semibold text-sm mb-1">Go in Me</h4>
+									<p className="text-zinc-500 text-xs">Exploring Go programming</p>
+								</div>
+								<div className="flex-1">
+									<h4 className="text-white font-semibold text-sm mb-1">My Winter Arc</h4>
+									<p className="text-zinc-500 text-xs">Personal development journey</p>
+								</div>
+							</div>
 						</div>
 					</BentoItem>
 
 					<BentoItem colSpan={10} rowSpan={10} height={80}>
 						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold mb-2">
-								Backend Developer Intern
-							</h3>
-							<p className="text-zinc-400 text-sm mb-4">Upsurge Labs</p>
-							<p className="text-zinc-500 text-xs mb-4">
-								June - July 2025 · Bangalore
+							<h3 className="text-white font-bold mb-3">Pasandida Aurat</h3>
+							<p className="text-zinc-400 text-sm mb-2">Dating Platform</p>
+							<p className="text-zinc-600 text-xs mb-4">
+								Emphasizing authentic connections (in development)
 							</p>
-							<p className="text-zinc-600 text-sm">
-								Contributed to backend development and API integration projects.
-							</p>
+							<div className="flex flex-wrap gap-2">
+								{["Next.js", "Dating", "Social", "MVP"].map((tag) => (
+									<span key={tag} className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800">
+										{tag}
+									</span>
+								))}
+							</div>
 						</div>
 					</BentoItem>
+
 					<BentoItem colSpan={10} rowSpan={16} height={80}>
-						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold mb-2">
-								Backend Developer Intern
-							</h3>
-							<p className="text-zinc-400 text-sm mb-4">Upsurge Labs</p>
-							<p className="text-zinc-500 text-xs mb-4">
-								June - July 2025 · Bangalore
-							</p>
-							<p className="text-zinc-600 text-sm">
-								Contributed to backend development and API integration projects.
-							</p>
+						<div className="p-4 sm:p-6 h-full flex flex-col">
+							<h3 className="text-white font-bold mb-3">GitHub Activity</h3>
+							<div className="space-y-2 mb-4">
+								<div className="flex items-center gap-2">
+									<div className="w-2 h-2 rounded-full bg-green-500"></div>
+									<p className="text-zinc-400 text-xs">1,000+ contributions this year</p>
+								</div>
+								<div className="flex items-center gap-2">
+									<div className="w-2 h-2 rounded-full bg-blue-500"></div>
+									<p className="text-zinc-400 text-xs">Active open source contributor</p>
+								</div>
+							</div>
+							<div className="flex-1 bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+								<div className="grid grid-cols-12 gap-1">
+									{Array.from({ length: 84 }).map((_, i) => {
+										const intensity = (i * 7 + i * 3) % 5;
+										const colors = ['bg-zinc-800', 'bg-green-900', 'bg-green-700', 'bg-green-600', 'bg-green-500'];
+										return <div key={i} className={`h-2 rounded-sm ${colors[intensity]}`}></div>;
+									})}
+								</div>
+								<p className="text-zinc-600 text-xs mt-2">Contribution activity</p>
+							</div>
 						</div>
 					</BentoItem>
+
 					<BentoItem colSpan={10} rowSpan={2} height={20}>
 						<div className="p-4 sm:p-6 flex items-center justify-center">
-							<p className="text-zinc-600 text-xs sm:text-sm text-center">
-								© 2025 Ram Swarnkar
+							<p className="text-zinc-600 text-xs text-center">
+								Technologies I work with
 							</p>
 						</div>
 					</BentoItem>
+
 					<BentoItem colSpan={10} rowSpan={14} height={80}>
-						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold mb-2">
-								Backend Developer Intern
-							</h3>
-							<p className="text-zinc-400 text-sm mb-4">Upsurge Labs</p>
-							<p className="text-zinc-500 text-xs mb-4">
-								June - July 2025 · Bangalore
-							</p>
-							<p className="text-zinc-600 text-sm">
-								Contributed to backend development and API integration projects.
-							</p>
+						<div className="p-4 sm:p-6 h-full flex flex-col">
+							<h3 className="text-white font-bold mb-4">All Technologies</h3>
+							<div className="space-y-3 flex-1 overflow-auto">
+								<div>
+									<p className="text-zinc-500 text-xs mb-2 uppercase">Languages</p>
+									<div className="flex flex-wrap gap-2">
+										{["TypeScript", "JavaScript", "Go"].map((tech) => (
+											<span key={tech} className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800">
+												{tech}
+											</span>
+										))}
+									</div>
+								</div>
+								<div>
+									<p className="text-zinc-500 text-xs mb-2 uppercase">Tools</p>
+									<div className="flex flex-wrap gap-2">
+										{["Git", "Docker", "Vercel", "AWS"].map((tech) => (
+											<span key={tech} className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800">
+												{tech}
+											</span>
+										))}
+									</div>
+								</div>
+							</div>
 						</div>
 					</BentoItem>
+
 					<BentoItem colSpan={10} rowSpan={10} height={80}>
 						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold mb-2">
-								Backend Developer Intern
-							</h3>
-							<p className="text-zinc-400 text-sm mb-4">Upsurge Labs</p>
-							<p className="text-zinc-500 text-xs mb-4">
-								June - July 2025 · Bangalore
-							</p>
-							<p className="text-zinc-600 text-sm">
-								Contributed to backend development and API integration projects.
-							</p>
+							<h3 className="text-white font-bold mb-4">Setup</h3>
+							<div className="space-y-3">
+								<div className="flex items-start gap-3">
+									<span className="text-xl">👓</span>
+									<div>
+										<h4 className="text-white font-semibold text-sm mb-1">Wears Used</h4>
+										<p className="text-zinc-500 text-xs">Glasses, Watch, Airpods Max</p>
+									</div>
+								</div>
+								<div className="flex items-start gap-3">
+									<span className="text-xl">💻</span>
+									<div>
+										<h4 className="text-white font-semibold text-sm mb-1">VSCode / Cursor Setup</h4>
+										<p className="text-zinc-500 text-xs">One Dark Pro theme with custom extensions</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</BentoItem>
 				</div>
@@ -415,9 +419,12 @@ export function BentoGrid() {
 								Open to new opportunities and collaborations
 							</p>
 						</div>
-						<button className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-black rounded-lg text-sm sm:text-base font-semibold hover:bg-zinc-200 transition-colors whitespace-nowrap">
+						<a
+							href="mailto:ramxcodes@gmail.com"
+							className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-black rounded-lg text-sm sm:text-base font-semibold hover:bg-zinc-200 transition-colors whitespace-nowrap"
+						>
 							Get in Touch
-						</button>
+						</a>
 					</div>
 				</BentoItem>
 
@@ -443,6 +450,8 @@ export function BentoGrid() {
 									<p className="text-zinc-500 text-xs mb-1">GitHub</p>
 									<a
 										href="https://github.com/ramxcodes"
+										target="_blank"
+										rel="noopener noreferrer"
 										className="text-white text-sm sm:text-base hover:text-zinc-300 transition-colors"
 									>
 										github.com/ramxcodes
@@ -452,6 +461,8 @@ export function BentoGrid() {
 									<p className="text-zinc-500 text-xs mb-1">LinkedIn</p>
 									<a
 										href="https://linkedin.com/in/ramxcodes"
+										target="_blank"
+										rel="noopener noreferrer"
 										className="text-white text-sm sm:text-base hover:text-zinc-300 transition-colors"
 									>
 										linkedin.com/in/ramxcodes
@@ -469,19 +480,26 @@ export function BentoGrid() {
 							</h3>
 							<div className="grid grid-cols-2 sm:grid-cols-4 gap-3 ">
 								{[
-									{ name: "Twitter", handle: "@ramxcodes" },
-									{ name: "YouTube", handle: "@ramxcodes" },
-									{ name: "Instagram", handle: "@ramxcodes" },
-									{ name: "Medium", handle: "ramxcodes" },
+									{ name: "Twitter", handle: "@ramxcodes", url: "https://twitter.com/ramxcodes" },
+									{ name: "YouTube", handle: "@ramxcodes", url: "https://youtube.com/@ramxcodes" },
+									{ name: "Instagram", handle: "@ramxcodes", url: "https://instagram.com/ramxcodes" },
+									{ name: "Medium", handle: "ramxcodes", url: "https://medium.com/@ramxcodes" },
 								].map((social) => (
-									<div key={social.name} className="text-center">
-										<div className="w-10 h-10 sm:w-12 sm:h-12 bg-zinc-900 rounded-full mx-auto mb-2 flex items-center justify-center">
-											<span className="text-zinc-600 text-xs">
+									<a
+										key={social.name}
+										href={social.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-center hover:scale-105 transition-transform"
+									>
+										<div className="w-10 h-10 sm:w-12 sm:h-12 bg-zinc-900 rounded-full mx-auto mb-2 flex items-center justify-center border border-zinc-800 hover:border-zinc-700">
+											<span className="text-zinc-600 text-xs font-bold">
 												{social.name[0]}
 											</span>
 										</div>
 										<p className="text-zinc-500 text-xs">{social.name}</p>
-									</div>
+										<p className="text-zinc-700 text-xs">{social.handle}</p>
+									</a>
 								))}
 							</div>
 						</div>
@@ -489,11 +507,10 @@ export function BentoGrid() {
 				</div>
 
 				{/* Row 8: Footer */}
-
 				<BentoItem height={20}>
 					<div className="p-4 sm:p-6 flex items-center justify-center">
 						<p className="text-zinc-600 text-xs sm:text-sm text-center">
-							© 2025 Ram Swarnkar
+							© 2025 Ramkrishna Swarnkar · Built with Next.js & Tailwind CSS
 						</p>
 					</div>
 				</BentoItem>
