@@ -1,14 +1,16 @@
 'use client';
+import Image from 'next/image';
 
 export function Header() {
   return (
     <div className="p-4 sm:p-6 flex items-center justify-between">
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center overflow-hidden">
-          <span className="text-lg">🐶</span>
+          <Image src="/profile.jpg" alt="Profile" width={32} height={32} />
+
         </div>
-        <h1 className="text-xl sm:text-2xl font-bold text-white">
-          Ram
+        <h1 className="text-xl sm:text-2xl font-bold text-white font-mono">
+          Ayroid
         </h1>
       </div>
 

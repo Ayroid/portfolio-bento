@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Header } from "./Header";
 import { HeroSection } from "./HeroSection";
 import { CurrentRole } from "./CurrentRole";
+import { Profile } from "./Profile";
 
 interface BentoItemProps {
 	children?: React.ReactNode;
@@ -66,7 +67,7 @@ function BentoItem({
 
 			{/* Content container */}
 			<div
-				className={`min-h-${height} bg-[#0a0a0a] border-zinc-800 rounded-[10px] h-full w-full relative overflow-hidden`}
+				className={`min-h-${height} bg-[#181818] rounded-[10px] h-full w-full relative overflow-hidden`}
 				style={{ zIndex: 2 }}
 			>
 				<div className="relative z-10 h-full">{children}</div>
@@ -101,7 +102,8 @@ export function BentoGrid() {
 
 					{/* Box 2: Current Role */}
 					<BentoItem colSpan={6} rowSpan={1}>
-						<CurrentRole />
+						{/* <CurrentRole /> */}
+						<Profile/>
 					</BentoItem>
 
 					{/* Box 3: Quick Stats - Spans 2 rows in Column 3 */}
