@@ -6,6 +6,7 @@ import { HeroSection } from "./HeroSection";
 import { CurrentRole } from "./CurrentRole";
 import { Profile } from "./Profile";
 import { ExperienceSection } from "./ExperienceSection";
+import { AboutSection } from "./AboutSection";
 
 interface BentoItemProps {
 	children?: React.ReactNode;
@@ -94,7 +95,7 @@ export function BentoGrid() {
 					<BentoItem
 						colSpan={14}
 						rowSpan={1}
-						className="h-80 md:col-span-1 lg:col-span-14"
+						className="md:col-span-1 lg:col-span-14"
 					>
 						<HeroSection />
 					</BentoItem>
@@ -118,33 +119,13 @@ export function BentoGrid() {
 						<ExperienceSection />
 					</BentoItem>
 
-					{/* Box 4: Frontend Skills - Row 2, Column 1 */}
+					{/* Box 4: About Section - Row 2, Column 1 */}
 					<BentoItem
 						colSpan={10}
 						rowSpan={1}
 						className="md:col-span-1 lg:col-span-10"
 					>
-						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold text-lg sm:text-xl mb-3 sm:mb-4">
-								Frontend
-							</h3>
-							<div className="flex flex-wrap gap-2 sm:gap-3">
-								{[
-									"TypeScript",
-									"React",
-									"Next.js",
-									"Tailwind CSS",
-									"Three.js",
-								].map((skill) => (
-									<span
-										key={skill}
-										className="px-2 sm:px-3 py-1 bg-zinc-900 text-zinc-400 rounded-lg text-xs sm:text-sm border border-zinc-800"
-									>
-										{skill}
-									</span>
-								))}
-							</div>
-						</div>
+						<AboutSection />
 					</BentoItem>
 
 					{/* Box 5: Backend Skills - Row 2, Column 2 */}
