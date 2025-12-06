@@ -7,6 +7,7 @@ import { CurrentRole } from "./CurrentRole";
 import { Profile } from "./Profile";
 import { ExperienceSection } from "./ExperienceSection";
 import { AboutSection } from "./AboutSection";
+import { Socials } from "./Socials";
 
 interface BentoItemProps {
 	children?: React.ReactNode;
@@ -128,28 +129,14 @@ export function BentoGrid() {
 						<AboutSection />
 					</BentoItem>
 
-					{/* Box 5: Backend Skills - Row 2, Column 2 */}
+					{/* Box 5: Socials - Row 2, Column 2 */}
 					<BentoItem
 						colSpan={10}
 						rowSpan={1}
 						className="md:col-span-1 lg:col-span-10"
 					>
-						<div className="p-4 sm:p-6">
-							<h3 className="text-white font-bold text-lg sm:text-xl mb-3 sm:mb-4">
-								Backend & Tools
-							</h3>
-							<div className="flex flex-wrap gap-2 sm:gap-3">
-								{["Bun", "PostgreSQL", "Figma", "Vercel", "AWS", "Postman"].map(
-									(skill) => (
-										<span
-											key={skill}
-											className="px-2 sm:px-3 py-1 bg-zinc-900 text-zinc-400 rounded-lg text-xs sm:text-sm border border-zinc-800"
-										>
-											{skill}
-										</span>
-									)
-								)}
-							</div>
+						<div className="h-full flex items-center justify-center p-4 sm:p-6">
+							<Socials />
 						</div>
 					</BentoItem>
 				</div>
