@@ -11,7 +11,7 @@ export function Profile() {
 
 	return (
 		<div
-			className="relative h-full w-full cursor-pointer"
+			className="relative h-full w-full cursor-pointer max-h-96"
 			style={{ perspective: "1000px" }}
 			onClick={handleFlip}
 		>
@@ -31,7 +31,7 @@ export function Profile() {
 					}}
 				>
 					<Image
-						src="/profile-crop.jpeg"
+						src="/profile.jpg"
 						alt="Profile Picture"
 						fill
 						className="object-cover"

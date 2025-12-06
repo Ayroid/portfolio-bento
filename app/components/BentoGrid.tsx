@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { Header } from "./Header";
 import { HeroSection } from "./HeroSection";
-import { CurrentRole } from "./CurrentRole";
 import { Profile } from "./Profile";
 import { ExperienceSection } from "./ExperienceSection";
 import { AboutSection } from "./AboutSection";
-import { Socials } from "./Socials";
+import { ActionButton } from "./ActionButton";
+import { ConnectButton } from "./ConnectButton";
 
 interface BentoItemProps {
 	children?: React.ReactNode;
@@ -70,7 +70,7 @@ function BentoItem({
 
 			{/* Content container */}
 			<div
-				className={`min-h-${height} bg-[#181818] rounded-[10px] h-full w-full relative overflow-hidden`}
+				className={`min-h-${height} bg-[#090909] rounded-[10px] h-full w-full relative overflow-hidden`}
 				style={{ zIndex: 2 }}
 			>
 				<div className="relative z-10 h-full">{children}</div>
@@ -91,11 +91,11 @@ export function BentoGrid() {
 				</div>
 
 				{/* Rows 1-2: Unified Grid with spanning */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] gap-2">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] lg:grid-rows-[repeat(4,2fr)] gap-2">
 					{/* Box 1: Hero Section - Row 1, Column 1 */}
 					<BentoItem
 						colSpan={14}
-						rowSpan={1}
+						rowSpan={2}
 						className="md:col-span-1 lg:col-span-14"
 					>
 						<HeroSection />
@@ -104,17 +104,16 @@ export function BentoGrid() {
 					{/* Box 2: Current Role */}
 					<BentoItem
 						colSpan={6}
-						rowSpan={1}
+						rowSpan={2}
 						className="md:col-span-1 lg:col-span-6"
 					>
-						{/* <CurrentRole /> */}
 						<Profile />
 					</BentoItem>
 
 					{/* Box 3: Quick Stats - Spans 2 rows in Column 3 */}
 					<BentoItem
 						colSpan={10}
-						rowSpan={2}
+						rowSpan={4}
 						className="md:col-span-2 lg:col-span-10 lg:row-span-2"
 					>
 						<ExperienceSection />
@@ -123,7 +122,7 @@ export function BentoGrid() {
 					{/* Box 4: About Section - Row 2, Column 1 */}
 					<BentoItem
 						colSpan={10}
-						rowSpan={1}
+						rowSpan={2}
 						className="md:col-span-1 lg:col-span-10"
 					>
 						<AboutSection />
@@ -131,13 +130,32 @@ export function BentoGrid() {
 
 					{/* Box 5: Socials - Row 2, Column 2 */}
 					<BentoItem
+						colSpan={5}
+						rowSpan={1}
+						className="md:col-span-1 lg:col-span-10"
+					>
+						<ActionButton href="mailto:ayushsk.work@gmail.com" label="EMAIL" />
+					</BentoItem>
+					<BentoItem
+						colSpan={5}
+						rowSpan={1}
+						className="md:col-span-1 lg:col-span-10"
+					>
+						<ActionButton
+							href="https://drive.google.com/file/d/1TIDYNaseyA11HRNvMjx8BQuCHbTZGCHK/view?usp=sharing"
+							label="RESUME"
+							bgColor="bg-[#e5e5e5]"
+							hoverBgColor="hover:bg-[#dddddd]"
+							textColor="text-black"
+							iconColor="text-black"
+						/>
+					</BentoItem>
+					<BentoItem
 						colSpan={10}
 						rowSpan={1}
 						className="md:col-span-1 lg:col-span-10"
 					>
-						<div className="h-full flex items-center justify-center p-4 sm:p-6">
-							<Socials />
-						</div>
+						<ConnectButton />
 					</BentoItem>
 				</div>
 
