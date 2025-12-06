@@ -1,69 +1,67 @@
-'use client';
+"use client";
+
+import { FaBuilding } from "react-icons/fa";
 
 export function ExperienceSection() {
-  const experiences = [
-    {
-      title: 'Founding Frontend Engineer',
-      company: 'good day :3',
-      location: 'United States (Remote)',
-      period: 'August 2025 - Present',
-      description: 'Architecting frontend infrastructure for promotional campaign management, leading codebase refactoring initiatives, optimizing API integrations, and implementing design systems with accessibility standards.',
-      technologies: ['Next.js', 'Tailwind CSS', 'TypeScript', 'React', 'Figma', 'Vercel', 'AWS', 'Postman', 'Bun']
-    },
-    {
-      title: 'Backend Developer Intern',
-      company: 'Upsurge Labs',
-      location: 'Bangalore, India',
-      period: 'June - July 2025',
-      description: 'Contributed to backend development and API integration projects.',
-      technologies: ['Node.js', 'PostgreSQL', 'REST APIs']
-    },
-    {
-      title: 'Founding Engineer',
-      company: 'Prepeasy',
-      location: 'Remote',
-      period: 'April - June 2025',
-      description: 'Built core features and architecture for the educational platform.',
-      technologies: ['React', 'Next.js', 'TypeScript']
-    },
-    {
-      title: 'SDE-1 (Full Stack) Intern',
-      company: 'Expelee',
-      location: 'Dubai, UAE',
-      period: 'August 2023 - April 2025',
-      description: 'Developed full-stack features and maintained production applications.',
-      technologies: ['React', 'Node.js', 'MongoDB']
-    }
-  ];
+	const experiences = [
+		{
+			title: "Associate Software Engineer",
+			company: "Yamaha Motor Solutions India",
+			location: "Faridabad, India",
+			period: "July 2025 - Present",
+			description: "Managing SAP BASIS operations including system configuration, monitoring, and performance tuning. Maintaining HANA/NetWeaver systems and managing integrations with SAP Datasphere and Cloud ALM.",
+		},
+		{
+			title: "Software Engineering Intern",
+			company: "Yamaha Motor Solutions India",
+			location: "Faridabad, India",
+			period: "January 2025 - June 2025",
+			description: "Supported SAP system setup, monitoring, and user management. Assisted with routine BASIS maintenance, database backups, and software component updates.",
+		},
+		{
+			title: "Software Developer Intern",
+			company: "OrganicGrow",
+			location: "Remote",
+			period: "August 2024 - December 2024",
+			description: "Led development of a GenAI-based automated content editing tool for social media, enabling post creation to scheduling within seconds for 100+ clients. Optimized platform performance with modern tech stack.",
+		},
+	];
 
-  return (
-    <div className="p-6 sm:p-8 h-full">
-      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Experience</h2>
-      <div className="space-y-6">
-        {experiences.map((exp, index) => (
-          <div key={index} className="border-l-2 border-zinc-800 pl-4 pb-6 last:pb-0">
-            <div className="flex items-start justify-between mb-2">
-              <div>
-                <h3 className="text-white font-bold text-lg">{exp.title}</h3>
-                <p className="text-zinc-400 text-sm">{exp.company}</p>
-              </div>
-              <span className="text-zinc-600 text-xs whitespace-nowrap ml-2">{exp.period}</span>
-            </div>
-            <p className="text-zinc-500 text-xs mb-3">{exp.location}</p>
-            <p className="text-zinc-500 text-sm mb-3 leading-relaxed">{exp.description}</p>
-            <div className="flex flex-wrap gap-2">
-              {exp.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+	return (
+		<div className="p-6 sm:p-8 h-full">
+			<h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
+				Experience
+			</h2>
+			<div className="space-y-6">
+				{experiences.map((exp, index) => (
+					<div
+						key={index}
+						className="border-b border-zinc-800 pb-1 last:pb-0 last:border-b-0"
+					>
+						<div className="flex items-start justify-between">
+							<div>
+								<h3 className="text-white font-bold text-lg">{exp.title}</h3>
+								<div className="flex items-end justify-between gap-2">
+									<div className="flex items-center gap-2">
+										<FaBuilding className="text-zinc-400 text-sm" />
+										<p className="text-zinc-400 text-sm">{exp.company}</p>
+									</div>
+									<div>
+										<p className="text-zinc-500 text-sm">{exp.location}</p>
+									</div>
+								</div>
+							</div>
+							<span className="text-zinc-600 text-xs whitespace-nowrap ml-2">
+								{exp.period}
+							</span>
+						</div>
+
+						<p className="text-zinc-500 text-sm mb-3 leading-relaxed">
+							{exp.description}
+						</p>
+					</div>
+				))}
+			</div>
+		</div>
+	);
 }

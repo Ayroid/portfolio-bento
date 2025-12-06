@@ -159,6 +159,64 @@ Skills & **Tools**
 
 ---
 
+## Experience Section
+
+### Section Badge
+Experience
+
+### Section Heading
+Professional **Journey**
+
+---
+
+### Experience 1: Yamaha Motor Solutions India - Associate Software Engineer
+
+**Company**: Yamaha Motor Solutions India
+
+**Position**: Associate Software Engineer
+
+**Location**: Faridabad, India
+
+**Time Period**: Jul 2025 - Present
+
+**Responsibilities**:
+- Managing SAP BASIS operations: system installation/configuration, monitoring, user admin, fiori management, database backups, software component installs/upgrades, kernel/patching, dumps & issue resolution, and performance tuning.
+- Maintaining HANA/NetWeaver systems, ensuring reliability, and managing integrations & connectivity with SAP Datasphere, SAP Cloud ALM, and other enterprise services.
+
+---
+
+### Experience 2: Yamaha Motor Solutions India - Software Engineering Intern
+
+**Company**: Yamaha Motor Solutions India
+
+**Position**: Software Engineering Intern
+
+**Location**: Faridabad, India
+
+**Time Period**: Jan 2025 - Jun 2025
+
+**Responsibilities**:
+- Supported SAP system setup, monitoring, user management, client copies, transports, and routine BASIS maintenance including Fiori access & initial issue/dumps analysis.
+- Assisted with database backups, software component updates, and monitoring systems regularly.
+
+---
+
+### Experience 3: OrganicGrow - Software Developer Intern
+
+**Company**: OrganicGrow
+
+**Position**: Software Developer Intern
+
+**Location**: Remote
+
+**Time Period**: Aug 2024 - Dec 2024
+
+**Responsibilities**:
+- Led the design and implementation of a custom GenAI based automated image/video editing tool for social media content generation, allowing creation to scheduling of posts within seconds for 100+ clients.
+- Developed new features and optimized platform performance using Next.js, GenAI, Python, FastAPI, and MongoDB.
+
+---
+
 ## Projects Section
 
 ### Section Badge

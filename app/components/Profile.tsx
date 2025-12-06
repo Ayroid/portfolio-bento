@@ -3,13 +3,12 @@ import Image from "next/image";
 
 export function Profile() {
 	return (
-		<div className="h-full flex flex-col">
+		<div className="relative h-full w-full">
 			<Image
-				src="/profile.jpeg"
+				src="/profile-crop.jpeg"
 				alt="Profile Picture"
-				width={300}
-				height={200}
-				className="mx-auto"
+				fill
+				className="object-cover"
 			/>
 		</div>
 	);
