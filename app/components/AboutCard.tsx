@@ -1,6 +1,6 @@
 "use client";
 
-export function AboutSection() {
+export function AboutCard() {
 	return (
 		<div className="p-4 sm:p-6 h-full flex flex-col">
 			<p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">

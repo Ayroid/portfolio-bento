@@ -1,6 +1,6 @@
 "use client";
 
-export function HeroSection() {
+export function NameCard() {
 	return (
 		<div className="p-6 sm:p-8 h-full flex flex-col">
 			<div className="flex-1 flex flex-col justify-end space-y-6">

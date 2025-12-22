@@ -8,7 +8,7 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export function ConnectButton() {
+export function ConnectCard() {
 	const socialIcons = [
 		{
 			icon: FaGithub,

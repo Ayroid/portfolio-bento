@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export function Profile() {
+export function ProfileCard() {
 	const [isFlipped, setIsFlipped] = useState(false);
 
 	const handleFlip = () => {

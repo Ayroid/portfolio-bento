@@ -2,7 +2,7 @@
 
 import { FaBuilding } from "react-icons/fa";
 
-export function ExperienceSection() {
+export function ExperienceCard() {
 	const experiences = [
 		{
 			title: "Associate Software Engineer",

@@ -1,4 +1,4 @@
-interface ActionButtonProps {
+interface ActionCardProps {
 	href: string;
 	label: string;
 	bgColor?: string;
@@ -7,14 +7,14 @@ interface ActionButtonProps {
 	iconColor?: string;
 }
 
-export function ActionButton({
+export function ActionCard({
 	href,
 	label,
 	bgColor = "bg-[#1a1a1a]",
 	hoverBgColor = "hover:bg-[#222222]",
 	textColor = "text-white",
 	iconColor = "text-white",
-}: ActionButtonProps) {
+}: ActionCardProps) {
 	return (
 		<a
 			href={href}
