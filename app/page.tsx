@@ -3,6 +3,7 @@ import Navbar from "@/app/sections/Navbar";
 import HeroSection from "@/app/sections/HeroSection";
 import ProjectSection from "@/app/sections/ProjectSection";
 import BlogSection from "@/app/sections/BlogSection";
+import StatsSection from "@/app/sections/StatsSection";
 import CopySection from "@/app/sections/CopySection";
 import Footer from "@/app/sections/Footer";
 
@@ -24,6 +25,8 @@ export default function Home() {
 					{/* Row 4: Blogs */}
           <BlogSection />
 
+          {/* Row 5: Stats*/}
+          <StatsSection />
 
 					{/* Row 5: ToolBox - Blogs, GitHub Activity, Setup */}
           <CopySection />
