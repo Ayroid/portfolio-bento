@@ -66,8 +66,11 @@ export const BentoItem = ({
 
 				{/* Content container */}
 				<div
-					className={`min-h-${height} bg-[#090909] rounded-[10px] h-full w-full relative overflow-hidden`}
-					style={{ zIndex: 2 }}
+					className="bg-[#090909] rounded-[10px] h-full w-full relative overflow-hidden"
+					style={{ 
+						zIndex: 2,
+						minHeight: `${height}px`
+					}}
 				>
 					<div className="relative z-10 h-full">{children}</div>
 				</div>

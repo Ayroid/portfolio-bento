@@ -7,57 +7,69 @@ import { ActionCard } from "@/app/components/ActionCard";
 import { ConnectCard } from "@/app/components/ConnectCard";
 import { NameCard } from "@/app/components/NameCard";
 
+/**
+ * LATTICE STRUCTURE (30 columns × 4 rows)
+ * Base row height: 150px
+ */
+
 const HeroSection = () => {
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] lg:grid-rows-[repeat(4,2fr)] gap-2 border-b border-green-800 pb-2 mb-2">
-			{/* Box 1: Hero Section - Row 1, Column 1 */}
+		<div
+			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] gap-2 border-b border-green-800 pb-2 mb-2"
+			style={{
+				gridAutoRows: "150px", // Base row height
+			}}
+		>
+			{/* Name Card - 14 cols × 2 rows */}
 			<BentoItem
 				colSpan={14}
 				rowSpan={2}
-				className="md:col-span-1 lg:col-span-14"
+				className="md:col-span-1 lg:col-span-14 lg:row-span-2"
 			>
 				<NameCard />
 			</BentoItem>
 
-			{/* Box 2: Current Role */}
+			{/* Profile Picture - 6 cols × 2 rows */}
 			<BentoItem
 				colSpan={6}
 				rowSpan={2}
-				className="md:col-span-1 lg:col-span-6"
+				className="md:col-span-1 lg:col-span-6 lg:row-span-2"
 			>
 				<ProfileCard />
 			</BentoItem>
 
-			{/* Box 3: Quick Stats - Spans 2 rows in Column 3 */}
+			{/* Experience Card - 10 cols × 4 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={4}
-				className="md:col-span-2 lg:col-span-10 lg:row-span-2"
+				className="md:col-span-2 lg:col-span-10 lg:row-span-4"
 			>
 				<ExperienceCard />
 			</BentoItem>
 
-			{/* Box 4: About Section - Row 2, Column 1 */}
+			{/* About Section - 10 cols × 2 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={2}
-				className="md:col-span-1 lg:col-span-10"
+				className="md:col-span-1 lg:col-span-10 lg:row-span-2"
 			>
 				<AboutCard />
 			</BentoItem>
 
-			{/* Box 5: Socials - Row 2, Column 2 */}
+			{/* Email Button - 5 cols × 1 row */}
 			<BentoItem
 				colSpan={5}
 				rowSpan={1}
-				className="md:col-span-1 lg:col-span-10"
+				className="md:col-span-1 lg:col-span-5 lg:row-span-1"
 			>
 				<ActionCard href="mailto:ayushsk.work@gmail.com" label="EMAIL" />
 			</BentoItem>
+
+			{/* Resume Button - 5 cols × 1 row */}
 			<BentoItem
 				colSpan={5}
 				rowSpan={1}
-				className="md:col-span-1 lg:col-span-10"
+				className="md:col-span-1 lg:col-span-5 lg:row-span-1"
 			>
 				<ActionCard
 					href="https://drive.google.com/file/d/1TIDYNaseyA11HRNvMjx8BQuCHbTZGCHK/view?usp=sharing"
@@ -68,10 +80,12 @@ const HeroSection = () => {
 					iconColor="text-black"
 				/>
 			</BentoItem>
+
+			{/* Connect Card - 10 cols × 1 row */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={1}
-				className="md:col-span-1 lg:col-span-10"
+				className="md:col-span-1 lg:col-span-10 lg:row-span-1"
 			>
 				<ConnectCard />
 			</BentoItem>

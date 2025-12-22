@@ -1,14 +1,24 @@
 import React from "react";
 import { BentoItem } from "@/app/components/BentoItem";
 
+/**
+ * LATTICE STRUCTURE (30 columns × 10 rows)
+ * Base row height: 50px
+ */
+
 const BlogSection = () => {
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] gap-2 border-b border-green-800 pb-2 mb-2">
+		<div
+			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)] gap-2 border-b border-green-800 pb-2 mb-2"
+			style={{
+				gridAutoRows: "50px", // Base row height
+			}}
+		>
+			{/* Header - 20 cols × 2 rows */}
 			<BentoItem
 				colSpan={20}
-				rowSpan={4}
-				height={30}
-				className="md:col-span-2 lg:col-span-20 lg:row-span-4"
+				rowSpan={2}
+				className="md:col-span-2 lg:col-span-20 lg:row-span-2"
 			>
 				<div className="p-4 sm:p-6 h-full flex flex-col justify-center">
 					<h3 className="text-white font-bold text-xl sm:text-2xl mb-2 uppercase italic">
@@ -20,11 +30,11 @@ const BlogSection = () => {
 				</div>
 			</BentoItem>
 
+			{/* Terraform AWS Article - 10 cols × 6 rows */}
 			<BentoItem
 				colSpan={10}
-				rowSpan={10}
-				height={80}
-				className="md:col-span-1 lg:col-span-10 lg:row-span-10"
+				rowSpan={6}
+				className="md:col-span-1 lg:col-span-10 lg:row-span-6"
 				redirectTo="https://ayroid.hashnode.dev/build-and-manage-aws-infrastructure-with-terraform"
 			>
 				<div className="p-4 sm:p-6 h-full flex flex-col">
@@ -49,11 +59,11 @@ const BlogSection = () => {
 				</div>
 			</BentoItem>
 
+			{/* Next.js vs React Article - 10 cols × 8 rows */}
 			<BentoItem
 				colSpan={10}
-				rowSpan={16}
-				height={80}
-				className="md:col-span-1 lg:col-span-10 lg:row-span-16"
+				rowSpan={8}
+				className="md:col-span-1 lg:col-span-10 lg:row-span-8"
 				redirectTo={
 					"https://ayroid.hashnode.dev/nextjs-vs-react-a-developers-perspective-on-why-nextjs-stands-out"
 				}
@@ -80,10 +90,10 @@ const BlogSection = () => {
 				</div>
 			</BentoItem>
 
+			{/* View All Link - 10 cols × 2 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={2}
-				height={20}
 				className="md:col-span-2 lg:col-span-10 lg:row-span-2"
 				redirectTo={"https://ayroid.hashnode.dev/"}
 			>
@@ -94,11 +104,11 @@ const BlogSection = () => {
 				</div>
 			</BentoItem>
 
+			{/* Conventional Commits Article - 10 cols × 6 rows */}
 			<BentoItem
 				colSpan={10}
-				rowSpan={14}
-				height={80}
-				className="md:col-span-2 lg:col-span-10 lg:row-span-14"
+				rowSpan={6}
+				className="md:col-span-2 lg:col-span-10 lg:row-span-6"
 				redirectTo="https://ayroid.hashnode.dev/from-chaos-to-clarity-how-conventional-commits-revolutionize-version-control"
 			>
 				<div className="p-4 sm:p-6 h-full flex flex-col">
@@ -125,11 +135,11 @@ const BlogSection = () => {
 				</div>
 			</BentoItem>
 
+			{/* Docker MERN Article - 10 cols × 4 rows */}
 			<BentoItem
 				colSpan={10}
-				rowSpan={10}
-				height={80}
-				className="md:col-span-1 lg:col-span-10 lg:row-span-10"
+				rowSpan={4}
+				className="md:col-span-1 lg:col-span-10 lg:row-span-4"
 				redirectTo="https://ayroid.hashnode.dev/dockerize-deploy-mern-stack-application-on-aws-EC2"
 			>
 				<div className="p-4 sm:p-6 h-full flex flex-col">

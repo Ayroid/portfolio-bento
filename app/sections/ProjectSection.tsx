@@ -1,22 +1,34 @@
 import React from "react";
 import { BentoItem } from "@/app/components/BentoItem";
 
+/**
+ * LATTICE STRUCTURE (30 columns × 10 rows)
+ * Base row height: 50px
+ */
+
 const ProjectSection = () => {
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] gap-2 border-b border-green-800 pb-2 mb-2">
+		<div
+			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)] gap-2 border-b border-green-800 pb-2 mb-2"
+			style={{
+				gridAutoRows: '50px' // Base row height
+			}}
+		>
+			{/* Header - 10 cols × 2 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={2}
-				height={20}
+				// height={160}
 				className="md:col-span-1 lg:col-span-10 lg:row-span-2"
 			>
-				<div className="p-4 sm:p-6">
+				<div className="p-4 sm:p-6 h-full flex items-center">
 					<h1 className="text-white font-extrabold text-2xl uppercase italic">
 						FEATURED WORK
 					</h1>
 				</div>
 			</BentoItem>
 
+			{/* Parko Project - 10 cols × 10 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={10}
@@ -44,6 +56,7 @@ const ProjectSection = () => {
 				</div>
 			</BentoItem>
 
+			{/* Ideos Project - 10 cols × 5 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={5}
@@ -72,6 +85,7 @@ const ProjectSection = () => {
 				</div>
 			</BentoItem>
 
+			{/* Terraform EC2 - 10 cols × 8 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={8}
@@ -101,6 +115,7 @@ const ProjectSection = () => {
 				</div>
 			</BentoItem>
 
+			{/* Visual Rift - 10 cols × 5 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={5}

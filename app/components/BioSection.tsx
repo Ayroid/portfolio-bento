@@ -4,7 +4,7 @@ export function BioSection() {
   return (
     <div className="p-6 sm:p-8 h-full flex items-center">
       <div className="flex flex-col md:flex-row items-center gap-6 w-full">
-        <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-6xl overflow-hidden shrink-0">
+        <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-linear-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-6xl overflow-hidden shrink-0">
           🐶
         </div>
         <div className="flex-1">
