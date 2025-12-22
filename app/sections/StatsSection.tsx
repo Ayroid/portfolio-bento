@@ -1,5 +1,6 @@
 import { BentoItem } from "@/app/components/BentoItem";
 import { GitHubContributions } from "@/app/components/GitHubContributions";
+import BooksCard from "@/app/components/BooksCard";
 
 /**
  * LATTICE STRUCTURE (30 columns × 8 rows)
@@ -26,8 +27,8 @@ const StatsSection = () => {
 
 			<BentoItem
 				colSpan={10}
-				rowSpan={6}
-				className="md:col-span-1 lg:col-span-10 lg:row-span-6"
+				rowSpan={7}
+				className="md:col-span-1 lg:col-span-10 lg:row-span-7"
 			>
 				<div className="p-4 sm:p-6">
 					<h3 className="text-white font-bold mb-2 sm:mb-3">Pasandida Aurat</h3>
@@ -108,79 +109,11 @@ const StatsSection = () => {
 			</BentoItem>
 
 			<BentoItem
-				colSpan={10}
-				rowSpan={7}
-				className="md:col-span-2 lg:col-span-10 lg:row-span-6"
-			>
-				<div className="p-4 sm:p-6 h-full flex flex-col">
-					<h3 className="text-white font-bold mb-3 sm:mb-4 text-base sm:text-lg">
-						All Technologies
-					</h3>
-					<div className="space-y-3 flex-1 overflow-auto">
-						<div>
-							<p className="text-zinc-500 text-xs mb-2 uppercase">Languages</p>
-							<div className="flex flex-wrap gap-2">
-								{["TypeScript", "JavaScript", "Go"].map((tech) => (
-									<span
-										key={tech}
-										className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800"
-									>
-										{tech}
-									</span>
-								))}
-							</div>
-						</div>
-						<div>
-							<p className="text-zinc-500 text-xs mb-2 uppercase">Tools</p>
-							<div className="flex flex-wrap gap-2">
-								{["Git", "Docker", "Vercel", "AWS"].map((tech) => (
-									<span
-										key={tech}
-										className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800"
-									>
-										{tech}
-									</span>
-								))}
-							</div>
-						</div>
-					</div>
-				</div>
-			</BentoItem>
-
-			<BentoItem
-				colSpan={10}
+				colSpan={20}
 				rowSpan={6}
 				className="md:col-span-1 lg:col-span-10 lg:row-span-4"
 			>
-				<div className="p-4 sm:p-6">
-					<h3 className="text-white font-bold mb-3 sm:mb-4 text-base sm:text-lg">
-						Setup
-					</h3>
-					<div className="space-y-3">
-						<div className="flex items-start gap-3">
-							<span className="text-lg sm:text-xl">👓</span>
-							<div>
-								<h4 className="text-white font-semibold text-xs sm:text-sm mb-1">
-									Wears Used
-								</h4>
-								<p className="text-zinc-500 text-xs">
-									Glasses, Watch, Airpods Max
-								</p>
-							</div>
-						</div>
-						<div className="flex items-start gap-3">
-							<span className="text-lg sm:text-xl">💻</span>
-							<div>
-								<h4 className="text-white font-semibold text-xs sm:text-sm mb-1">
-									VSCode / Cursor Setup
-								</h4>
-								<p className="text-zinc-500 text-xs">
-									One Dark Pro theme with custom extensions
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
+				<BooksCard />
 			</BentoItem>
 		</div>
 	);
