@@ -1,6 +1,6 @@
 "use client";
 
-import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaXTwitter, FaGithub, FaLinkedin, FaHashnode } from "react-icons/fa6";
 import {
 	Tooltip,
 	TooltipContent,
@@ -25,6 +25,11 @@ export function ConnectCard() {
 			url: "https://x.com/ayroids",
 			label: "Twitter",
 		},
+		{
+			icon: FaHashnode,
+			url: "https://ayroid.hashnode.dev",
+			label: "Hashnode",
+		}
 	];
 
 	return (
