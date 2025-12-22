@@ -30,6 +30,41 @@ export const BentoItem = ({
 		});
 	};
 
+	const content = (
+		<>
+			{/* Hover glow effect */}
+			<div
+				className="pointer-events-none absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-500"
+				style={{
+					background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.06), transparent 40%)`,
+					opacity: isHovered ? 1 : 0,
+					zIndex: 3,
+				}}
+			/>
+
+			{/* Border glow effect */}
+			<div
+				className="pointer-events-none absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-500"
+				style={{
+					background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.3), transparent 40%)`,
+					opacity: isHovered ? 1 : 0,
+					zIndex: 1,
+				}}
+			/>
+
+			{/* Content container */}
+			<div
+				className="bg-[#090909] rounded-[10px] h-full w-full relative overflow-hidden"
+				style={{
+					zIndex: 2,
+					minHeight: `${height}px`
+				}}
+			>
+				<div className="relative z-10 h-full">{children}</div>
+			</div>
+		</>
+	);
+
 	return (
 		<div
 			className={`bg-transparent rounded-[10px] relative cursor-pointer ${className}`}
@@ -43,38 +78,13 @@ export const BentoItem = ({
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
-			{/* Hover glow effect */}
-			<a href={redirectTo} target="_blank" rel="noopener noreferrer">
-				<div
-					className="pointer-events-none absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-500"
-					style={{
-						background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.06), transparent 40%)`,
-						opacity: isHovered ? 1 : 0,
-						zIndex: 3,
-					}}
-				/>
-
-				{/* Border glow effect */}
-				<div
-					className="pointer-events-none absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-500"
-					style={{
-						background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.3), transparent 40%)`,
-						opacity: isHovered ? 1 : 0,
-						zIndex: 1,
-					}}
-				/>
-
-				{/* Content container */}
-				<div
-					className="bg-[#090909] rounded-[10px] h-full w-full relative overflow-hidden"
-					style={{ 
-						zIndex: 2,
-						minHeight: `${height}px`
-					}}
-				>
-					<div className="relative z-10 h-full">{children}</div>
-				</div>
-			</a>
+			{redirectTo ? (
+				<a href={redirectTo} target="_blank" rel="noopener noreferrer">
+					{content}
+				</a>
+			) : (
+				content
+			)}
 		</div>
 	);
 };

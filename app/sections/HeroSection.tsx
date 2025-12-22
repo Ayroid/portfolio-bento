@@ -15,7 +15,7 @@ import { NameCard } from "@/app/components/NameCard";
 const HeroSection = () => {
 	return (
 		<div
-			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] gap-2 border-b border-green-800 pb-2 mb-2"
+			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] gap-2"
 			style={{
 				gridAutoRows: "150px", // Base row height
 			}}

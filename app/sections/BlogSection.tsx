@@ -9,7 +9,7 @@ import { BentoItem } from "@/app/components/BentoItem";
 const BlogSection = () => {
 	return (
 		<div
-			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)] gap-2 border-b border-green-800 pb-2 mb-2"
+			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)] gap-2"
 			style={{
 				gridAutoRows: "50px", // Base row height
 			}}
@@ -47,7 +47,7 @@ const BlogSection = () => {
 						}}
 					/>
 					{/* Gradient Overlay */}
-					<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+					<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
 
 					{/* Content */}
 					<div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transition-all duration-300 group-hover:pb-6">
@@ -88,7 +88,7 @@ const BlogSection = () => {
 						}}
 					/>
 					{/* Gradient Overlay */}
-					<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+					<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
 
 					{/* Content */}
 					<div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transition-all duration-300 group-hover:pb-6">
@@ -141,7 +141,7 @@ const BlogSection = () => {
 						}}
 					/>
 					{/* Gradient Overlay */}
-					<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+					<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
 
 					{/* Content */}
 					<div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transition-all duration-300 group-hover:pb-6">
@@ -180,7 +180,7 @@ const BlogSection = () => {
 						}}
 					/>
 					{/* Gradient Overlay */}
-					<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+					<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
 
 					{/* Content */}
 					<div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transition-all duration-300 group-hover:pb-6">
