@@ -30,20 +30,34 @@ const StatsSection = () => {
 				rowSpan={7}
 				className="md:col-span-1 lg:col-span-10 lg:row-span-7"
 			>
-				<div className="p-4 sm:p-6">
-					<h3 className="text-white font-bold mb-2 sm:mb-3">Pasandida Aurat</h3>
-					<p className="text-zinc-400 text-sm mb-2">Dating Platform</p>
-					<p className="text-zinc-600 text-xs mb-3 sm:mb-4">
-						Emphasizing authentic connections (in development)
-					</p>
-					<div className="flex flex-wrap gap-2">
-						{["Next.js", "Dating", "Social", "MVP"].map((tag) => (
-							<span
-								key={tag}
-								className="px-2 py-1 bg-zinc-900 text-zinc-400 rounded text-xs border border-zinc-800"
+				<div className="p-4 sm:p-6 h-full flex flex-col">
+					<h3 className="text-white font-bold mb-3 sm:mb-4">Tech Stack</h3>
+					<div className="grid grid-cols-4 gap-3 flex-1">
+						{[
+							{ name: "Next.js", icon: "▲" },
+							{ name: "Node.js", icon: "◆" },
+							{ name: "MongoDB", icon: "🍃" },
+							{ name: "Redis", icon: "◈" },
+							{ name: "JavaScript", icon: "JS" },
+							{ name: "TypeScript", icon: "TS" },
+							{ name: "Tailwind", icon: "🎨" },
+							{ name: "Linux", icon: "🐧" },
+							{ name: "Git", icon: "⎇" },
+							{ name: "Docker", icon: "🐋" },
+							{ name: "Terraform", icon: "⚙️" },
+							{ name: "AWS", icon: "☁️" },
+							{ name: "Vercel", icon: "▲" },
+							{ name: "Nginx", icon: "⚡" },
+						].map((tech) => (
+							<div
+								key={tech.name}
+								className="flex flex-col items-center justify-center hover:bg-zinc-800 rounded-lg transition-colors"
 							>
-								{tag}
-							</span>
+								<span className="text-lg sm:text-xl mb-1">{tech.icon}</span>
+								<span className="text-zinc-400 text-[10px] sm:text-xs text-center">
+									{tech.name}
+								</span>
+							</div>
 						))}
 					</div>
 				</div>
