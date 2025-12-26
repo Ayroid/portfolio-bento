@@ -1,12 +1,9 @@
-import { BentoItem } from "@/app/components/BentoItem";
 import Navbar from "@/app/sections/Navbar";
 import HeroSection from "@/app/sections/HeroSection";
 import ProjectSection from "@/app/sections/ProjectSection";
 import BlogSection from "@/app/sections/BlogSection";
 import StatsSection from "@/app/sections/StatsSection";
-import OpenToWorkSection from "./sections/OpenToWorkSection";
-import CopySection from "@/app/sections/CopySection";
-import ContactSection from "@/app/sections/ContactSection";
+import TemplateSection from "@/app/sections/TemplateSection";
 import Footer from "@/app/sections/Footer";
 
 export default function Home() {
@@ -15,7 +12,6 @@ export default function Home() {
 			<div className="w-full max-w-[1520px] mx-auto p-2 sm:p-4">
 				<div className="flex flex-col gap-2 ">
 					{/* Full Width Header - Navigation */}
-
 					<Navbar />
 
 					{/* Rows 1-2: Unified Grid with spanning */}
@@ -24,22 +20,16 @@ export default function Home() {
 					{/* Row 3: Featured Work - Projects & Experience */}
 					<ProjectSection />
 
-					{/* Row 4: Blogs */}
-					<BlogSection />
-
-					{/* Row 5: Stats*/}
+					{/* Row 4: Stats*/}
 					<StatsSection />
 
-					{/* Row 5: ToolBox - Blogs, GitHub Activity, Setup */}
-					<CopySection />
+					{/* Row 5: Blogs */}
+					<BlogSection />
 
-					{/* Row 6: CTA Banner */}
-					<OpenToWorkSection />
+					{/* Row 6: Template Section */}
+					<TemplateSection />
 
-					{/* Row 7: Contact Info + Social Links */}
-					<ContactSection />
-
-					{/* Row 8: Footer */}
+					{/* Row 7: Footer with Open to Work & Social Links */}
 					<Footer />
 				</div>
 			</div>
