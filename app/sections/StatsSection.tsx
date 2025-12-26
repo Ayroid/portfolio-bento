@@ -1,6 +1,29 @@
 import { BentoItem } from "@/app/components/BentoItem";
 import { GitHubContributions } from "@/app/components/GitHubContributions";
 import BooksCard from "@/app/components/BooksCard";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+	SiReact,
+	SiNextdotjs,
+	SiNodedotjs,
+	SiMongodb,
+	SiRedis,
+	SiJavascript,
+	SiTypescript,
+	SiTailwindcss,
+	SiLinux,
+	SiGit,
+	SiDocker,
+	SiTerraform,
+	SiAmazon,
+	SiVercel,
+	SiNginx,
+} from "react-icons/si";
 
 /**
  * LATTICE STRUCTURE (30 columns × 8 rows)
@@ -31,35 +54,39 @@ const StatsSection = () => {
 				className="md:col-span-1 lg:col-span-10 lg:row-span-7"
 			>
 				<div className="p-4 sm:p-6 h-full flex flex-col">
-					<h3 className="text-white font-bold mb-3 sm:mb-4">Tech Stack</h3>
-					<div className="grid grid-cols-4 gap-3 flex-1">
-						{[
-							{ name: "Next.js", icon: "▲" },
-							{ name: "Node.js", icon: "◆" },
-							{ name: "MongoDB", icon: "🍃" },
-							{ name: "Redis", icon: "◈" },
-							{ name: "JavaScript", icon: "JS" },
-							{ name: "TypeScript", icon: "TS" },
-							{ name: "Tailwind", icon: "🎨" },
-							{ name: "Linux", icon: "🐧" },
-							{ name: "Git", icon: "⎇" },
-							{ name: "Docker", icon: "🐋" },
-							{ name: "Terraform", icon: "⚙️" },
-							{ name: "AWS", icon: "☁️" },
-							{ name: "Vercel", icon: "▲" },
-							{ name: "Nginx", icon: "⚡" },
-						].map((tech) => (
-							<div
-								key={tech.name}
-								className="flex flex-col items-center justify-center hover:bg-zinc-800 rounded-lg transition-colors"
-							>
-								<span className="text-lg sm:text-xl mb-1">{tech.icon}</span>
-								<span className="text-zinc-400 text-[10px] sm:text-xs text-center">
-									{tech.name}
-								</span>
-							</div>
-						))}
-					</div>
+					<h3 className="text-white font-bold mb-2 sm:mb-3 text-base sm:text-lg">Tech Stack</h3>
+					<TooltipProvider>
+						<div className="flex flex-wrap gap-2 flex-1 content-start">
+							{[
+								{name : "React", icon: <SiReact /> },
+								{ name: "Next.js", icon: <SiNextdotjs /> },
+								{ name: "Node.js", icon: <SiNodedotjs /> },
+								{ name: "MongoDB", icon: <SiMongodb /> },
+								{ name: "Redis", icon: <SiRedis /> },
+								{ name: "Tailwind", icon: <SiTailwindcss /> },
+								{ name: "JavaScript", icon: <SiJavascript /> },
+								{ name: "TypeScript", icon: <SiTypescript /> },
+								{ name: "Linux", icon: <SiLinux /> },
+								{ name: "Git", icon: <SiGit /> },
+								{ name: "Docker", icon: <SiDocker /> },
+								{ name: "Terraform", icon: <SiTerraform /> },
+								{ name: "AWS", icon: <SiAmazon /> },
+								{ name: "Vercel", icon: <SiVercel /> },
+								{ name: "Nginx", icon: <SiNginx /> },
+							].map((tech) => (
+								<Tooltip key={tech.name}>
+									<TooltipTrigger asChild>
+										<div className="flex items-center justify-center cursor-pointer p-2">
+											<span className="text-3xl sm:text-5xl">{tech.icon}</span>
+										</div>
+									</TooltipTrigger>
+									<TooltipContent>
+										<p>{tech.name}</p>
+									</TooltipContent>
+								</Tooltip>
+							))}
+						</div>
+					</TooltipProvider>
 				</div>
 			</BentoItem>
 

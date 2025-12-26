@@ -121,7 +121,7 @@ const BlogSection = () => {
 				redirectTo={"https://ayroid.hashnode.dev/"}
 			>
 				<ActionCard
-					href="https://ayroid.hashnode.dev/"
+					asDiv={true}
 					label="ARTICLES"
 					bgColor="bg-[#e5e5e5]"
 					hoverBgColor="hover:bg-[#dddddd]"
