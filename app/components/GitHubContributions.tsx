@@ -89,17 +89,17 @@ export const GitHubContributions = ({ username }: { username: string }) => {
 	const getLevelColor = (level: number) => {
 		switch (level) {
 			case 0:
-				return "bg-zinc-900 border-zinc-800";
+				return "bg-zinc-500/5";
 			case 1:
-				return "bg-green-900 border-green-800";
+				return "bg-zinc-500/20";
 			case 2:
-				return "bg-green-700 border-green-700";
+				return "bg-zinc-500/40";
 			case 3:
-				return "bg-green-600 border-green-600";
+				return "bg-zinc-500/60";
 			case 4:
-				return "bg-green-500 border-green-500";
+				return "bg-zinc-500/80";
 			default:
-				return "bg-zinc-900 border-zinc-800";
+				return "bg-zinc-500/5";
 		}
 	};
 
