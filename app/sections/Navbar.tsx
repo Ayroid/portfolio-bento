@@ -1,10 +1,25 @@
 import Image from "next/image";
 import { BentoItem } from "../components/BentoItem";
 
+/**
+ * LATTICE STRUCTURE (30 columns × 2 rows)
+ * Base row height: 50px
+ */
+
 const Navbar = () => {
 	return (
-		<div className="grid grid-cols-1 gap-2 ">
-			<BentoItem className="h-20" height={20}>
+		<div
+			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] gap-2"
+			style={{
+				gridAutoRows: "35px", // Base row height
+			}}
+		>
+			{/* Navbar - 30 cols × 2 rows */}
+			<BentoItem
+				colSpan={30}
+				rowSpan={2}
+				className="md:col-span-2 lg:col-span-30"
+			>
 				<div className="p-4 sm:p-6 flex items-center justify-between">
 					<div className="flex items-center gap-3">
 						<div className="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center overflow-hidden">
