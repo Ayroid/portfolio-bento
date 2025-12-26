@@ -1,5 +1,6 @@
 import React from "react";
 import { BentoItem } from "@/app/components/BentoItem";
+import { ActionCard } from "../components/ActionCard";
 
 /**
  * LATTICE STRUCTURE (30 columns × 10 rows)
@@ -60,7 +61,8 @@ const BlogSection = () => {
 							Provision and Manage AWS Infrastructure with Terraform
 						</h3>
 						<p className="text-zinc-300 text-xs leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-300">
-							Learn to use Terraform efficiently and provision and manage resources on AWS.
+							Learn to use Terraform efficiently and provision and manage
+							resources on AWS.
 						</p>
 						<div className="flex items-center gap-3 mt-0 max-h-0 overflow-hidden opacity-0 group-hover:max-h-10 group-hover:opacity-100 group-hover:mt-2 transition-all duration-300">
 							<p className="text-zinc-400 text-xs">3 Aug 2024</p>
@@ -101,7 +103,8 @@ const BlogSection = () => {
 							Next.js vs React: A Developer&apos;s Perspective
 						</h3>
 						<p className="text-zinc-300 text-xs leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-300">
-							Discover why Next.js excels over React, featuring key benefits and firsthand insights from a developer&apos;s experience.
+							Discover why Next.js excels over React, featuring key benefits and
+							firsthand insights from a developer&apos;s experience.
 						</p>
 						<div className="flex items-center gap-3 mt-0 max-h-0 overflow-hidden opacity-0 group-hover:max-h-10 group-hover:opacity-100 group-hover:mt-2 transition-all duration-300">
 							<p className="text-zinc-400 text-xs">9 Jun 2024</p>
@@ -117,11 +120,14 @@ const BlogSection = () => {
 				className="md:col-span-2 lg:col-span-10 lg:row-span-2"
 				redirectTo={"https://ayroid.hashnode.dev/"}
 			>
-				<div className="p-4 sm:p-6 flex items-center justify-center">
-					<p className="text-zinc-500 text-sm text-center">
-						View all articles on Hashnode →
-					</p>
-				</div>
+				<ActionCard
+					href="https://ayroid.hashnode.dev/"
+					label="ARTICLES"
+					bgColor="bg-[#e5e5e5]"
+					hoverBgColor="hover:bg-[#dddddd]"
+					textColor="text-black"
+					iconColor="text-black"
+				/>
 			</BentoItem>
 
 			{/* Conventional Commits Article - 10 cols × 6 rows */}
@@ -151,10 +157,12 @@ const BlogSection = () => {
 							</span>
 						</div>
 						<h3 className="text-white font-bold mb-0 text-sm sm:text-base transition-all duration-300 group-hover:mb-2">
-							From Chaos to Clarity: How Conventional Commits Revolutionize Version Control
+							From Chaos to Clarity: How Conventional Commits Revolutionize
+							Version Control
 						</h3>
 						<p className="text-zinc-300 text-xs leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-300">
-							Discover how conventional commits and Commitizen streamline your project&apos;s history.
+							Discover how conventional commits and Commitizen streamline your
+							project&apos;s history.
 						</p>
 						<div className="flex items-center gap-3 mt-0 max-h-0 overflow-hidden opacity-0 group-hover:max-h-10 group-hover:opacity-100 group-hover:mt-2 transition-all duration-300">
 							<p className="text-zinc-400 text-xs">11 May 2024</p>
@@ -193,7 +201,8 @@ const BlogSection = () => {
 							Dockerize & Deploy a MERN Stack application on AWS EC2
 						</h3>
 						<p className="text-zinc-300 text-xs leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-300">
-							Learn to efficiently dockerize and deploy MERN applications on AWS EC2.
+							Learn to efficiently dockerize and deploy MERN applications on AWS
+							EC2.
 						</p>
 						<div className="flex items-center gap-3 mt-0 max-h-0 overflow-hidden opacity-0 group-hover:max-h-10 group-hover:opacity-100 group-hover:mt-2 transition-all duration-300">
 							<p className="text-zinc-400 text-xs">10 Mar 2024</p>

@@ -3,8 +3,8 @@ import HeroSection from "@/app/sections/HeroSection";
 import ProjectSection from "@/app/sections/ProjectSection";
 import BlogSection from "@/app/sections/BlogSection";
 import StatsSection from "@/app/sections/StatsSection";
-import TemplateSection from "@/app/sections/TemplateSection";
 import Footer from "@/app/sections/Footer";
+// import TemplateSection from "@/app/sections/TemplateSection";
 
 export default function Home() {
 	return (
@@ -27,7 +27,7 @@ export default function Home() {
 					<BlogSection />
 
 					{/* Row 6: Template Section */}
-					<TemplateSection />
+					{/* <TemplateSection /> */}
 
 					{/* Row 7: Footer with Open to Work & Social Links */}
 					<Footer />

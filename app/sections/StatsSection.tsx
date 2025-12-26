@@ -70,42 +70,90 @@ const StatsSection = () => {
 			>
 				<div className="p-4 sm:p-6 h-full flex flex-col">
 					<h3 className="text-white font-bold mb-2 sm:mb-3 text-base sm:text-lg">
-						GitHub Activity
+						Tech Stack Distribution
 					</h3>
-					<div className="space-y-2 mb-3 sm:mb-4">
-						<div className="flex items-center gap-2">
-							<div className="w-2 h-2 rounded-full bg-green-500"></div>
-							<p className="text-zinc-400 text-xs">
-								1,000+ contributions this year
-							</p>
-						</div>
-						<div className="flex items-center gap-2">
-							<div className="w-2 h-2 rounded-full bg-blue-500"></div>
-							<p className="text-zinc-400 text-xs">
-								Active open source contributor
-							</p>
+					<div className="flex-1 flex items-center justify-center">
+						<div className="relative w-48 h-48">
+							<svg viewBox="0 0 200 200" className="transform -rotate-90">
+								{(() => {
+									const techStack = [
+										{ name: "TypeScript", percentage: 30, color: "#3178c6" },
+										{ name: "React/Next.js", percentage: 25, color: "#61dafb" },
+										{ name: "Node.js", percentage: 20, color: "#68a063" },
+										{ name: "Tailwind CSS", percentage: 12, color: "#06b6d4" },
+										{ name: "MongoDB", percentage: 8, color: "#47a248" },
+										{ name: "Other", percentage: 5, color: "#71717a" },
+									];
+
+									let currentAngle = 0;
+									const radius = 80;
+									const centerX = 100;
+									const centerY = 100;
+									const strokeWidth = 30;
+
+									return techStack.map((tech, index) => {
+										const angle = (tech.percentage / 100) * 360;
+										const startAngle = currentAngle;
+										const endAngle = currentAngle + angle;
+
+										const startRad = (startAngle * Math.PI) / 180;
+										const endRad = (endAngle * Math.PI) / 180;
+
+										const x1 = centerX + radius * Math.cos(startRad);
+										const y1 = centerY + radius * Math.sin(startRad);
+										const x2 = centerX + radius * Math.cos(endRad);
+										const y2 = centerY + radius * Math.sin(endRad);
+
+										const largeArcFlag = angle > 180 ? 1 : 0;
+
+										const pathData = [
+											`M ${x1} ${y1}`,
+											`A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`
+										].join(' ');
+
+										currentAngle = endAngle;
+
+										return (
+											<path
+												key={index}
+												d={pathData}
+												fill="none"
+												stroke={tech.color}
+												strokeWidth={strokeWidth}
+												strokeLinecap="round"
+												className="transition-all hover:opacity-80"
+											/>
+										);
+									});
+								})()}
+							</svg>
+							<div className="absolute inset-0 flex items-center justify-center">
+								<div className="text-center">
+									<p className="text-white font-bold text-2xl">100%</p>
+									<p className="text-zinc-400 text-xs">Coverage</p>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div className="flex-1 bg-zinc-900 rounded-lg p-2 sm:p-3 border border-zinc-800">
-						<div className="grid grid-cols-12 gap-1">
-							{Array.from({ length: 84 }).map((_, i) => {
-								const intensity = (i * 7 + i * 3) % 5;
-								const colors = [
-									"bg-zinc-800",
-									"bg-green-900",
-									"bg-green-700",
-									"bg-green-600",
-									"bg-green-500",
-								];
-								return (
-									<div
-										key={i}
-										className={`h-2 rounded-sm ${colors[intensity]}`}
-									></div>
-								);
-							})}
-						</div>
-						<p className="text-zinc-600 text-xs mt-2">Contribution activity</p>
+					<div className="grid grid-cols-2 gap-2 mt-4">
+						{[
+							{ name: "TypeScript", percentage: 30, color: "#3178c6" },
+							{ name: "React/Next.js", percentage: 25, color: "#61dafb" },
+							{ name: "Node.js", percentage: 20, color: "#68a063" },
+							{ name: "Tailwind CSS", percentage: 12, color: "#06b6d4" },
+							{ name: "MongoDB", percentage: 8, color: "#47a248" },
+							{ name: "Other", percentage: 5, color: "#71717a" },
+						].map((tech) => (
+							<div key={tech.name} className="flex items-center gap-2">
+								<div
+									className="w-2 h-2 rounded-full"
+									style={{ backgroundColor: tech.color }}
+								></div>
+								<p className="text-zinc-400 text-[10px] sm:text-xs">
+									{tech.name} {tech.percentage}%
+								</p>
+							</div>
+						))}
 					</div>
 				</div>
 			</BentoItem>
@@ -115,10 +163,10 @@ const StatsSection = () => {
 				rowSpan={2}
 				className="md:col-span-2 lg:col-span-10 lg:row-span-2"
 			>
-				<div className="p-4 sm:p-6 flex items-center justify-center">
-					<p className="text-zinc-600 text-xs text-center">
-						Numbers that describes me
-					</p>
+				<div className="p-4 sm:p-6 h-full flex items-center">
+					<h1 className="text-white font-bold text-2xl uppercase text-center w-full">
+						Stats & Facts
+					</h1>
 				</div>
 			</BentoItem>
 
