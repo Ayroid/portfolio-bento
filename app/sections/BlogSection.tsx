@@ -15,66 +15,10 @@ const BlogSection = () => {
 				gridAutoRows: "50px", // Base row height
 			}}
 		>
-			{/* Header - 20 cols × 2 rows */}
-			<BentoItem
-				colSpan={20}
-				rowSpan={2}
-				className="md:col-span-2 lg:col-span-20 lg:row-span-2"
-			>
-				<div className="p-4 sm:p-6 h-full flex flex-col justify-center">
-					<h3 className="text-white font-bold text-xl sm:text-2xl mb-2 uppercase italic">
-						Articles & Learnings
-					</h3>
-					<p className="text-zinc-500 text-xs sm:text-sm">
-						Sharing insights on DevOps, Development, and Tech
-					</p>
-				</div>
-			</BentoItem>
-
-			{/* Terraform AWS Article - 10 cols × 6 rows */}
-			<BentoItem
-				colSpan={10}
-				rowSpan={6}
-				className="md:col-span-1 lg:col-span-10 lg:row-span-6 overflow-hidden group"
-				redirectTo="https://ayroid.hashnode.dev/build-and-manage-aws-infrastructure-with-terraform"
-			>
-				<div className="relative h-full w-full overflow-hidden">
-					{/* Background Image */}
-					<div
-						className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-						style={{
-							backgroundImage:
-								"url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80')",
-						}}
-					/>
-					{/* Gradient Overlay */}
-					<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
-
-					{/* Content */}
-					<div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transition-all duration-300 group-hover:pb-6">
-						<div className="mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-							<span className="px-2 py-1 bg-purple-900/50 text-purple-400 rounded text-xs border border-purple-800">
-								DevOps
-							</span>
-						</div>
-						<h3 className="text-white font-bold mb-0 text-sm sm:text-base transition-all duration-300 group-hover:mb-2">
-							Provision and Manage AWS Infrastructure with Terraform
-						</h3>
-						<p className="text-zinc-300 text-xs leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-300">
-							Learn to use Terraform efficiently and provision and manage
-							resources on AWS.
-						</p>
-						<div className="flex items-center gap-3 mt-0 max-h-0 overflow-hidden opacity-0 group-hover:max-h-10 group-hover:opacity-100 group-hover:mt-2 transition-all duration-300">
-							<p className="text-zinc-400 text-xs">3 Aug 2024</p>
-						</div>
-					</div>
-				</div>
-			</BentoItem>
-
 			{/* Next.js vs React Article - 10 cols × 8 rows */}
 			<BentoItem
 				colSpan={10}
-				rowSpan={8}
+				rowSpan={10}
 				className="md:col-span-1 lg:col-span-10 lg:row-span-8 overflow-hidden group"
 				redirectTo={
 					"https://ayroid.hashnode.dev/nextjs-vs-react-a-developers-perspective-on-why-nextjs-stands-out"
@@ -130,10 +74,50 @@ const BlogSection = () => {
 				/>
 			</BentoItem>
 
-			{/* Conventional Commits Article - 10 cols × 6 rows */}
+			{/* Terraform AWS Article - 10 cols × 6 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={6}
+				className="md:col-span-1 lg:col-span-10 lg:row-span-6 overflow-hidden group"
+				redirectTo="https://ayroid.hashnode.dev/build-and-manage-aws-infrastructure-with-terraform"
+			>
+				<div className="relative h-full w-full overflow-hidden">
+					{/* Background Image */}
+					<div
+						className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+						style={{
+							backgroundImage:
+								"url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80')",
+						}}
+					/>
+					{/* Gradient Overlay */}
+					<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
+
+					{/* Content */}
+					<div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transition-all duration-300 group-hover:pb-6">
+						<div className="mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+							<span className="px-2 py-1 bg-purple-900/50 text-purple-400 rounded text-xs border border-purple-800">
+								DevOps
+							</span>
+						</div>
+						<h3 className="text-white font-bold mb-0 text-sm sm:text-base transition-all duration-300 group-hover:mb-2">
+							Provision and Manage AWS Infrastructure with Terraform
+						</h3>
+						<p className="text-zinc-300 text-xs leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-300">
+							Learn to use Terraform efficiently and provision and manage
+							resources on AWS.
+						</p>
+						<div className="flex items-center gap-3 mt-0 max-h-0 overflow-hidden opacity-0 group-hover:max-h-10 group-hover:opacity-100 group-hover:mt-2 transition-all duration-300">
+							<p className="text-zinc-400 text-xs">3 Aug 2024</p>
+						</div>
+					</div>
+				</div>
+			</BentoItem>
+
+			{/* Conventional Commits Article - 10 cols × 6 rows */}
+			<BentoItem
+				colSpan={10}
+				rowSpan={8}
 				className="md:col-span-2 lg:col-span-10 lg:row-span-6 overflow-hidden group"
 				redirectTo="https://ayroid.hashnode.dev/from-chaos-to-clarity-how-conventional-commits-revolutionize-version-control"
 			>
