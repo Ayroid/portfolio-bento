@@ -2,14 +2,14 @@
 
 export function AboutCard() {
 	return (
-		<div className="p-4 sm:p-6 h-full flex flex-col">
-			<p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-				Hey there! I&apos;m Ayush Singh Kushwah, a Software Engineer at Yamaha
-				Motor Solutions India specializing in SAP BASIS operations and system
-				management. Passionate about Full Stack Development and DevOps, I thrive
-				on building innovative solutions and optimizing enterprise systems. With
-				a commitment to sharing knowledge, I actively contribute to the
-				open-source ecosystem.
+		<div className="p-4 sm:p-6 h-full">
+			<p className="text-zinc-400 text-base leading-relaxed">
+				I’m a full-stack engineer who enjoys taking ideas from concept to
+				production, with a strong focus on building reliable, production-ready
+				systems. As an SWE at Yamaha Motor Solutions India, I work on
+				infrastructure and core system operations to ensure stability and
+				performance. I also build and deploy end-to-end applications,
+				manage and automate infrastructure, and enjoy exploring new technologies & self-help books.
 			</p>
 		</div>
 	);

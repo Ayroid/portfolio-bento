@@ -28,52 +28,66 @@ export function ExperienceCard() {
 
 	const experiences: Experience[] = [
 		{
-			title: "Associate Software Engineer",
+			title: "Software Engineer",
 			company: "Yamaha Motor Solutions India",
-			logo: "/yamaha_logo.png", // Add your logo path
+			logo: "/yamaha_logo.png",
 			companyUrl: "https://www.ymsl.in/",
 			location: "Faridabad, India (On-Site)",
-			period: "Jul 2025 - Present",
+			period: "Jan 2025 - Present",
 			socials: {
 				website: "https://www.ymsl.in/",
-				linkedin: "https://www.linkedin.com/company/yamaha-motor-solutions-india-pvt.ltd./",
+				linkedin:
+					"https://www.linkedin.com/company/yamaha-motor-solutions-india-pvt.ltd./",
 			},
-			technologies: ["SAP BASIS", "HANA", "NetWeaver", "Datasphere"],
-			description: [
-				"Managing SAP BASIS operations including system configuration, monitoring, and performance tuning",
-				"Maintaining HANA/NetWeaver systems for enterprise operations",
-				"Managing integrations with SAP Datasphere and Cloud ALM",
+			technologies: [
+				"Cloud Infrastructure",
+				"Linux",
+				"Databases",
+				"System Monitoring",
+				"AWS",
+				"Automation",
 			],
-		},
-		{
-			title: "Software Engineering Intern",
-			company: "Yamaha Motor Solutions India",
-			logo: "/yamaha_logo.png", // Add your logo path
-			companyUrl: "https://www.ymsl.in/",
-			location: "Faridabad, India (On-Site)",
-			period: "Jan 2025 - Jun 2025",
-			socials: {
-				website: "https://www.ymsl.in/",
-				linkedin: "https://www.linkedin.com/company/yamaha-motor-solutions-india-pvt.ltd./",
-			},
-			technologies: ["SAP BASIS", "HANA", "NetWeaver"],
 			description: [
-				"Supported SAP system setup, monitoring, and user management",
-				"Assisted with routine BASIS maintenance and database backups",
-				"Performed software component updates and system maintenance",
+				"Started as a Software Engineering Intern and transitioned into a full-time role working on production systems",
+				"Managing enterprise-grade systems and infrastructure across multiple regions including India, Japan, Europe, and Brazil",
+				"Ensuring high availability, stability, and performance of core platforms supporting global business operations",
+				"Working closely with databases, deployments, and monitoring to support large-scale production workloads",
+				"Collaborating with cross-functional teams to automate workflows, improve reliability, and resolve production issues",
 			],
 		},
 		{
 			title: "Software Developer",
 			company: "OrganicGrow",
-			logo: "/stealth_startup.jpeg", // Add your logo path
+			logo: "/stealth.jpeg",
 			location: "Remote",
 			period: "Aug 2024 - Dec 2024",
-			technologies: ["GenAI", "React", "Node.js", "TypeScript"],
+			technologies: ["GenAI", "React", "Node.js", "TypeScript", "AWS"],
 			description: [
-				"Led development of GenAI-based automated content editing tool for social media",
-				"Enabled post creation to scheduling within seconds for 100+ clients",
-				"Optimized platform performance with modern tech stack",
+				"Built and shipped a GenAI-powered platform for creating, editing, and managing social media content at scale",
+				"Designed and implemented end-to-end workflows for content generation, real-time editing, and automated scheduling",
+				"Worked across frontend, backend, and cloud deployment to deliver features used by 100+ active customers",
+				"Improved system performance, reliability, and developer velocity using a modern TypeScript-based stack",
+			],
+		},
+		{
+			title: "Freelance Software Developer",
+			company: "Independent",
+			logo: "/stealth.jpeg",
+			location: "Remote",
+			period: "2022 - 2024",
+			technologies: [
+				"Next.js",
+				"React",
+				"Tailwind CSS",
+				"Node.js",
+				"Express",
+				"MongoDB",
+			],
+			description: [
+				"Built and shipped full-stack MVPs, dashboards, and landing pages for individual founders, startups, and small businesses",
+				"Owned projects end-to-end—from requirement discussions and system design to development, deployment, and handover",
+				"Developed backend APIs, authentication flows, and database schemas for real-world production use cases",
+				"Deployed and managed applications on client-owned infrastructure, ensuring smooth delivery and operational stability",
 			],
 		},
 	];
@@ -107,7 +121,7 @@ export function ExperienceCard() {
 							{/* Row 1: Logo + Name | Social Links + Chevron */}
 							<div className="flex items-center justify-between">
 								{/* Left: Logo + Company Name */}
-								<div className="flex items-center gap-2">
+								<div className="flex items-start gap-2">
 									{/* Company Logo */}
 									<div className="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0 p-0.5">
 										<Image
@@ -118,13 +132,13 @@ export function ExperienceCard() {
 											className="object-contain"
 										/>
 									</div>
-									<h3 className="text-white font-bold text-base sm:text-lg">
+									<h3 className="text-white font-bold text-base sm:text-lg -mt-1">
 										{exp.company}
 									</h3>
 								</div>
 
 								{/* Right: Social Links + Chevron */}
-								<div className="flex items-center gap-1.5">
+								<div className="flex items-center gap-1.5 -mt-2">
 									{exp.socials?.website && (
 										<a
 											href={exp.socials.website}
@@ -178,14 +192,16 @@ export function ExperienceCard() {
 							</div>
 
 							{/* Row 2: Duration | Location */}
-							<div className="flex items-center gap-1 text-sm ml-10 -mt-2">
+							<div className="flex items-center gap-1 text-sm ml-10 -mt-3">
 								<p className="text-zinc-400">{exp.period}</p>
 								<span className="text-zinc-600">|</span>
 								<p className="text-zinc-500">{exp.location}</p>
 							</div>
 
 							{/* Position */}
-							<p className="text-zinc-400 text-sm -mt-1 ml-10 font-bold">{exp.title}</p>
+							<p className="text-zinc-400 text-sm mt-0 ml-10 font-bold">
+								{exp.title}
+							</p>
 						</div>
 
 						{/* Expandable Content */}
@@ -206,7 +222,8 @@ export function ExperienceCard() {
 													: "opacity-0 translate-y-2"
 											}`}
 											style={{
-												transitionDelay: openIndex === index ? `${i * 50}ms` : "0ms",
+												transitionDelay:
+													openIndex === index ? `${i * 50}ms` : "0ms",
 											}}
 										>
 											<span className="text-zinc-600 mr-2 mt-1">•</span>
