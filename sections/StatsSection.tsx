@@ -1,6 +1,6 @@
-import { BentoItem } from "@/app/components/BentoItem";
-import { GitHubContributions } from "@/app/components/GitHubContributions";
-import BooksCard from "@/app/components/BooksCard";
+import { BentoItem } from "@/components/BentoItem";
+import { GitHubContributions } from "@/components/GitHubContributions";
+import BooksCard from "@/components/BooksCard";
 import {
 	Tooltip,
 	TooltipContent,

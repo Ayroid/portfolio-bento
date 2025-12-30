@@ -1,5 +1,5 @@
-import React from "react";
-import { BentoItem } from "@/app/components/BentoItem";
+import { BentoItem } from "@/components/BentoItem";
+import { ActionCard } from "@/components/ActionCard";
 
 /**
  * LATTICE STRUCTURE (30 columns × 10 rows)
@@ -21,11 +21,14 @@ const ProjectSection = () => {
 				// height={160}
 				className="md:col-span-1 lg:col-span-10 lg:row-span-2"
 			>
-				<div className="p-4 sm:p-6 h-full flex items-center">
-					<h1 className="text-white font-extrabold text-2xl uppercase italic">
-						FEATURED WORK
-					</h1>
-				</div>
+				<ActionCard
+					href="/projects"
+					label="PROJECTS"
+					bgColor="bg-[#e5e5e5]"
+					hoverBgColor="hover:bg-[#dddddd]"
+					textColor="text-black"
+					iconColor="text-black"
+				/>
 			</BentoItem>
 
 			{/* Parko Project - 10 cols × 10 rows */}

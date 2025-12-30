@@ -1,11 +1,11 @@
 import React from "react";
-import { BentoItem } from "@/app/components/BentoItem";
-import { ProfileCard } from "@/app/components/ProfileCard";
-import { ExperienceCard } from "@/app/components/ExperienceCard";
-import { AboutCard } from "@/app/components/AboutCard";
-import { ActionCard } from "@/app/components/ActionCard";
-import { ConnectCard } from "@/app/components/ConnectCard";
-import { NameCard } from "@/app/components/NameCard";
+import { BentoItem } from "@/components/BentoItem";
+import { ProfileCard } from "@/components/ProfileCard";
+import { ExperienceCard } from "@/components/ExperienceCard";
+import { AboutCard } from "@/components/AboutCard";
+import { ActionCard } from "@/components/ActionCard";
+import { ConnectCard } from "@/components/ConnectCard";
+import { NameCard } from "@/components/NameCard";
 
 /**
  * LATTICE STRUCTURE (30 columns × 4 rows)

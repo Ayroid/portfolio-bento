@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/sections/Navbar";
+import Footer from "@/sections/Footer";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -20,10 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body
-        className={`${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistMono.variable} antialiased`}>
+        <div className="min-h-screen w-full bg-black py-8">
+          <div className="w-full max-w-[1520px] mx-auto p-2 sm:p-4">
+            <div className="flex flex-col gap-2">
+              <Navbar />
+              {children}
+              <Footer />
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );
