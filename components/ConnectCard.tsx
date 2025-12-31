@@ -1,37 +1,14 @@
 "use client";
 
-import { FaXTwitter, FaGithub, FaLinkedin, FaHashnode } from "react-icons/fa6";
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { SocialPreviewCard } from "@/components/SocialPreviewCard";
+import { socialProfiles } from "@/lib/social-profiles";
 
 export function ConnectCard() {
-	const socialIcons = [
-		{
-			icon: FaGithub,
-			url: "https://github.com/ayroid",
-			label: "GitHub",
-		},
-		{
-			icon: FaLinkedin,
-			url: "https://linkedin.com/in/ayroid",
-			label: "LinkedIn",
-		},
-		{
-			icon: FaXTwitter,
-			url: "https://x.com/ayroids",
-			label: "Twitter",
-		},
-		{
-			icon: FaHashnode,
-			url: "https://ayroid.hashnode.dev",
-			label: "Hashnode",
-		}
-	];
-
 	return (
 		<div className="h-full w-full font-mono flex flex-col p-4 relative transition-colors group">
 			{/* Arrow - Top Right */}
@@ -57,31 +34,33 @@ export function ConnectCard() {
 				</span>
 
 				{/* Social Icons - Bottom Right */}
-				<TooltipProvider>
-					<div className="flex gap-4 items-center pb-1">
-						{socialIcons.map((social) => {
-							const Icon = social.icon;
-							return (
-								<Tooltip key={social.label}>
-									<TooltipTrigger asChild>
-										<a
-											href={social.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-white hover:text-zinc-400 transition-colors"
-											aria-label={social.label}
-										>
-											<Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-										</a>
-									</TooltipTrigger>
-									<TooltipContent>
-										<p>{social.label}</p>
-									</TooltipContent>
-								</Tooltip>
-							);
-						})}
-					</div>
-				</TooltipProvider>
+				<div className="flex gap-4 items-center pb-1">
+					{socialProfiles.map((profile) => {
+						const Icon = profile.icon;
+						return (
+							<HoverCard key={profile.platform} openDelay={200} closeDelay={100}>
+								<HoverCardTrigger asChild>
+									<a
+										href={profile.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-white hover:text-zinc-400 transition-colors"
+										aria-label={profile.platform}
+									>
+										<Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+									</a>
+								</HoverCardTrigger>
+								<HoverCardContent
+									className="w-auto p-0 border-0 bg-transparent"
+									side="top"
+									sideOffset={8}
+								>
+									<SocialPreviewCard profile={profile} />
+								</HoverCardContent>
+							</HoverCard>
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);
