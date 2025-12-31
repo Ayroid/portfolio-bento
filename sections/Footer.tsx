@@ -178,7 +178,7 @@ const Footer = () => {
 				<p className="text-zinc-600 text-xs sm:text-sm text-center">
 					Designed & Developed by{" "}
 					<span className="text-zinc-400 font-bold">Ayush Singh Kushwah</span>
-					<br />© 2025 All rights reserved.
+					<br />© 2026 All rights reserved.
 				</p>
 			</div>
 		</>
