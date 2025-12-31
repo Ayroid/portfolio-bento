@@ -33,10 +33,10 @@ export function ConnectCard() {
 	];
 
 	return (
-		<div className="h-full w-full font-mono flex flex-col p-4 relative transition-colors">
+		<div className="h-full w-full font-mono flex flex-col p-4 relative transition-colors group">
 			{/* Arrow - Top Right */}
 			<svg
-				className="absolute top-4 right-4 w-8 h-8 sm:w-10 sm:h-10 text-white opacity-50"
+				className="absolute top-4 right-4 group-hover:top-3 group-hover:right-3 w-8 h-8 sm:w-10 sm:h-10 text-white opacity-50 transition-all"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"

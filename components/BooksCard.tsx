@@ -3,28 +3,28 @@ import Link from "next/link";
 
 const books = [
 	{
-		title: "Atomic Habits",
-		author: "James Clear",
-		image: "https://m.media-amazon.com/images/I/81YkqyaFVEL._SY466_.jpg",
-		progress: 75,
+		title: "The Psychology of Money",
+		author: "Morgan Housel",
+		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+		progress: 80,
 	},
 	{
-		title: "The Lean Startup",
-		author: "Eric Ries",
-		image: "https://m.media-amazon.com/images/I/81-QB7nDh4L._SY466_.jpg",
-		progress: 45,
+		title: "Zero to One",
+		author: "Peter Thiel",
+		image: "https://m.media-amazon.com/images/I/71d9XzWVB-L._SY466_.jpg",
+		progress: 70,
 	},
 	{
-		title: "Deep Work",
-		author: "Cal Newport",
-		image: "https://m.media-amazon.com/images/I/71QKQ9mwV7L._SY466_.jpg",
-		progress: 60,
+		title: "Richest Man in Babylon",
+		author: "George S. Clason",
+		image: "https://m.media-amazon.com/images/I/81BE7eeKzAL._SY466_.jpg",
+		progress: 50,
 	},
 	{
-		title: "Thinking, Fast and Slow",
-		author: "Daniel Kahneman",
-		image: "https://m.media-amazon.com/images/I/71f6DceqZAL._SY466_.jpg",
-		progress: 30,
+		title: "Just Keep Buying",
+		author: "Nick Maggiulli",
+		image: "https://m.media-amazon.com/images/I/71T7McrDR-L._SY466_.jpg",
+		progress: 40,
 	},
 ];
 
@@ -62,23 +62,23 @@ const BooksCard = () => {
 				))}
 				<Link
 					href="/books"
-					className="bg-[#e5e5e5] hover:bg-[#dddddd] rounded-lg flex items-end justify-start p-3 relative transition-colors cursor-pointer"
+					className="bg-[#e5e5e5] hover:bg-[#dddddd] rounded-lg flex items-end justify-start p-3 relative transition-colors cursor-pointer group"
 				>
-					<svg
-						className="absolute top-3 right-3 w-6 h-6 text-black opacity-50"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
-					>
-						<path
-							d="M7 17L17 7M17 7H7M17 7V17"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-					</svg>
-					<span className="text-black font-mono font-medium text-sm">
-						VIEW ALL
+			<svg
+				className={`absolute top-3 right-3 w-8 h-8 sm:w-10 sm:h-10 text-black opacity-50 group-hover:top-2 group-hover:right-2 transition-all`}
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+			>
+				<path
+					d="M7 17L17 7M17 7H7M17 7V17"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+			</svg>
+					<span className="text-black font-mono font-medium text-2xl">
+						COMPLETE COLLECTION
 					</span>
 				</Link>
 			</div>

@@ -17,13 +17,13 @@ export function ActionCard({
 	iconColor = "text-white",
 	asDiv = false,
 }: ActionCardProps) {
-	const className = `${bgColor} h-full w-full text-2xl sm:text-3xl lg:text-4xl font-medium ${textColor} font-mono flex items-end justify-start p-4 relative ${hoverBgColor} transition-colors`;
+	const className = `${bgColor} h-full w-full text-2xl sm:text-3xl lg:text-4xl font-medium ${textColor} font-mono flex items-end justify-start p-4 relative ${hoverBgColor} transition-colors group`;
 
 	const content = (
 		<>
 			{/* Arrow pointing to top-right corner */}
 			<svg
-				className={`absolute top-4 right-4 w-8 h-8 sm:w-10 sm:h-10 ${iconColor} opacity-50`}
+				className={`absolute top-4 right-4 group-hover:top-3 group-hover:right-3 w-8 h-8 sm:w-10 sm:h-10 ${iconColor} opacity-50 transition-all`}
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"

@@ -7,6 +7,12 @@ import { BentoItem } from "../components/BentoItem";
  * Base row height: 50px
  */
 
+const links = [
+	{ href: "/blogs", label: "Blogs" },
+	{ href: "/projects", label: "Projects" },
+	{ href: "/books", label: "Books" },
+];
+
 const Navbar = () => {
 	return (
 		<div
@@ -32,12 +38,15 @@ const Navbar = () => {
 					</Link>
 
 					<nav className="hidden md:flex gap-6 lg:gap-8 text-zinc-400 text-sm lg:text-base">
-						<Link href="/blogs" className="hover:text-white transition-colors">
-							Blogs
-						</Link>
-						<Link href="/projects" className="hover:text-white transition-colors">
-							Projects
-						</Link>
+						{links.map((link) => (
+							<Link
+								key={link.href}
+								href={link.href}
+								className="hover:text-white transition-colors"
+							>
+								{link.label}
+							</Link>
+						))}
 					</nav>
 
 					<button className="md:hidden text-zinc-400 hover:text-white transition-colors">
