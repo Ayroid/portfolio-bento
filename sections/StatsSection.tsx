@@ -23,6 +23,8 @@ import {
 	SiAmazon,
 	SiVercel,
 	SiNginx,
+	SiPostgresql,
+	SiPrisma,
 } from "react-icons/si";
 
 /**
@@ -54,14 +56,18 @@ const StatsSection = () => {
 				className="md:col-span-1 lg:col-span-10 lg:row-span-7"
 			>
 				<div className="p-4 sm:p-6 h-full flex flex-col">
-					<h3 className="text-white font-bold mb-2 sm:mb-3 text-base sm:text-lg">Tech Stack</h3>
+					<h3 className="text-white font-bold mb-2 sm:mb-3 text-base sm:text-lg">
+						Tech Stack
+					</h3>
 					<TooltipProvider>
 						<div className="flex flex-wrap gap-2 flex-1 content-start">
 							{[
-								{name : "React", icon: <SiReact /> },
+								{ name: "React", icon: <SiReact /> },
 								{ name: "Next.js", icon: <SiNextdotjs /> },
 								{ name: "Node.js", icon: <SiNodedotjs /> },
 								{ name: "MongoDB", icon: <SiMongodb /> },
+								{ name: "PostgreSQL", icon: <SiPostgresql /> },
+								{ name: "Prisma", icon: <SiPrisma /> },
 								{ name: "Redis", icon: <SiRedis /> },
 								{ name: "Tailwind", icon: <SiTailwindcss /> },
 								{ name: "JavaScript", icon: <SiJavascript /> },
@@ -135,8 +141,8 @@ const StatsSection = () => {
 
 										const pathData = [
 											`M ${x1} ${y1}`,
-											`A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`
-										].join(' ');
+											`A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+										].join(" ");
 
 										currentAngle = endAngle;
 
