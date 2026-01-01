@@ -193,7 +193,7 @@ const ProjectCard = ({
 const ProjectSection = () => {
 	return (
 		<div
-			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)] gap-2"
+			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
 			style={{
 				gridAutoRows: "50px", // Base row height
 			}}
