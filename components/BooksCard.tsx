@@ -11,19 +11,19 @@ const books = [
 	{
 		title: "Zero to One",
 		author: "Peter Thiel",
-		image: "https://m.media-amazon.com/images/I/71d9XzWVB-L._SY466_.jpg",
+		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 		progress: 70,
 	},
 	{
 		title: "Richest Man in Babylon",
 		author: "George S. Clason",
-		image: "https://m.media-amazon.com/images/I/81BE7eeKzAL._SY466_.jpg",
+		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 		progress: 50,
 	},
 	{
 		title: "Just Keep Buying",
 		author: "Nick Maggiulli",
-		image: "https://m.media-amazon.com/images/I/71T7McrDR-L._SY466_.jpg",
+		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 		progress: 40,
 	},
 ];
