@@ -20,12 +20,12 @@ const books = [
 		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 		progress: 50,
 	},
-	{
-		title: "Just Keep Buying",
-		author: "Nick Maggiulli",
-		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-		progress: 40,
-	},
+	// {
+	// 	title: "Just Keep Buying",
+	// 	author: "Nick Maggiulli",
+	// 	image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+	// 	progress: 40,
+	// },
 ];
 
 const BooksCard = () => {
@@ -34,11 +34,11 @@ const BooksCard = () => {
 			<h3 className="text-white font-bold mb-3 sm:mb-4 text-base sm:text-lg">
 				Currently Reading
 			</h3>
-			<div className="grid grid-cols-5 gap-2 sm:gap-3 flex-1">
+			<div className="grid grid-cols-4 gap-2 sm:gap-3 flex-1">
 				{books.map((book) => (
 					<div
 						key={book.title}
-						className="group relative overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all cursor-pointer"
+						className="group relative overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all cursor-pointer"
 					>
 						<Image
 							src={book.image}
@@ -62,21 +62,21 @@ const BooksCard = () => {
 				))}
 				<Link
 					href="/books"
-					className="bg-[#e5e5e5] hover:bg-[#dddddd] rounded-lg flex items-end justify-start p-3 relative transition-colors cursor-pointer group"
+					className="bg-[#e5e5e5] hover:bg-[#dddddd] flex items-end justify-start p-3 relative transition-colors cursor-pointer group"
 				>
-			<svg
-				className={`absolute top-3 right-3 w-8 h-8 sm:w-10 sm:h-10 text-black opacity-50 group-hover:top-2 group-hover:right-2 transition-all`}
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				strokeWidth="2"
-			>
-				<path
-					d="M7 17L17 7M17 7H7M17 7V17"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				/>
-			</svg>
+					<svg
+						className={`absolute top-3 right-3 w-8 h-8 sm:w-10 sm:h-10 text-black opacity-50 group-hover:top-2 group-hover:right-2 transition-all`}
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="2"
+					>
+						<path
+							d="M7 17L17 7M17 7H7M17 7V17"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						/>
+					</svg>
 					<span className="text-black font-mono font-medium text-2xl">
 						COMPLETE COLLECTION
 					</span>

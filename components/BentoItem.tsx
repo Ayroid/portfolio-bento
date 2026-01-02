@@ -34,7 +34,7 @@ export const BentoItem = ({
 		<>
 			{/* Hover glow effect */}
 			<div
-				className="pointer-events-none absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-500"
+				className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500"
 				style={{
 					background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.06), transparent 40%)`,
 					opacity: isHovered ? 1 : 0,
@@ -44,7 +44,7 @@ export const BentoItem = ({
 
 			{/* Border glow effect */}
 			<div
-				className="pointer-events-none absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-500"
+				className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500"
 				style={{
 					background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.3), transparent 40%)`,
 					opacity: isHovered ? 1 : 0,
@@ -67,7 +67,7 @@ export const BentoItem = ({
 
 	return (
 		<div
-			className={`bg-transparent rounded-[10px] relative cursor-pointer ${className}`}
+			className={`bg-transparent relative cursor-pointer ${className}`}
 			style={{
 				gridColumn: `span ${colSpan}`,
 				gridRow: `span ${rowSpan}`,

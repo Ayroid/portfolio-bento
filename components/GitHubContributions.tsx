@@ -23,22 +23,13 @@ export const GitHubContributions = ({ username }: { username: string }) => {
 	const [totalContributions, setTotalContributions] = useState(0);
 	const [loading, setLoading] = useState(true);
 	const [isInitialLoad, setIsInitialLoad] = useState(true);
-	const [selectedYear, setSelectedYear] = useState<number | "last">("last");
-
-	// Generate available years (current year back to when GitHub user was created)
-	const currentYear = new Date().getFullYear();
-	const availableYears = Array.from(
-		{ length: currentYear - 2021 + 1 },
-		(_, i) => currentYear - i
-	);
 
 	useEffect(() => {
 		const fetchContributions = async () => {
 			try {
 				setLoading(true);
-				const yearParam = selectedYear === "last" ? "last" : selectedYear;
 				const response = await fetch(
-					`https://github-contributions-api.jogruber.de/v4/${username}?y=${yearParam}`
+					`https://github-contributions-api.jogruber.de/v4/${username}?y=last`
 				);
 
 				if (!response.ok) {
@@ -84,7 +75,7 @@ export const GitHubContributions = ({ username }: { username: string }) => {
 		};
 
 		fetchContributions();
-	}, [username, selectedYear]);
+	}, [username]);
 
 	const getLevelColor = (level: number) => {
 		switch (level) {
@@ -158,12 +149,11 @@ export const GitHubContributions = ({ username }: { username: string }) => {
 						<span className="text-white font-semibold">
 							{totalContributions}
 						</span>{" "}
-						contributions in{" "}
-						{selectedYear === "last" ? "the last year" : selectedYear}
+						contributions in the last year
 					</p>
 				</div>
 
-				<div className="flex-1 overflow-hidden">
+				<div className="flex-1 mt-4">
 					<div className="inline-flex flex-col gap-1 min-w-full">
 						{/* Month labels */}
 						<div className="flex gap-[3px] ml-7 mb-4 relative">
@@ -200,7 +190,7 @@ export const GitHubContributions = ({ username }: { username: string }) => {
 										{week.days.map((day, dayIndex) => (
 											<div
 												key={dayIndex}
-												className={`w-[12.5px] h-[12.5px] rounded-xs ${getLevelColor(
+												className={`w-3.5 h-3.5 ${getLevelColor(
 													day.level
 												)} hover:ring-1 hover:ring-zinc-400 transition-all cursor-pointer group relative`}
 												title={`${day.count} contributions on ${day.date}`}
@@ -226,9 +216,7 @@ export const GitHubContributions = ({ username }: { username: string }) => {
 								{[0, 1, 2, 3, 4].map((level) => (
 									<div
 										key={level}
-										className={`w-[12.5px] h-[12.5px] rounded-xs ${getLevelColor(
-											level
-										)}`}
+										className={`w-3.5 h-3.5 ${getLevelColor(level)}`}
 									/>
 								))}
 							</div>
@@ -236,32 +224,6 @@ export const GitHubContributions = ({ username }: { username: string }) => {
 						</div>
 					</div>
 				</div>
-			</div>
-			{/* Year selector */}
-			<div className="flex flex-col gap-1">
-				<button
-					onClick={() => setSelectedYear("last")}
-					className={`px-3 py-1.5 text-xs font-medium rounded transition-colors ${
-						selectedYear === "last"
-							? "bg-blue-600 text-white"
-							: "text-zinc-400 hover:text-white hover:bg-zinc-800"
-					}`}
-				>
-					Current
-				</button>
-				{availableYears.map((year) => (
-					<button
-						key={year}
-						onClick={() => setSelectedYear(year)}
-						className={`px-3 py-1.5 text-xs font-medium rounded transition-colors ${
-							selectedYear === year
-								? "bg-blue-600 text-white"
-								: "text-zinc-400 hover:text-white hover:bg-zinc-800"
-						}`}
-					>
-						{year}
-					</button>
-				))}
 			</div>
 		</div>
 	);

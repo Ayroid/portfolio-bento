@@ -214,10 +214,10 @@ const BlogSection = () => {
 				/>
 			</BentoItem>
 
-			{/* From URL to Webpage - 10 cols × 6 rows */}
+			{/* From URL to Webpage - 10 cols × 4 rows */}
 			<BentoItem
 				colSpan={10}
-				rowSpan={6}
+				rowSpan={4}
 				className="md:col-span-1 lg:col-span-10 overflow-hidden group"
 				redirectTo="https://ayroid.hashnode.dev/from-url-to-webpage-dns-networking-and-browser-internals"
 			>
@@ -297,7 +297,7 @@ const BlogSection = () => {
 			{/* Terraform AWS Article - 10 cols × 6 rows */}
 			<BentoItem
 				colSpan={10}
-				rowSpan={4}
+				rowSpan={6}
 				className="md:col-span-2 lg:col-span-10 overflow-hidden group"
 				redirectTo="https://ayroid.hashnode.dev/build-and-manage-aws-infrastructure-with-terraform"
 			>

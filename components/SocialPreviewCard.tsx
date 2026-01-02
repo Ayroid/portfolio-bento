@@ -48,7 +48,7 @@ function GitHubBanner() {
             {Array.from({ length: rows }).map((_, row) => (
               <div
                 key={row}
-                className="w-[10px] h-[10px] rounded-sm"
+                className="w-2.5 h-2.5 rounded-sm"
                 style={{ backgroundColor: getColor(row, col) }}
               />
             ))}
@@ -87,7 +87,7 @@ function TwitterBanner() {
 // LinkedIn style professional blue gradient
 function LinkedInBanner() {
   return (
-    <div className="w-full h-full relative overflow-hidden bg-gradient-to-br from-[#0077b5] via-[#0a66c2] to-[#004182]">
+    <div className="w-full h-full relative overflow-hidden bg-linear-to-br from-[#0077b5] via-[#0a66c2] to-[#004182]">
       {/* Network nodes pattern */}
       <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -110,7 +110,7 @@ function LinkedInBanner() {
 // Hashnode style tech blog gradient
 function HashnodeBanner() {
   return (
-    <div className="w-full h-full relative overflow-hidden bg-gradient-to-br from-[#2962ff] via-[#3d5afe] to-[#536dfe]">
+    <div className="w-full h-full relative overflow-hidden bg-linear-to-br from-[#2962ff] via-[#3d5afe] to-[#536dfe]">
       {/* Code/blog aesthetic pattern */}
       <div className="absolute inset-0 opacity-15">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -142,7 +142,7 @@ function PlatformBanner({ platform }: { platform: SocialProfile["platform"] }) {
     case "hashnode":
       return <HashnodeBanner />;
     default:
-      return <div className="w-full h-full bg-gradient-to-r from-zinc-800 to-zinc-700" />;
+      return <div className="w-full h-full bg-linear-to-r from-zinc-800 to-zinc-700" />;
   }
 }
 
@@ -201,7 +201,7 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
   const Icon = profile.icon;
 
   return (
-    <div className="w-72 bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 shadow-xl">
+    <div className="w-72 bg-zinc-900 rounded-sm overflow-hidden border border-zinc-800 shadow-xl">
       {/* Banner */}
       <div className="relative h-20 bg-zinc-800">
         {profile.bannerImage && !imageError.banner ? (

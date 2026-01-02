@@ -136,7 +136,7 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
 	return (
 		<div className="p-4 sm:p-6 h-full flex flex-col group">
-			<div className="relative h-56 rounded-lg mb-4 -mx-2 -mt-2 overflow-hidden">
+			<div className="relative h-56 mb-4 -mx-2 -mt-2 overflow-hidden">
 				{image && (
 					<Image
 						src={image}

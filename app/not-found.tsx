@@ -25,7 +25,7 @@ export default function NotFound() {
 							Page Not Found
 						</p>
 						<p className="text-sm sm:text-base text-zinc-500 max-w-md">
-							Oops! The page you're looking for seems to have wandered off into
+							Oops! The page you&apos;re looking for seems to have wandered off into
 							the void.
 						</p>
 					</div>

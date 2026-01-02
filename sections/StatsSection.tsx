@@ -42,7 +42,7 @@ const StatsSection = () => {
 		>
 			<BentoItem
 				colSpan={20}
-				rowSpan={5}
+				rowSpan={6}
 				className="md:col-span-2 lg:col-span-20 lg:row-span-2"
 			>
 				<div className="p-4 sm:p-8 h-full">
@@ -52,7 +52,7 @@ const StatsSection = () => {
 
 			<BentoItem
 				colSpan={10}
-				rowSpan={7}
+				rowSpan={6}
 				className="md:col-span-1 lg:col-span-10 lg:row-span-7"
 			>
 				<div className="p-4 sm:p-6 h-full flex flex-col">
@@ -60,7 +60,7 @@ const StatsSection = () => {
 						Tech Stack
 					</h3>
 					<TooltipProvider>
-						<div className="flex flex-wrap gap-2 flex-1 content-start">
+						<div className="flex flex-wrap flex-1 content-start">
 							{[
 								{ name: "React", icon: <SiReact /> },
 								{ name: "Next.js", icon: <SiNextdotjs /> },
@@ -82,8 +82,8 @@ const StatsSection = () => {
 							].map((tech) => (
 								<Tooltip key={tech.name}>
 									<TooltipTrigger asChild>
-										<div className="flex items-center justify-center cursor-pointer p-2">
-											<span className="text-3xl sm:text-5xl">{tech.icon}</span>
+										<div className="flex items-center justify-center cursor-pointer p-3">
+											<span className="text-5xl">{tech.icon}</span>
 										</div>
 									</TooltipTrigger>
 									<TooltipContent>
@@ -192,21 +192,9 @@ const StatsSection = () => {
 			</BentoItem>
 
 			<BentoItem
-				colSpan={10}
-				rowSpan={2}
-				className="md:col-span-2 lg:col-span-10 lg:row-span-2"
-			>
-				<div className="p-4 sm:p-6 h-full flex items-center">
-					<h1 className="text-white font-bold text-2xl uppercase text-center w-full">
-						Stats & Facts
-					</h1>
-				</div>
-			</BentoItem>
-
-			<BentoItem
 				colSpan={20}
-				rowSpan={6}
-				className="md:col-span-1 lg:col-span-10 lg:row-span-4"
+				rowSpan={8}
+				className="md:col-span-1 lg:col-span-10"
 			>
 				<BooksCard />
 			</BentoItem>

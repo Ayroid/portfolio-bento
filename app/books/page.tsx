@@ -20,35 +20,29 @@ const bookCollection: AuthorBooks[] = [
 		books: [
 			{
 				title: "Do it Today",
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1516895891i/37933908.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 			{
 				title: "Focus on what matters",
 				progress: 35,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586802804i/52963777.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 			{
 				title: "Think Straight",
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1559582726i/46128784.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 			{
 				title: "Win your inner battles",
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1568375747i/46128787.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 			{
 				title: "What it takes to be free",
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1568375857i/46128790.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 			{
 				title: "The Road to Better Habits",
 				progress: 100,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586802716i/52963774.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -58,14 +52,12 @@ const bookCollection: AuthorBooks[] = [
 			{
 				title: "The Alchemist",
 				progress: 100,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 			{
 				title: "The Archer",
 				progress: 100,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1496085953i/33956703.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -75,8 +67,7 @@ const bookCollection: AuthorBooks[] = [
 			{
 				title: "The Psychology of Money",
 				progress: 80,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1581527774i/41881472.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -86,8 +77,7 @@ const bookCollection: AuthorBooks[] = [
 			{
 				title: "Show your work",
 				progress: 100,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1404789993i/18290401.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -97,8 +87,7 @@ const bookCollection: AuthorBooks[] = [
 			{
 				title: "The Power of your Subconscious Mind",
 				progress: 30,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1353836249i/68985.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -107,8 +96,7 @@ const bookCollection: AuthorBooks[] = [
 		books: [
 			{
 				title: "Deep Work",
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1447957962i/25744928.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -118,8 +106,7 @@ const bookCollection: AuthorBooks[] = [
 			{
 				title: "Zero to One",
 				progress: 70,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630663027i/18050143.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -129,8 +116,7 @@ const bookCollection: AuthorBooks[] = [
 			{
 				title: "Just Keep Buying",
 				progress: 40,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1638399578i/59522875.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -140,8 +126,7 @@ const bookCollection: AuthorBooks[] = [
 			{
 				title: "Kafka on the Shore",
 				progress: 15,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1429638085i/4929.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -151,8 +136,7 @@ const bookCollection: AuthorBooks[] = [
 			{
 				title: "Richest Man in Babylon",
 				progress: 50,
-				image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348336780i/1052.jpg",
-				url: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
 			},
 		],
 	},
@@ -216,12 +200,10 @@ export default function BooksPage() {
 			</div>
 
 			{/* Books Grid */}
-			<div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-8">
+			<div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-8">
 				{allBooks.map((book) => {
 					const BookCard = (
-						<div
-							className="group relative overflow-hidden rounded-lg bg-zinc-900 hover:border-zinc-700 transition-all cursor-pointer aspect-2/3"
-						>
+						<div className="group relative overflow-hidden bg-zinc-900 hover:border-zinc-700 transition-all cursor-pointer aspect-2/3">
 							{book.image && (
 								<Image
 									src={book.image}
@@ -236,7 +218,9 @@ export default function BooksPage() {
 									<div className="text-white text-sm font-semibold mb-1">
 										{book.title}
 									</div>
-									<div className="text-zinc-400 text-xs mb-2">{book.author}</div>
+									<div className="text-zinc-400 text-xs mb-2">
+										{book.author}
+									</div>
 									{book.progress !== undefined ? (
 										<div className="text-zinc-500 text-xs">
 											{book.progress}% complete
@@ -249,18 +233,7 @@ export default function BooksPage() {
 						</div>
 					);
 
-					return book.url ? (
-						<Link
-							key={`${book.author}-${book.title}`}
-							href={book.url}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{BookCard}
-						</Link>
-					) : (
-						<div key={`${book.author}-${book.title}`}>{BookCard}</div>
-					);
+					return <div key={`${book.author}-${book.title}`}>{BookCard}</div>;
 				})}
 			</div>
 		</div>
