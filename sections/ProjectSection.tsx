@@ -220,7 +220,7 @@ interface WebAppCardProps {
 
 const WebAppCard = ({ title, info }: WebAppCardProps) => {
 	return (
-		<div className="p-4 sm:p-6 h-full flex flex-col group">
+		<div className=" h-full flex flex-col group">
 			<div className="relative h-56 mb-4 -mx-2 -mt-2 overflow-hidden">
 				<Image
 					src={info.image}
@@ -229,57 +229,59 @@ const WebAppCard = ({ title, info }: WebAppCardProps) => {
 					className="object-cover group-hover:scale-105 transition-transform duration-300"
 				/>
 			</div>
-			<div className="flex justify-between mb-2">
-				<h3 className="text-white font-bold text-xl">{title}</h3>
-				<div className="mb-2 flex items-center justify-center gap-2">
-					<Tooltip>
-						<TooltipTrigger asChild>
-							<span className="relative flex h-3 w-3">
-								<span
-									className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-										statusColors[info.status]
-									}`}
-								/>
-								<span
-									className={`relative inline-flex rounded-full h-3 w-3 ${
-										statusColors[info.status]
-									}`}
-								/>
-							</span>
-						</TooltipTrigger>
-						<TooltipContent>{info.status}</TooltipContent>
-					</Tooltip>
-					{info.demoLink && (
-						<Link
-							href={info.demoLink}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-gray-400 hover:text-white transition-colors duration-300"
-						>
-							<VscGlobe className="w-6 h-6" />
-						</Link>
-					)}
-					{info.githubLink && (
-						<Link
-							href={info.githubLink}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-gray-400 hover:text-white transition-colors duration-300"
-						>
-							<SiGithub className="w-5 h-5" />
-						</Link>
-					)}
+			<div className="flex flex-col justify-between mb-2 px-4 sm:px-6 pb-2">
+				<div className="flex justify-between">
+					<h3 className="text-white font-bold text-xl">{title}</h3>
+					<div className="mb-2 flex items-center justify-center gap-2">
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<span className="relative flex h-3 w-3">
+									<span
+										className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+											statusColors[info.status]
+										}`}
+									/>
+									<span
+										className={`relative inline-flex rounded-full h-3 w-3 ${
+											statusColors[info.status]
+										}`}
+									/>
+								</span>
+							</TooltipTrigger>
+							<TooltipContent>{info.status}</TooltipContent>
+						</Tooltip>
+						{info.demoLink && (
+							<Link
+								href={info.demoLink}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-gray-400 hover:text-white transition-colors duration-300"
+							>
+								<VscGlobe className="w-6 h-6" />
+							</Link>
+						)}
+						{info.githubLink && (
+							<Link
+								href={info.githubLink}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-gray-400 hover:text-white transition-colors duration-300"
+							>
+								<SiGithub className="w-5 h-5" />
+							</Link>
+						)}
+					</div>
 				</div>
-			</div>
-			<p className="text-zinc-400 text-sm mb-4 leading-relaxed flex-1">
-				{info.description}
-			</p>
-			<div className="flex flex-col flex-wrap gap-2 text-zinc-400">
-				<span>Technologies</span>
-				<div className="flex flex-wrap gap-2">
-					{info.technologies.map((tech) => (
-						<TechIcon key={tech} techKey={tech} />
-					))}
+				<p className="text-zinc-400 text-sm mb-4 leading-relaxed flex-1">
+					{info.description}
+				</p>
+				<div className="flex flex-col flex-wrap gap-2 text-zinc-400">
+					<span>Technologies</span>
+					<div className="flex flex-wrap gap-2">
+						{info.technologies.map((tech) => (
+							<TechIcon key={tech} techKey={tech} />
+						))}
+					</div>
 				</div>
 			</div>
 		</div>
