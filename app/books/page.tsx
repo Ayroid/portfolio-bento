@@ -162,7 +162,7 @@ export default function BooksPage() {
 	return (
 		<div className="flex flex-col gap-8 pb-12">
 			{/* Header */}
-			<div className="flex flex-col gap-4">
+			<div className="flex flex-col gap-4 mt-12">
 				<div className="flex items-center gap-3">
 					<div className="w-12 h-12 rounded-xl bg-zinc-900  flex items-center justify-center">
 						<BookOpen className="w-6 h-6 text-zinc-400" />

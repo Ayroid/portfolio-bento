@@ -28,6 +28,11 @@ import {
 	SiExpress,
 	SiAmazons3,
 	SiGithub,
+	SiShadcnui,
+	SiCloudinary,
+	SiAmazonwebservices,
+	SiRaspberrypi,
+	SiPwa,
 } from "react-icons/si";
 import { VscGlobe } from "react-icons/vsc";
 import Link from "next/link";
@@ -60,6 +65,11 @@ const techStack = {
 	S3: { icon: SiAmazons3, name: "S3" },
 	Github: { icon: SiGithub, name: "GitHub" },
 	Demo: { icon: VscGlobe, name: "Demo" },
+	ShadcnUI: { icon: SiShadcnui, name: "Shadcn UI" },
+	Cloudinary: { icon: SiCloudinary, name: "Cloudinary" },
+	AmazonWebServices: { icon: SiAmazonwebservices, name: "Amazon Web Services" },
+	RaspberryPi: { icon: SiRaspberrypi, name: "RaspberryPi" },
+	PWA: { icon: SiPwa, name: "Progressive Web App" },
 };
 
 type TechKey = keyof typeof techStack;
@@ -79,79 +89,185 @@ const TechIcon = ({ techKey }: { techKey: TechKey }) => {
 	);
 };
 
-const projects = [
-	{
-		title: "Ideos",
-		description:
-			"Unified productivity platform consolidating Kanban boards, Pomodoro timers, reminders, and note-taking with Gen-AI integration via multi-agent framework and RAG.",
-		technologies: ["NextJS", "MongoDB", "Docker", "Kubernetes", "AWS"] as TechKey[],
-		image: "/projects/ideos.png",
-		demoLink: "https://ideos.live",
-		githubLink: "https://github.com/Ayroid/Ideos-Frontend",
-	},
-	{
-		title: "Visual Rift",
-		description:
-			"Microservices Orchestration Engine streamlining multi-cloud application deployment using intuitive UML diagrams with Docker and Kubernetes.",
-		technologies: ["NextJS", "MongoDB", "Docker", "Kubernetes", "AWS"] as TechKey[],
-		image: "/projects/visualrift.jpg",
-		githubLink: "https://github.com/Visual-Rift/Visual-Rift-Client",
-	},
-	{
-		title: "Parko",
-		description:
-			"Complete parking solution providing real-time parking availability, spot reservation, and navigation functionalities at UPES.",
-		technologies: ["React", "Express", "MongoDB", "AWS", "Nginx"] as TechKey[],
-		image: "/projects/parko.jpg",
-		githubLink: "https://github.com/Ayroid/PARKO-Frontend",
-	},
-	{
-		title: "Terraform EC2",
-		description:
-			"Automated infrastructure deployment with modular configurations, remote state management using S3, and best practices for AWS.",
-		technologies: ["Terraform", "AWS", "Docker", "S3"] as TechKey[],
-		image: "/projects/terraform.jpg",
-		demoLink:
-			"https://ayroid.hashnode.dev/build-and-manage-aws-infrastructure-with-terraform",
-		githubLink: "https://github.com/Ayroid/terraform-ec2-project",
-	},
-];
-
-interface ProjectCardProps {
-	title?: string;
+interface Project {
+	title: string;
 	description?: string;
 	technologies?: TechKey[];
 	image?: string;
 	demoLink?: string;
 	githubLink?: string;
+	projectType: "LandingPage" | "WebApp";
+	status?: "Live" | "Development" | "Archived";
 }
 
-const ProjectCard = ({
-	title,
-	description,
-	technologies,
-	image,
-	demoLink,
-	githubLink,
-}: ProjectCardProps) => {
+const projects: Project[] = [
+	{
+		title: "Ideos",
+		description:
+			"Unified productivity platform consolidating Kanban boards, Pomodoro timers, Reminders, and Note-taking with Gen-AI integration via multi-agent framework and RAG.",
+		technologies: [
+			"NextJS",
+			"NodeJS",
+			"MongoDB",
+			// "KindeAuth",
+			"TailwindCSS",
+			"ShadcnUI",
+			"Cloudinary",
+			"Docker",
+			"AmazonWebServices",
+			// Zustand
+		] as TechKey[],
+		image: "/projects/ideos.png",
+		demoLink: "https://ideos.live",
+		githubLink: "https://github.com/Ayroid/Ideos-Frontend",
+		status: "Live",
+		projectType: "WebApp",
+	},
+	{
+		title: "Darch",
+		description:
+			"Visual cloud architecture designer to create AWS infrastructure through an intuitive drag-and-drop interface and automatically provision resources on your cloud.",
+		technologies: [
+			"NextJS",
+			"NodeJS",
+			"MongoDB",
+			"Terraform",
+			"TailwindCSS",
+			"ShadcnUI",
+			"Docker",
+			"AmazonWebServices",
+		] as TechKey[],
+		image: "/projects/darch.png",
+		status: "Development",
+		projectType: "WebApp",
+		demoLink: "https://darch.ayroid.in",
+	},
+	{
+		title: "Validuct",
+		description:
+			"AI-powered code validation platform offering real-time feedback, error detection, and optimization suggestions to enhance coding efficiency and quality.",
+		technologies: [
+			"NextJS",
+			"NodeJS",
+			"PostgreSQL",
+			"Prisma",
+			"Redis",
+			"Docker",
+			"AmazonWebServices",
+			"Nginx",
+		] as TechKey[],
+		image: "/projects/validuct.png",
+		status: "Development",
+		projectType: "WebApp",
+	},
+	{
+		title: "Parko",
+		description:
+			"Complete parking solution providing real-time parking availability, spot reservation, and navigation functionalities at UPES.",
+		technologies: [
+			"React",
+			"Express",
+			"MongoDB",
+			"Javascript",
+			"RaspberryPi",
+			"PWA",
+			"Nginx",
+			"Docker",
+			"AmazonWebServices",
+		] as TechKey[],
+		image: "/projects/parko.jpg",
+		githubLink: "https://github.com/Ayroid/PARKO-Frontend",
+		status: "Archived",
+		projectType: "WebApp",
+	},
+	{
+		title: "Terminal Portfolio",
+		description:
+			"Bash-based terminal portfolio showcasing projects and skills with native linux commands.",
+		technologies: [
+			"NextJS",
+			"Typescript",
+			"Linux",
+			"TailwindCSS",
+			"Vercel",
+		] as TechKey[],
+		image: "/projects/termfolio.png",
+		githubLink: "https://github.com/Ayroid/PARKO-Frontend",
+		status: "Live",
+		projectType: "LandingPage",
+	},
+	{
+		title: "Orbionio",
+		image: "/projects/orbionio.png",
+		demoLink: "https://orbionio.in",
+		status: "Live",
+		projectType: "LandingPage",
+	},
+	{
+		title: "UPESCSA",
+		image: "/projects/upescsa.png",
+		demoLink: "https://upescsa.in",
+		status: "Live",
+		projectType: "LandingPage",
+	},
+];
+
+interface ProjectCardProps {
+	info: {
+		title?: string;
+		description?: string;
+		technologies?: TechKey[];
+		image?: string;
+		demoLink?: string;
+		githubLink?: string;
+		status?: "Live" | "Development" | "Archived";
+	};
+}
+
+const ProjectCard = (project: ProjectCardProps) => {
+	const statusColors = {
+		Live: "bg-green-500",
+		Development: "bg-yellow-500",
+		Archived: "bg-amber-800",
+	};
+
 	return (
 		<div className="p-4 sm:p-6 h-full flex flex-col group">
 			<div className="relative h-56 mb-4 -mx-2 -mt-2 overflow-hidden">
-				{image && (
+				{project.info.image && (
 					<Image
-						src={image}
-						alt={title ? title : "Project Image"}
+						src={project.info.image}
+						alt={project.info.title ? project.info.title : "Project Image"}
 						fill
 						className="object-cover group-hover:scale-105 transition-transform duration-300"
 					/>
 				)}
 			</div>
 			<div className="flex justify-between mb-2">
-				<h3 className="text-white font-bold text-xl">{title}</h3>
+				<h3 className="text-white font-bold text-xl">{project.info.title}</h3>
 				<div className="mb-2 flex items-center justify-center gap-2">
-					{demoLink && (
+					{project.info.status && (
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<span className="relative flex h-3 w-3">
+									<span
+										className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+											statusColors[project.info.status]
+										}`}
+									/>
+									<span
+										className={`relative inline-flex rounded-full h-3 w-3 ${
+											statusColors[project.info.status]
+										}`}
+									/>
+								</span>
+							</TooltipTrigger>
+							<TooltipContent>{project.info.status}</TooltipContent>
+						</Tooltip>
+					)}
+					{project.info.demoLink && (
 						<Link
-							href={demoLink}
+							href={project.info.demoLink}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-gray-400 hover:text-white transition-colors duration-300"
@@ -159,9 +275,9 @@ const ProjectCard = ({
 							<VscGlobe className="w-6 h-6" />
 						</Link>
 					)}
-					{githubLink && (
+					{project.info.githubLink && (
 						<Link
-							href={githubLink}
+							href={project.info.githubLink}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-gray-400 hover:text-white transition-colors duration-300"
@@ -171,16 +287,16 @@ const ProjectCard = ({
 					)}
 				</div>
 			</div>
-			{description && (
+			{project.info.description && (
 				<p className="text-zinc-400 text-sm mb-4 leading-relaxed flex-1">
-					{description}
+					{project.info.description}
 				</p>
 			)}
-			{technologies && (
+			{project.info.technologies && (
 				<div className="flex flex-col flex-wrap gap-2 text-zinc-400">
 					<span>Technologies</span>
 					<div className="flex flex-wrap gap-2">
-						{technologies.map((tech) => (
+						{project.info.technologies.map((tech) => (
 							<TechIcon key={tech} techKey={tech} />
 						))}
 					</div>
@@ -220,114 +336,62 @@ const ProjectSection = () => {
 				rowSpan={8}
 				className="md:col-span-1 lg:col-span-10"
 			>
-				<ProjectCard
-					title={projects[0].title}
-					description={projects[0].description}
-					technologies={projects[0].technologies}
-					image={projects[0].image}
-					demoLink={projects[0].demoLink}
-				/>
+				<ProjectCard info={projects[0]} />
 			</BentoItem>
 
-			{/* Visual Rift - 10 cols × 8 rows */}
+			{/* Darch - 10 cols × 8 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={8}
 				className="md:col-span-1 lg:col-span-10"
 			>
-				<ProjectCard
-					title={projects[1].title}
-					description={projects[1].description}
-					technologies={projects[1].technologies}
-					image={projects[1].image}
-					githubLink={projects[1].githubLink}
-				/>
+				<ProjectCard info={projects[1]} />
 			</BentoItem>
 
-			{/* Terraform EC2 - 10 cols × 8 rows */}
+			{/* Validuct - 10 cols × 8 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={8}
 				className="md:col-span-2 lg:col-span-10"
 			>
-				<ProjectCard
-					title={projects[3].title}
-					description={projects[3].description}
-					technologies={projects[3].technologies}
-					image={projects[3].image}
-					demoLink={projects[3].demoLink}
-				/>
+				<ProjectCard info={projects[2]} />
 			</BentoItem>
 
-			{/* Terraform EC2 - 10 cols × 8 rows */}
+			{/* Parko - 10 cols × 8 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={8}
 				className="md:col-span-2 lg:col-span-10"
 			>
-				<ProjectCard
-					title={projects[3].title}
-					description={projects[3].description}
-					technologies={projects[3].technologies}
-					image={projects[3].image}
-					demoLink={projects[3].demoLink}
-				/>
+				<ProjectCard info={projects[3]} />
 			</BentoItem>
 
-			{/* Terraform EC2 - 10 cols × 8 rows */}
+			{/* Terminal Folio - 10 cols × 8 rows */}
 			<BentoItem
 				colSpan={10}
 				rowSpan={8}
 				className="md:col-span-2 lg:col-span-10"
 			>
-				<ProjectCard
-					title={projects[3].title}
-					description={projects[3].description}
-					technologies={projects[3].technologies}
-					image={projects[3].image}
-					demoLink={projects[3].demoLink}
-				/>
+				<ProjectCard info={projects[4]} />
 			</BentoItem>
-			{/* Terraform EC2 - 5 cols × 6 rows */}
+
+			{/* Orbinio - 5 cols × 6 rows */}
 			<BentoItem
 				colSpan={5}
 				rowSpan={6}
 				className="md:col-span-2 lg:col-span-5"
 			>
-				<ProjectCard
-					title={projects[3].title}
-					image={projects[3].image}
-					demoLink={projects[3].demoLink}
-				/>
+				<ProjectCard info={projects[5]} />
 			</BentoItem>
-			{/* Terraform EC2 - 5 cols × 6 rows */}
+
+			{/* UPESCSA - 5 cols × 6 rows */}
 			<BentoItem
 				colSpan={5}
 				rowSpan={6}
 				className="md:col-span-2 lg:col-span-5"
 			>
-				<ProjectCard
-					title={projects[3].title}
-					image={projects[3].image}
-					demoLink={projects[3].demoLink}
-				/>
+				<ProjectCard info={projects[6]} />
 			</BentoItem>
-
-			{/* Parko - 10 cols × 5 rows */}
-			{/* <BentoItem
-				colSpan={10}
-				rowSpan={5}
-				className="md:col-span-1 lg:col-span-10"
-			>
-				<ProjectCard
-					title={projects[2].title}
-					description={projects[2].description}
-					technologies={projects[2].technologies}
-					image={projects[2].image}
-					demoLink={projects[2].demoLink}
-					githubLink={projects[2].githubLink}
-				/>
-			</BentoItem> */}
 		</div>
 	);
 };
