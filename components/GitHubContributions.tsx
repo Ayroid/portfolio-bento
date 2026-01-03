@@ -142,86 +142,80 @@ const GitHubContributions = ({ username }: { username: string }) => {
 	}
 
 	return (
-		<div className="flex-1 flex min-w-0 w-full h-full gap-2">
-			<div className="w-full h-full flex flex-col">
-				<div className="mb-2 flex items-center justify-between">
-					<p className="text-zinc-400 text-sm">
-						<span className="text-white font-semibold">
-							{totalContributions}
-						</span>{" "}
-						contributions in the last year
-					</p>
-				</div>
+		<div className="h-full flex flex-col">
+			<h3 className="text-white font-bold mb-2 sm:mb-3 text-base sm:text-lg">
+				{totalContributions}{" "}
+				<span className="text-zinc-400"> contributions in the last year</span>
+			</h3>
 
-				<div className="flex-1 mt-4">
-					<div className="inline-flex flex-col gap-1 min-w-full">
-						{/* Month labels */}
-						<div className="flex gap-[3px] ml-7 mb-4 relative">
-							{getMonthLabels().map((label, i) => (
-								<div
-									key={i}
-									className="text-[10px] text-zinc-500 absolute"
-									style={{
-										left: `${label.offset * 15}px`,
-									}}
-								>
-									{label.month}
+			<div className="flex-1">
+				<div className="inline-flex flex-col gap-1 min-w-full">
+					{/* Month labels */}
+					<div className="flex gap-[3px] ml-7 mb-4 relative">
+						{getMonthLabels().map((label, i) => (
+							<div
+								key={i}
+								className="text-[10px] text-zinc-500 absolute"
+								style={{
+									left: `${label.offset * 15}px`,
+								}}
+							>
+								{label.month}
+							</div>
+						))}
+					</div>
+
+					{/* Day labels + contribution grid */}
+					<div className="flex gap-[3px]">
+						{/* Day of week labels */}
+						<div className="flex flex-col gap-[3px] justify-around text-[10px] text-zinc-500 pr-1">
+							<span className="h-[12.5px]"></span>
+							<span className="h-[12.5px]">Mon</span>
+							<span className="h-[12.5px]"></span>
+							<span className="h-[12.5px]">Wed</span>
+							<span className="h-[12.5px]"></span>
+							<span className="h-[12.5px]">Fri</span>
+							<span className="h-[12.5px]"></span>
+						</div>
+
+						{/* Contribution squares */}
+						<div className="flex gap-[3px]">
+							{contributions.map((week, weekIndex) => (
+								<div key={weekIndex} className="flex flex-col gap-[3px]">
+									{week.days.map((day, dayIndex) => (
+										<div
+											key={dayIndex}
+											className={`w-3.5 h-3.5 ${getLevelColor(
+												day.level
+											)} hover:ring-1 hover:ring-zinc-400 transition-all cursor-pointer group relative`}
+											title={`${day.count} contributions on ${day.date}`}
+										>
+											{/* Tooltip */}
+											<div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-zinc-800 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 border border-zinc-700">
+												<div className="font-semibold">
+													{day.count} contributions
+												</div>
+												<div className="text-zinc-400">{day.date}</div>
+											</div>
+										</div>
+									))}
 								</div>
 							))}
 						</div>
+					</div>
 
-						{/* Day labels + contribution grid */}
+					{/* Legend */}
+					<div className="flex items-center gap-2 mt-2 justify-end">
+						<span className="text-[10px] text-zinc-500">Less</span>
 						<div className="flex gap-[3px]">
-							{/* Day of week labels */}
-							<div className="flex flex-col gap-[3px] justify-around text-[10px] text-zinc-500 pr-1">
-								<span className="h-[12.5px]"></span>
-								<span className="h-[12.5px]">Mon</span>
-								<span className="h-[12.5px]"></span>
-								<span className="h-[12.5px]">Wed</span>
-								<span className="h-[12.5px]"></span>
-								<span className="h-[12.5px]">Fri</span>
-								<span className="h-[12.5px]"></span>
-							</div>
-
-							{/* Contribution squares */}
-							<div className="flex gap-[3px]">
-								{contributions.map((week, weekIndex) => (
-									<div key={weekIndex} className="flex flex-col gap-[3px]">
-										{week.days.map((day, dayIndex) => (
-											<div
-												key={dayIndex}
-												className={`w-3.5 h-3.5 ${getLevelColor(
-													day.level
-												)} hover:ring-1 hover:ring-zinc-400 transition-all cursor-pointer group relative`}
-												title={`${day.count} contributions on ${day.date}`}
-											>
-												{/* Tooltip */}
-												<div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-zinc-800 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 border border-zinc-700">
-													<div className="font-semibold">
-														{day.count} contributions
-													</div>
-													<div className="text-zinc-400">{day.date}</div>
-												</div>
-											</div>
-										))}
-									</div>
-								))}
-							</div>
+							{[0, 1, 2, 3, 4].map((level) => (
+								<div
+									key={level}
+									className={`w-3.5 h-3.5 ${getLevelColor(level)}`}
+								/>
+							))}
 						</div>
-
-						{/* Legend */}
-						<div className="flex items-center gap-2 mt-2 justify-end">
-							<span className="text-[10px] text-zinc-500">Less</span>
-							<div className="flex gap-[3px]">
-								{[0, 1, 2, 3, 4].map((level) => (
-									<div
-										key={level}
-										className={`w-3.5 h-3.5 ${getLevelColor(level)}`}
-									/>
-								))}
-							</div>
-							<span className="text-[10px] text-zinc-500">More</span>
-						</div>
+						<span className="text-[10px] text-zinc-500">More</span>
 					</div>
 				</div>
 			</div>
