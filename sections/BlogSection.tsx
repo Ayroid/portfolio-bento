@@ -13,6 +13,7 @@ interface BlogItemData {
 	rowSpan: number;
 	mdColSpan: number;
 	redirectTo: string;
+	redirectTarget?: "_blank" | "_self" | "_parent" | "_top";
 	backgroundImage: string;
 	category: string;
 	categoryBg: string;
@@ -35,6 +36,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => (
 			blog.mdColSpan === 2 ? "md:col-span-2" : "md:col-span-1"
 		} lg:col-span-10 overflow-hidden`}
 		redirectTo={blog.redirectTo}
+		redirectTarget={blog.redirectTarget || "_self"}
 	>
 		<div className="h-full w-full overflow-hidden p-4 sm:p-6 flex flex-col">
 			<Badge variant="outline">{blog.category}</Badge>
@@ -56,7 +58,8 @@ const blogData: BlogItemData[] = [
 		colSpan: 10,
 		rowSpan: 4,
 		mdColSpan: 1,
-		redirectTo: "https://ayroid.hashnode.dev/memory-management-paradigms",
+		redirectTo: "/blogs/memory-management-paradigms",
+		redirectTarget: "_self",
 		backgroundImage:
 			"https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
 		category: "Development",
@@ -73,7 +76,8 @@ const blogData: BlogItemData[] = [
 		rowSpan: 4,
 		mdColSpan: 1,
 		redirectTo:
-			"https://ayroid.hashnode.dev/from-url-to-webpage-dns-networking-and-browser-internals",
+			"/blogs/from-url-to-webpage-dns-networking-and-browser-internals",
+		redirectTarget: "_self",
 		backgroundImage:
 			"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
 		category: "Web Development",
@@ -89,8 +93,8 @@ const blogData: BlogItemData[] = [
 		colSpan: 10,
 		rowSpan: 4,
 		mdColSpan: 1,
-		redirectTo:
-			"https://ayroid.hashnode.dev/dockerize-deploy-mern-stack-application-on-aws-EC2",
+		redirectTo: "/blogs/dockerize-deploy-mern-stack-application-on-aws-ec2",
+		redirectTarget: "_self",
 		backgroundImage:
 			"https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&q=80",
 		category: "DevOps",
@@ -106,8 +110,8 @@ const blogData: BlogItemData[] = [
 		colSpan: 10,
 		rowSpan: 4,
 		mdColSpan: 2,
-		redirectTo:
-			"https://ayroid.hashnode.dev/build-and-manage-aws-infrastructure-with-terraform",
+		redirectTo: "/blogs/build-and-manage-aws-infrastructure-with-terraform",
+		redirectTarget: "_self",
 		backgroundImage:
 			"https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=800&q=80",
 		category: "DevOps",
@@ -124,7 +128,8 @@ const blogData: BlogItemData[] = [
 		rowSpan: 4,
 		mdColSpan: 1,
 		redirectTo:
-			"https://ayroid.hashnode.dev/from-chaos-to-clarity-how-conventional-commits-revolutionize-version-control",
+			"/blogs/from-chaos-to-clarity-how-conventional-commits-revolutionize-version-control",
+		redirectTarget: "_self",
 		backgroundImage:
 			"https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&q=80",
 		category: "Development",
@@ -147,26 +152,26 @@ const BlogSection = () => {
 					gridAutoRows: "40px",
 				}}
 			>
-			<BlogCard blog={blogData[0]} />
+				<BlogCard blog={blogData[0]} />
 
-			<BentoItem
-				colSpan={10}
-				rowSpan={4}
-				className="md:col-span-2 lg:col-span-10"
-			>
-				<ActionCard
-					href="/blogs"
-					label="BLOGS"
-					bgColor="bg-white"
-					hoverBgColor="hover:bg-[#dddddd]"
-					textColor="text-black"
-					iconColor="text-black"
-				/>
-			</BentoItem>
+				<BentoItem
+					colSpan={10}
+					rowSpan={4}
+					className="md:col-span-2 lg:col-span-10"
+				>
+					<ActionCard
+						href="/blogs"
+						label="BLOGS"
+						bgColor="bg-white"
+						hoverBgColor="hover:bg-[#dddddd]"
+						textColor="text-black"
+						iconColor="text-black"
+					/>
+				</BentoItem>
 
-			{blogData.slice(1).map((blog, index) => (
-				<BlogCard key={index} blog={blog} />
-			))}
+				{blogData.slice(1).map((blog, index) => (
+					<BlogCard key={index} blog={blog} />
+				))}
 			</div>
 		</FadeUpReveal>
 	);

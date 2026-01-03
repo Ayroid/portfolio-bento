@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/sections/Navbar";
 import Footer from "@/sections/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import { PageContainer } from "@/components/PageContainer";
 
 const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
@@ -24,17 +25,13 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="dark">
 			<body className={`${geistMono.variable} antialiased`}>
-        <SmoothScroll>
-				<div className="min-h-screen w-full bg-[#18181b] py-8">
-					<div className="w-full max-w-[1520px] mx-auto p-2 sm:p-4">
-						<div className="flex flex-col gap-8">
-							<Navbar />
+				<SmoothScroll>
+					<div className="min-h-screen w-full bg-[#18181b] py-8">
+						<PageContainer navbar={<Navbar />} footer={<Footer />}>
 							{children}
-							<Footer />
-						</div>
+						</PageContainer>
 					</div>
-				</div>
-        </SmoothScroll>
+				</SmoothScroll>
 			</body>
 		</html>
 	);

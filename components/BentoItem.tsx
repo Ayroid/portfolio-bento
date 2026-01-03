@@ -9,6 +9,7 @@ interface BentoItemProps {
 	rowSpan?: number;
 	height?: number;
 	redirectTo?: string;
+	redirectTarget?: string;
 }
 
 export const BentoItem = ({
@@ -18,6 +19,7 @@ export const BentoItem = ({
 	rowSpan = 1,
 	height = 80,
 	redirectTo,
+	redirectTarget = "_blank",
 }: BentoItemProps) => {
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 	const [isHovered, setIsHovered] = useState(false);
@@ -79,7 +81,7 @@ export const BentoItem = ({
 			onMouseLeave={() => setIsHovered(false)}
 		>
 			{redirectTo ? (
-				<a href={redirectTo} target="_blank" rel="noopener noreferrer">
+				<a href={redirectTo} target={redirectTarget} rel="noopener noreferrer">
 					{content}
 				</a>
 			) : (
