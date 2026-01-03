@@ -96,7 +96,7 @@ const StatsSection = () => {
 				</div>
 			</BentoItem>
 
-			<BentoItem
+			{/* <BentoItem
 				colSpan={10}
 				rowSpan={8}
 				className="md:col-span-1 lg:col-span-10 lg:row-span-8"
@@ -189,10 +189,10 @@ const StatsSection = () => {
 						))}
 					</div>
 				</div>
-			</BentoItem>
+			</BentoItem> */}
 
 			<BentoItem
-				colSpan={20}
+				colSpan={30}
 				rowSpan={8}
 				className="md:col-span-1 lg:col-span-10"
 			>

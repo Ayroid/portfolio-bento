@@ -5,40 +5,43 @@ const books = [
 	{
 		title: "The Psychology of Money",
 		author: "Morgan Housel",
-		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+		image: "/books/the-psychology-of-money.jpg",
 		progress: 80,
 	},
 	{
 		title: "Zero to One",
 		author: "Peter Thiel",
-		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+		image: "/books/zero-to-one.jpg",
 		progress: 70,
 	},
 	{
 		title: "Richest Man in Babylon",
 		author: "George S. Clason",
-		image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+		image: "/books/richest-man-in-babylon.jpg",
 		progress: 50,
 	},
-	// {
-	// 	title: "Just Keep Buying",
-	// 	author: "Nick Maggiulli",
-	// 	image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-	// 	progress: 40,
-	// },
+	{
+		title: "The Road to Better Habits",
+		author: "Darius Foroux",
+		image: "/books/the-road-to-better-habits.jpg",
+		progress: 70,
+	},
+	{
+		title: "Focus on what matters",
+		author: "Darius Foroux",
+		image: "/books/focus-on-what-matters.jpg",
+		progress: 50,
+	},
 ];
 
 const BooksCard = () => {
 	return (
 		<div className="h-full flex flex-col p-4 sm:p-6">
-			<h3 className="text-white font-bold mb-3 sm:mb-4 text-base sm:text-lg">
-				Currently Reading
-			</h3>
-			<div className="grid grid-cols-4 gap-2 sm:gap-3 flex-1">
+			<div className="grid grid-cols-6 gap-2 sm:gap-3 flex-1">
 				{books.map((book) => (
 					<div
 						key={book.title}
-						className="group relative overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all cursor-pointer"
+						className="group relative overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all"
 					>
 						<Image
 							src={book.image}
@@ -47,7 +50,7 @@ const BooksCard = () => {
 							className="object-cover"
 						/>
 
-						<div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-end p-3">
+						<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-end p-3">
 							<div className="w-full">
 								<div className="text-white text-sm font-semibold mb-1">
 									{book.title}

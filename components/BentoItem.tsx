@@ -67,7 +67,7 @@ export const BentoItem = ({
 
 	return (
 		<div
-			className={`bg-transparent relative cursor-pointer ${className}`}
+			className={`bg-transparent relative ${className}`}
 			style={{
 				gridColumn: `span ${colSpan}`,
 				gridRow: `span ${rowSpan}`,
