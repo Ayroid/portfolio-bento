@@ -62,7 +62,7 @@ const BooksCard = () => {
 				))}
 				<Link
 					href="/books"
-					className="bg-[#e5e5e5] hover:bg-[#dddddd] flex items-end justify-start p-3 relative transition-colors cursor-pointer group"
+					className="bg-white hover:bg-[#dddddd] flex items-end justify-start p-3 relative transition-colors cursor-pointer group"
 				>
 					<svg
 						className={`absolute top-3 right-3 w-8 h-8 sm:w-10 sm:h-10 text-black opacity-50 group-hover:top-2 group-hover:right-2 transition-all`}

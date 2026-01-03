@@ -11,10 +11,10 @@ interface ActionCardProps {
 export function ActionCard({
 	href,
 	label,
-	bgColor = "bg-[#1a1a1a]",
-	hoverBgColor = "hover:bg-[#222222]",
-	textColor = "text-white",
-	iconColor = "text-white",
+	bgColor,
+	hoverBgColor,
+	textColor,
+	iconColor,
 	asDiv = false,
 }: ActionCardProps) {
 	const className = `${bgColor} h-full w-full text-2xl sm:text-3xl lg:text-4xl font-medium ${textColor} font-mono flex items-end justify-start p-4 relative ${hoverBgColor} transition-colors group`;

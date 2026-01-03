@@ -62,7 +62,14 @@ const HeroSection = () => {
 				rowSpan={1}
 				className="md:col-span-1 lg:col-span-5 lg:row-span-1"
 			>
-				<ActionCard href="mailto:ayushsk.work@gmail.com" label="EMAIL" />
+				<ActionCard
+					href="mailto:ayushsk.work@gmail.com"
+					label="EMAIL"
+					bgColor="bg-[#1a1a1a]"
+					hoverBgColor="hover:bg-[#222222]"
+					textColor="text-white"
+					iconColor="text-white"
+				/>
 			</BentoItem>
 
 			{/* Resume Button - 5 cols × 1 row */}
@@ -74,7 +81,7 @@ const HeroSection = () => {
 				<ActionCard
 					href="https://drive.google.com/file/d/1TIDYNaseyA11HRNvMjx8BQuCHbTZGCHK/view?usp=sharing"
 					label="RESUME"
-					bgColor="bg-[#e5e5e5]"
+					bgColor="bg-white"
 					hoverBgColor="hover:bg-[#dddddd]"
 					textColor="text-black"
 					iconColor="text-black"

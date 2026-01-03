@@ -63,7 +63,7 @@ const blogData: BlogItem[] = [
 		lgRowSpan: 2,
 		redirectTo: "https://ayroid.hashnode.dev/",
 		label: "ARTICLES",
-		bgColor: "bg-[#e5e5e5]",
+		bgColor: "bg-white",
 		hoverBgColor: "hover:bg-[#dddddd]",
 		textColor: "text-black",
 		iconColor: "text-black",
@@ -207,7 +207,7 @@ const BlogSection = () => {
 				<ActionCard
 					href="/blogs"
 					label="BLOGS"
-					bgColor="bg-[#e5e5e5]"
+					bgColor="bg-white"
 					hoverBgColor="hover:bg-[#dddddd]"
 					textColor="text-black"
 					iconColor="text-black"
