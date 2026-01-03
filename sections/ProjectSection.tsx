@@ -257,7 +257,12 @@ const WebAppCard = ({ title, info }: WebAppCardProps) => {
 								rel="noopener noreferrer"
 								className="text-gray-400 hover:text-white transition-colors duration-300"
 							>
-								<VscGlobe className="w-6 h-6" />
+								<Tooltip>
+									<TooltipTrigger asChild>
+										<VscGlobe className="w-6 h-6" />
+									</TooltipTrigger>
+									<TooltipContent>Visit</TooltipContent>
+								</Tooltip>
 							</Link>
 						)}
 						{info.githubLink && (
@@ -267,7 +272,12 @@ const WebAppCard = ({ title, info }: WebAppCardProps) => {
 								rel="noopener noreferrer"
 								className="text-gray-400 hover:text-white transition-colors duration-300"
 							>
-								<SiGithub className="w-5 h-5" />
+								<Tooltip>
+									<TooltipTrigger asChild>
+										<SiGithub className="w-5 h-5" />
+									</TooltipTrigger>
+									<TooltipContent>Github</TooltipContent>
+								</Tooltip>
 							</Link>
 						)}
 					</div>
@@ -295,7 +305,7 @@ interface LandingPageCardProps {
 
 const LandingPageCard = ({ title, info }: LandingPageCardProps) => {
 	return (
-		<div className="p-4 sm:p-6 h-full flex flex-col group">
+		<div className="p-4 sm:p-6 h-full flex flex-col">
 			<div className="relative h-56 mb-4 -mx-2 -mt-2 overflow-hidden">
 				<Image
 					src={info.image}
@@ -331,7 +341,12 @@ const LandingPageCard = ({ title, info }: LandingPageCardProps) => {
 							rel="noopener noreferrer"
 							className="text-gray-400 hover:text-white transition-colors duration-300"
 						>
-							<VscGlobe className="w-6 h-6" />
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<VscGlobe className="w-6 h-6" />
+								</TooltipTrigger>
+								<TooltipContent>Visit</TooltipContent>
+							</Tooltip>
 						</Link>
 					)}
 					{info.githubLink && (
@@ -341,7 +356,12 @@ const LandingPageCard = ({ title, info }: LandingPageCardProps) => {
 							rel="noopener noreferrer"
 							className="text-gray-400 hover:text-white transition-colors duration-300"
 						>
-							<SiGithub className="w-5 h-5" />
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<SiGithub className="w-5 h-5" />
+								</TooltipTrigger>
+								<TooltipContent>Github</TooltipContent>
+							</Tooltip>
 						</Link>
 					)}
 				</div>
