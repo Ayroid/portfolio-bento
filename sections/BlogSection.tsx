@@ -1,7 +1,7 @@
 import React from "react";
 import { BentoItem } from "@/components/BentoItem";
-import { ActionCard } from "../components/ActionCard";
-
+import { ActionCard } from "@/components/ActionCard";
+import { Badge } from "@/components/ui/badge";
 /**
  * LATTICE STRUCTURE (30 columns × 10 rows)
  * Base row height: 50px
@@ -32,34 +32,19 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => (
 		rowSpan={blog.rowSpan}
 		className={`${
 			blog.mdColSpan === 2 ? "md:col-span-2" : "md:col-span-1"
-		} lg:col-span-10 overflow-hidden group`}
+		} lg:col-span-10 overflow-hidden`}
 		redirectTo={blog.redirectTo}
 	>
-		<div className="relative h-full w-full overflow-hidden">
-			<div
-				className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-				style={{
-					backgroundImage: `url('${blog.backgroundImage}')`,
-				}}
-			/>
-			<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
-			<div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transition-all duration-300 group-hover:pb-6">
-				<div className="mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-					<span
-						className={`px-2 py-1 ${blog.categoryBg} ${blog.categoryText} rounded text-xs border ${blog.categoryBorder}`}
-					>
-						{blog.category}
-					</span>
-				</div>
-				<h3 className="text-white font-bold mb-0 text-sm sm:text-base transition-all duration-300 group-hover:mb-2">
-					{blog.title}
-				</h3>
-				<p className="text-zinc-300 text-xs leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-300">
-					{blog.description}
-				</p>
-				<div className="flex items-center gap-3 mt-0 max-h-0 overflow-hidden opacity-0 group-hover:max-h-10 group-hover:opacity-100 group-hover:mt-2 transition-all duration-300">
-					<p className="text-zinc-400 text-xs">{blog.date}</p>
-				</div>
+		<div className="h-full w-full overflow-hidden p-4 sm:p-6 flex flex-col">
+			<Badge variant="outline">{blog.category}</Badge>
+			<h3 className="text-white font-bold mb-0 text-sm sm:text-base transition-all duration-300 ">
+				{blog.title}
+			</h3>
+			<p className="text-zinc-300 text-xs leading-relaxed overflow-hidden max-h-20 opacity-100 transition-all duration-300">
+				{blog.description}
+			</p>
+			<div className="flex items-center gap-3 overflow-hidden max-h-10 opacity-100 mt-2 transition-all duration-300">
+				<p className="text-zinc-400 text-xs">{blog.date}</p>
 			</div>
 		</div>
 	</BentoItem>
@@ -68,7 +53,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => (
 const blogData: BlogItemData[] = [
 	{
 		colSpan: 10,
-		rowSpan: 6,
+		rowSpan: 4,
 		mdColSpan: 1,
 		redirectTo: "https://ayroid.hashnode.dev/memory-management-paradigms",
 		backgroundImage:
@@ -94,14 +79,14 @@ const blogData: BlogItemData[] = [
 		categoryBg: "bg-purple-900/50",
 		categoryText: "text-purple-400",
 		categoryBorder: "border-purple-800",
-		title: "From URL to Webpage: DNS, Networking, and Browser Internals",
+		title: "From URL to Webpage: DNS & Networking Internals",
 		description:
 			"Deep dive into the journey from typing a URL to seeing a webpage rendered on your screen.",
 		date: "3 Aug 2024",
 	},
 	{
 		colSpan: 10,
-		rowSpan: 8,
+		rowSpan: 4,
 		mdColSpan: 1,
 		redirectTo:
 			"https://ayroid.hashnode.dev/dockerize-deploy-mern-stack-application-on-aws-EC2",
@@ -118,7 +103,7 @@ const blogData: BlogItemData[] = [
 	},
 	{
 		colSpan: 10,
-		rowSpan: 6,
+		rowSpan: 4,
 		mdColSpan: 2,
 		redirectTo:
 			"https://ayroid.hashnode.dev/build-and-manage-aws-infrastructure-with-terraform",
@@ -157,14 +142,14 @@ const BlogSection = () => {
 		<div
 			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
 			style={{
-				gridAutoRows: "50px",
+				gridAutoRows: "40px",
 			}}
 		>
 			<BlogCard blog={blogData[0]} />
 
 			<BentoItem
 				colSpan={10}
-				rowSpan={2}
+				rowSpan={4}
 				className="md:col-span-2 lg:col-span-10"
 			>
 				<ActionCard
