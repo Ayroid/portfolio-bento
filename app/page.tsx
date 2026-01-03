@@ -2,6 +2,7 @@ import HeroSection from "@/sections/HeroSection";
 import ProjectSection from "@/sections/ProjectSection";
 import BlogSection from "@/sections/BlogSection";
 import StatsSection from "@/sections/StatsSection";
+import LifeSection from "@/sections/LifeSection";
 // import TemplateSection from "@/app/sections/TemplateSection";
 
 export default function Home() {
@@ -16,10 +17,13 @@ export default function Home() {
 			{/* Row 4: Stats*/}
 			<StatsSection />
 
-			{/* Row 5: Blogs */}
+			{/* Row 5: Life & Personal */}
+			<LifeSection />
+
+			{/* Row 6: Blogs */}
 			<BlogSection />
 
-			{/* Row 6: Template Section */}
+			{/* Row 7: Template Section */}
 			{/* <TemplateSection /> */}
 		</>
 	);
