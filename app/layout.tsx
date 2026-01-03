@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${geistMono.variable} antialiased`}>
         <div className="min-h-screen w-full bg-[#18181b] py-8">
           <div className="w-full max-w-[1520px] mx-auto p-2 sm:p-4">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-8">
               <Navbar />
               {children}
               <Footer />
