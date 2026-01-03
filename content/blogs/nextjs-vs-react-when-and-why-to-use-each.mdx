@@ -1,0 +1,81 @@
+---
+title: "Next.js vs React: When and Why to Use Each"
+description: "My drive to become a better developer recently led me to explore and learn Next.js. With a year of experience in React and several projects under my belt using the MERN stack, I was eager to dive into"
+date: "2024-06-08"
+category: "DevOps"
+tags: []
+isPinned: false
+isNew: false
+---
+
+My drive to become a better developer recently led me to explore and learn Next.js. With a year of experience in React and several projects under my belt using the MERN stack, I was eager to dive into this highly acclaimed framework.
+
+I enrolled in a course to understand Next.js, comparing it with my existing knowledge of React and the MERN stack. I quickly noticed several significant improvements that simplify a developer's workflow. In this blog, I'll share my insights based on my experience building one-and-a-half projects with Next.js (the second one is still in progress).
+
+Let's get started!
+
+## Framework vs Library
+
+First, it's essential to understand the core difference between Next.js and React: **Next.js is a framework**, while **React is a library**.
+
+A **library is a collection of pre-written code** that developers can use to **perform common tasks, saving time and effort**. It **focuses on specific functionalities** and offers more **flexibility**, allowing developers to choose how they want to integrate the code into their applications.
+
+A **framework**, on the other hand, provides a **comprehensive structure and set of tools** for building applications. Frameworks enforce a **specific way of doing things, offering built-in solutions for common tasks and guiding the overall architecture of the application.**
+
+### Next.js as a Framework
+
+**Next.js is a robust framework** that provides a complete solution for web development. It includes built-in features like **file-based routing, server-side rendering (SSR), static site generation (SSG), and API routes**, which streamline the development process and ensure best practices are followed. This makes it easier to **build performant and SEO-friendly applications** with minimal configuration. However, its opinionated nature means developers need to work within its conventions, which can come with a steeper learning curve and less flexibility compared to using a library.
+
+### React as a Library
+
+**React, by contrast, is a flexible library** focused on building **user interfaces**. It allows developers to create reusable UI components and **integrate them with other tools and libraries for routing, state management, and server-side rendering, offering a highly customizable development experience**. React’s flexibility means it requires additional setup and configuration to build a fully functional application, as it does not provide built-in solutions for these features. This approach gives developers **more control** over their tech stack but can lead to **increased complexity and setup time.**
+
+## My Experience with NextJS
+
+### Folder Structure & Routing
+
+Next.js follows a defined folder structure, while React offers complete freedom in how you want to organize your application. In Next.js, this folder structure forms the basis for routing. For example, a page located at `/app/users/new/page.tsx` can be accessed using the route [`http://localhost/users/new`](http://localhost/users/new). This is known as a file-based routing system. In contrast, React requires the use of external third-party libraries, such as React Router, to handle routing. With React Router, you need to define your routes and the components to be rendered on those routes manually.
+
+In Next.js, you must adhere to certain conventions when naming files for pages, layouts, not-found pages, and components. The compiler relies on these conventions to render various sections of the application correctly.
+
+* **page.tsx**: These files correspond to specific endpoints in your application. The components or JSX code returned by the functions in these files are what users see when they navigate to the respective routes.
+* **layout.tsx**: These files define the layout for pages within specific routes. For instance, if you want a sidebar to appear on all pages within the `/app/admin` directory, you can create a `layout.tsx` file in that folder. This file can define the layout components and use the `children` prop to specify where the content of `page.tsx` should be rendered.
+    
+* **notfound.tsx**: These files define custom 404 pages that are displayed when a user navigates to a non-existent route. You can customize these pages to show different messages based on the route.
+* **loading.tsx**: These files are used to display a loading animation while the main `page.tsx` file is loading its content.
+    
+* **error.tsx**: These files handle errors that might occur while using the application, displaying appropriate error messages to the user.
+    
+
+### Setup and Configuration
+
+In Next.js, you're provided with a **pre-configured setup** for all majorly used **dependencies and structures**, streamlining the development process. On the other hand, **React gives you the freedom to fully customize and configure your application** according to your specific requirements and preferences. While this flexibility can be empowering, you're responsible for setting up and configuring dependencies, requiring more time and effort upfront.
+
+### Performance
+
+Next.js outperforms React because of its integrated features for **Server-Side Rendering and Static Site Generation**. These enhance **SEO** and **initial loading times** significantly. In contrast, React depends on **Client-Side Rendering**, which **might not be as efficient for the initial load, SEO, and overall user experience.**
+
+### API Routes
+
+In Next.js, we have the capability to build **API routes** following **REST API** standards directly within the framework. This approach is a t**opic of debate among developers**, as **some prefer integrating API routes within their Next.js application, while others opt for a separate backend, as is typically done with React.**
+**For more complex applications, a separate backend, often broken down into microservices, is often considered the ideal choice**. However, for small or medium-scale projects, the built-in API routes feature in Next.js can be a valuable asset. It provides a convenient and straightforward solution for handling API requests without the need for additional backend infrastructure.
+
+We can define our API routes in `/app/api` directory and to access API at `/app/api/user/route.tsx` we can use `http://localhost/api/users`. Point to note **route.tsx** is the filename to be used when defining routes.
+
+### Learning Curve
+
+Understanding Next.js requires a solid grasp of React since it's **built on top of React**, which can make the learning curve steeper. There's debate over whether one should learn React before diving into Next.js, but ultimately, both require the same core practice of defining code in **reusable components.** **The key difference lies in Next.js' requirement for a specific standard and structure, while React allows more freedom in structuring your code.**
+
+### Deployment
+
+**Next.js**, being developed by **Vercel**, simplifies the integration process significantly. **By linking your GitHub account and selecting the repository, Next.js automatically sets up a pipeline for building and deploying the application.** However, you retain the flexibility to deploy your Next.js application on other platforms such as AWS, Azure, GCP, or any other cloud service of your choice.
+
+In contrast, with **React**, you have the option to deploy on platforms like **Netlify or Vercel, or you can choose to deploy on cloud platforms independently.**
+
+## Conclusion
+
+After weighing the essential differences between Next.js and React, **I've come to realize that Next.js offers predefined configurations and setups for commonly used tools and services**, **whereas React allows for more customization tailored to the specific needs of the application.** Based on this assessment, **I've decided to move forward with Next.js as the framework for my future projects.** **Its enhanced developer experience and convenient configurations align better with my preferences and project requirements.**
+
+I appreciate you sticking around! I'm curious to hear your thoughts on React and Next.js and which one you prefer. Feel free to share your opinions in the comments below.
+
+**Keep Learning!**

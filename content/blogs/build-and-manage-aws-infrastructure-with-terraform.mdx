@@ -1,0 +1,422 @@
+---
+title: "Building Scalable AWS Infrastructure with Terraform"
+description: "In this project, I aimed to consolidate my Terraform knowledge by demonstrating best practices while provisioning AWS resources. The source code for this project can be found here!"
+date: "2024-08-03"
+category: "DevOps"
+tags: []
+isPinned: false
+isNew: false
+---
+
+In this project, I aimed to consolidate my Terraform knowledge by demonstrating best practices while provisioning AWS resources. The source code for this project can be found [here](https://github.com/Ayroid/terraform-ec2-project)!
+
+### Project Overview
+
+![Architecture](https://github.com/Ayroid/terraform-ec2-project/raw/master/images/architecture.png)
+
+The architecture diagram below illustrates an AWS-EC2 instance running a containerized Nginx server within a VPC, complete with a subnet and an internet gateway. To deploy our application, we need to create the following AWS resources:
+
+1. AWS VPC
+2. AWS Subnet
+    
+3. AWS Internet Gateway
+4. AWS Route Table
+    
+5. AWS EC2 Instance
+6. AWS Key Pair
+    
+7. AWS Security Group
+    
+
+### Integration of Resources: The Non-Terraform Way
+
+**1\. Create a VPC**
+
+1. **Navigate to the VPC Dashboard** in the AWS Management Console.
+2. **Click on "Create VPC"**.
+    
+3. **Specify a CIDR block** (e.g., 10.0.0.0/16).
+4. **Name your VPC** and click "Create".
+**2\. Create a Subnet**
+
+1. **Navigate to the Subnets section** within the VPC dashboard.
+2. **Click on "Create Subnet"**.
+    
+3. **Select your VPC**, specify a CIDR block (e.g., 10.0.1.0/24), and **select an availability zone**.
+4. **Name your subnet** and click "Create".
+**3\. Create an Internet Gateway**
+
+1. **Navigate to the Internet Gateways section** in the VPC dashboard.
+2. **Click on "Create Internet Gateway"**.
+    
+3. **Name your Internet Gateway** and click "Create".
+4. **Attach the Internet Gateway** to your VPC by selecting it and clicking "Actions" -&gt; "Attach to VPC".
+**4\. Create a Route Table**
+
+1. **Navigate to the Route Tables section** in the VPC dashboard.
+2. **Click on "Create Route Table"**.
+    
+3. **Select your VPC** and **name your route table**.
+4. **Add a route** by selecting the route table, clicking "Routes" -&gt; "Edit routes" -&gt; "Add route".
+    
+5. **Specify 0.0.0.0/0** as the destination and **your Internet Gateway** as the target.
+6. **Associate the route table** with your subnet by selecting "Subnet Associations" -&gt; "Edit subnet associations" and selecting your subnet.
+**5\. Create a Security Group**
+
+1. **Navigate to the Security Groups section** in the EC2 dashboard.
+2. **Click on "Create Security Group"**.
+    
+3. **Name your security group** and **select your VPC**.
+4. **Add inbound rules** for HTTP (port 80) and SSH (port 22) with the source type as "Anywhere".
+    
+5. **Save the security group**.
+    
+
+**6\. Create a Key Pair**
+
+1. **Navigate to the Key Pairs section** in the EC2 dashboard.
+2. **Click on "Create Key Pair"**.
+    
+3. **Specify a name** for your key pair.
+4. **Download the key pair file** (.pem) and save it securely.
+**7\. Launch an EC2 Instance**
+
+1. **Navigate to the EC2 dashboard**.
+2. **Click on "Launch Instance"**.
+    
+3. **Select an Amazon Machine Image (AMI)** (e.g., Ubuntu).
+4. **Choose an instance type** (e.g., t2.micro).
+    
+5. **Configure instance details**:
+    
+    * **Select your VPC**.
+    * **Select your subnet**.
+        
+    * **Enable auto-assign public IP**.
+        
+6. **Add storage** if needed.
+7. **Add tags** to name your instance.
+    
+8. **Configure the security group** by selecting the security group you created earlier.
+9. **Select the key pair** you created and launch the instance.
+**8\. Connect to Your Instance**
+
+1. **SSH into your instance** using the key pair file:
+    
+    ```plaintext
+    ssh -i /path/to/your-key-pair.pem ubuntu@your-instance-public-ip
+    ```
+    
+
+**9\. Install Docker and Run Nginx**
+
+1. **Update the package list** and install Docker:
+2. **Start Docker**
+    
+3. **Pull and run the Nginx container**
+    
+    ```bash
+    sudo docker pull nginx
+    sudo docker run -d -p 80:80 nginx
+    ```
+    
+
+That's a lot of work. What if I ask you to create the same architecture **10 times** more? It would be a long & frustrating task and there's a big chance of you missing out on some resources or setting up the connections between them.
+
+### The Problem
+
+There are two major problems -
+
+1. Creating resources manually is time-consuming.
+2. There's a high chance of missing resources or incorrect configurations.
+    
+
+### The Solution - Terraform (IaC) Way
+
+Terraform provides a wide range of providers that can be used to provision and manage resources on different platforms such as AWS, GCP, Azure, and many others. Providers are plugins that enable Terraform to interact with APIs of cloud platforms, SaaS providers, and other services. Each provider offers a set of resource types and data sources that enable the creation, modification, and deletion of infrastructure components.
+
+### Provisioning Resources Using Terraform
+
+> All the code for the steps below can be found [here.](https://github.com/Ayroid/terraform-ec2-project)
+
+1. Download and Install Terraform from their [official website.](https://www.terraform.io/)
+2. Create a directory on your system and inside it create **providers.tf** file.
+    
+
+```bash
+mkdir my-terraform-project
+cd my-terraform-project
+touch main.tf
+```
+
+3. Define the AWS Provider in the **providers.tf**
+    
+
+```plaintext
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.53.0"
+    }
+  }
+}
+
+provider "aws" {
+  region     = var.aws_region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+}
+```
+
+> You have to create an AMI Account on AWS to get the access and secret keys.
+
+4. Create a **main.tf** file where we will define our resources. You can find all the resources [here](https://registry.terraform.io/providers/hashicorp/aws/latest/docs).
+    
+
+```plaintext
+resource "aws_vpc" "my-vpc" {
+  cidr_block = var.vpc_cidr_block
+  tags = {
+    Name = "${var.env_prefix}-${var.vpc_name}"
+  }
+}
+
+resource "aws_subnet" "my-subnet-1" {
+  vpc_id            = aws_vpc.my-vpc.id
+  cidr_block        = var.subnet_cidr_block
+  availability_zone = var.availability_zone
+  tags = {
+    Name = "${var.env_prefix}-${var.subnet_name}"
+  }
+}
+
+resource "aws_internet_gateway" "my-igw" {
+  vpc_id = aws_vpc.my-vpc.id
+  tags = {
+    Name = "${var.env_prefix}-my-igw"
+  }
+}
+
+resource "aws_route_table" "my-route-table" {
+  vpc_id = aws_vpc.my-vpc.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.my-igw.id
+  }
+  tags = {
+    Name = "${var.env_prefix}-my-route-table"
+  }
+}
+
+resource "aws_route_table_association" "my-route-table-association" {
+  subnet_id      = aws_subnet.my-subnet-1.id
+  route_table_id = aws_route_table.my-route-table.id
+}
+
+resource "aws_security_group" "my-sg" {
+  name   = "${var.env_prefix}-my-sg"
+  vpc_id = aws_vpc.my-vpc.id
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]
+  }
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.env_prefix}-my-sg"
+  }
+}
+
+resource "aws_key_pair" "my-key" {
+  key_name   = var.key_name
+  public_key = file("${var.key_path}")
+}
+
+resource "aws_instance" "my-ec2" {
+  ami                         = data.aws_ami.latest-ubuntu-image.id
+  instance_type               = var.instance_type
+  subnet_id                   = aws_subnet.my-subnet-1.id
+  key_name                    = var.key_name
+  vpc_security_group_ids      = [aws_security_group.my-sg.id]
+  associate_public_ip_address = true
+
+  user_data = file("setup.sh")
+
+  tags = {
+    Name = "${var.env_prefix}-my-ec2"
+  }
+}
+```
+
+Here, we have defined all of the resources we'll be needing and have set up the connections between them by using the resource IDs.
+
+5. Lastly, we have to create a few more files -
+    
+
+* **variables.tf** - Here we'll be defining all the variables we have used in the **main.tf** and **providers.tf** files.
+    
+    ```plaintext
+    variable "aws_region" {
+      type        = string
+      description = "AWS Default Region"
+    }
+    
+    variable "aws_access_key" {
+      type        = string
+      description = "AWS Admin Access Key"
+    }
+    
+    variable "aws_secret_key" {
+      type        = string
+      description = "AWS Admin Secret Key"
+    }
+    
+    variable "vpc_cidr_block" {
+      type        = string
+      description = "CIDR block for the VPC"
+    }
+    
+    variable "vpc_name" {
+      type        = string
+      description = "Name of the VPC"
+    }
+    
+    variable "subnet_cidr_block" {
+      type        = string
+      description = "CIDR block for the subnet"
+    }
+    
+    variable "subnet_name" {
+      type        = string
+      description = "Name of the subnet"
+    }
+    
+    variable "availability_zone" {
+      type        = string
+      description = "Availability Zone"
+    }
+    
+    variable "env_prefix" {
+      type        = string
+      description = "Environment Prefix"
+    }
+    
+    variable "my_ip" {
+      type        = string
+      description = "My IP"
+    }
+    
+    variable "instance_type" {
+      type        = string
+      description = "Instance Type"
+    }
+    
+    variable "key_name" {
+      type        = string
+      description = "Key Pair Name"
+    }
+    
+    variable "key_path" {
+      type        = string
+      description = "Key Pair Path"
+    }
+    ```
+    
+* **data.tf** - Stores data variables whose values we are fetching from AWS. For example - latest-ubuntu-image.
+    
+    ```plaintext
+    data "aws_ami" "latest-ubuntu-image" {
+      most_recent = true
+      owners      = ["099720109477"]
+      filter {
+        name   = "name"
+        values = ["ubuntu/images/hvm-ssd/ubuntu-*"]
+      }
+    }
+    ```
+    
+* **outputs.tf** - This would store all the output variables which we can access later.
+    
+    ```plaintext
+    output "aws_ami_id" {
+      value = data.aws_ami.latest-ubuntu-image.id
+    }
+    
+    output "public_ip" {
+      value = aws_instance.my-ec2.public_ip
+    }
+    ```
+    
+* **varvalues.tfvars -** Here, we store/pass the values of the variables we have defined in the variables.tf file. It is recommended to keep it outside of your git history to avoid giving access to unknown users. Hence, you won't find it in my repository either. You have to define the values for all the variables in the file as follows -
+    
+    ```plaintext
+    variable1-name = "variable1-value"
+    variable2-name = "variable2-value"
+    ```
+    
+
+6. **setup.sh -** This is the script that was defined in the main.tf. This file contains a basic bash script to install and run Nginx on the provisioned EC2 instance.
+    
+
+```plaintext
+#!/bin/bash
+apt-get update
+apt-get install -y docker.io
+              
+systemctl enable docker
+systemctl start docker
+
+docker pull nginx
+docker run -d -p 8080:80 --name nginx-container nginx
+```
+
+That's all the files we need. Again too lengthy right? But you won't have to redefine anything again and the same configuration can be tweaked or reused to create similar resources again.
+
+7. Initialize terraform to download the providers and related resources data.
+    
+
+```plaintext
+terraform init
+```
+
+8. Run the below command to create an execution plan, allowing you to see what Terraform will do when you apply the configuration.
+    
+
+```plaintext
+terraform plan -var-file="varvalues.tfvars"
+```
+
+9. Run the below command to apply the configuration.
+    
+
+```plaintext
+terraform apply -var-file="varvalues.tfvars"
+```
+
+10. Finally, you can verify the changes on your AWS Account to ensure all the resources were created successfully.
+    
+
+That's how you create resources using Terraform. **To update/delete resources all you have to do is change the configuration files and execute steps 8 and 9 to update the resources.**
+
+### Best Practices
+
+Explore the code available in [this repository](https://github.com/Ayroid/terraform-ec2-project) to understand what are [Terraform Modules](https://developer.hashicorp.com/terraform/language/modules) and how they can be used to make your code more modular. You can compare terraform modules to functions in traditional programming which can be reused by providing different inputs to get different outputs.
+
+Thank you for reading! I hope you learned something from this blog. Do share your thoughts using comments.  
+**Happy Learning!**

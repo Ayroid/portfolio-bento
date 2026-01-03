@@ -1,0 +1,118 @@
+---
+title: "From URL to Webpage: DNS, Networking, and Browser Internals"
+description: "This is what a normal HTTP request looks like - https://www.google.com/api/search?q=home. Where,"
+date: "2025-01-02"
+category: "Networking"
+tags: []
+isPinned: false
+isNew: false
+---
+
+This is what a normal HTTP request looks like - [https://www.google.com/api/search?q=home](https://www.google.com/api/search?q=home). Where,
+
+* **https** - Scheme used to tell the browser which protocol to use while connecting
+* [www.google.com](http://www.google.com) - Domain to which we want to connect to
+    
+* **/api/search** - path to the resource on the website we are accessing
+* **?q=home** - optional query params to pass additional information in the request
+    
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1735826987539/f619ac3e-b5db-4704-824b-28755fc93b1d.png)
+
+### DNS Resolution
+
+When we send the request it is forwarded to a **Domain Name Server** that translates the **URL -&gt; IP Address** of the machine where the website/service is running. Domain names are easier for humans to read and remember therefore, we use them and with every request, they are translated to respective **IP Addresses**.
+
+The browser does a **DNS lookup** to get the associated IP Address. When you enter a domain in the web browser address bar, you submit a **DNS Request**. The resolution process follows this order:
+
+1. The operating system's DNS cache
+2. Local hosts file
+    
+3. Browser cache
+4. ISP cache
+    
+
+A DNS record is an IP address that matches the **fully-qualified domain name**.
+
+> **Fully Qualified Domain** is the complete domain name that specifies the exact location of the computer on the internet. It consists of hostname and root domain - domain name + top-level domain.
+
+> **Top Level Domain** help identifies websites and their purpose. These are placed after the last dot. E.g. .com, .net and .in. They are used to define the purpose, owner or geographical location.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1735826996413/3692261b-c5c3-4e96-8bc0-806f78cd74d3.png)
+
+If not found in any cache then a **DNS query** or a request to network of **4 DNS Servers** is made. These servers include -
+
+#### Recursive DNS Resolver
+
+Its purpose is to forward a request to other domain name system servers and then send it back. When a request is received, it searches its cache else it is forwarded to the **Root nameserver**.
+
+#### Root Nameserver
+
+It identifies the Top-Level Domain and tells the DNS resolver to go to the correct **TLD nameserver**. There are exactly 13 Root Nameserver IPs managed by 12 different organizations globally, each with multiple servers to process incoming requests.
+
+#### TLD Nameserver
+
+It informs the resolver about the location of the IP address at a specific authoritative nameserver.
+
+#### Authoritative Nameserver
+
+It stores all information related to the domain name you want to visit in form of zones, including its IP address. This IP is then cached and sent back to the user.
+
+### TCP Connection
+
+After the resolution, the browser gets the IP address to connect to. It then:
+
+1. Establishes a TCP connection with the server
+2. If HTTPS performs a TLS handshake for secure communication
+    
+3. HTTP/3, uses QUIC protocol instead of TCP
+    
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1735827003448/a7b505b9-2356-4214-8d0d-498e74a2d3bd.png)
+
+### Sending the Request
+
+The browser then compiles the request into HTTP specifications. A typical HTTP request packet looks like this:
+
+> GET /api/search?q=home HTTP/1.1 Host: [www.google.com](http://www.google.com) User-Agent: Mozilla/5.0 Accept: text/html Connection: keep-alive
+
+Common HTTP verbs include:
+
+* **GET** - Fetch data without body
+* **POST** - Send data in the request body
+* **PUT** - Update existing resource
+* **DELETE** - Remove resource
+    
+
+### Parsing the Request
+
+Request is then parsed by the server to understand what needs to be done. It can be fetching data from the database, performing some calculations or load some files to send back.
+
+> HTTP/1.1 200 OK Cache-Control: max-age=3600 Content-Type: text/html Content-Length: 1023 (in bytes) Set-Cookie: session=abc123 **Content Body**
+
+Common status codes:
+
+* 2xx: Success (200 OK, 201 Created)
+* 3xx: Redirection
+    
+* 4xx: Client errors
+* 5xx: Server errors
+    
+
+### Rendering the Response
+
+Browser then parses the messages, extracts the information, and renders it on the Browser or Terminal. Incase the browser can't render the document directly then it downloads it (in the case of PDFs or other documents).
+
+If the HTML contains CSS files, images, or JS code; subsequent requests are made to fetch these and render them on the browser.
+
+### Summary
+
+When you enter a URL in your browser, several steps occur:
+
+1. URL parsing (protocol, domain, path, query params)
+2. DNS resolution to convert domain to IP address (checking caches, querying DNS servers)
+    
+3. TCP connection establishment (with TLS handshake for HTTPS)
+4. HTTP request sending and response handling
+    
+5. Content rendering (HTML, CSS, JS processing)
