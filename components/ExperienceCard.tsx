@@ -99,18 +99,16 @@ export function ExperienceCard() {
 	};
 
 	return (
-		<div className="p-6 sm:p-8 h-full">
-			<h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
-				Experience
+		<div className="h-full">
+			<h2 className="px-6 py-6 sm:px-8 text-2xl sm:text-3xl lg:text-4xl text-white font-mono border-b flex items-end justify-start group">
+				EXPERIENCE
 			</h2>
-			<div className="space-y-6">
+			<div className="">
 				{experiences.map((exp, index) => (
 					<div
 						key={index}
-						className={`overflow-hidden transition-all ${
-							index !== experiences.length - 1
-								? "border-b border-zinc-800 pb-6"
-								: ""
+						className={`overflow-hidden transition-all py-4 px-6 sm:px-4 ${
+							index !== experiences.length - 1 ? "border-b border-zinc-800" : ""
 						}`}
 					>
 						{/* Header Section */}
