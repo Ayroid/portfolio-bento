@@ -34,13 +34,13 @@ const StatsSection = () => {
 				</div>
 			</BentoItem>
 
-			<BentoItem
+			{/* <BentoItem
 				colSpan={30}
 				rowSpan={8}
 				className="md:col-span-1 lg:col-span-10"
 			>
 				<BooksCard />
-			</BentoItem>
+			</BentoItem> */}
 		</div>
 	);
 };
