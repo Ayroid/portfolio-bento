@@ -18,7 +18,7 @@ interface APIContribution {
 	level: number;
 }
 
-export const GitHubContributions = ({ username }: { username: string }) => {
+const GitHubContributions = ({ username }: { username: string }) => {
 	const [contributions, setContributions] = useState<ContributionWeek[]>([]);
 	const [totalContributions, setTotalContributions] = useState(0);
 	const [loading, setLoading] = useState(true);
@@ -228,3 +228,5 @@ export const GitHubContributions = ({ username }: { username: string }) => {
 		</div>
 	);
 };
+
+export default GitHubContributions;

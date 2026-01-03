@@ -1,0 +1,71 @@
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+	SiReact,
+	SiNextdotjs,
+	SiNodedotjs,
+	SiMongodb,
+	SiRedis,
+	SiJavascript,
+	SiTypescript,
+	SiTailwindcss,
+	SiLinux,
+	SiGit,
+	SiDocker,
+	SiTerraform,
+	SiAmazon,
+	SiVercel,
+	SiNginx,
+	SiPostgresql,
+	SiPrisma,
+} from "react-icons/si";
+
+const TechStackCard = () => {
+	return (
+		<div className="p-4 sm:p-6 h-full flex flex-col">
+			<h3 className="text-white font-bold mb-2 sm:mb-3 text-base sm:text-lg">
+				Tech Stack
+			</h3>
+			<TooltipProvider>
+				<div className="flex flex-wrap flex-1 content-start">
+					{[
+						{ name: "React", icon: <SiReact /> },
+						{ name: "Next.js", icon: <SiNextdotjs /> },
+						{ name: "Node.js", icon: <SiNodedotjs /> },
+						{ name: "MongoDB", icon: <SiMongodb /> },
+						{ name: "PostgreSQL", icon: <SiPostgresql /> },
+						{ name: "Prisma", icon: <SiPrisma /> },
+						{ name: "Redis", icon: <SiRedis /> },
+						{ name: "Tailwind", icon: <SiTailwindcss /> },
+						{ name: "JavaScript", icon: <SiJavascript /> },
+						{ name: "TypeScript", icon: <SiTypescript /> },
+						{ name: "Linux", icon: <SiLinux /> },
+						{ name: "Git", icon: <SiGit /> },
+						{ name: "Docker", icon: <SiDocker /> },
+						{ name: "Terraform", icon: <SiTerraform /> },
+						{ name: "AWS", icon: <SiAmazon /> },
+						{ name: "Vercel", icon: <SiVercel /> },
+						{ name: "Nginx", icon: <SiNginx /> },
+					].map((tech) => (
+						<Tooltip key={tech.name}>
+							<TooltipTrigger asChild>
+								<div className="flex items-center justify-center cursor-pointer p-3">
+									<span className="text-5xl">{tech.icon}</span>
+								</div>
+							</TooltipTrigger>
+							<TooltipContent>
+								<p>{tech.name}</p>
+							</TooltipContent>
+						</Tooltip>
+					))}
+				</div>
+			</TooltipProvider>
+		</div>
+	);
+};
+
+export default TechStackCard;
