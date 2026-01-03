@@ -1,4 +1,5 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
 import { BentoItem } from "@/components/BentoItem";
 import { ActionCard } from "@/components/ActionCard";
@@ -216,12 +217,20 @@ const landingPages: Record<string, LandingPageProject> = {
 
 interface WebAppCardProps {
 	title: string;
+	slug: string;
 	info: WebAppProject;
 }
 
-const WebAppCard = ({ title, info }: WebAppCardProps) => {
+const WebAppCard = ({ title, slug, info }: WebAppCardProps) => {
+	const handleCardClick = () => {
+		window.location.href = `/projects/${slug}`;
+	};
+
 	return (
-		<div className=" h-full flex flex-col group">
+		<div
+			onClick={handleCardClick}
+			className="h-full flex flex-col group cursor-pointer"
+		>
 			<div className="relative h-56 mb-4 -mx-2 -mt-2 overflow-hidden">
 				<Image
 					src={info.image}
@@ -252,11 +261,12 @@ const WebAppCard = ({ title, info }: WebAppCardProps) => {
 							<TooltipContent>{info.status}</TooltipContent>
 						</Tooltip>
 						{info.demoLink && (
-							<Link
+							<a
 								href={info.demoLink}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-gray-400 hover:text-white transition-colors duration-300"
+								onClick={(e) => e.stopPropagation()}
 							>
 								<Tooltip>
 									<TooltipTrigger asChild>
@@ -264,14 +274,15 @@ const WebAppCard = ({ title, info }: WebAppCardProps) => {
 									</TooltipTrigger>
 									<TooltipContent>Visit</TooltipContent>
 								</Tooltip>
-							</Link>
+							</a>
 						)}
 						{info.githubLink && (
-							<Link
+							<a
 								href={info.githubLink}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-gray-400 hover:text-white transition-colors duration-300"
+								onClick={(e) => e.stopPropagation()}
 							>
 								<Tooltip>
 									<TooltipTrigger asChild>
@@ -279,7 +290,7 @@ const WebAppCard = ({ title, info }: WebAppCardProps) => {
 									</TooltipTrigger>
 									<TooltipContent>Github</TooltipContent>
 								</Tooltip>
-							</Link>
+							</a>
 						)}
 					</div>
 				</div>
@@ -301,12 +312,20 @@ const WebAppCard = ({ title, info }: WebAppCardProps) => {
 
 interface LandingPageCardProps {
 	title: string;
+	slug: string;
 	info: LandingPageProject;
 }
 
-const LandingPageCard = ({ title, info }: LandingPageCardProps) => {
+const LandingPageCard = ({ title, slug, info }: LandingPageCardProps) => {
+	const handleCardClick = () => {
+		window.location.href = `/projects/${slug}`;
+	};
+
 	return (
-		<div className="p-4 sm:p-6 h-full flex flex-col">
+		<div
+			onClick={handleCardClick}
+			className="p-4 sm:p-6 h-full flex flex-col group cursor-pointer"
+		>
 			<div className="relative h-56 mb-4 -mx-2 -mt-2 overflow-hidden">
 				<Image
 					src={info.image}
@@ -336,11 +355,12 @@ const LandingPageCard = ({ title, info }: LandingPageCardProps) => {
 						<TooltipContent>{info.status}</TooltipContent>
 					</Tooltip>
 					{info.demoLink && (
-						<Link
+						<a
 							href={info.demoLink}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-gray-400 hover:text-white transition-colors duration-300"
+							onClick={(e) => e.stopPropagation()}
 						>
 							<Tooltip>
 								<TooltipTrigger asChild>
@@ -348,22 +368,23 @@ const LandingPageCard = ({ title, info }: LandingPageCardProps) => {
 								</TooltipTrigger>
 								<TooltipContent>Visit</TooltipContent>
 							</Tooltip>
-						</Link>
+						</a>
 					)}
 					{info.githubLink && (
-						<Link
+						<a
 							href={info.githubLink}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-gray-400 hover:text-white transition-colors duration-300"
+							onClick={(e) => e.stopPropagation()}
 						>
 							<Tooltip>
 								<TooltipTrigger asChild>
 									<SiGithub className="w-5 h-5" />
 								</TooltipTrigger>
-								<TooltipContent>Github</TooltipContent>
+								<TooltipContent>Visit</TooltipContent>
 							</Tooltip>
-						</Link>
+						</a>
 					)}
 				</div>
 			</div>
@@ -380,87 +401,100 @@ const ProjectSection = () => {
 					gridAutoRows: "50px", // Base row height
 				}}
 			>
-			{/* Header - 10 cols × 2 rows */}
-			<BentoItem
-				colSpan={10}
-				rowSpan={2}
-				className="md:col-span-1 lg:col-span-10"
-			>
-				<ActionCard
-					href="/projects"
-					label="PROJECTS"
-					bgColor="bg-white"
-					hoverBgColor="hover:bg-[#dddddd]"
-					textColor="text-black"
-					iconColor="text-black"
-				/>
-			</BentoItem>
+				{/* Header - 10 cols × 2 rows */}
+				<BentoItem
+					colSpan={10}
+					rowSpan={2}
+					className="md:col-span-1 lg:col-span-10"
+				>
+					<ActionCard
+						href="/projects"
+						label="PROJECTS"
+						bgColor="bg-white"
+						hoverBgColor="hover:bg-[#dddddd]"
+						textColor="text-black"
+						iconColor="text-black"
+					/>
+				</BentoItem>
 
-			{/* Ideos Project - 10 cols × 8 rows */}
-			<BentoItem
-				colSpan={10}
-				rowSpan={8}
-				className="md:col-span-1 lg:col-span-10"
-			>
-				<WebAppCard title="Ideos" info={webApps.Ideos} />
-			</BentoItem>
+				{/* Ideos Project - 10 cols × 8 rows */}
+				<BentoItem
+					colSpan={10}
+					rowSpan={8}
+					className="md:col-span-1 lg:col-span-10"
+				>
+					<WebAppCard title="Ideos" slug="ideos" info={webApps.Ideos} />
+				</BentoItem>
 
-			{/* Darch - 10 cols × 8 rows */}
-			<BentoItem
-				colSpan={10}
-				rowSpan={8}
-				className="md:col-span-1 lg:col-span-10"
-			>
-				<WebAppCard title="Darch" info={webApps.Darch} />
-			</BentoItem>
+				{/* Darch Project - 10 cols × 8 rows */}
+				<BentoItem
+					colSpan={10}
+					rowSpan={8}
+					className="md:col-span-1 lg:col-span-10"
+				>
+					<WebAppCard title="Darch" slug="darch" info={webApps.Darch} />
+				</BentoItem>
 
-			{/* Validuct - 10 cols × 8 rows */}
-			<BentoItem
-				colSpan={10}
-				rowSpan={8}
-				className="md:col-span-2 lg:col-span-10"
-			>
-				<WebAppCard title="Validuct" info={webApps.Validuct} />
-			</BentoItem>
+				{/* Validuct - 10 cols × 8 rows */}
+				<BentoItem
+					colSpan={10}
+					rowSpan={8}
+					className="md:col-span-2 lg:col-span-10"
+				>
+					<WebAppCard
+						title="Validuct"
+						slug="validuct"
+						info={webApps.Validuct}
+					/>
+				</BentoItem>
 
-			{/* Parko - 10 cols × 8 rows */}
-			<BentoItem
-				colSpan={10}
-				rowSpan={8}
-				className="md:col-span-2 lg:col-span-10"
-			>
-				<WebAppCard title="Parko" info={webApps.Parko} />
-			</BentoItem>
+				{/* Parko - 10 cols × 8 rows */}
+				<BentoItem
+					colSpan={10}
+					rowSpan={8}
+					className="md:col-span-2 lg:col-span-10"
+				>
+					<WebAppCard title="Parko" slug="parko" info={webApps.Parko} />
+				</BentoItem>
 
-			{/* Terminal Portfolio - 10 cols × 8 rows */}
-			<BentoItem
-				colSpan={10}
-				rowSpan={8}
-				className="md:col-span-2 lg:col-span-10"
-			>
-				<WebAppCard
-					title="Terminal Portfolio"
-					info={webApps["Terminal Portfolio"]}
-				/>
-			</BentoItem>
+				{/* Terminal Portfolio - 10 cols × 8 rows */}
+				<BentoItem
+					colSpan={10}
+					rowSpan={8}
+					className="md:col-span-2 lg:col-span-10"
+				>
+					<WebAppCard
+						title="Terminal Portfolio"
+						slug="terminal-portfolio"
+						info={webApps["Terminal Portfolio"]}
+					/>
+				</BentoItem>
 
-			{/* Orbionio - 5 cols × 6 rows */}
-			<BentoItem
-				colSpan={5}
-				rowSpan={6}
-				className="md:col-span-2 lg:col-span-5"
-			>
-				<LandingPageCard title="Orbionio" info={landingPages.Orbionio} />
-			</BentoItem>
+				{/* Orbionio - 5 cols × 6 rows */}
+				<BentoItem
+					colSpan={5}
+					rowSpan={6}
+					className="md:col-span-2 lg:col-span-5"
+				>
+					<LandingPageCard
+						title="Orbionio"
+						slug="orbionio"
+						info={landingPages.Orbionio}
+					/>
+				</BentoItem>
 
-			{/* UPESCSA - 5 cols × 6 rows */}
-			<BentoItem
-				colSpan={5}
-				rowSpan={6}
-				className="md:col-span-2 lg:col-span-5"
-			>
-				<LandingPageCard title="UPESCSA" info={landingPages.UPESCSA} />
-			</BentoItem>
+				{/* UPESCSA - 5 cols × 6 rows */}
+				<BentoItem
+					colSpan={5}
+					rowSpan={6}
+					className="md:col-span-2 lg:col-span-5"
+				>
+					<LandingPageCard
+						title="UPESCSA"
+						slug="upescsa"
+						info={landingPages.UPESCSA}
+					/>
+				</BentoItem>
 			</div>
 		</FadeUpReveal>
 	);
