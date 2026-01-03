@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BentoItem } from "@/components/BentoItem";
 import { ActionCard } from "@/components/ActionCard";
+import FadeUpReveal from "@/components/FadeUpReveal";
 import {
 	Tooltip,
 	TooltipContent,
@@ -372,12 +373,13 @@ const LandingPageCard = ({ title, info }: LandingPageCardProps) => {
 
 const ProjectSection = () => {
 	return (
-		<div
-			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
-			style={{
-				gridAutoRows: "50px", // Base row height
-			}}
-		>
+		<FadeUpReveal delay={0.1}>
+			<div
+				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
+				style={{
+					gridAutoRows: "50px", // Base row height
+				}}
+			>
 			{/* Header - 10 cols × 2 rows */}
 			<BentoItem
 				colSpan={10}
@@ -459,7 +461,8 @@ const ProjectSection = () => {
 			>
 				<LandingPageCard title="UPESCSA" info={landingPages.UPESCSA} />
 			</BentoItem>
-		</div>
+			</div>
+		</FadeUpReveal>
 	);
 };
 

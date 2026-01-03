@@ -2,6 +2,7 @@ import { BentoItem } from "@/components/BentoItem";
 import GitHubContributions from "@/components/GitHubContributions";
 import BooksCard from "@/components/BooksCard";
 import TechStackCard from "@/components/TechStackCard";
+import FadeUpReveal from "@/components/FadeUpReveal";
 
 /**
  * LATTICE STRUCTURE (30 columns × 8 rows)
@@ -10,12 +11,13 @@ import TechStackCard from "@/components/TechStackCard";
 
 const StatsSection = () => {
 	return (
-		<div
-			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
-			style={{
-				gridAutoRows: "50px", // Base row height
-			}}
-		>
+		<FadeUpReveal delay={0.1}>
+			<div
+				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
+				style={{
+					gridAutoRows: "50px", // Base row height
+				}}
+			>
 			<BentoItem
 				colSpan={10}
 				rowSpan={6}
@@ -41,7 +43,8 @@ const StatsSection = () => {
 			>
 				<BooksCard />
 			</BentoItem> */}
-		</div>
+			</div>
+		</FadeUpReveal>
 	);
 };
 

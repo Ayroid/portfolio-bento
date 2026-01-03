@@ -6,6 +6,7 @@ import { AboutCard } from "@/components/AboutCard";
 import { ActionCard } from "@/components/ActionCard";
 import { ConnectCard } from "@/components/ConnectCard";
 import { NameCard } from "@/components/NameCard";
+import FadeUpReveal from "@/components/FadeUpReveal";
 
 /**
  * LATTICE STRUCTURE (30 columns × 4 rows)
@@ -14,12 +15,13 @@ import { NameCard } from "@/components/NameCard";
 
 const HeroSection = () => {
 	return (
-		<div
-			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
-			style={{
-				gridAutoRows: "150px", // Base row height
-			}}
-		>
+		<FadeUpReveal>
+			<div
+				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
+				style={{
+					gridAutoRows: "150px", // Base row height
+				}}
+			>
 			{/* Name Card - 14 cols × 2 rows */}
 			<BentoItem
 				colSpan={14}
@@ -96,7 +98,8 @@ const HeroSection = () => {
 			>
 				<ConnectCard />
 			</BentoItem>
-		</div>
+			</div>
+		</FadeUpReveal>
 	);
 };
 

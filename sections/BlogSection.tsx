@@ -2,6 +2,7 @@ import React from "react";
 import { BentoItem } from "@/components/BentoItem";
 import { ActionCard } from "@/components/ActionCard";
 import { Badge } from "@/components/ui/badge";
+import FadeUpReveal from "@/components/FadeUpReveal";
 /**
  * LATTICE STRUCTURE (30 columns × 10 rows)
  * Base row height: 50px
@@ -139,12 +140,13 @@ const blogData: BlogItemData[] = [
 
 const BlogSection = () => {
 	return (
-		<div
-			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
-			style={{
-				gridAutoRows: "40px",
-			}}
-		>
+		<FadeUpReveal delay={0.1}>
+			<div
+				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
+				style={{
+					gridAutoRows: "40px",
+				}}
+			>
 			<BlogCard blog={blogData[0]} />
 
 			<BentoItem
@@ -165,7 +167,8 @@ const BlogSection = () => {
 			{blogData.slice(1).map((blog, index) => (
 				<BlogCard key={index} blog={blog} />
 			))}
-		</div>
+			</div>
+		</FadeUpReveal>
 	);
 };
 
