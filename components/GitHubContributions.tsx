@@ -151,13 +151,13 @@ const GitHubContributions = ({ username }: { username: string }) => {
       <div className="flex-1">
         <div className="inline-flex min-w-full flex-col gap-1">
           {/* Month labels */}
-          <div className="relative mb-4 ml-7 flex gap-[3px]">
+          <div className="relative mb-1 flex h-4">
             {getMonthLabels().map((label, i) => (
               <div
                 key={i}
                 className="absolute text-[10px] text-zinc-500"
                 style={{
-                  left: `${label.offset * 15}px`,
+                  left: `${label.offset * 17}px`,
                 }}
               >
                 {label.month}
@@ -165,43 +165,29 @@ const GitHubContributions = ({ username }: { username: string }) => {
             ))}
           </div>
 
-          {/* Day labels + contribution grid */}
+          {/* Contribution grid */}
           <div className="flex gap-[3px]">
-            {/* Day of week labels */}
-            <div className="flex flex-col justify-around gap-[3px] pr-1 text-[10px] text-zinc-500">
-              <span className="h-[12.5px]"></span>
-              <span className="h-[12.5px]">Mon</span>
-              <span className="h-[12.5px]"></span>
-              <span className="h-[12.5px]">Wed</span>
-              <span className="h-[12.5px]"></span>
-              <span className="h-[12.5px]">Fri</span>
-              <span className="h-[12.5px]"></span>
-            </div>
-
-            {/* Contribution squares */}
-            <div className="flex gap-[3px]">
-              {contributions.map((week, weekIndex) => (
-                <div key={weekIndex} className="flex flex-col gap-[3px]">
-                  {week.days.map((day, dayIndex) => (
-                    <div
-                      key={dayIndex}
-                      className={`h-3.5 w-3.5 ${getLevelColor(
-                        day.level
-                      )} group relative cursor-pointer transition-all hover:ring-1 hover:ring-zinc-400`}
-                      title={`${day.count} contributions on ${day.date}`}
-                    >
-                      {/* Tooltip */}
-                      <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded border border-zinc-700 bg-zinc-800 px-2 py-1 text-[10px] whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100">
-                        <div className="font-semibold">
-                          {day.count} contributions
-                        </div>
-                        <div className="text-zinc-400">{day.date}</div>
+            {contributions.map((week, weekIndex) => (
+              <div key={weekIndex} className="flex flex-col gap-[3px]">
+                {week.days.map((day, dayIndex) => (
+                  <div
+                    key={dayIndex}
+                    className={`h-3.5 w-3.5 ${getLevelColor(
+                      day.level
+                    )} group relative cursor-pointer transition-all hover:ring-1 hover:ring-zinc-400`}
+                    title={`${day.count} contributions on ${day.date}`}
+                  >
+                    {/* Tooltip */}
+                    <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded border border-zinc-700 bg-zinc-800 px-2 py-1 text-[10px] whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100">
+                      <div className="font-semibold">
+                        {day.count} contributions
                       </div>
+                      <div className="text-zinc-400">{day.date}</div>
                     </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
 
           {/* Legend */}
