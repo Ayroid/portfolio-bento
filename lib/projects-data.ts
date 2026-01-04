@@ -5,8 +5,10 @@ import {
   SiCloudinary,
   SiDocker,
   SiExpress,
+  SiFlask,
   SiGit,
   SiGithub,
+  SiGrafana,
   SiJavascript,
   SiKubernetes,
   SiLinux,
@@ -14,6 +16,7 @@ import {
   SiNextdotjs,
   SiNginx,
   SiNodedotjs,
+  SiOpenai,
   SiPostgresql,
   SiPrisma,
   SiPwa,
@@ -26,22 +29,29 @@ import {
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
+import { TbCloudCog, TbAutomation, TbDatabase } from "react-icons/tb";
 import { VscGlobe } from "react-icons/vsc";
 import type { ProjectStatus, Project } from "@/types";
 
 export const techStack = {
   AmazonWebServices: { icon: SiAmazonwebservices, name: "Amazon Web Services" },
+  Automation: { icon: TbAutomation, name: "Automation" },
   AWS: { icon: SiAmazon, name: "AWS" },
+  CloudInfrastructure: { icon: TbCloudCog, name: "Cloud Infrastructure" },
   Cloudinary: { icon: SiCloudinary, name: "Cloudinary" },
+  Databases: { icon: TbDatabase, name: "Databases" },
   Demo: { icon: VscGlobe, name: "Demo" },
   Docker: { icon: SiDocker, name: "Docker" },
   Express: { icon: SiExpress, name: "Express" },
+  Flask: { icon: SiFlask, name: "Flask" },
+  GenAI: { icon: SiOpenai, name: "GenAI" },
   Git: { icon: SiGit, name: "Git" },
   Github: { icon: SiGithub, name: "GitHub" },
   Javascript: { icon: SiJavascript, name: "JavaScript" },
   Kubernetes: { icon: SiKubernetes, name: "Kubernetes" },
   Linux: { icon: SiLinux, name: "Linux" },
   MongoDB: { icon: SiMongodb, name: "MongoDB" },
+  Monitoring: { icon: SiGrafana, name: "Monitoring" },
   NextJS: { icon: SiNextdotjs, name: "Next.js" },
   Nginx: { icon: SiNginx, name: "Nginx" },
   NodeJS: { icon: SiNodedotjs, name: "Node.js" },
