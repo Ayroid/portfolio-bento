@@ -1,102 +1,107 @@
 ---
 title: "Conventional Commits: Writing Better Commit Messages"
-description: "Well, we all are in a hurry especially in our projects to get them ready to show the world how great of a developer we are, all while neglecting an essential aspect of the whole process which is the c"
+description: "Learn how to use Conventional Commits and Commitizen to create a more maintainable and meaningful commit history in your projects."
 date: "2024-05-11"
-category: "Networking"
-tags: ["Git"]
+category: "Development"
+tags: ["Git", "Productivity"]
 isPinned: false
 isNew: false
 ---
 
-Well, we all are in a hurry especially in our projects to get them ready to show the world how great of a developer we are, all while neglecting an essential aspect of the whole process which is the **commits** using version control systems!
+Well, we all are in a hurry—especially in our projects—to get them ready to show the world how great of a developer we are, all while neglecting an essential aspect of the whole process: the **commits** using version control systems!
 
-Having a good commit history is as important as writing good quality documented code & believe me, in the future, you will thank yourself if you implement them both in your projects.
+Having a good commit history is as important as writing good quality documented code. Believe me, in the future, you will thank yourself if you implement them both in your projects.
 
 ## The Problem
 
-Look carefully and try to understand the difference between the two commit histories we see below:
+Look carefully and try to understand the difference between these two commit histories:
 
-![Fig 1 - Commit history of one of my projects   ](https://cdn.hashnode.com/res/hashnode/image/upload/v1715420372182/2b209bfb-71cb-4b66-b29e-93627bc630cd.png)
+![Commit history - Before](https://cdn.hashnode.com/res/hashnode/image/upload/v1715420372182/2b209bfb-71cb-4b66-b29e-93627bc630cd.png)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1715420401257/7f78ebd3-8361-47c5-be97-7709abf7b7ff.png)
+![Commit history - After](https://cdn.hashnode.com/res/hashnode/image/upload/v1715420401257/7f78ebd3-8361-47c5-be97-7709abf7b7ff.png)
 
-Both the commits histories would seem okay to a novice eye but an experienced dev knows how better and more useful the second one is. We see a better description of what happened in that commit, whether it was a **feature** added, **docs** updated, or any **bug fix**.
+Both commit histories would seem okay to a novice eye, but an experienced dev knows how much better and more useful the second one is. We see a better description of what happened in that commit—whether it was a **feature** added, **docs** updated, or any **bug fix**.
 
 Of course, now you may be curious how we transition from the first commit history to the better second one. Let's understand the same!
 
 ## The Solution
 
-The commit pattern we observe in the second commit history is known as [**Conventional Commits**](https://www.conventionalcommits.org/en/v1.0.0/#specification) which is a lightweight convention on top of commit messages, providing rules for creating such commit history.
+The commit pattern we observe in the second commit history is known as [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification), which is a lightweight convention on top of commit messages, providing rules for creating such commit history.
 
-[![](https://cdn.hashnode.com/res/hashnode/image/upload/v1715421701027/c76a9a4d-edc0-498a-be03-b83a994a0a4c.png)](https://www.conventionalcommits.org/en/v1.0.0/#specification)
+![Conventional Commits Specification](https://cdn.hashnode.com/res/hashnode/image/upload/v1715421701027/c76a9a4d-edc0-498a-be03-b83a994a0a4c.png)
 
-The above image is a screenshot from [**Conventional Commit Docs**](https://www.conventionalcommits.org/en/v1.0.0/#specification) explaining everything we need to know but who wants to go through the pain of understanding and then implementing it yourself?
+The above image is a screenshot from the [Conventional Commit Docs](https://www.conventionalcommits.org/en/v1.0.0/#specification) explaining everything we need to know—but who wants to go through the pain of understanding and then implementing it yourself?
 
-There's a tool called [**Commitizen**](https://www.npmjs.com/package/commitizen) that makes the job easy for us! It provides a CLI-based commit writing method taking in all the inputs required for a standard conventional commit to ensure a better commit history.
+There's a tool called [Commitizen](https://www.npmjs.com/package/commitizen) that makes the job easy for us! It provides a CLI-based commit writing method taking in all the inputs required for a standard conventional commit to ensure a better commit history.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1715422608922/91224663-4d25-43b7-80a7-d051d400a4a8.png)
+![Commitizen CLI](https://cdn.hashnode.com/res/hashnode/image/upload/v1715422608922/91224663-4d25-43b7-80a7-d051d400a4a8.png)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1715422735605/d61806c2-f2e2-4cee-babd-30d07c3e4407.png)
+![Commitizen Output](https://cdn.hashnode.com/res/hashnode/image/upload/v1715422735605/d61806c2-f2e2-4cee-babd-30d07c3e4407.png)
 
-## Setting up commitzen
+## Setting up Commitizen
 
-Follow the given steps to set commitzen for your projects
+Follow the given steps to set up Commitizen for your projects.
 
-**Step 1: Install Git**
+### Step 1: Install Git
 
 If you haven't already, install Git on your system. You can download it from the official website: [Git Downloads](https://git-scm.com/downloads).
 
-**Step 2: Initialize a Git Repository**
+### Step 2: Initialize a Git Repository
 
-Navigate to your project directory in your terminal or command prompt and initialize a new Git repository by running:
+Navigate to your project directory in your terminal and initialize a new Git repository:
 
-```plaintext
+```bash
 git init
 ```
 
-**Step 3: Install Commitizen**
+### Step 3: Install Commitizen
 
-[Commitizen](https://www.npmjs.com/package/commitizen) is a command-line tool that helps you create conventional commit messages. You can install it globally using npm:
+[Commitizen](https://www.npmjs.com/package/commitizen) is a command-line tool that helps you create conventional commit messages. Install it globally using npm:
 
-```plaintext
+```bash
 npm install -g commitizen
 ```
 
-**Step 4: Setting up commitzen in your repository**
+### Step 4: Setting up Commitizen in Your Repository
 
-Move inside your project's root directory and use the below command to initialize your project to use the cz-conventional-changelog adapter:
+Move inside your project's root directory and use the below command to initialize your project to use the `cz-conventional-changelog` adapter:
 
-```plaintext
+```bash
 commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
 
-Also, add the config.commitizen key to the root of your `package.json` file
+Also, add the `config.commitizen` key to the root of your `package.json` file:
 
-```plaintext
+```json
 "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
+  "commitizen": {
+    "path": "cz-conventional-changelog"
   }
+}
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1715424104148/69289b49-fb3e-4eab-aeed-fc75a0335f80.png)
+![Package.json Configuration](https://cdn.hashnode.com/res/hashnode/image/upload/v1715424104148/69289b49-fb3e-4eab-aeed-fc75a0335f80.png)
 
-**Step 5: Using commitzen**
+### Step 5: Using Commitizen
 
-Use **'git cz'** instead of **'git commit'** to use commitzen to structure your commits
+Use `git cz` instead of `git commit` to use Commitizen to structure your commits:
 
-```plaintext
+```bash
 git add .
 git cz
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1715422608922/91224663-4d25-43b7-80a7-d051d400a4a8.png)
+![Commitizen Interactive](https://cdn.hashnode.com/res/hashnode/image/upload/v1715422608922/91224663-4d25-43b7-80a7-d051d400a4a8.png)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1715422735605/d61806c2-f2e2-4cee-babd-30d07c3e4407.png)
+![Commitizen Result](https://cdn.hashnode.com/res/hashnode/image/upload/v1715422735605/d61806c2-f2e2-4cee-babd-30d07c3e4407.png)
 
-That's it now you'll surely have a better, maintainable, and useful commit history.
+<Success>
+  That's it! Now you'll surely have a better, maintainable, and useful commit
+  history.
+</Success>
+
+---
 
 Thank you for reading the blog. I'd love to hear your thoughts and insights, so feel free to share your comments. Don't forget to hit the follow button to stay tuned for more lessons learned and experiences in the development world.
 
-Happy learning!
+**Happy learning!**

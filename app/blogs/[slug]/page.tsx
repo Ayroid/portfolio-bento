@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -8,8 +9,39 @@ import { MDXComponents } from "@/components/MDXComponents";
 import { Badge } from "@/components/ui/badge";
 import FadeUpReveal from "@/components/FadeUpReveal";
 
+// Enable ISR - regenerate every 24 hours
+export const revalidate = 86400;
+
 interface BlogPageProps {
   params: Promise<{ slug: string }>;
+}
+
+// Content skeleton for streaming
+function ContentSkeleton() {
+  return (
+    <div className="animate-pulse space-y-4">
+      <div className="space-y-2">
+        <div className="h-4 w-full rounded bg-zinc-800" />
+        <div className="h-4 w-full rounded bg-zinc-800" />
+        <div className="h-4 w-3/4 rounded bg-zinc-800" />
+      </div>
+      <div className="mt-6 h-7 w-1/3 rounded bg-zinc-800" />
+      <div className="space-y-2">
+        <div className="h-4 w-full rounded bg-zinc-800" />
+        <div className="h-4 w-5/6 rounded bg-zinc-800" />
+      </div>
+      <div className="h-40 w-full rounded-lg border border-zinc-800 bg-zinc-800/50" />
+    </div>
+  );
+}
+
+// Async component for MDX content - enables streaming
+async function BlogContent({ content }: { content: string }) {
+  return (
+    <article className="prose prose-invert max-w-none">
+      <MDXRemote source={content} components={MDXComponents} />
+    </article>
+  );
 }
 
 export async function generateStaticParams() {
@@ -52,7 +84,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
       </FadeUpReveal>
 
       {/* Header */}
-      <FadeUpReveal delay={0.1}>
+      <FadeUpReveal>
         <header className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-3">
             <Badge variant="outline" className="text-xs">
@@ -108,16 +140,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
       <hr className="border-zinc-800" />
 
-      {/* Content */}
-      <FadeUpReveal delay={0.2}>
-        <article className="prose prose-invert max-w-none">
-          <MDXRemote source={blog.content} components={MDXComponents} />
-        </article>
+      {/* Content - Streamed with Suspense */}
+      <FadeUpReveal>
+        <Suspense fallback={<ContentSkeleton />}>
+          <BlogContent content={blog.content} />
+        </Suspense>
       </FadeUpReveal>
 
       {/* Footer */}
       <hr className="border-zinc-800" />
-      <FadeUpReveal delay={0.3}>
+      <FadeUpReveal>
         <div className="flex items-center justify-between pb-8">
           <Link
             href="/blogs"

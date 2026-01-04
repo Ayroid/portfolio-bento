@@ -1,6 +1,6 @@
 ---
-title: "Dockerize & Deploy a MERN Stack application on AWS EC2"
-description: "Recently, I had to deploy a MERN (MongoDB, Express.js, React, Node.js) application on an AWS EC2 instance. Despite putting in hours of research, I found a notable lack of comprehensive resources guidi"
+title: "Dockerize & Deploy a MERN Stack Application on AWS EC2"
+description: "A comprehensive guide to dockerizing and deploying both React and Node.js applications on the same AWS EC2 instance, covering the complete workflow from local development to production deployment."
 date: "2024-03-09"
 category: "DevOps"
 tags: ["Docker", "MERN", "AWS"]
@@ -10,56 +10,58 @@ isNew: false
 
 Recently, I had to deploy a MERN (MongoDB, Express.js, React, Node.js) application on an AWS EC2 instance. Despite putting in hours of research, I found a notable lack of comprehensive resources guiding the deployment of both the React application build and the Node.js server on the same instance with Dockerization.
 
-In this blog, I will share the step-by-step process, along with the struggles and solutions I encountered, aiming to provide a thorough guide for fellow developers navigating the complexities of dockerizing & deploying a MERN stack Application on AWS.
+In this blog, I will share the step-by-step process, along with the struggles and solutions I encountered, aiming to provide a thorough guide for fellow developers navigating the complexities of dockerizing and deploying a MERN stack application on AWS.
 
 Let's dive in to explore the right way!
 
-### **What do we want?**
+## What Do We Want?
 
 We need an Amazon EC2 instance with Docker running inside it, operating two containers.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710017239558/e2bdbeee-f4a2-4d57-8f3d-bd1a7cde613e.png)
+![Architecture Overview](https://cdn.hashnode.com/res/hashnode/image/upload/v1710017239558/e2bdbeee-f4a2-4d57-8f3d-bd1a7cde613e.png)
 
-### **Prerequisites**
+## Prerequisites
 
-- **MERN Application** - To be deployed
-- **AWS Account** - You can use a free tier account to avoid charges.
-- **Docker Hub Account** - To store your Docker images
-- **Docker** - Locally installed on your system
+- **MERN Application** — To be deployed
+- **AWS Account** — You can use a free tier account to avoid charges
+- **Docker Hub Account** — To store your Docker images
+- **Docker** — Locally installed on your system
 
-### **Let's Begin!**
+## Let's Begin!
 
-In the blog, I'm expecting you already have a MERN Application or you can use this sample application - [https://github.com/Ayroid/MERN-DEP](https://github.com/Ayroid/MERN-DEP/).
+I'm expecting you already have a MERN Application or you can use this sample application: [MERN-DEP](https://github.com/Ayroid/MERN-DEP/).
 
-This Application is a very simple MERN application that fetches the name of the user from a database and shows it on the screen. It was built just for the demonstration purpose but you can proceed with your application.
+This application is a simple MERN application that fetches the name of the user from a database and shows it on the screen. It was built just for demonstration purposes, but you can proceed with your own application.
 
-> Note:  
-> If you're using the sample application, please change the sample.env file to .env file and add your PORT and MongoDB URL. Don't forget to install the dependencies!
+<Note>
+  If you're using the sample application, please rename the `sample.env` file to
+  `.env` and add your PORT and MongoDB URL. Don't forget to install the
+  dependencies!
+</Note>
 
-Once, your application is ready, test it on your local host.
+Once your application is ready, test it on your localhost.
 
 ![Sample Application HomePage](https://cdn.hashnode.com/res/hashnode/image/upload/v1709956654484/67e488bb-c589-48af-87b0-2dd029cf8f57.png)
 
 ---
 
-# 1\. Local Host
+## 1. Local Host Setup
 
-## **Backend**
+### Backend Configuration
 
-Let's get the backend ready for deployment
+Let's get the backend ready for deployment.
 
-### **1.1 - Populate Database**
+#### 1.1 Populate Database
 
-- If you're using the sample application, add the MongoDB URL in **dbPopulator.js** file and run it to load sample data in your database.
+If you're using the sample application, add the MongoDB URL in the `dbPopulator.js` file and run it to load sample data in your database.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1709958494897/bad90b99-af0f-440e-a6e1-866c3d110b13.png)
+![Database Populator](https://cdn.hashnode.com/res/hashnode/image/upload/v1709958494897/bad90b99-af0f-440e-a6e1-866c3d110b13.png)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1709958515914/8b67cf53-e1db-4ef1-b7fc-6f5d6f29f2c9.png)
+![Database Population Result](https://cdn.hashnode.com/res/hashnode/image/upload/v1709958515914/8b67cf53-e1db-4ef1-b7fc-6f5d6f29f2c9.png)
 
-### **1.2 - Dockerize your Application**
+#### 1.2 Dockerize Your Application
 
-- Add a file named **Dockerfile** & **.dockerignore** to your Backend Folder
-- Add this code to the **Dockerfile**
+Add a `Dockerfile` and `.dockerignore` to your Backend folder:
 
 ```dockerfile
 FROM node:17-alpine
@@ -71,46 +73,51 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 
-- To avoid adding your **.env** file to the Docker image add it to **.dockerignore** file
+<Tip>
+  Add your `.env` file to `.dockerignore` to avoid including sensitive
+  credentials in the Docker image.
+</Tip>
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000052214/a91d85b2-7210-4376-9491-03aaadf526c7.png)
+![Backend Dockerfile](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000052214/a91d85b2-7210-4376-9491-03aaadf526c7.png)
 
-- **Build the Docker Image**
+Build the Docker Image:
 
-```plaintext
+```bash
 docker build -t dockerhub_username/backend_image_name .
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000207406/06242b3a-81d6-4bf4-a410-f338b1045b28.png)
+![Docker Build](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000207406/06242b3a-81d6-4bf4-a410-f338b1045b28.png)
 
-### **1.3 - Push your NodeJS Image to DockerHub**
+#### 1.3 Push Your Node.js Image to DockerHub
 
-- Login to your **DockerHub account** via **CLI**.
+Login to your DockerHub account via CLI:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1709959053132/79b375a6-f685-4e84-be19-3dff6f6febb2.png)
+![Docker Login](https://cdn.hashnode.com/res/hashnode/image/upload/v1709959053132/79b375a6-f685-4e84-be19-3dff6f6febb2.png)
 
-- Push the Image to **DockerHub**
+Push the Image to DockerHub:
 
-```plaintext
+```bash
 docker push dockerhub_username/backend_image_name
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000359788/97c3e2d6-66f3-4014-9caf-d59c471a4de0.png)
+![Docker Push](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000359788/97c3e2d6-66f3-4014-9caf-d59c471a4de0.png)
 
-- Verify your **Docker Image** on **DockerHub**
+Verify your Docker Image on DockerHub:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000411282/24b165ed-998b-42ef-b8dd-ae3d1b73888e.png)
+![DockerHub Verification](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000411282/24b165ed-998b-42ef-b8dd-ae3d1b73888e.png)
 
-## Frontend
+### Frontend Configuration
 
-Let's get the Frontend ready for deployment
+Let's get the Frontend ready for deployment.
 
-### **1.4 - Create Nginx configuration file**
+#### 1.4 Create Nginx Configuration File
 
-- Create a file named **nginx.conf** inside Frontend Folder
-- Add the following code inside it.
+Create a file named `nginx.conf` inside the Frontend folder:
 
-> Note: **The IP Address and Port Number will be updated after we create the EC2 instance.**
+<Warning>
+  The IP Address and Port Number will be updated after we create the EC2
+  instance.
+</Warning>
 
 ```nginx
 server {
@@ -132,19 +139,21 @@ server {
 }
 ```
 
-### **1.5 - Create React Application Build**
+#### 1.5 Create React Application Build
 
-Run the following command to create a build of your application. This will create a **dist** folder containing the built code.
+Run the following command to create a build of your application:
 
-```plaintext
+```bash
 npm run build
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1709960528957/c15c51b3-968c-4930-9e4b-b1b198ec8b30.png)
+This will create a `dist` folder containing the built code.
 
-### 1.5 - Dockerize & Push The React Build
+![Build Output](https://cdn.hashnode.com/res/hashnode/image/upload/v1709960528957/c15c51b3-968c-4930-9e4b-b1b198ec8b30.png)
 
-- Create another **Dockerfile** inside Frontend Folder and add the following code inside it.
+#### 1.6 Dockerize & Push The React Build
+
+Create a `Dockerfile` inside the Frontend folder:
 
 ```dockerfile
 FROM nginx:alpine
@@ -152,64 +161,68 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./dist/ /usr/share/nginx/html
 ```
 
-- To avoid adding your **.env** file to the Docker image add it to **.dockerignore** file.
+Add your `.env` file to `.dockerignore`:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000020878/8ba7e474-0f80-4f05-9575-dc6e40202c62.png)
+![Frontend Dockerfile](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000020878/8ba7e474-0f80-4f05-9575-dc6e40202c62.png)
 
-- Build the **Frontend Docker Image** & Push it image on **DockerHub**
+Build and push the Frontend Docker Image:
 
-```plaintext
+```bash
 docker build -t dockerhub_username/frontend_image_name .
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000534455/1c70859a-b8e7-4019-b93d-77e47dbf35ab.png)
+![Frontend Build](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000534455/1c70859a-b8e7-4019-b93d-77e47dbf35ab.png)
 
-```plaintext
+```bash
 docker push dockerhub_username/frontend_image_name
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000574298/15b54ec1-2566-42f9-8130-127907774a66.png)
+![Frontend Push](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000574298/15b54ec1-2566-42f9-8130-127907774a66.png)
 
-- Verify your **DockerImage** on **DockerHub**
+Verify your Docker Image on DockerHub:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000698453/6790305e-3702-4af6-80c1-51b73fa3f68d.png)
+![DockerHub Frontend](https://cdn.hashnode.com/res/hashnode/image/upload/v1710000698453/6790305e-3702-4af6-80c1-51b73fa3f68d.png)
 
 Now, we are ready to create and configure the EC2 instance!
 
 ---
 
-# 2 - **Provisioning & Configuring EC2 Instance**
+## 2. Provisioning & Configuring EC2 Instance
 
-- Login to your AWS Account
+Login to your AWS Account.
 
-### **2.1 - Provisioning EC2 Instance**
+### 2.1 Provisioning EC2 Instance
 
-- Create a t2.micro instance using Ubuntu Image and create a new key pair or choose an existing one.
+Create a `t2.micro` instance using Ubuntu Image and create a new key pair or choose an existing one.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710006214847/b72e8e4c-1760-4fbb-bd61-37955322bfde.png)
+![EC2 Instance Creation](https://cdn.hashnode.com/res/hashnode/image/upload/v1710006214847/b72e8e4c-1760-4fbb-bd61-37955322bfde.png)
 
-- Add inbound rules for ports 80, 443 & 3000 in the security groups by going to Instance &gt; Security &gt; Security Group &gt; Edit Inbound Rules.
+Add inbound rules for ports 80, 443 & 3000 in the security groups:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710006378931/98e08e23-597e-4c88-9520-80a7d302e936.png)
+**Instance → Security → Security Group → Edit Inbound Rules**
 
-> IMPORTANT!
->
-> Once your Instance is created, add its public ip in Nginx Configuration file that we created in **Step 1.4 and in the sample.env file of frontend application on local machine.**
->
-> **Then re-create react application build & docker build then push it on DockerHub as done in Step 1.5**
+![Security Group Rules](https://cdn.hashnode.com/res/hashnode/image/upload/v1710006378931/98e08e23-597e-4c88-9520-80a7d302e936.png)
 
-### **2.2 - Configuring EC2 Instance**
+<Warning title="Important">
+Once your Instance is created, add its public IP in the Nginx Configuration file that we created in Step 1.4 and in the `sample.env` file of the frontend application on local machine.
 
-- Connect to your EC2 instance
-- Install **Docker** & **Docker Compose** on your EC2 Instance
-- Create a **docker-compose.yml** file and add the following code to it
+Then re-create the React application build, Docker build, and push it to DockerHub as done in Step 1.5.
 
-> Note:
->
-> - Change both the image names with the ones you used while building your docker images.
-> - Add your environment variables - MONGODB_URI & EC2 Public Instance IP
+</Warning>
 
-```dockerfile
+### 2.2 Configuring EC2 Instance
+
+1. Connect to your EC2 instance
+2. Install Docker & Docker Compose on your EC2 Instance
+3. Create a `docker-compose.yml` file:
+
+<Note>
+  Change both the image names with the ones you used while building your docker
+  images. Add your environment variables: `MONGODB_URI` and EC2 Public Instance
+  IP.
+</Note>
+
+```yaml
 version: "3.8"
 
 services:
@@ -223,7 +236,7 @@ services:
       - PORT=3000
 
   frontend:
-    image: <dockerhub_username>/<backend_image_name>
+    image: <dockerhub_username>/<frontend_image_name>
     container_name: mernfrontend
     ports:
       - "80:80"
@@ -231,53 +244,53 @@ services:
       - VITE_SERVER_URL="http://<InstanceIP>"
 ```
 
-### **2.3 - Run your Application**
+### 2.3 Run Your Application
 
-- Once, you have the docker-compose.yml setup, use the following command on the EC2 instance to run your application
+Once you have the `docker-compose.yml` setup, run your application:
 
-```plaintext
+```bash
 docker-compose up -d
 ```
 
-- Enter your Instance's Public IP to see the hosted application
+Enter your Instance's Public IP to see the hosted application:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710008820204/54087471-213b-4694-b560-7308f801406a.png)
+![Running Application](https://cdn.hashnode.com/res/hashnode/image/upload/v1710008820204/54087471-213b-4694-b560-7308f801406a.png)
 
-**Congrats! Your Application is up and running!**
+<Success>Congrats! Your Application is up and running!</Success>
 
-- To shut it down run the following command
+To shut it down:
 
-```plaintext
+```bash
 docker-compose down
 ```
 
-# 3 - Automation
+---
 
-- You can create **Bash Scripts** to automate the complete build & deployment process or use CICD tools, but let's see a simple bash script to update your server.
-- For demonstration purposes, I'm changing the text on the home screen from Hello Name -&gt; Greetings Name.
+## 3. Automation
 
-### **3.1 - Deployment Trigger**
+You can create Bash Scripts to automate the complete build and deployment process or use CI/CD tools. Here's a simple bash script to update your server.
 
-- Create a bash script in the root directory of your project named - **updateServers.sh**
+For demonstration purposes, I'm changing the text on the home screen from "Hello Name" to "Greetings Name".
 
-```plaintext
+### 3.1 Deployment Trigger
+
+Create a bash script in the root directory of your project named `updateServers.sh`:
+
+```bash
 #!/bin/bash
 
 # UPDATE FRONTEND
-
 cd ./Frontend
 npm run build
 docker build -t dockerhub_username/frontend_image_name .
 docker push dockerhub_username/frontend_image_name
 
 # UPDATE BACKEND
-
 cd ../Backend
 docker build -t dockerhub_username/backend_image_name .
 docker push dockerhub_username/backend_image_name
 
 # UPDATE SERVERS
-
 cd ..
 ssh -i <KeyPair file path> <Ip Address> ./updateServer.sh
 
@@ -285,45 +298,45 @@ ssh -i <KeyPair file path> <Ip Address> ./updateServer.sh
 # ssh -i ./ayroids.pem ubuntu@ec2-13-200-251-36.ap-south-1.compute.amazonaws.com ./updateServer.sh
 ```
 
-### **3.2 - Server Update Script**
+### 3.2 Server Update Script
 
-- On the EC2 Instance, create another bash script named - **updateServers.sh**
+On the EC2 Instance, create another bash script named `updateServer.sh`:
 
-```plaintext
+```bash
 docker pull dockerhub_username/frontend_image_name
 docker pull dockerhub_username/backend_image_name
 docker-compose down
 docker-compose up -d
 ```
 
-### **3.3 - Running The Scripts**
+### 3.3 Running The Scripts
 
-- Change permission of **both scripts** to make them executable
+Change permission of both scripts to make them executable:
 
-```plaintext
+```bash
 chmod +x updateServers.sh
 ```
 
-- Run the deployment trigger script on your local machine
+Run the deployment trigger script on your local machine:
 
-```plaintext
+```bash
 ./updateServers.sh
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710012886820/bd4202ce-ad76-45cf-9667-7032a8c35a9f.png)
+![Script Execution](https://cdn.hashnode.com/res/hashnode/image/upload/v1710012886820/bd4202ce-ad76-45cf-9667-7032a8c35a9f.png)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710012898140/f680803d-21bd-4e25-9132-1539e77ffab2.png)
+![Script Output](https://cdn.hashnode.com/res/hashnode/image/upload/v1710012898140/f680803d-21bd-4e25-9132-1539e77ffab2.png)
 
-### **3.4 - Check the updates**
+### 3.4 Check the Updates
 
-- Visit the IP address of the Instance to verify updates
+Visit the IP address of the Instance to verify updates:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1710012968488/d5a68c09-0a1d-4e4b-b298-3144ffa805e0.png)
+![Updated Application](https://cdn.hashnode.com/res/hashnode/image/upload/v1710012968488/d5a68c09-0a1d-4e4b-b298-3144ffa805e0.png)
 
 ---
 
-"Boom! That's a simplified and efficient recipe for dockerizing & deploying MERN applications.
+Boom! That's a simplified and efficient recipe for dockerizing and deploying MERN applications.
 
 Thank you for joining me on this journey. I'd love to hear your thoughts and insights, so feel free to share your comments. Don't forget to hit the follow button to stay tuned for more lessons learned and experiences in the development world.
 
-Happy learning!
+**Happy learning!**

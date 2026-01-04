@@ -48,86 +48,86 @@ export default async function ProjectPage({
       </FadeUpReveal>
 
       {/* Project Header */}
-      <FadeUpReveal delay={0.1}>
+      <FadeUpReveal>
         <div className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="flex-1">
-            <h1 className="mb-3 font-mono text-3xl font-bold text-white sm:text-4xl">
-              {project.title}
-            </h1>
-            <p className="font-sans text-base leading-relaxed text-zinc-400 sm:text-lg">
-              {project.description}
-            </p>
-          </div>
-
-          {/* Status Badge */}
-          <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
-            <span
-              className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
-            />
-            <span className="text-sm font-medium text-white">
-              {project.status}
-            </span>
-          </div>
-        </div>
-
-        {/* Meta Info */}
-        <div className="flex flex-wrap items-center gap-4">
-          <Badge variant="outline" className="text-sm">
-            {project.category}
-          </Badge>
-          {project.date && (
-            <div className="flex items-center gap-2 text-zinc-500">
-              <Calendar className="h-4 w-4" />
-              <span className="text-sm">{project.date}</span>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="flex-1">
+              <h1 className="mb-3 font-mono text-3xl font-bold text-white sm:text-4xl">
+                {project.title}
+              </h1>
+              <p className="font-sans text-base leading-relaxed text-zinc-400 sm:text-lg">
+                {project.description}
+              </p>
             </div>
-          )}
-        </div>
 
-        {/* Links */}
-        <div className="flex items-center gap-3">
-          {project.demoLink && (
-            <a
-              href={project.demoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Live Demo
-            </a>
-          )}
-          {project.githubLink && (
-            <a
-              href={project.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-zinc-800 px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white"
-            >
-              <Github className="h-4 w-4" />
-              View Source
-            </a>
-          )}
+            {/* Status Badge */}
+            <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
+              <span
+                className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
+              />
+              <span className="text-sm font-medium text-white">
+                {project.status}
+              </span>
+            </div>
+          </div>
+
+          {/* Meta Info */}
+          <div className="flex flex-wrap items-center gap-4">
+            <Badge variant="outline" className="text-sm">
+              {project.category}
+            </Badge>
+            {project.date && (
+              <div className="flex items-center gap-2 text-zinc-500">
+                <Calendar className="h-4 w-4" />
+                <span className="text-sm">{project.date}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Links */}
+          <div className="flex items-center gap-3">
+            {project.demoLink && (
+              <a
+                href={project.demoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Live Demo
+              </a>
+            )}
+            {project.githubLink && (
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-zinc-800 px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white"
+              >
+                <Github className="h-4 w-4" />
+                View Source
+              </a>
+            )}
+          </div>
         </div>
-      </div>
       </FadeUpReveal>
 
       {/* Project Image */}
-      <FadeUpReveal delay={0.2}>
+      <FadeUpReveal>
         <div className="relative h-[400px] w-full overflow-hidden border border-zinc-800">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover"
-          priority
-        />
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
       </FadeUpReveal>
 
       {/* Long Description */}
       {project.longDescription && (
-        <FadeUpReveal delay={0.3}>
+        <FadeUpReveal>
           <div className="border border-zinc-800 bg-[#18181b] p-6 sm:p-8">
             <h2 className="mb-4 text-xl font-bold text-white">
               About the Project
@@ -140,83 +140,85 @@ export default async function ProjectPage({
       )}
 
       {/* Technologies */}
-      <FadeUpReveal delay={0.4}>
+      <FadeUpReveal>
         <div className="border border-zinc-800 bg-[#18181b] p-6 sm:p-8">
-        <h2 className="mb-4 text-xl font-bold text-white">Technologies Used</h2>
-        <div className="flex flex-wrap gap-3">
-          {project.technologies.map((tech) => {
-            const techInfo = techStack[tech];
-            const Icon = techInfo.icon;
-            return (
-              <Tooltip key={tech}>
-                <TooltipTrigger asChild>
-                  <div className="flex items-center gap-2 border border-zinc-800 bg-zinc-900 px-3 py-2 transition-colors hover:border-zinc-700">
-                    <Icon className="h-5 w-5 text-white" />
-                    <span className="text-sm text-zinc-300">
-                      {techInfo.name}
-                    </span>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent>{techInfo.name}</TooltipContent>
-              </Tooltip>
-            );
-          })}
-        </div>
+          <h2 className="mb-4 text-xl font-bold text-white">
+            Technologies Used
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            {project.technologies.map((tech) => {
+              const techInfo = techStack[tech];
+              const Icon = techInfo.icon;
+              return (
+                <Tooltip key={tech}>
+                  <TooltipTrigger asChild>
+                    <div className="flex items-center gap-2 border border-zinc-800 bg-zinc-900 px-3 py-2 transition-colors hover:border-zinc-700">
+                      <Icon className="h-5 w-5 text-white" />
+                      <span className="text-sm text-zinc-300">
+                        {techInfo.name}
+                      </span>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>{techInfo.name}</TooltipContent>
+                </Tooltip>
+              );
+            })}
+          </div>
         </div>
       </FadeUpReveal>
 
       {/* Related Projects */}
-      <FadeUpReveal delay={0.5}>
+      <FadeUpReveal>
         <div className="border-t border-zinc-800 pt-8">
-        <h2 className="mb-4 text-xl font-bold text-white">Other Projects</h2>
-        <div className="flex gap-3 overflow-x-auto pb-2">
-          {projectsData
-            .filter((p) => p.id !== project.id)
-            .slice(0, 3)
-            .map((relatedProject) => (
-              <Link
-                key={relatedProject.id}
-                href={`/projects/${relatedProject.slug}`}
-                className="group min-w-[250px] border border-zinc-800 bg-[#18181b] transition-colors hover:border-zinc-700"
-              >
-                <div className="relative h-32 w-full overflow-hidden">
-                  <Image
-                    src={relatedProject.image}
-                    alt={relatedProject.title}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-3">
-                  <h3 className="mb-1 text-sm font-semibold text-white transition-colors group-hover:text-zinc-100">
-                    {relatedProject.title}
-                  </h3>
-                  <p className="line-clamp-2 text-xs text-zinc-500">
-                    {relatedProject.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-        </div>
+          <h2 className="mb-4 text-xl font-bold text-white">Other Projects</h2>
+          <div className="flex gap-3 overflow-x-auto pb-2">
+            {projectsData
+              .filter((p) => p.id !== project.id)
+              .slice(0, 3)
+              .map((relatedProject) => (
+                <Link
+                  key={relatedProject.id}
+                  href={`/projects/${relatedProject.slug}`}
+                  className="group min-w-[250px] border border-zinc-800 bg-[#18181b] transition-colors hover:border-zinc-700"
+                >
+                  <div className="relative h-32 w-full overflow-hidden">
+                    <Image
+                      src={relatedProject.image}
+                      alt={relatedProject.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-3">
+                    <h3 className="mb-1 text-sm font-semibold text-white transition-colors group-hover:text-zinc-100">
+                      {relatedProject.title}
+                    </h3>
+                    <p className="line-clamp-2 text-xs text-zinc-500">
+                      {relatedProject.description}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+          </div>
         </div>
       </FadeUpReveal>
 
       {/* Bottom Navigation */}
-      <FadeUpReveal delay={0.6}>
+      <FadeUpReveal>
         <div className="flex items-center justify-between border-t border-zinc-800 pt-8">
-        <Link
-          href="/projects"
-          className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span className="text-sm">All Projects</span>
-        </Link>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-        >
-          <span className="text-sm">Home</span>
-        </Link>
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span className="text-sm">All Projects</span>
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+          >
+            <span className="text-sm">Home</span>
+          </Link>
         </div>
       </FadeUpReveal>
     </div>

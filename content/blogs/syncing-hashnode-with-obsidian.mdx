@@ -1,28 +1,42 @@
 ---
 title: "Syncing Hashnode with Obsidian"
-description: "Motivation"
+description: "Automate your blogging workflow by syncing your Obsidian notes directly to Hashnode using the GraphQL API and a Python script."
 date: "2024-12-14"
-category: "Networking"
-tags: ["Productivity"]
+category: "Productivity"
+tags: ["Productivity", "Automation"]
 isPinned: false
 isNew: false
 ---
 
-# Motivation
+## Motivation
 
-I prefer using [Obsidian](https://obsidian.md/) as my primary editor and note-taking tool due to its intuitive user interface and the ability to store all data locally, ensuring privacy and ease of access. Additionally, I find that sharing knowledge in the form of blogs enhances my understanding of concepts while also allowing me to contribute to the community, which I find personally fulfilling.
+I prefer using [Obsidian](https://obsidian.md/) as my primary editor and note-taking tool due to its intuitive user interface and the ability to store all data locally, ensuring privacy and ease of access.
 
-To streamline my workflow, I came up with the idea of syncing my Obsidian directory with Hashnode. This would eliminate the need to write blogs separately or manually copy and paste content, making the process more efficient and seamless.
+Additionally, I find that sharing knowledge in the form of blogs enhances my understanding of concepts while also allowing me to contribute to the community, which I find personally fulfilling.
 
-# Idea
+<Note>
+  To streamline my workflow, I came up with the idea of syncing my Obsidian
+  directory with Hashnode. This would eliminate the need to write blogs
+  separately or manually copy and paste content, making the process more
+  efficient and seamless.
+</Note>
 
-After researching the Hashnode GraphQL API, which enables managing blogs on your account, I decided to integrate it with a specific folder in my Obsidian workspace. This setup would track file changes in that folder and allow me to publish updates directly to Hashnode with a single command, streamlining the entire process.
+## The Idea
 
-# Execution
+After researching the Hashnode GraphQL API, which enables managing blogs on your account, I decided to integrate it with a specific folder in my Obsidian workspace. This setup would:
 
-I got my HASHNODE_API_KEY & HASHNODE_PUBLICATION_ID from Hashnode developer site and wrote a python script to automate the posting.
+1. Track file changes in that folder
+2. Allow me to publish updates directly to Hashnode with a single command
+3. Streamline the entire blogging process
 
-> Note: Define your HASHNODE_API_KEY, HASHNODE_PUBLICATION_ID and OBSIDIAN_BLOG_FOLDER in constanst.py
+## Execution
+
+I got my `HASHNODE_API_KEY` and `HASHNODE_PUBLICATION_ID` from the Hashnode developer site and wrote a Python script to automate the posting.
+
+<Tip>
+  Define your `HASHNODE_API_KEY`, `HASHNODE_PUBLICATION_ID`, and
+  `OBSIDIAN_BLOG_FOLDER` in a `constants.py` file.
+</Tip>
 
 ### The Script
 
@@ -175,7 +189,6 @@ class HashNodeBlogSync:
 
 
 def main():
-
     sync_manager = HashNodeBlogSync(
         OBSIDIAN_BLOG_FOLDER,
         HASHNODE_API_KEY,
@@ -189,15 +202,30 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 
-# Automation
+### How It Works
 
-Rather than fully automating the process by setting up a cron job to run the code at regular intervals, I opted for a more manual approach. I created an alias for the command that allows me to sync the blogs with Hashnode whenever needed.
+1. **Parse Markdown Files** — The script reads all `.md` files in your Obsidian blog folder and extracts frontmatter metadata
+2. **Check for Existing Posts** — If a `hashnode_post_id` exists in the frontmatter, it updates the existing post
+3. **Publish or Update** — Uses GraphQL mutations to either publish new posts or update existing ones
+4. **Store Post ID** — After publishing, the script stores the `hashnode_post_id` back in the frontmatter for future updates
+
+## Automation
+
+Rather than fully automating the process by setting up a cron job to run the code at regular intervals, I opted for a more manual approach.
+
+<Tip>
+Create an alias for the command that allows you to sync the blogs with Hashnode whenever needed:
+
+```bash
+alias sync-blogs="python /path/to/sync_script.py"
+```
+
+</Tip>
+
+This gives you control over when to publish while still making the process as simple as running a single command.
+
+---
 
 Thank you for reading! I hope you found something new and interesting.
-
-```sh
-hashnode-blog-sync
-```
