@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import FadeUpReveal from "@/components/FadeUpReveal";
+import FadeUpReveal from "@/components/shared/FadeUpReveal";
 
 interface Book {
   title: string;

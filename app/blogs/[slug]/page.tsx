@@ -10,11 +10,11 @@ import {
   getAllBlogSlugs,
   getBlogBySlug,
   getRelatedPosts,
-  type BlogMeta,
 } from "@/lib/blog-utils";
-import { MDXComponents } from "@/components/MDXComponents";
+import type { BlogMeta } from "@/types";
+import { MDXComponents } from "@/components/shared/MDXComponents";
 import { Badge } from "@/components/ui/badge";
-import FadeUpReveal from "@/components/FadeUpReveal";
+import FadeUpReveal from "@/components/shared/FadeUpReveal";
 
 // Enable ISR - regenerate every 24 hours
 export const revalidate = 86400;
@@ -46,7 +46,7 @@ function ContentSkeleton() {
 // Uses CSS animation instead of IntersectionObserver for compatibility with streaming
 async function BlogContent({ content }: { content: string }) {
   return (
-    <article className="prose prose-invert max-w-none animate-in fade-in slide-in-from-bottom-[30px] duration-800 ease-out fill-mode-both">
+    <article className="prose prose-invert animate-in fade-in slide-in-from-bottom-[30px] fill-mode-both max-w-none duration-800 ease-out">
       <MDXRemote
         source={content}
         components={MDXComponents}

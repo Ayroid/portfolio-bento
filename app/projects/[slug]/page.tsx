@@ -14,7 +14,7 @@ import {
   techStack,
   statusColors,
 } from "@/lib/projects-data";
-import FadeUpReveal from "@/components/FadeUpReveal";
+import FadeUpReveal from "@/components/shared/FadeUpReveal";
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({

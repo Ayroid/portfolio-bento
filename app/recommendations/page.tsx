@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Youtube, Podcast, Book } from "lucide-react";
-import FadeUpReveal from "@/components/FadeUpReveal";
+import FadeUpReveal from "@/components/shared/FadeUpReveal";
 
 interface Recommendation {
   id: string;

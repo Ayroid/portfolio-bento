@@ -2,35 +2,9 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import type { BlogPost, BlogMeta } from "@/types";
 
 const BLOGS_PATH = path.join(process.cwd(), "content/blogs");
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  category: string;
-  tags: string[];
-  isPinned: boolean;
-  isNew: boolean;
-  isPublished: boolean;
-  readingTime: string;
-  content: string;
-}
-
-export interface BlogMeta {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  category: string;
-  tags: string[];
-  isPinned: boolean;
-  isNew: boolean;
-  isPublished: boolean;
-  readingTime: string;
-}
 
 // Get all blog slugs for static generation
 export function getAllBlogSlugs(): string[] {

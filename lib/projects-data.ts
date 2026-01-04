@@ -27,6 +27,7 @@ import {
   SiVercel,
 } from "react-icons/si";
 import { VscGlobe } from "react-icons/vsc";
+import type { ProjectStatus, Project } from "@/types";
 
 export const techStack = {
   AmazonWebServices: { icon: SiAmazonwebservices, name: "Amazon Web Services" },
@@ -59,25 +60,6 @@ export const techStack = {
 };
 
 export type TechKey = keyof typeof techStack;
-
-export type ProjectStatus = "Live" | "In Development" | "Archived" | "Reviving";
-
-export interface Project {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  longDescription?: string;
-  category: "Web App" | "Landing Page" | "Tool";
-  tags: string[];
-  technologies: TechKey[];
-  image: string;
-  demoLink?: string;
-  githubLink?: string;
-  status: ProjectStatus;
-  featured?: boolean;
-  date?: string;
-}
 
 export const projectsData: Project[] = [
   {

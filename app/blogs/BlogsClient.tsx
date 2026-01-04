@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowUpRight, Pin, Clock } from "lucide-react";
 import Link from "next/link";
-import { type BlogMeta } from "@/lib/blog-utils";
-import FadeUpReveal from "@/components/FadeUpReveal";
+import type { BlogMeta } from "@/types";
+import FadeUpReveal from "@/components/shared/FadeUpReveal";
 
 interface BlogCardProps {
   post: BlogMeta;

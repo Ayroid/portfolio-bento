@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BentoItem } from "@/components/BentoItem";
+import { BentoItem } from "@/components/shared/BentoItem";
 
 export default function NotFound() {
   return (

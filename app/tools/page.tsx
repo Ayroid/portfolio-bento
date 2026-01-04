@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Code, Terminal, Layout, Wrench } from "lucide-react";
-import FadeUpReveal from "@/components/FadeUpReveal";
+import FadeUpReveal from "@/components/shared/FadeUpReveal";
 
 interface Tool {
   id: string;

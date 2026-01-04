@@ -1,8 +1,10 @@
-import HeroSection from "@/sections/HeroSection";
-import ProjectSection from "@/sections/ProjectSection";
-import BlogSection from "@/sections/BlogSection";
-import StatsSection from "@/sections/StatsSection";
-import LifeSection from "@/sections/LifeSection";
+import {
+  HeroSection,
+  ProjectSection,
+  BlogSection,
+  StatsSection,
+  LifeSection,
+} from "@/components/sections";
 // import TemplateSection from "@/app/sections/TemplateSection";
 
 export default function Home() {

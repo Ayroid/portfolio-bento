@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { ArrowUpRight } from "lucide-react";
 import { projectsData, statusColors, techStack } from "@/lib/projects-data";
-import FadeUpReveal from "@/components/FadeUpReveal";
+import FadeUpReveal from "@/components/shared/FadeUpReveal";
 
 interface ProjectCardProps {
   project: (typeof projectsData)[0];
