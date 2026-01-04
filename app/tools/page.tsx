@@ -84,7 +84,7 @@ export default function ToolsPage() {
       {/* Page Header */}
       <div className="flex flex-col gap-0">
         <div className="border p-12 sm:p-16">
-          <h1 className="text-3xl font-bold tracking-wider text-white text-center sm:text-5xl">
+          <h1 className="text-3xl font-bold font-mono tracking-wider text-white text-center sm:text-5xl">
             TOOLS
           </h1>
         </div>
@@ -139,10 +139,10 @@ export default function ToolsPage() {
               </div>
 
               <div>
-                <h3 className="mb-2 text-lg font-semibold text-white">
+                <h3 className="mb-2 text-lg font-semibold font-sans text-white">
                   {tool.name}
                 </h3>
-                <p className="text-sm leading-relaxed text-zinc-400">
+                <p className="text-sm leading-relaxed font-sans text-zinc-400">
                   {tool.description}
                 </p>
               </div>

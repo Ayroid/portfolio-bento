@@ -86,12 +86,12 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         {/* Content */}
         <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
           {/* Title */}
-          <h3 className="text-xl font-bold text-white">
+          <h3 className="text-xl font-bold font-sans text-white">
             {project.title}
           </h3>
 
           {/* Description */}
-          <p className="text-sm leading-relaxed text-zinc-400">
+          <p className="text-sm leading-relaxed font-sans text-zinc-400">
             {project.description}
           </p>
 
@@ -144,7 +144,7 @@ export default function ProjectsPage() {
       {/* Page Header */}
       <div className="flex flex-col gap-0">
         <div className="border p-12 sm:p-16">
-          <h1 className="text-3xl font-bold tracking-wider text-white text-center sm:text-5xl">
+          <h1 className="text-3xl font-bold font-mono tracking-wider text-white text-center sm:text-5xl">
             PROJECTS
           </h1>
         </div>

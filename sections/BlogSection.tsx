@@ -3,7 +3,6 @@ import { BentoItem } from "@/components/BentoItem";
 import { ActionCard } from "@/components/ActionCard";
 import { Badge } from "@/components/ui/badge";
 import FadeUpReveal from "@/components/FadeUpReveal";
-import { ArrowUpRight } from "lucide-react";
 
 /**
  * LATTICE STRUCTURE (30 columns × 10 rows)

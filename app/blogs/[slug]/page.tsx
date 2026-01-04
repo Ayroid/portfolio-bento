@@ -64,11 +64,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
           )}
         </div>
 
-        <h1 className="text-3xl leading-tight font-bold text-white sm:text-4xl">
+        <h1 className="text-3xl leading-tight font-bold font-mono text-white sm:text-4xl">
           {blog.title}
         </h1>
 
-        <p className="text-lg text-zinc-400">{blog.description}</p>
+        <p className="text-lg font-sans text-zinc-400">{blog.description}</p>
 
         <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
           <span className="flex items-center gap-1.5">

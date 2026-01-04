@@ -48,10 +48,10 @@ export default async function ProjectPage({
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex-1">
-            <h1 className="mb-3 text-3xl font-bold text-white sm:text-4xl">
+            <h1 className="mb-3 text-3xl font-bold font-mono text-white sm:text-4xl">
               {project.title}
             </h1>
-            <p className="text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p className="text-base leading-relaxed font-sans text-zinc-400 sm:text-lg">
               {project.description}
             </p>
           </div>

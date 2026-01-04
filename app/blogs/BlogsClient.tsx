@@ -46,12 +46,12 @@ const BlogCard = ({ post }: BlogCardProps) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-base leading-tight font-semibold text-white transition-colors group-hover:text-zinc-100 sm:text-lg">
+        <h3 className="text-base leading-tight font-semibold font-sans text-white transition-colors group-hover:text-zinc-100 sm:text-lg">
           {post.title}
         </h3>
 
         {/* Description */}
-        <p className="line-clamp-2 text-sm leading-relaxed text-zinc-400">
+        <p className="line-clamp-2 text-sm leading-relaxed font-sans text-zinc-400">
           {post.description}
         </p>
 
@@ -104,12 +104,12 @@ export default function BlogsClient({ blogs }: BlogsClientProps) {
       {/* Page Header */}
       <div className="flex flex-col gap-0">
         <div className="border p-12 sm:p-16">
-          <h1 className="text-3xl font-bold tracking-wider text-white text-center sm:text-5xl">
+          <h1 className="text-3xl font-bold font-mono tracking-wider text-white text-center sm:text-5xl">
             BLOGS
           </h1>
         </div>
         <div className="border border-t-0  p-6">
-          <p className="text-sm text-zinc-400 text-center sm:text-base">
+          <p className="text-sm font-sans text-zinc-400 text-center sm:text-base">
             Thoughts, tutorials, and insights on development, DevOps, and
             technology.
           </p>

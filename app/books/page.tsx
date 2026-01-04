@@ -164,12 +164,12 @@ export default function BooksPage() {
       {/* Page Header */}
       <div className="flex flex-col gap-0">
         <div className="border p-12 sm:p-16">
-          <h1 className="text-3xl font-bold tracking-wider text-white text-center sm:text-5xl">
+          <h1 className="text-3xl font-bold font-mono tracking-wider text-white text-center sm:text-5xl">
             BOOKS
           </h1>
         </div>
         <div className="border border-t-0  p-6">
-          <p className="text-sm text-zinc-400 text-center sm:text-base">
+          <p className="text-sm font-sans text-zinc-400 text-center sm:text-base">
             My personal reading list, tracking progress across various topics
             including personal development, finance, and philosophy.
           </p>
@@ -214,10 +214,10 @@ export default function BooksPage() {
 
               <div className="absolute inset-0 flex translate-y-full items-end bg-linear-to-t from-black/95 via-black/60 to-transparent p-3 transition-transform duration-300 group-hover:translate-y-0">
                 <div className="w-full">
-                  <div className="mb-1 text-sm font-semibold text-white">
+                  <div className="mb-1 text-sm font-semibold font-sans text-white">
                     {book.title}
                   </div>
-                  <div className="mb-2 text-xs text-zinc-400">
+                  <div className="mb-2 text-xs font-sans text-zinc-400">
                     {book.author}
                   </div>
                   {book.progress !== undefined ? (

@@ -81,12 +81,12 @@ export default function RecommendationsPage() {
       {/* Page Header */}
       <div className="flex flex-col gap-0">
         <div className="border p-12 sm:p-16">
-          <h1 className="text-3xl font-bold tracking-wider text-white text-center sm:text-5xl">
+          <h1 className="text-3xl font-bold font-mono tracking-wider text-white text-center sm:text-5xl">
             RECOMMENDATIONS
           </h1>
         </div>
         <div className="border border-t-0  p-6">
-          <p className="text-sm text-zinc-400 text-center sm:text-base">
+          <p className="text-sm font-sans text-zinc-400 text-center sm:text-base">
             YouTube channels, podcasts, and content that inspires me.
           </p>
         </div>
@@ -130,13 +130,13 @@ export default function RecommendationsPage() {
               </div>
 
               <div>
-                <h3 className="mb-1 text-lg font-semibold text-white">
+                <h3 className="mb-1 text-lg font-semibold font-sans text-white">
                   {rec.name}
                 </h3>
                 {rec.creator && (
-                  <p className="mb-2 text-xs text-zinc-500">{rec.creator}</p>
+                  <p className="mb-2 text-xs font-sans text-zinc-500">{rec.creator}</p>
                 )}
-                <p className="text-sm leading-relaxed text-zinc-400">
+                <p className="text-sm leading-relaxed font-sans text-zinc-400">
                   {rec.description}
                 </p>
               </div>
