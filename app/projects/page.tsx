@@ -96,7 +96,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </p>
 
           {/* Technologies */}
-          <div className="flex flex-col flex-wrap gap-2 text-zinc-400">
+          <div className="mt-auto flex flex-col flex-wrap gap-2 text-zinc-400">
             <span>Technologies</span>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech) => {

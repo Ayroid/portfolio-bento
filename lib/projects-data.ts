@@ -130,7 +130,6 @@ export const projectsData: Project[] = [
     demoLink: "https://darch.ayroid.in",
     status: "In Development",
     featured: true,
-    date: "2024",
   },
   {
     id: "3",
@@ -155,7 +154,6 @@ export const projectsData: Project[] = [
     image: "/projects/validuct.png",
     status: "In Development",
     featured: true,
-    date: "2024",
   },
   {
     id: "4",
@@ -181,7 +179,6 @@ export const projectsData: Project[] = [
     image: "/projects/parko.jpg",
     githubLink: "https://github.com/Ayroid/PARKO-Frontend",
     status: "Archived",
-    date: "2023",
   },
   {
     id: "5",
@@ -197,7 +194,6 @@ export const projectsData: Project[] = [
     image: "/projects/termfolio.png",
     githubLink: "https://github.com/Ayroid/terminal-portfolio",
     status: "Live",
-    date: "2024",
   },
   {
     id: "6",
@@ -210,10 +206,9 @@ export const projectsData: Project[] = [
     category: "Landing Page",
     tags: ["Frontend", "Design", "Next.js"],
     technologies: ["NextJS", "TailwindCSS", "Vercel"],
-    image: "/projects/orbionio.png",
+    image: "/projects/orbionio_full.png",
     demoLink: "https://orbionio.in",
     status: "Live",
-    date: "2024",
   },
   {
     id: "7",
@@ -226,10 +221,24 @@ export const projectsData: Project[] = [
     category: "Landing Page",
     tags: ["Frontend", "Design", "Next.js"],
     technologies: ["NextJS", "TailwindCSS", "Vercel"],
-    image: "/projects/upescsa.png",
+    image: "/projects/upescsa_full.png",
     demoLink: "https://upescsa.in",
     status: "Live",
-    date: "2023",
+  },
+  {
+    id: "8",
+    title: "Terraform EC2",
+    slug: "terraform-ec2",
+    description:
+      "Terraform project demonstrating EC2 deployment using best practices including reusable modules and remote state storage with S3.",
+    longDescription:
+      "A Terraform project showcasing best practices for deploying AWS EC2 instances. Implements modular architecture with reusable Terraform modules, remote state management using S3 backend, and proper state locking with DynamoDB for team collaboration.",
+    category: "Tool",
+    tags: ["DevOps", "Cloud", "Infrastructure"],
+    technologies: ["Terraform", "AmazonWebServices", "Docker", "Git"],
+    image: "/projects/terraform.jpg",
+    githubLink: "https://github.com/Ayroid/terraform-ec2",
+    status: "Live",
   },
 ];
 
