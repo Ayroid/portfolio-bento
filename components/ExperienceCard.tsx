@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import { PiGlobeSimple } from "react-icons/pi";
@@ -99,11 +100,28 @@ export function ExperienceCard() {
   };
 
   return (
-    <div className="h-full">
-      <h2 className="group flex items-end justify-start border-b px-6 py-6 font-mono text-2xl text-white sm:px-8 sm:text-3xl lg:text-4xl">
+    <div className="h-full flex flex-col">
+      {/* ActionCard-style header linking to /work */}
+      <Link
+        href="/work"
+        className="group relative flex items-end justify-start border-b bg-[#1a1a1a] px-6 py-6 font-mono text-2xl text-white transition-colors hover:bg-[#222222] sm:px-8 sm:text-3xl lg:text-4xl"
+      >
+        <svg
+          className="absolute top-4 right-4 h-6 w-6 text-white opacity-50 transition-all group-hover:top-3 group-hover:right-3 sm:h-8 sm:w-8"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path
+            d="M7 17L17 7M17 7H7M17 7V17"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
         EXPERIENCE
-      </h2>
-      <div className="">
+      </Link>
+      <div className="flex-1 overflow-y-auto">
         {experiences.map((exp, index) => (
           <div
             key={index}

@@ -236,6 +236,33 @@ export default function ProjectsPage() {
         </div>
       )}
 
+      {/* Explore More */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+          Explore More
+        </h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <Link
+            href="/work"
+            className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+          >
+            <span className="text-lg font-semibold font-sans text-white">
+              Work Experience
+            </span>
+            <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+          </Link>
+          <Link
+            href="/blogs"
+            className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+          >
+            <span className="text-lg font-semibold font-sans text-white">
+              Blogs
+            </span>
+            <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+          </Link>
+        </div>
+      </div>
+
       {/* GitHub CTA */}
       <div className="flex flex-col items-center justify-center gap-4 border border-zinc-800 bg-[#18181b] py-8">
         <p className="text-center text-sm text-zinc-400">

@@ -8,6 +8,7 @@ import { BentoItem } from "../components/BentoItem";
  */
 
 const links = [
+  { href: "/work", label: "Work" },
   { href: "/projects", label: "Projects" },
   { href: "/blogs", label: "Blogs" },
 ];

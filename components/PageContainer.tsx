@@ -6,6 +6,7 @@ function isDetailPage(pathname: string): boolean {
   const detailPatterns = [
     /^\/blogs(\/[^/]+)?$/, // /blogs and /blogs/[slug]
     /^\/projects(\/[^/]+)?$/, // /projects and /projects/[slug]
+    /^\/work(\/[^/]+)?$/, // /work and /work/[slug]
     /^\/books$/, // /books
     /^\/tools$/, // /tools
     /^\/recommendations$/, // /recommendations
