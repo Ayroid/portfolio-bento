@@ -1,5 +1,5 @@
 import { BentoItem } from "@/components/shared/BentoItem";
-import FadeUpReveal from "@/components/shared/FadeUpReveal";
+import { FadeUpReveal } from "@/components/shared";
 import { BookOpen, Wrench, Play, LucideIcon } from "lucide-react";
 
 /**

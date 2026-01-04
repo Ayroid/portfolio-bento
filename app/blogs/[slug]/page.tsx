@@ -12,9 +12,8 @@ import {
   getRelatedPosts,
 } from "@/lib/blog-utils";
 import type { BlogMeta } from "@/types";
-import { MDXComponents } from "@/components/shared/MDXComponents";
 import { Badge } from "@/components/ui/badge";
-import FadeUpReveal from "@/components/shared/FadeUpReveal";
+import { FadeUpReveal, MDXComponents } from "@/components/shared";
 
 // Enable ISR - regenerate every 24 hours
 export const revalidate = 86400;

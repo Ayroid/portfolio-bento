@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BentoItem } from "@/components/shared/BentoItem";
-import ActionCard from "@/components/shared/ActionCard";
-import FadeUpReveal from "@/components/shared/FadeUpReveal";
+import { FadeUpReveal, ActionCard, BentoItem } from "@/components/shared/";
 import {
   Tooltip,
   TooltipContent,

@@ -1,4 +1,4 @@
-import { BentoItem } from "@/components/shared/BentoItem";
+import { BentoItem } from "@/components/shared";
 
 /**
  * LATTICE STRUCTURE (30 columns × variable rows)

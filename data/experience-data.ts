@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
   {
     title: "Full Stack Developer",
     company: "Freelance",
-    logo: "/freelance.png",
+    logo: "/stealth.jpeg",
     location: "Remote",
     period: "Jan 2023 - Present",
     technologies: [

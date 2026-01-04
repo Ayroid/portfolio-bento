@@ -1,7 +1,6 @@
-import { BentoItem } from "@/components/shared/BentoItem";
 import GitHubCard from "@/components/landing/GitHub";
 import TechStackCard from "@/components/landing/TechStack";
-import FadeUpReveal from "@/components/shared/FadeUpReveal";
+import { FadeUpReveal, BentoItem } from "@/components/shared";
 
 /**
  * LATTICE STRUCTURE (30 columns × 8 rows)

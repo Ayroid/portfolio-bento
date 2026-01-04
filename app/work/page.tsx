@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import { PiGlobeSimple } from "react-icons/pi";
 import { Badge } from "@/components/ui/badge";
-import FadeUpReveal from "@/components/shared/FadeUpReveal";
+import { FadeUpReveal } from "@/components/shared";
 
 interface Experience {
   title: string;
