@@ -34,19 +34,32 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => (
     rowSpan={blog.rowSpan}
     className={`${
       blog.mdColSpan === 2 ? "md:col-span-2" : "md:col-span-1"
-    } overflow-hidden lg:col-span-10`}
+    } overflow-hidden lg:col-span-10 group`}
     redirectTo={blog.redirectTo}
     redirectTarget={blog.redirectTarget || "_self"}
   >
-    <div className="flex h-full w-full flex-col overflow-hidden p-4 sm:p-6">
-      <div className="flex items-center justify-between">
-        <Badge variant="outline">{blog.category}</Badge>
-        <p className="font-sans text-xs text-zinc-400">{blog.date}</p>
+    <div className="relative flex h-full w-full flex-col overflow-hidden">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+        style={{ backgroundImage: `url(${blog.backgroundImage})` }}
+      />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/70 transition-colors group-hover:bg-black/60" />
+
+      {/* Content */}
+      <div className="relative z-10 flex h-full flex-col justify-end p-4 sm:p-6">
+        <div className="mb-2 flex items-center justify-between">
+          <Badge variant="outline" className="border-zinc-600 bg-zinc-800/80 text-zinc-300">
+            {blog.category}
+          </Badge>
+          <p className="font-sans text-xs text-zinc-300">{blog.date}</p>
+        </div>
+        <h3 className="font-sans text-lg font-bold text-white sm:text-xl">{blog.title}</h3>
+        <p className="mt-1 line-clamp-2 font-sans text-xs leading-relaxed text-zinc-300 sm:text-sm">
+          {blog.description}
+        </p>
       </div>
-      <h3 className="font-sans text-xl font-bold text-white">{blog.title}</h3>
-      <p className="max-h-20 overflow-hidden font-sans text-xs leading-relaxed text-zinc-300 opacity-100 transition-all duration-300">
-        {blog.description}
-      </p>
     </div>
   </BentoItem>
 );
