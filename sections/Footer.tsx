@@ -3,6 +3,7 @@
 import { BentoItem } from "@/components/BentoItem";
 import { ActionCard } from "@/components/ActionCard";
 import FadeUpReveal from "@/components/FadeUpReveal";
+import VisitorCount from "@/components/VisitorCount";
 
 /**
  * LATTICE STRUCTURE (30 columns × 5 rows)
@@ -43,7 +44,8 @@ const Footer = () => {
       </div>
 
       {/* Footer Credits - Plain centered text */}
-      <div className="mt-8 flex items-center justify-center">
+      <div className="mt-8 flex flex-col items-center justify-center gap-3">
+        <VisitorCount />
         <p className="text-center font-sans text-xs text-zinc-600 sm:text-sm">
           Designed & Developed by{" "}
           <span className="font-bold text-zinc-400">Ayush Singh Kushwah</span>
