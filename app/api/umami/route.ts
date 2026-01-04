@@ -18,7 +18,7 @@ export async function GET() {
   }
 
   try {
-    // Get stats for all time (from a very early date to now)
+    // Get stats for all time (from site creation to now)
     const startAt = new Date("2020-01-01").getTime();
     const endAt = Date.now();
 
@@ -42,8 +42,8 @@ export async function GET() {
     const data = await response.json();
 
     const stats: UmamiStats = {
-      pageviews: data.pageviews?.value ?? 0,
-      visitors: data.visitors?.value ?? 0,
+      pageviews: data.pageviews ?? 0,
+      visitors: data.visitors ?? 0,
     };
 
     return NextResponse.json(stats);
