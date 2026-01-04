@@ -294,10 +294,10 @@ const WebAppCard = ({ title, slug, info }: WebAppCardProps) => {
             )}
           </div>
         </div>
-        <p className="mb-4 flex-1 text-sm leading-relaxed text-zinc-400">
+        <p className="mb-4 flex-1 font-sans text-sm leading-relaxed text-zinc-400">
           {info.description}
         </p>
-        <div className="flex flex-col flex-wrap gap-2 text-zinc-400">
+        <div className="flex flex-col flex-wrap gap-2 font-sans text-zinc-400">
           <span>Technologies</span>
           <div className="flex flex-wrap gap-2">
             {info.technologies.map((tech) => (
@@ -335,7 +335,7 @@ const LandingPageCard = ({ title, slug, info }: LandingPageCardProps) => {
         />
       </div>
       <div className="flex justify-between">
-        <h3 className="text-xl font-bold text-white">{title}</h3>
+        <h3 className="font-mono text-xl font-bold text-white">{title}</h3>
         <div className="mb-2 flex items-center justify-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>

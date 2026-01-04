@@ -83,10 +83,10 @@ const HeroSection = () => {
           <ActionCard
             href="https://drive.google.com/file/d/1TIDYNaseyA11HRNvMjx8BQuCHbTZGCHK/view?usp=sharing"
             label="RESUME"
-            bgColor="bg-white"
-            hoverBgColor="hover:bg-[#dddddd]"
-            textColor="text-black"
-            iconColor="text-black"
+            bgColor="bg-accent"
+            hoverBgColor="hover:bg-accent-hover"
+            textColor="text-accent-foreground"
+            iconColor="text-accent-foreground"
           />
         </BentoItem>
 

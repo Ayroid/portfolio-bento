@@ -36,7 +36,7 @@ const Navbar = () => {
             </h1>
           </Link>
 
-          <nav className="hidden gap-6 text-sm text-zinc-400 md:flex lg:gap-8 lg:text-base">
+          <nav className="hidden gap-6 font-sans text-sm text-zinc-400 md:flex lg:gap-8 lg:text-base">
             {links.map((link) => (
               <Link
                 key={link.href}

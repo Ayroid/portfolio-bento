@@ -41,10 +41,10 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => (
     <div className="flex h-full w-full flex-col overflow-hidden p-4 sm:p-6">
       <div className="flex items-center justify-between">
         <Badge variant="outline">{blog.category}</Badge>
-        <p className="text-xs text-zinc-400">{blog.date}</p>
+        <p className="font-sans text-xs text-zinc-400">{blog.date}</p>
       </div>
-      <h3 className="text-xl font-bold text-white">{blog.title}</h3>
-      <p className="max-h-20 overflow-hidden text-xs leading-relaxed text-zinc-300 opacity-100 transition-all duration-300">
+      <h3 className="font-sans text-xl font-bold text-white">{blog.title}</h3>
+      <p className="max-h-20 overflow-hidden font-sans text-xs leading-relaxed text-zinc-300 opacity-100 transition-all duration-300">
         {blog.description}
       </p>
     </div>

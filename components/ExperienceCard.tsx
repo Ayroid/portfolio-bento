@@ -214,7 +214,7 @@ export function ExperienceCard() {
                   {exp.description.map((point, i) => (
                     <li
                       key={i}
-                      className={`flex items-start text-sm leading-snug text-zinc-400 transition-all duration-300 ${
+                      className={`flex items-start font-sans text-sm leading-snug text-zinc-400 transition-all duration-300 ${
                         openIndex === index
                           ? "translate-y-0 opacity-100"
                           : "translate-y-2 opacity-0"

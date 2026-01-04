@@ -61,7 +61,7 @@ const LifeCard = ({
           {title}
         </h3>
 
-        <p className="text-sm text-zinc-400">{description}</p>
+        <p className="font-sans text-sm text-zinc-400">{description}</p>
       </div>
     </BentoItem>
   );
@@ -83,10 +83,10 @@ const LifeSection = () => {
           className="md:col-span-2 lg:col-span-30"
         >
           <div className="flex h-full flex-col justify-center p-4 sm:p-6">
-            <h2 className="mb-2 text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="mb-2 font-mono text-2xl font-bold text-white sm:text-3xl">
               Beyond Code
             </h2>
-            <p className="text-sm text-zinc-400 sm:text-base">
+            <p className="font-sans text-sm text-zinc-400 sm:text-base">
               Books, tools, and things that inspire me
             </p>
           </div>
