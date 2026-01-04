@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="flex min-h-[calc(100vh-300px)] items-center justify-center">
       <div
-        className="grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
+        className="bento-grid grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{
           gridAutoRows: "35px",
         }}

@@ -1,11 +1,13 @@
-import { ProfileCard } from "@/components/landing/Profile";
-import Experience from "@/components/landing/Experience";
-import AboutCard from "@/components/landing/About";
-import Connect from "@/components/landing/Connect";
-import { NameCard } from "@/components/landing/Name";
-import { ActionCard, BentoItem, Separator } from "@/components/shared";
-import Resume from "@/components/landing/Resume";
-import { siteConfig } from "@/config";
+import {
+  NameCard,
+  Email,
+  Connect,
+  AboutCard,
+  Experience,
+  ProfileCard,
+  Resume
+} from "@/components/landing";
+import { BentoItem, Separator } from "@/components/shared";
 
 /**
  * LATTICE STRUCTURE (30 columns × 4 rows on desktop)
@@ -21,7 +23,7 @@ export const HeroSection = () => {
     <>
       <Separator />
       <div
-        className="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
+        className="bento-grid grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{
           gridAutoRows: "150px",
         }}
@@ -68,14 +70,7 @@ export const HeroSection = () => {
           rowSpan={1}
           className="md:col-span-1 lg:col-span-5 lg:row-span-1"
         >
-          <ActionCard
-            href={`mailto:${siteConfig.email}`}
-            label="EMAIL"
-            bgColor="bg-[#1a1a1a]"
-            hoverBgColor="hover:bg-[#222222]"
-            textColor="text-white"
-            iconColor="text-white"
-          />
+          <Email />
         </BentoItem>
 
         {/* Resume Button - Mobile: full, MD: 1 col, LG: 5 cols × 1 row */}

@@ -142,3 +142,28 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+
+/* Responsive Bento Grid - Override inline grid styles on mobile/tablet */
+@layer components {
+  /* Mobile: single column stack with auto row height */
+  @media (max-width: 767px) {
+    .bento-grid {
+      grid-auto-rows: auto !important;
+    }
+    .bento-grid > * {
+      grid-column: span 1 !important;
+      grid-row: auto !important;
+    }
+  }
+
+  /* Tablet: 2 column layout with auto row height */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .bento-grid {
+      grid-auto-rows: auto !important;
+    }
+    .bento-grid > * {
+      grid-column: span 1 !important;
+      grid-row: auto !important;
+    }
+  }
+}

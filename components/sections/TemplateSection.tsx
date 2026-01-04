@@ -8,7 +8,7 @@ import { BentoItem } from "@/components/shared";
 export const TemplateSection = () => {
   return (
     <div
-      className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
+      className="bento-grid grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
       style={{
         gridAutoRows: "50px", // Base row height
       }}

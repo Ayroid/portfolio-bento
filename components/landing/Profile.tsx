@@ -3,24 +3,17 @@ import Image from "next/image";
 export function ProfileCard() {
   return (
     <figure
-      className="relative h-full max-h-96 w-full cursor-pointer"
-      style={{ perspective: "1000px" }}
+      className="relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden"
       aria-label="Profile picture"
     >
-      <div
-        className="absolute inset-0"
-        style={{
-          backfaceVisibility: "hidden",
-          WebkitBackfaceVisibility: "hidden",
-        }}
-      >
-        <Image
-          src="/profile_animated.png"
-          alt="Ayroid's profile picture"
-          fill
-          className="object-cover"
-        />
-      </div>
+      <Image
+        src="/profile_animated.png"
+        alt="Ayroid's profile picture"
+        width={500}
+        height={500}
+        className="h-auto w-full"
+        priority
+      />
     </figure>
   );
 }
