@@ -1,11 +1,12 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeShiki from "@shikijs/rehype";
-import { ArrowLeft, Calendar, Clock, Tag, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import {
   getAllBlogSlugs,
   getBlogBySlug,
@@ -13,7 +14,7 @@ import {
 } from "@/lib/blog-utils";
 import type { BlogMeta } from "@/types";
 import { Badge } from "@/components/ui/badge";
-import { FadeUpReveal, MDXComponents } from "@/components/shared";
+import { FadeUpReveal, MDXComponents, Separator } from "@/components/shared";
 
 // Enable ISR - regenerate every 24 hours
 export const revalidate = 86400;
@@ -92,32 +93,51 @@ function RelatedPostCard({ post }: { post: BlogMeta }) {
       href={`/blogs/${post.slug}`}
       className="group relative block h-full bg-transparent"
     >
-      <div className="relative flex h-full w-full flex-col gap-3 border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/50">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <Badge variant="outline" className="text-xs">
-            {post.category}
-          </Badge>
-          <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
-        </div>
-        <h3 className="line-clamp-2 font-sans text-base leading-tight font-semibold text-white transition-colors group-hover:text-zinc-100">
-          {post.title}
-        </h3>
-        <p className="line-clamp-2 font-sans text-sm leading-relaxed text-zinc-400">
-          {post.description}
-        </p>
-        <div className="mt-auto flex items-center gap-4 pt-2">
-          <span className="flex items-center gap-1.5 text-xs text-zinc-500">
-            <Calendar className="h-3.5 w-3.5" />
-            {new Date(post.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </span>
-          <span className="flex items-center gap-1.5 text-xs text-zinc-500">
-            <Clock className="h-3.5 w-3.5" />
-            {post.readingTime}
-          </span>
+      <div className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-[#18181b] transition-all duration-300 hover:border-zinc-700">
+        {/* Cover Image */}
+        {post.coverImage && (
+          <div className="relative h-48 w-full overflow-hidden">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute top-2 left-2">
+              <Badge
+                variant="outline"
+                className="border-zinc-700 bg-black/70 text-xs text-white backdrop-blur-sm"
+              >
+                {post.category}
+              </Badge>
+            </div>
+          </div>
+        )}
+        <div className="flex flex-1 flex-col gap-2 p-4">
+          {!post.coverImage && (
+            <Badge variant="outline" className="w-fit text-xs">
+              {post.category}
+            </Badge>
+          )}
+          <h3 className="line-clamp-2 font-sans text-base leading-tight font-semibold text-white transition-colors group-hover:text-zinc-100">
+            {post.title}
+          </h3>
+          <p className="line-clamp-2 font-sans text-xs leading-relaxed text-zinc-400">
+            {post.description}
+          </p>
+          <div className="mt-auto flex items-center gap-3 pt-1">
+            <span className="flex items-center gap-1 text-xs text-zinc-500">
+              <Calendar className="h-3 w-3" />
+              {new Date(post.date).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              })}
+            </span>
+            <span className="flex items-center gap-1 text-xs text-zinc-500">
+              <Clock className="h-3 w-3" />
+              {post.readingTime}
+            </span>
+          </div>
         </div>
       </div>
     </Link>
@@ -132,10 +152,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
     notFound();
   }
 
-  const relatedPosts = getRelatedPosts(slug, 3);
+  const relatedPosts = getRelatedPosts(slug, 2);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 pt-12">
       {/* Back Button */}
       <FadeUpReveal>
         <Link
@@ -187,7 +207,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
           {blog.tags.length > 0 && (
             <div className="flex flex-wrap items-center gap-2">
-              <Tag className="h-4 w-4 text-zinc-500" />
               {blog.tags.map((tag) => (
                 <Badge
                   key={tag}
@@ -202,7 +221,24 @@ export default async function BlogPage({ params }: BlogPageProps) {
         </header>
       </FadeUpReveal>
 
-      <hr className="border-zinc-800" />
+      {/* Cover Image */}
+      {blog.coverImage && (
+        <FadeUpReveal>
+          <div className="relative h-64 w-full overflow-hidden border border-zinc-800 sm:h-80 md:h-96">
+            <Image
+              src={blog.coverImage}
+              alt={blog.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </FadeUpReveal>
+      )}
+
+      <FadeUpReveal>
+        <Separator />
+      </FadeUpReveal>
 
       {/* Content - Streamed with Suspense */}
       <Suspense fallback={<ContentSkeleton />}>
@@ -212,13 +248,15 @@ export default async function BlogPage({ params }: BlogPageProps) {
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
         <>
-          <hr className="border-zinc-800" />
+          <FadeUpReveal>
+            <Separator />
+          </FadeUpReveal>
           <FadeUpReveal>
             <div className="flex flex-col gap-4">
               <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
                 Related Posts
               </h2>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {relatedPosts.map((post) => (
                   <RelatedPostCard key={post.slug} post={post} />
                 ))}
@@ -229,9 +267,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
       )}
 
       {/* Footer */}
-      <hr className="border-zinc-800" />
       <FadeUpReveal>
-        <div className="flex items-center justify-between pb-8">
+        <Separator />
+      </FadeUpReveal>
+      <FadeUpReveal>
+        <div className="mb-12 flex items-center justify-between pt-4">
           <Link
             href="/blogs"
             className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"

@@ -9,6 +9,7 @@ export interface BlogPost {
   isNew: boolean;
   isPublished: boolean;
   readingTime: string;
+  coverImage?: string;
   content: string;
 }
 
@@ -23,6 +24,7 @@ export interface BlogMeta {
   isNew: boolean;
   isPublished: boolean;
   readingTime: string;
+  coverImage?: string;
 }
 
 export interface BlogFrontmatter {
@@ -34,4 +36,5 @@ export interface BlogFrontmatter {
   isPinned?: boolean;
   isNew?: boolean;
   isPublished?: boolean;
+  coverImage?: string;
 }

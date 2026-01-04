@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { ArrowUpRight } from "lucide-react";
 import { projectsData, statusColors, techStack } from "@/lib/projects-data";
-import { FadeUpReveal } from "@/components/shared";
+import { FadeUpReveal, Separator } from "@/components/shared";
 
 interface ProjectCardProps {
   project: (typeof projectsData)[0];
@@ -62,7 +62,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         style={{ zIndex: 2 }}
       >
         {/* Project Image */}
-        <div className="relative h-72 w-full overflow-hidden">
+        <div className="relative h-80 w-full overflow-hidden">
           <Image
             src={project.image}
             alt={project.title}
@@ -159,6 +159,11 @@ export default function ProjectsPage() {
         </div>
       </FadeUpReveal>
 
+      {/* Separator */}
+      <FadeUpReveal>
+        <Separator />
+      </FadeUpReveal>
+
       {/* Popular Tags */}
       <FadeUpReveal>
         <div className="flex flex-col gap-3">
@@ -206,7 +211,7 @@ export default function ProjectsPage() {
               Featured
             </h2>
           </FadeUpReveal>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {filteredFeatured.map((project) => (
               <FadeUpReveal key={project.id} className="h-full">
                 <ProjectCard project={project} />
@@ -224,7 +229,7 @@ export default function ProjectsPage() {
               {filteredFeatured.length > 0 ? "More Projects" : "All Projects"}
             </h2>
           </FadeUpReveal>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {filteredOther.map((project) => (
               <FadeUpReveal key={project.id} className="h-full">
                 <ProjectCard project={project} />
@@ -249,9 +254,14 @@ export default function ProjectsPage() {
         </div>
       )}
 
+      {/* Separator */}
+      <FadeUpReveal>
+        <Separator />
+      </FadeUpReveal>
+
       {/* Explore More */}
       <FadeUpReveal>
-        <div className="flex flex-col gap-4">
+        <div className="mb-12 flex flex-col gap-4 pt-4">
           <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
             Explore More
           </h2>
@@ -275,25 +285,6 @@ export default function ProjectsPage() {
               <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
             </Link>
           </div>
-        </div>
-      </FadeUpReveal>
-
-      {/* GitHub CTA */}
-      <FadeUpReveal>
-        <div className="flex flex-col items-center justify-center gap-4 border border-zinc-800 bg-[#18181b] py-8">
-          <p className="text-center text-sm text-zinc-400">
-            Want to see more? Check out my GitHub for additional projects and
-            contributions.
-          </p>
-          <a
-            href="https://github.com/ayroid"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
-          >
-            Visit GitHub
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
         </div>
       </FadeUpReveal>
     </div>

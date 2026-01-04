@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowUpRight, Pin, Clock } from "lucide-react";
 import Link from "next/link";
 import type { BlogMeta } from "@/types";
-import { FadeUpReveal } from "@/components/shared";
+import { FadeUpReveal, Separator } from "@/components/shared";
 
 interface BlogCardProps {
   post: BlogMeta;
@@ -18,17 +19,28 @@ const BlogCard = ({ post }: BlogCardProps) => {
       className="group relative block h-full bg-transparent"
     >
       {/* Card content */}
-      <div className="relative flex h-full w-full flex-col gap-3 border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/50 sm:p-6">
-        {/* Header with badges */}
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="outline" className="mb-0 text-xs">
+      <div className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-[#18181b] transition-all duration-300 hover:border-zinc-700">
+        {/* Blog Image */}
+        {post.coverImage && (
+          <div className="relative h-48 w-full overflow-hidden">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          {/* Category Badge on Image */}
+          <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2">
+            <Badge
+              variant="outline"
+              className="border-zinc-700 bg-black/70 text-xs text-white backdrop-blur-sm"
+            >
               {post.category}
             </Badge>
             {post.isPinned && (
               <Badge
                 variant="secondary"
-                className="mb-0 border-amber-800 bg-amber-900/50 text-xs text-amber-400"
+                className="border-amber-800 bg-amber-900/70 text-xs text-amber-400 backdrop-blur-sm"
               >
                 <Pin className="mr-1 h-3 w-3" />
                 Pinned
@@ -37,39 +49,42 @@ const BlogCard = ({ post }: BlogCardProps) => {
             {post.isNew && (
               <Badge
                 variant="secondary"
-                className="mb-0 border-green-800 bg-green-900/50 text-xs text-green-400"
+                className="border-green-800 bg-green-900/70 text-xs text-green-400 backdrop-blur-sm"
               >
                 New
               </Badge>
             )}
           </div>
-          <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
         </div>
+        )}
 
-        {/* Title */}
-        <h3 className="font-sans text-base leading-tight font-semibold text-white transition-colors group-hover:text-zinc-100 sm:text-lg">
-          {post.title}
-        </h3>
+        {/* Content */}
+        <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
+          {/* Title */}
+          <h3 className="font-sans text-xl font-bold text-white">
+            {post.title}
+          </h3>
 
-        {/* Description */}
-        <p className="line-clamp-2 font-sans text-sm leading-relaxed text-zinc-400">
-          {post.description}
-        </p>
+          {/* Description */}
+          <p className="line-clamp-2 font-sans text-sm leading-relaxed text-zinc-400">
+            {post.description}
+          </p>
 
-        {/* Footer with date and reading time */}
-        <div className="mt-auto flex items-center gap-4 pt-2">
-          <span className="flex items-center gap-1.5 text-xs text-zinc-500">
-            <Calendar className="h-3.5 w-3.5" />
-            {new Date(post.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </span>
-          <span className="flex items-center gap-1.5 text-xs text-zinc-500">
-            <Clock className="h-3.5 w-3.5" />
-            {post.readingTime}
-          </span>
+          {/* Footer with date and reading time */}
+          <div className="mt-auto flex items-center gap-4 pt-2">
+            <span className="flex items-center gap-1.5 text-xs text-zinc-500">
+              <Calendar className="h-3.5 w-3.5" />
+              {new Date(post.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </span>
+            <span className="flex items-center gap-1.5 text-xs text-zinc-500">
+              <Clock className="h-3.5 w-3.5" />
+              {post.readingTime}
+            </span>
+          </div>
         </div>
       </div>
     </Link>
@@ -117,6 +132,11 @@ export default function BlogsClient({ blogs }: BlogsClientProps) {
             </p>
           </div>
         </div>
+      </FadeUpReveal>
+
+      {/* Separator */}
+      <FadeUpReveal>
+        <Separator />
       </FadeUpReveal>
 
       {/* Popular Tags */}
@@ -219,9 +239,13 @@ export default function BlogsClient({ blogs }: BlogsClientProps) {
         </div>
       )}
 
+      <FadeUpReveal>
+        <Separator />
+      </FadeUpReveal>
+
       {/* Explore More */}
       <FadeUpReveal>
-        <div className="flex flex-col gap-4">
+        <div className="mb-12 flex flex-col gap-4 pt-4">
           <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
             Explore More
           </h2>

@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import { PiGlobeSimple } from "react-icons/pi";
 import { Badge } from "@/components/ui/badge";
-import { FadeUpReveal } from "@/components/shared";
+import { FadeUpReveal, Separator } from "@/components/shared";
 
 interface Experience {
   title: string;
@@ -109,6 +109,11 @@ export default function WorkPage() {
             </p>
           </div>
         </div>
+      </FadeUpReveal>
+
+      {/* Separator */}
+      <FadeUpReveal>
+        <Separator />
       </FadeUpReveal>
 
       {/* Experience Cards */}
@@ -232,9 +237,14 @@ export default function WorkPage() {
         ))}
       </div>
 
-      {/* Other Pages */}
+      {/* Separator */}
       <FadeUpReveal>
-        <div className="flex flex-col gap-4">
+        <Separator />
+      </FadeUpReveal>
+
+      {/* Explore More */}
+      <FadeUpReveal>
+        <div className="mb-12 flex flex-col gap-4 pt-4">
           <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
             Explore More
           </h2>

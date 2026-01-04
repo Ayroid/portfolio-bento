@@ -50,6 +50,7 @@ export function getBlogMeta(slug: string): BlogMeta | null {
     isNew: data.isNew || false,
     isPublished: data.isPublished !== false, // Default to true if not specified
     readingTime: stats.text,
+    coverImage: data.coverImage || undefined,
   };
 }
 
@@ -73,6 +74,7 @@ export function getBlogBySlug(slug: string): BlogPost | null {
     isNew: data.isNew || false,
     isPublished: data.isPublished !== false, // Default to true if not specified
     readingTime: stats.text,
+    coverImage: data.coverImage || undefined,
     content,
   };
 }
@@ -107,7 +109,7 @@ export function getAllTags(): string[] {
 // Get related posts based on tags (excluding the current post)
 export function getRelatedPosts(
   currentSlug: string,
-  maxPosts: number = 3
+  maxPosts: number = 2
 ): BlogMeta[] {
   const currentBlog = getBlogBySlug(currentSlug);
   if (!currentBlog || !currentBlog.isPublished) {
@@ -115,11 +117,11 @@ export function getRelatedPosts(
   }
 
   const allBlogs = getAllBlogs();
+  const otherBlogs = allBlogs.filter((blog) => blog.slug !== currentSlug);
   const currentTags = currentBlog.tags.map((tag) => tag.toLowerCase());
 
   // Calculate relevance score based on shared tags
-  const blogsWithScore = allBlogs
-    .filter((blog) => blog.slug !== currentSlug)
+  const blogsWithScore = otherBlogs
     .map((blog) => {
       const sharedTags = blog.tags.filter((tag) =>
         currentTags.includes(tag.toLowerCase())
@@ -132,5 +134,16 @@ export function getRelatedPosts(
     .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score);
 
-  return blogsWithScore.slice(0, maxPosts).map((item) => item.blog);
+  const relatedPosts = blogsWithScore.slice(0, maxPosts).map((item) => item.blog);
+
+  // If not enough related posts, fill with other posts
+  if (relatedPosts.length < maxPosts) {
+    const relatedSlugs = new Set(relatedPosts.map((p) => p.slug));
+    const fillerPosts = otherBlogs
+      .filter((blog) => !relatedSlugs.has(blog.slug))
+      .slice(0, maxPosts - relatedPosts.length);
+    return [...relatedPosts, ...fillerPosts];
+  }
+
+  return relatedPosts;
 }

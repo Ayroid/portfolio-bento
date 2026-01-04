@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/layout";
-import { SmoothScroll, PageContainer, FadeUpReveal } from "@/components/shared";
+import { SmoothScroll, PageContainer } from "@/components/shared";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,11 +40,9 @@ export default function RootLayout({
       >
         <SmoothScroll>
           <div className="min-h-screen w-full bg-[#18181b] py-12">
-            <FadeUpReveal>
-              <PageContainer navbar={<Navbar />} footer={<Footer />}>
-                {children}
-              </PageContainer>
-            </FadeUpReveal>
+            <PageContainer navbar={<Navbar />} footer={<Footer />}>
+              {children}
+            </PageContainer>
           </div>
         </SmoothScroll>
       </body>
