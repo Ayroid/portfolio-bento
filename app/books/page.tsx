@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface Book {
   title: string;
@@ -161,20 +161,19 @@ export default function BooksPage() {
 
   return (
     <div className="flex flex-col gap-8 pb-12">
-      {/* Header */}
-      <div className="mt-12 flex flex-col gap-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900">
-            <BookOpen className="h-6 w-6 text-zinc-400" />
-          </div>
-          <h1 className="text-3xl font-bold text-white sm:text-4xl">
-            Book Collection
+      {/* Page Header */}
+      <div className="flex flex-col gap-0">
+        <div className="border p-12 sm:p-16">
+          <h1 className="text-3xl font-bold tracking-wider text-white text-center sm:text-5xl">
+            BOOKS
           </h1>
         </div>
-        <p className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-          My personal reading list, tracking progress across various topics
-          including personal development, finance, and philosophy.
-        </p>
+        <div className="border border-t-0  p-6">
+          <p className="text-sm text-zinc-400 text-center sm:text-base">
+            My personal reading list, tracking progress across various topics
+            including personal development, finance, and philosophy.
+          </p>
+        </div>
       </div>
 
       {/* Stats */}

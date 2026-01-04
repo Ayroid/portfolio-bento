@@ -13,23 +13,24 @@ const Footer = () => {
   return (
     <FadeUpReveal>
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{
-          gridAutoRows: "50px", // Base row height
+          gridAutoRows: "40px",
         }}
       >
-        {/* Open to Work Section - 22 cols × 3 rows */}
-        <BentoItem colSpan={18} rowSpan={3}>
+        {/* Open to Work Section */}
+        <BentoItem colSpan={30} rowSpan={4}>
           <div className="flex h-full flex-col items-start justify-end p-6 sm:p-8">
-            <h3 className="text-3xl font-semibold text-white">
-              Let’s build something real
+            <h3 className="text-2xl font-semibold text-white sm:text-3xl">
+              Let&apos;s build something real
             </h3>
-            <p className="max-w-xl text-xl text-zinc-500">
+            <p className="max-w-xl text-base text-zinc-500 sm:text-xl">
               Open to full-time roles, contracts, and serious collaborations.
             </p>
           </div>
         </BentoItem>
-        <BentoItem colSpan={6} rowSpan={3}>
+
+        <BentoItem colSpan={15} rowSpan={3}>
           <ActionCard
             href="https://cal.com/ayroid/general-meeting"
             label="CONTACT"
@@ -39,10 +40,10 @@ const Footer = () => {
             iconColor="text-black"
           />
         </BentoItem>
-        <BentoItem colSpan={6} rowSpan={3}>
+        <BentoItem colSpan={15} rowSpan={3}>
           <ActionCard
             href="/projects"
-            label="PROJECT"
+            label="PROJECTS"
             bgColor="bg-[#1a1a1a]"
             hoverBgColor="hover:bg-[#222222]"
             textColor="text-white"

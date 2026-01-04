@@ -102,21 +102,17 @@ export default function BlogsClient({ blogs }: BlogsClientProps) {
   return (
     <div className="flex flex-col gap-8">
       {/* Page Header */}
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-white sm:text-4xl">Blog</h1>
-            <p className="mt-2 text-sm text-zinc-400 sm:text-base">
-              Thoughts, tutorials, and insights on development, DevOps, and
-              technology.
-            </p>
-          </div>
-          <Link
-            href="/"
-            className="border border-zinc-800 px-4 py-2 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white"
-          >
-            ← Back to Home
-          </Link>
+      <div className="flex flex-col gap-0">
+        <div className="border p-12 sm:p-16">
+          <h1 className="text-3xl font-bold tracking-wider text-white text-center sm:text-5xl">
+            BLOGS
+          </h1>
+        </div>
+        <div className="border border-t-0  p-6">
+          <p className="text-sm text-zinc-400 text-center sm:text-base">
+            Thoughts, tutorials, and insights on development, DevOps, and
+            technology.
+          </p>
         </div>
       </div>
 
