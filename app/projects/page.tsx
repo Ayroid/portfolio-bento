@@ -68,7 +68,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 					<div className="absolute top-3 right-3">
 						<div className="flex items-center gap-2 bg-black/70 backdrop-blur-sm px-3 py-1.5 rounded-full border border-zinc-800">
 							<span
-								className={`w-2 h-2 rounded-full ${statusColors[project.status]}`}
+								className={`w-2 h-2 rounded-full ${
+									statusColors[project.status]
+								}`}
 							/>
 							<span className="text-white text-xs font-medium">
 								{project.status}
@@ -150,7 +152,8 @@ export default function ProjectsPage() {
 							Projects
 						</h1>
 						<p className="text-zinc-400 mt-2 text-sm sm:text-base">
-							A collection of web applications, tools, and experiments I've built.
+							A collection of web applications, tools, and experiments I&apos;ve
+							built.
 						</p>
 					</div>
 					<Link
@@ -231,7 +234,7 @@ export default function ProjectsPage() {
 			{filteredFeatured.length === 0 && filteredOther.length === 0 && (
 				<div className="flex flex-col items-center justify-center py-12 gap-4">
 					<p className="text-zinc-400 text-center">
-						No projects found with tag "{selectedTag}"
+						No projects found with tag &quot;{selectedTag}&quot;
 					</p>
 					<button
 						onClick={() => setSelectedTag("All")}
@@ -245,7 +248,8 @@ export default function ProjectsPage() {
 			{/* GitHub CTA */}
 			<div className="flex flex-col items-center justify-center py-8 gap-4 border border-zinc-800 bg-[#18181b]">
 				<p className="text-zinc-400 text-sm text-center">
-					Want to see more? Check out my GitHub for additional projects and contributions.
+					Want to see more? Check out my GitHub for additional projects and
+					contributions.
 				</p>
 				<a
 					href="https://github.com/ayroid"
@@ -260,4 +264,3 @@ export default function ProjectsPage() {
 		</div>
 	);
 }
-

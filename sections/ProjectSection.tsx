@@ -394,7 +394,7 @@ const LandingPageCard = ({ title, slug, info }: LandingPageCardProps) => {
 
 const ProjectSection = () => {
 	return (
-		<FadeUpReveal delay={0.1}>
+		<FadeUpReveal>
 			<div
 				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
 				style={{

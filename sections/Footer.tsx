@@ -2,6 +2,7 @@
 
 import { BentoItem } from "@/components/BentoItem";
 import { ActionCard } from "@/components/ActionCard";
+import FadeUpReveal from "@/components/FadeUpReveal";
 
 /**
  * LATTICE STRUCTURE (30 columns × 5 rows)
@@ -10,7 +11,7 @@ import { ActionCard } from "@/components/ActionCard";
 
 const Footer = () => {
 	return (
-		<>
+		<FadeUpReveal>
 			<div
 				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
 				style={{
@@ -58,7 +59,7 @@ const Footer = () => {
 					<br />© 2026 All rights reserved.
 				</p>
 			</div>
-		</>
+		</FadeUpReveal>
 	);
 };
 

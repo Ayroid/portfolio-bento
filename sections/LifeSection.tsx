@@ -41,7 +41,7 @@ const LifeCard = ({
 
 const LifeSection = () => {
 	return (
-		<FadeUpReveal delay={0.5}>
+		<FadeUpReveal>
 			<div
 				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
 				style={{
