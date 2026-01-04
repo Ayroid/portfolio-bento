@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import React, { ComponentProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -9,6 +9,7 @@ import {
   XCircle,
   Lightbulb,
 } from "lucide-react";
+import { CodeCopyButton } from "@/components/CodeCopyButton";
 
 // ============================================
 // Aside / Callout Component (Josh Comeau style)
@@ -82,7 +83,7 @@ function Aside({ children, type = "info", title }: AsideProps) {
   return (
     <aside
       className={cn(
-        "my-8 rounded-r-xl border-l-4 p-5 sm:p-6",
+        "my-8 border-l-4 p-5 sm:p-6",
         config.borderColor,
         config.bgColor
       )}
@@ -112,7 +113,7 @@ function Aside({ children, type = "info", title }: AsideProps) {
 // ============================================
 function Sidenote({ children }: { children: React.ReactNode }) {
   return (
-    <small className="my-4 block rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-sm leading-relaxed text-zinc-400">
+    <small className="my-4 block border border-zinc-800 bg-zinc-900/50 p-4 text-sm leading-relaxed text-zinc-400">
       {children}
     </small>
   );
@@ -245,37 +246,83 @@ export const MDXComponents = {
   // Inline code - subtle pill style
   // ==========================================
   code: (props: ComponentProps<"code">) => {
-    const isInline = !props.className?.includes("language-");
-    if (isInline) {
+    // Check if it's a code block (has language class from Shiki or className)
+    const isCodeBlock =
+      props.className?.includes("language-") ||
+      props.className?.includes("shiki");
+    if (!isCodeBlock) {
+      // Inline code styling
       return (
         <code
-          className="rounded-md border border-zinc-700/50 bg-zinc-800/80 px-1.5 py-0.5 font-mono text-[0.875em] text-zinc-200"
+          className="bg-zinc-800/80 px-1.5 py-0.5 font-mono text-base text-zinc-200"
           {...props}
         />
       );
     }
-    return <code className="font-mono text-sm text-zinc-200" {...props} />;
+    // Code block - preserve Shiki styling
+    return <code {...props} />;
   },
 
   // ==========================================
-  // Code block - styled with hover glow
+  // Code block - styled with hover glow and copy button
   // ==========================================
-  pre: ({ children, ...props }: ComponentProps<"pre">) => (
-    <div className="group relative my-6">
-      {/* Subtle glow on hover */}
-      <div className="pointer-events-none absolute -inset-px rounded-xl bg-linear-to-r from-zinc-600/10 via-zinc-500/5 to-zinc-600/10 opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100" />
+  pre: ({
+    children,
+    className,
+    ...props
+  }: {
+    children: React.ReactNode;
+    className?: string;
+    [key: string]: unknown;
+  }) => {
+    const getTextContent = (node: React.ReactNode): string => {
+      if (typeof node === "string") {
+        return node;
+      }
+      if (typeof node === "number") {
+        return String(node);
+      }
+      if (
+        React.isValidElement(node) &&
+        node.props &&
+        typeof node.props === "object"
+      ) {
+        return getTextContent(
+          (node.props as { children?: React.ReactNode }).children
+        );
+      }
+      if (Array.isArray(node)) {
+        return node.map(getTextContent).join("");
+      }
+      return "";
+    };
 
-      {/* Code container */}
-      <div className="relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
-        <pre
-          className="overflow-x-auto p-4 font-mono text-sm leading-relaxed text-zinc-200 sm:p-5"
-          {...props}
-        >
-          {children}
-        </pre>
+    const codeText = getTextContent(children);
+    // Check if this is a Shiki-highlighted code block
+    const isShiki = className?.includes("shiki");
+
+    return (
+      <div className="group relative my-6">
+        {/* Subtle glow on hover */}
+        <div className="pointer-events-none absolute -inset-px bg-linear-to-r from-zinc-600/10 via-zinc-500/5 to-zinc-600/10 opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100" />
+
+        {/* Code container */}
+        <div className="relative overflow-hidden bg-zinc-900">
+          <pre
+            className={cn(
+              "overflow-x-auto p-4 font-mono text-sm leading-relaxed sm:p-5",
+              isShiki ? "[&>code]:bg-transparent" : "text-zinc-200",
+              className
+            )}
+            {...props}
+          >
+            {children}
+          </pre>
+          <CodeCopyButton code={codeText} />
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
 
   // ==========================================
   // Image - styled with hover effect (span-based to avoid hydration issues)
@@ -285,7 +332,7 @@ export const MDXComponents = {
     if (src && typeof src === "string") {
       return (
         <span className="group my-10 block">
-          <span className="relative block overflow-hidden rounded-xl border border-zinc-800 transition-all duration-300 hover:border-zinc-700">
+          <span className="relative block overflow-hidden rounded-sm border border-zinc-800 transition-all duration-300 hover:border-zinc-700">
             <Image
               src={src}
               alt={alt || ""}
@@ -322,7 +369,7 @@ export const MDXComponents = {
   // Table - clean bordered style
   // ==========================================
   table: (props: ComponentProps<"table">) => (
-    <div className="my-8 overflow-hidden rounded-xl border border-zinc-800">
+    <div className="my-8 overflow-hidden border border-zinc-800">
       <div className="overflow-x-auto">
         <table className="w-full text-sm" {...props} />
       </div>

@@ -3,8 +3,15 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
-import { getAllBlogSlugs, getBlogBySlug } from "@/lib/blog-utils";
+import remarkGfm from "remark-gfm";
+import rehypeShiki from "@shikijs/rehype";
+import { ArrowLeft, Calendar, Clock, Tag, ArrowUpRight } from "lucide-react";
+import {
+  getAllBlogSlugs,
+  getBlogBySlug,
+  getRelatedPosts,
+  type BlogMeta,
+} from "@/lib/blog-utils";
 import { MDXComponents } from "@/components/MDXComponents";
 import { Badge } from "@/components/ui/badge";
 import FadeUpReveal from "@/components/FadeUpReveal";
@@ -36,10 +43,27 @@ function ContentSkeleton() {
 }
 
 // Async component for MDX content - enables streaming
+// Uses CSS animation instead of IntersectionObserver for compatibility with streaming
 async function BlogContent({ content }: { content: string }) {
   return (
-    <article className="prose prose-invert max-w-none">
-      <MDXRemote source={content} components={MDXComponents} />
+    <article className="prose prose-invert max-w-none animate-in fade-in slide-in-from-bottom-[30px] duration-800 ease-out fill-mode-both">
+      <MDXRemote
+        source={content}
+        components={MDXComponents}
+        options={{
+          mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            rehypePlugins: [
+              [
+                rehypeShiki,
+                {
+                  theme: "github-dark",
+                },
+              ],
+            ],
+          },
+        }}
+      />
     </article>
   );
 }
@@ -54,7 +78,7 @@ export async function generateMetadata({
 }: BlogPageProps): Promise<Metadata> {
   const { slug } = await params;
   const blog = getBlogBySlug(slug);
-  if (!blog) return { title: "Blog Not Found" };
+  if (!blog || !blog.isPublished) return { title: "Blog Not Found" };
 
   return {
     title: `${blog.title} | Ayroid`,
@@ -62,13 +86,54 @@ export async function generateMetadata({
   };
 }
 
+// Related post card component
+function RelatedPostCard({ post }: { post: BlogMeta }) {
+  return (
+    <Link
+      href={`/blogs/${post.slug}`}
+      className="group relative block h-full bg-transparent"
+    >
+      <div className="relative flex h-full w-full flex-col gap-3 border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/50">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <Badge variant="outline" className="text-xs">
+            {post.category}
+          </Badge>
+          <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
+        </div>
+        <h3 className="line-clamp-2 font-sans text-base leading-tight font-semibold text-white transition-colors group-hover:text-zinc-100">
+          {post.title}
+        </h3>
+        <p className="line-clamp-2 font-sans text-sm leading-relaxed text-zinc-400">
+          {post.description}
+        </p>
+        <div className="mt-auto flex items-center gap-4 pt-2">
+          <span className="flex items-center gap-1.5 text-xs text-zinc-500">
+            <Calendar className="h-3.5 w-3.5" />
+            {new Date(post.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </span>
+          <span className="flex items-center gap-1.5 text-xs text-zinc-500">
+            <Clock className="h-3.5 w-3.5" />
+            {post.readingTime}
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default async function BlogPage({ params }: BlogPageProps) {
   const { slug } = await params;
   const blog = getBlogBySlug(slug);
 
-  if (!blog) {
+  if (!blog || !blog.isPublished) {
     notFound();
   }
+
+  const relatedPosts = getRelatedPosts(slug, 3);
 
   return (
     <div className="flex flex-col gap-8">
@@ -141,11 +206,28 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <hr className="border-zinc-800" />
 
       {/* Content - Streamed with Suspense */}
-      <FadeUpReveal>
-        <Suspense fallback={<ContentSkeleton />}>
-          <BlogContent content={blog.content} />
-        </Suspense>
-      </FadeUpReveal>
+      <Suspense fallback={<ContentSkeleton />}>
+        <BlogContent content={blog.content} />
+      </Suspense>
+
+      {/* Related Posts */}
+      {relatedPosts.length > 0 && (
+        <>
+          <hr className="border-zinc-800" />
+          <FadeUpReveal>
+            <div className="flex flex-col gap-4">
+              <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+                Related Posts
+              </h2>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {relatedPosts.map((post) => (
+                  <RelatedPostCard key={post.slug} post={post} />
+                ))}
+              </div>
+            </div>
+          </FadeUpReveal>
+        </>
+      )}
 
       {/* Footer */}
       <hr className="border-zinc-800" />

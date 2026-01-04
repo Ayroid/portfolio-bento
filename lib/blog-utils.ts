@@ -14,6 +14,7 @@ export interface BlogPost {
   tags: string[];
   isPinned: boolean;
   isNew: boolean;
+  isPublished: boolean;
   readingTime: string;
   content: string;
 }
@@ -27,6 +28,7 @@ export interface BlogMeta {
   tags: string[];
   isPinned: boolean;
   isNew: boolean;
+  isPublished: boolean;
   readingTime: string;
 }
 
@@ -39,12 +41,12 @@ export function getAllBlogSlugs(): string[] {
     .map((file) => file.replace(/\.mdx$/, ""));
 }
 
-// Get all blog metadata (for listing page)
+// Get all blog metadata (for listing page) - only published posts
 export function getAllBlogs(): BlogMeta[] {
   const slugs = getAllBlogSlugs();
   const blogs = slugs
     .map((slug) => getBlogMeta(slug))
-    .filter(Boolean) as BlogMeta[];
+    .filter((blog): blog is BlogMeta => blog !== null && blog.isPublished);
 
   // Sort by date (newest first), then pinned posts at top
   return blogs.sort((a, b) => {
@@ -72,6 +74,7 @@ export function getBlogMeta(slug: string): BlogMeta | null {
     tags: data.tags || [],
     isPinned: data.isPinned || false,
     isNew: data.isNew || false,
+    isPublished: data.isPublished !== false, // Default to true if not specified
     readingTime: stats.text,
   };
 }
@@ -94,6 +97,7 @@ export function getBlogBySlug(slug: string): BlogPost | null {
     tags: data.tags || [],
     isPinned: data.isPinned || false,
     isNew: data.isNew || false,
+    isPublished: data.isPublished !== false, // Default to true if not specified
     readingTime: stats.text,
     content,
   };
@@ -110,4 +114,49 @@ export function getFeaturedBlogs(count: number = 5): BlogMeta[] {
   const pinned = blogs.filter((b) => b.isPinned);
   const nonPinned = blogs.filter((b) => !b.isPinned);
   return [...pinned, ...nonPinned].slice(0, count);
+}
+
+// Get all unique tags from published posts
+export function getAllTags(): string[] {
+  const publishedBlogs = getAllBlogs();
+  const tagsSet = new Set<string>();
+
+  publishedBlogs.forEach((blog) => {
+    blog.tags.forEach((tag) => {
+      tagsSet.add(tag.toLowerCase());
+    });
+  });
+
+  return Array.from(tagsSet).sort();
+}
+
+// Get related posts based on tags (excluding the current post)
+export function getRelatedPosts(
+  currentSlug: string,
+  maxPosts: number = 3
+): BlogMeta[] {
+  const currentBlog = getBlogBySlug(currentSlug);
+  if (!currentBlog || !currentBlog.isPublished) {
+    return [];
+  }
+
+  const allBlogs = getAllBlogs();
+  const currentTags = currentBlog.tags.map((tag) => tag.toLowerCase());
+
+  // Calculate relevance score based on shared tags
+  const blogsWithScore = allBlogs
+    .filter((blog) => blog.slug !== currentSlug)
+    .map((blog) => {
+      const sharedTags = blog.tags.filter((tag) =>
+        currentTags.includes(tag.toLowerCase())
+      );
+      return {
+        blog,
+        score: sharedTags.length,
+      };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return blogsWithScore.slice(0, maxPosts).map((item) => item.blog);
 }
