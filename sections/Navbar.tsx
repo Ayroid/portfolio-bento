@@ -8,9 +8,8 @@ import { BentoItem } from "../components/BentoItem";
  */
 
 const links = [
-  { href: "/blogs", label: "Blogs" },
   { href: "/projects", label: "Projects" },
-  { href: "/books", label: "Books" },
+  { href: "/blogs", label: "Blogs" },
 ];
 
 const Navbar = () => {
