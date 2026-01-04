@@ -1,39 +1,67 @@
 import { BentoItem } from "@/components/BentoItem";
 import FadeUpReveal from "@/components/FadeUpReveal";
-import { BookOpen, Wrench, Youtube } from "lucide-react";
 
 /**
  * LATTICE STRUCTURE (30 columns)
  * Base row height: 50px
  */
 
+interface LifeCardProps {
+  title: string;
+  description: string;
+  redirectTo: string;
+  redirectTarget?: "_self" | "_blank";
+  bgColor?: string;
+  hoverBgColor?: string;
+  textColor?: string;
+  colSpan?: number;
+  rowSpan?: number;
+}
+
 const LifeCard = ({
   title,
   description,
-  icon: Icon,
   redirectTo,
   redirectTarget = "_self",
-}: {
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-  redirectTo: string;
-  redirectTarget?: "_self" | "_blank";
-}) => {
+  bgColor,
+  hoverBgColor,
+  textColor,
+  colSpan = 10,
+  rowSpan = 3,
+}: LifeCardProps) => {
   return (
     <BentoItem
-      colSpan={10}
-      rowSpan={3}
-      className="md:col-span-1 lg:col-span-10"
+      colSpan={colSpan}
+      rowSpan={rowSpan}
+      className="md:col-span-1 lg:col-span-10 group"
       redirectTo={redirectTo}
       redirectTarget={redirectTarget}
     >
-      <div className="flex h-full flex-col justify-between p-4 sm:p-6">
-        <div>
-          <Icon className="mb-3 h-8 w-8 text-white" />
-          <h3 className="text-xl font-bold text-white">{title}</h3>
-          <p className="text-sm text-zinc-400">{description}</p>
-        </div>
+      <div
+        className={`flex h-full flex-col justify-end p-4 sm:p-6 relative ${bgColor} ${hoverBgColor} transition-colors`}
+      >
+        {/* Arrow pointing to top-right corner */}
+        <svg
+          className={`absolute top-4 right-4 h-8 w-8 group-hover:top-3 group-hover:right-3 sm:h-10 sm:w-10 ${textColor} opacity-50 transition-all`}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path
+            d="M7 17L17 7M17 7H7M17 7V17"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+
+        <h3
+          className={`text-2xl sm:text-3xl font-bold ${textColor} font-mono`}
+        >
+          {title}
+        </h3>
+
+        <p className="text-sm text-zinc-400">{description}</p>
       </div>
     </BentoItem>
   );
@@ -66,25 +94,22 @@ const LifeSection = () => {
 
         {/* Books Card */}
         <LifeCard
-          title="Books & Articles"
+          title="BOOKS"
           description="What I'm reading and recommend"
-          icon={BookOpen}
           redirectTo="/books"
         />
 
         {/* Tools Card */}
         <LifeCard
-          title="Tools & Resources"
+          title="TOOLS"
           description="My favorite dev tools and resources"
-          icon={Wrench}
           redirectTo="/tools"
         />
 
         {/* Recommendations Card */}
         <LifeCard
-          title="Recommendations"
+          title="MEDIA"
           description="My favorite YouTube channels and podcasts"
-          icon={Youtube}
           redirectTo="/recommendations"
         />
       </div>
