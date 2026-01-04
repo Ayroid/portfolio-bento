@@ -177,21 +177,21 @@ export default function BooksPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 gap-2 sm:gap-8 lg:grid-cols-3">
-        <div className="rounded-xl bg-zinc-900 p-4 sm:p-6">
+      <div className="grid grid-cols-2 lg:grid-cols-3">
+        <div className="border bg-zinc-900 p-4 sm:p-6 flex flex-col items-center justify-center">
           <div className="mb-1 text-2xl font-bold text-white sm:text-3xl">
             {totalBooks}
           </div>
           <div className="text-sm text-zinc-400 sm:text-base">Total Books</div>
         </div>
-        <div className="rounded-xl bg-zinc-900 p-4 sm:p-6">
-          <div className="mb-1 text-2xl font-bold text-green-500 sm:text-3xl">
+        <div className="border bg-zinc-900 p-4 sm:p-6 flex flex-col items-center justify-center">
+          <div className="mb-1 text-2xl font-bold text-white sm:text-3xl">
             {completedBooks}
           </div>
           <div className="text-sm text-zinc-400 sm:text-base">Completed</div>
         </div>
-        <div className="rounded-xl bg-zinc-900 p-4 sm:p-6">
-          <div className="mb-1 text-2xl font-bold text-blue-500 sm:text-3xl">
+        <div className="border bg-zinc-900 p-4 sm:p-6 flex flex-col items-center justify-center">
+          <div className="mb-1 text-2xl font-bold text-white sm:text-3xl">
             {inProgressBooks}
           </div>
           <div className="text-sm text-zinc-400 sm:text-base">Reading</div>
