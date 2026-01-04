@@ -116,7 +116,7 @@ export default function RecommendationsPage() {
       </div>
 
       {/* Recommendations Grid */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {filteredRecommendations.map((rec) => {
           const Icon =
             categoryIcons[rec.category as keyof typeof categoryIcons];
@@ -155,11 +155,29 @@ export default function RecommendationsPage() {
         })}
       </div>
 
-      {/* Add More CTA */}
-      <div className="flex flex-col items-center justify-center gap-4 border border-zinc-800 bg-[#18181b] py-8">
-        <p className="text-center text-sm text-zinc-400">
-          These are some of my favorite content creators and resources.
-        </p>
+      {/* Other Lifestyle Pages */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+          More Lifestyle
+        </h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <Link
+            href="/tools"
+            className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+          >
+            <span className="text-lg font-semibold text-white">
+              Tools & Setup
+            </span>
+            <ExternalLink className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+          </Link>
+          <Link
+            href="/books"
+            className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+          >
+            <span className="text-lg font-semibold text-white">Books</span>
+            <ExternalLink className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { BookOpen } from "lucide-react";
+import Link from "next/link";
+import { BookOpen, ArrowUpRight } from "lucide-react";
 
 interface Book {
   title: string;
@@ -199,7 +200,7 @@ export default function BooksPage() {
       </div>
 
       {/* Books Grid */}
-      <div className="grid grid-cols-2 gap-2 sm:gap-8 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:gap-4">
         {allBooks.map((book) => {
           const BookCard = (
             <div className="group relative aspect-2/3 cursor-pointer overflow-hidden bg-zinc-900 transition-all hover:border-zinc-700">
@@ -234,6 +235,33 @@ export default function BooksPage() {
 
           return <div key={`${book.author}-${book.title}`}>{BookCard}</div>;
         })}
+      </div>
+
+      {/* Other Lifestyle Pages */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+          More Lifestyle
+        </h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <Link
+            href="/tools"
+            className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+          >
+            <span className="text-lg font-semibold text-white">
+              Tools & Setup
+            </span>
+            <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+          </Link>
+          <Link
+            href="/recommendations"
+            className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+          >
+            <span className="text-lg font-semibold text-white">
+              Recommendations
+            </span>
+            <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+          </Link>
+        </div>
       </div>
     </div>
   );

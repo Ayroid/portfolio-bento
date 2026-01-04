@@ -85,8 +85,7 @@ const LifeSection = () => {
           title="Recommendations"
           description="My favorite YouTube channels and podcasts"
           icon={Youtube}
-          redirectTo="https://www.youtube.com/playlist?list=PLayroidRecs"
-          redirectTarget="_blank"
+          redirectTo="/recommendations"
         />
       </div>
     </FadeUpReveal>
