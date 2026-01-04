@@ -6,6 +6,7 @@ import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { getAllBlogSlugs, getBlogBySlug } from "@/lib/blog-utils";
 import { MDXComponents } from "@/components/MDXComponents";
 import { Badge } from "@/components/ui/badge";
+import FadeUpReveal from "@/components/FadeUpReveal";
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>;
@@ -40,85 +41,93 @@ export default async function BlogPage({ params }: BlogPageProps) {
   return (
     <div className="flex flex-col gap-8">
       {/* Back Button */}
-      <Link
-        href="/blogs"
-        className="inline-flex w-fit items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Back to Blogs
-      </Link>
+      <FadeUpReveal>
+        <Link
+          href="/blogs"
+          className="inline-flex w-fit items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Blogs
+        </Link>
+      </FadeUpReveal>
 
       {/* Header */}
-      <header className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-center gap-3">
-          <Badge variant="outline" className="text-xs">
-            {blog.category}
-          </Badge>
-          {blog.isNew && (
-            <Badge
-              variant="secondary"
-              className="border-green-800 bg-green-900/50 text-xs text-green-400"
-            >
-              New
+      <FadeUpReveal delay={0.1}>
+        <header className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <Badge variant="outline" className="text-xs">
+              {blog.category}
             </Badge>
-          )}
-        </div>
-
-        <h1 className="text-3xl leading-tight font-bold font-mono text-white sm:text-4xl">
-          {blog.title}
-        </h1>
-
-        <p className="text-lg font-sans text-zinc-400">{blog.description}</p>
-
-        <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
-          <span className="flex items-center gap-1.5">
-            <Calendar className="h-4 w-4" />
-            {new Date(blog.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <Clock className="h-4 w-4" />
-            {blog.readingTime}
-          </span>
-        </div>
-
-        {blog.tags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2">
-            <Tag className="h-4 w-4 text-zinc-500" />
-            {blog.tags.map((tag) => (
+            {blog.isNew && (
               <Badge
-                key={tag}
-                variant="outline"
-                className="border-zinc-700 text-xs text-zinc-400"
+                variant="secondary"
+                className="border-green-800 bg-green-900/50 text-xs text-green-400"
               >
-                {tag}
+                New
               </Badge>
-            ))}
+            )}
           </div>
-        )}
-      </header>
+
+          <h1 className="font-mono text-3xl leading-tight font-bold text-white sm:text-4xl">
+            {blog.title}
+          </h1>
+
+          <p className="font-sans text-lg text-zinc-400">{blog.description}</p>
+
+          <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
+            <span className="flex items-center gap-1.5">
+              <Calendar className="h-4 w-4" />
+              {new Date(blog.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Clock className="h-4 w-4" />
+              {blog.readingTime}
+            </span>
+          </div>
+
+          {blog.tags.length > 0 && (
+            <div className="flex flex-wrap items-center gap-2">
+              <Tag className="h-4 w-4 text-zinc-500" />
+              {blog.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="border-zinc-700 text-xs text-zinc-400"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
+        </header>
+      </FadeUpReveal>
 
       <hr className="border-zinc-800" />
 
       {/* Content */}
-      <article className="prose prose-invert max-w-none">
-        <MDXRemote source={blog.content} components={MDXComponents} />
-      </article>
+      <FadeUpReveal delay={0.2}>
+        <article className="prose prose-invert max-w-none">
+          <MDXRemote source={blog.content} components={MDXComponents} />
+        </article>
+      </FadeUpReveal>
 
       {/* Footer */}
       <hr className="border-zinc-800" />
-      <div className="flex items-center justify-between pb-8">
-        <Link
-          href="/blogs"
-          className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          All Blogs
-        </Link>
-      </div>
+      <FadeUpReveal delay={0.3}>
+        <div className="flex items-center justify-between pb-8">
+          <Link
+            href="/blogs"
+            className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            All Blogs
+          </Link>
+        </div>
+      </FadeUpReveal>
     </div>
   );
 }

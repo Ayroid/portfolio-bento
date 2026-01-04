@@ -244,6 +244,7 @@ Here, we have defined all of the resources we'll be needing and have set up the 
 5. Lastly, we have to create a few more files -
 
 - **variables.tf** - Here we'll be defining all the variables we have used in the **main.tf** and **providers.tf** files.
+
   ```plaintext
   variable "aws_region" {
     type        = string
@@ -310,6 +311,7 @@ Here, we have defined all of the resources we'll be needing and have set up the 
     description = "Key Pair Path"
   }
   ```
+
 - **data.tf** - Stores data variables whose values we are fetching from AWS. For example - latest-ubuntu-image.
   ```plaintext
   data "aws_ami" "latest-ubuntu-image" {
@@ -322,6 +324,7 @@ Here, we have defined all of the resources we'll be needing and have set up the 
   }
   ```
 - **outputs.tf** - This would store all the output variables which we can access later.
+
   ```plaintext
   output "aws_ami_id" {
     value = data.aws_ami.latest-ubuntu-image.id
@@ -331,6 +334,7 @@ Here, we have defined all of the resources we'll be needing and have set up the 
     value = aws_instance.my-ec2.public_ip
   }
   ```
+
 - **varvalues.tfvars -** Here, we store/pass the values of the variables we have defined in the variables.tf file. It is recommended to keep it outside of your git history to avoid giving access to unknown users. Hence, you won't find it in my repository either. You have to define the values for all the variables in the file as follows -
   ```plaintext
   variable1-name = "variable1-value"

@@ -100,7 +100,7 @@ export function ExperienceCard() {
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="flex h-full flex-col">
       {/* ActionCard-style header linking to /work */}
       <Link
         href="/work"

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { ArrowUpRight } from "lucide-react";
 import { projectsData, statusColors, techStack } from "@/lib/projects-data";
+import FadeUpReveal from "@/components/FadeUpReveal";
 
 interface ProjectCardProps {
   project: (typeof projectsData)[0];
@@ -30,7 +31,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group relative block bg-transparent"
+      className="group relative block h-full bg-transparent"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -86,12 +87,12 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         {/* Content */}
         <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
           {/* Title */}
-          <h3 className="text-xl font-bold font-sans text-white">
+          <h3 className="font-sans text-xl font-bold text-white">
             {project.title}
           </h3>
 
           {/* Description */}
-          <p className="text-sm leading-relaxed font-sans text-zinc-400">
+          <p className="font-sans text-sm leading-relaxed text-zinc-400">
             {project.description}
           </p>
 
@@ -142,66 +143,74 @@ export default function ProjectsPage() {
   return (
     <div className="flex flex-col gap-8">
       {/* Page Header */}
-      <div className="flex flex-col gap-0">
-        <div className="border p-12 sm:p-16">
-          <h1 className="text-3xl font-bold font-mono tracking-wider text-white text-center sm:text-5xl">
-            PROJECTS
-          </h1>
+      <FadeUpReveal>
+        <div className="flex flex-col gap-0">
+          <div className="border p-12 sm:p-16">
+            <h1 className="text-center font-mono text-3xl font-bold tracking-wider text-white sm:text-5xl">
+              PROJECTS
+            </h1>
+          </div>
+          <div className="border border-t-0 p-6">
+            <p className="text-center text-sm text-zinc-400 sm:text-base">
+              A collection of web applications, tools, and experiments I&apos;ve
+              built.
+            </p>
+          </div>
         </div>
-        <div className="border border-t-0  p-6">
-          <p className="text-sm text-zinc-400 text-center sm:text-base">
-            A collection of web applications, tools, and experiments I&apos;ve
-            built.
-          </p>
-        </div>
-      </div>
+      </FadeUpReveal>
 
       {/* Popular Tags */}
-      <div className="flex flex-col gap-3">
-        <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
-          Popular Tags
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setSelectedTag("All")}
-            className={`border px-3 py-1.5 text-xs transition-colors ${
-              selectedTag === "All"
-                ? "border-white bg-white text-black"
-                : "border-zinc-800 bg-transparent text-zinc-400 hover:border-zinc-700 hover:text-white"
-            }`}
-          >
-            All
-          </button>
-          {allTags.map((tag) => {
-            const count = projectsData.filter((project) =>
-              project.tags.includes(tag)
-            ).length;
-            return (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`border px-3 py-1.5 text-xs transition-colors ${
-                  selectedTag === tag
-                    ? "border-white bg-white text-black"
-                    : "border-zinc-800 bg-transparent text-zinc-400 hover:border-zinc-700 hover:text-white"
-                }`}
-              >
-                {tag} ({count})
-              </button>
-            );
-          })}
+      <FadeUpReveal>
+        <div className="flex flex-col gap-3">
+          <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+            Popular Tags
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setSelectedTag("All")}
+              className={`border px-3 py-1.5 text-xs transition-colors ${
+                selectedTag === "All"
+                  ? "border-white bg-white text-black"
+                  : "border-zinc-800 bg-transparent text-zinc-400 hover:border-zinc-700 hover:text-white"
+              }`}
+            >
+              All
+            </button>
+            {allTags.map((tag) => {
+              const count = projectsData.filter((project) =>
+                project.tags.includes(tag)
+              ).length;
+              return (
+                <button
+                  key={tag}
+                  onClick={() => setSelectedTag(tag)}
+                  className={`border px-3 py-1.5 text-xs transition-colors ${
+                    selectedTag === tag
+                      ? "border-white bg-white text-black"
+                      : "border-zinc-800 bg-transparent text-zinc-400 hover:border-zinc-700 hover:text-white"
+                  }`}
+                >
+                  {tag} ({count})
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </FadeUpReveal>
 
       {/* Featured Projects Section */}
       {filteredFeatured.length > 0 && (
         <div className="flex flex-col gap-4">
-          <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
-            Featured
-          </h2>
+          <FadeUpReveal>
+            <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+              Featured
+            </h2>
+          </FadeUpReveal>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {filteredFeatured.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <FadeUpReveal key={project.id} className="h-full">
+                <ProjectCard project={project} />
+              </FadeUpReveal>
             ))}
           </div>
         </div>
@@ -210,12 +219,16 @@ export default function ProjectsPage() {
       {/* All Projects Section */}
       {filteredOther.length > 0 && (
         <div className="flex flex-col gap-4">
-          <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
-            {filteredFeatured.length > 0 ? "More Projects" : "All Projects"}
-          </h2>
+          <FadeUpReveal>
+            <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+              {filteredFeatured.length > 0 ? "More Projects" : "All Projects"}
+            </h2>
+          </FadeUpReveal>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {filteredOther.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <FadeUpReveal key={project.id} className="h-full">
+                <ProjectCard project={project} />
+              </FadeUpReveal>
             ))}
           </div>
         </div>
@@ -237,48 +250,52 @@ export default function ProjectsPage() {
       )}
 
       {/* Explore More */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
-          Explore More
-        </h2>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <Link
-            href="/work"
-            className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
-          >
-            <span className="text-lg font-semibold font-sans text-white">
-              Work Experience
-            </span>
-            <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
-          </Link>
-          <Link
-            href="/blogs"
-            className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
-          >
-            <span className="text-lg font-semibold font-sans text-white">
-              Blogs
-            </span>
-            <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
-          </Link>
+      <FadeUpReveal>
+        <div className="flex flex-col gap-4">
+          <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+            Explore More
+          </h2>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <Link
+              href="/work"
+              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+            >
+              <span className="font-sans text-lg font-semibold text-white">
+                Work Experience
+              </span>
+              <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+            </Link>
+            <Link
+              href="/blogs"
+              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+            >
+              <span className="font-sans text-lg font-semibold text-white">
+                Blogs
+              </span>
+              <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+            </Link>
+          </div>
         </div>
-      </div>
+      </FadeUpReveal>
 
       {/* GitHub CTA */}
-      <div className="flex flex-col items-center justify-center gap-4 border border-zinc-800 bg-[#18181b] py-8">
-        <p className="text-center text-sm text-zinc-400">
-          Want to see more? Check out my GitHub for additional projects and
-          contributions.
-        </p>
-        <a
-          href="https://github.com/ayroid"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
-        >
-          Visit GitHub
-          <ArrowUpRight className="h-4 w-4" />
-        </a>
-      </div>
+      <FadeUpReveal>
+        <div className="flex flex-col items-center justify-center gap-4 border border-zinc-800 bg-[#18181b] py-8">
+          <p className="text-center text-sm text-zinc-400">
+            Want to see more? Check out my GitHub for additional projects and
+            contributions.
+          </p>
+          <a
+            href="https://github.com/ayroid"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
+          >
+            Visit GitHub
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+      </FadeUpReveal>
     </div>
   );
 }

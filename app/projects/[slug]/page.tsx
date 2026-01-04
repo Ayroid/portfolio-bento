@@ -14,6 +14,7 @@ import {
   techStack,
   statusColors,
 } from "@/lib/projects-data";
+import FadeUpReveal from "@/components/FadeUpReveal";
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -36,22 +37,25 @@ export default async function ProjectPage({
   return (
     <div className="flex flex-col gap-8">
       {/* Back Button */}
-      <Link
-        href="/projects"
-        className="inline-flex w-fit items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        <span className="text-sm">Back to Projects</span>
-      </Link>
+      <FadeUpReveal>
+        <Link
+          href="/projects"
+          className="inline-flex w-fit items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span className="text-sm">Back to Projects</span>
+        </Link>
+      </FadeUpReveal>
 
       {/* Project Header */}
-      <div className="flex flex-col gap-4">
+      <FadeUpReveal delay={0.1}>
+        <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex-1">
-            <h1 className="mb-3 text-3xl font-bold font-mono text-white sm:text-4xl">
+            <h1 className="mb-3 font-mono text-3xl font-bold text-white sm:text-4xl">
               {project.title}
             </h1>
-            <p className="text-base leading-relaxed font-sans text-zinc-400 sm:text-lg">
+            <p className="font-sans text-base leading-relaxed text-zinc-400 sm:text-lg">
               {project.description}
             </p>
           </div>
@@ -106,9 +110,11 @@ export default async function ProjectPage({
           )}
         </div>
       </div>
+      </FadeUpReveal>
 
       {/* Project Image */}
-      <div className="relative h-[400px] w-full overflow-hidden border border-zinc-800">
+      <FadeUpReveal delay={0.2}>
+        <div className="relative h-[400px] w-full overflow-hidden border border-zinc-800">
         <Image
           src={project.image}
           alt={project.title}
@@ -116,22 +122,26 @@ export default async function ProjectPage({
           className="object-cover"
           priority
         />
-      </div>
+        </div>
+      </FadeUpReveal>
 
       {/* Long Description */}
       {project.longDescription && (
-        <div className="border border-zinc-800 bg-[#18181b] p-6 sm:p-8">
-          <h2 className="mb-4 text-xl font-bold text-white">
-            About the Project
-          </h2>
-          <p className="leading-relaxed text-zinc-400">
-            {project.longDescription}
-          </p>
-        </div>
+        <FadeUpReveal delay={0.3}>
+          <div className="border border-zinc-800 bg-[#18181b] p-6 sm:p-8">
+            <h2 className="mb-4 text-xl font-bold text-white">
+              About the Project
+            </h2>
+            <p className="leading-relaxed text-zinc-400">
+              {project.longDescription}
+            </p>
+          </div>
+        </FadeUpReveal>
       )}
 
       {/* Technologies */}
-      <div className="border border-zinc-800 bg-[#18181b] p-6 sm:p-8">
+      <FadeUpReveal delay={0.4}>
+        <div className="border border-zinc-800 bg-[#18181b] p-6 sm:p-8">
         <h2 className="mb-4 text-xl font-bold text-white">Technologies Used</h2>
         <div className="flex flex-wrap gap-3">
           {project.technologies.map((tech) => {
@@ -152,10 +162,12 @@ export default async function ProjectPage({
             );
           })}
         </div>
-      </div>
+        </div>
+      </FadeUpReveal>
 
       {/* Related Projects */}
-      <div className="border-t border-zinc-800 pt-8">
+      <FadeUpReveal delay={0.5}>
+        <div className="border-t border-zinc-800 pt-8">
         <h2 className="mb-4 text-xl font-bold text-white">Other Projects</h2>
         <div className="flex gap-3 overflow-x-auto pb-2">
           {projectsData
@@ -186,10 +198,12 @@ export default async function ProjectPage({
               </Link>
             ))}
         </div>
-      </div>
+        </div>
+      </FadeUpReveal>
 
       {/* Bottom Navigation */}
-      <div className="flex items-center justify-between border-t border-zinc-800 pt-8">
+      <FadeUpReveal delay={0.6}>
+        <div className="flex items-center justify-between border-t border-zinc-800 pt-8">
         <Link
           href="/projects"
           className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
@@ -203,7 +217,8 @@ export default async function ProjectPage({
         >
           <span className="text-sm">Home</span>
         </Link>
-      </div>
+        </div>
+      </FadeUpReveal>
     </div>
   );
 }

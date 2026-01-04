@@ -30,20 +30,18 @@ const LifeCard = ({
     <BentoItem
       colSpan={colSpan}
       rowSpan={rowSpan}
-      className="md:col-span-1 lg:col-span-10 group"
+      className="group md:col-span-1 lg:col-span-10"
       redirectTo={redirectTo}
       redirectTarget={redirectTarget}
     >
-      <div
-        className="flex h-full flex-col justify-between p-6 relative transition-colors"
-      >
+      <div className="relative flex h-full flex-col justify-between p-6 transition-colors">
         {/* Icon at top left */}
         <div className="flex items-start justify-between">
           <Icon className="h-8 w-8 text-zinc-400 transition-colors group-hover:text-white" />
 
           {/* Arrow pointing to top-right corner */}
           <svg
-            className="h-8 w-8 text-white opacity-50 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 sm:h-10 sm:w-10"
+            className="h-8 w-8 text-white opacity-50 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 sm:h-10 sm:w-10"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -59,7 +57,7 @@ const LifeCard = ({
 
         {/* Text at bottom */}
         <div>
-          <h3 className="text-2xl font-bold text-white font-mono sm:text-3xl">
+          <h3 className="font-mono text-2xl font-bold text-white sm:text-3xl">
             {title}
           </h3>
           <p className="font-sans text-sm text-zinc-400">{description}</p>

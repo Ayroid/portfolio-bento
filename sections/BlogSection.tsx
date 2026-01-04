@@ -24,29 +24,36 @@ interface BlogCardProps {
   rowSpan?: number;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ blog, colSpan = 10, rowSpan = 5 }) => (
+const BlogCard: React.FC<BlogCardProps> = ({
+  blog,
+  colSpan = 10,
+  rowSpan = 5,
+}) => (
   <BentoItem
     colSpan={colSpan}
     rowSpan={rowSpan}
-    className="md:col-span-1 lg:col-span-10 group"
+    className="group md:col-span-1 lg:col-span-10"
     redirectTo={blog.redirectTo}
     redirectTarget={blog.redirectTarget || "_self"}
   >
     <div className="flex h-full flex-col justify-between p-6">
       {/* Top: Category & Date */}
       <div className="flex items-center justify-between">
-        <Badge variant="outline" className="border-zinc-700 bg-transparent text-zinc-400 font-sans text-xs">
+        <Badge
+          variant="outline"
+          className="border-zinc-700 bg-transparent font-sans text-xs text-zinc-400"
+        >
           {blog.category}
         </Badge>
         <span className="font-sans text-xs text-zinc-500">{blog.date}</span>
       </div>
 
       {/* Middle: Title & Description */}
-      <div className="flex-1 flex flex-col justify-center py-4">
-        <h3 className="font-sans text-lg font-semibold text-white leading-tight group-hover:text-zinc-200 transition-colors sm:text-xl">
+      <div className="flex flex-1 flex-col justify-center py-4">
+        <h3 className="font-sans text-lg leading-tight font-semibold text-white transition-colors group-hover:text-zinc-200 sm:text-xl">
           {blog.title}
         </h3>
-        <p className="mt-2 font-sans text-sm leading-relaxed text-zinc-400 line-clamp-2">
+        <p className="mt-2 line-clamp-2 font-sans text-sm leading-relaxed text-zinc-400">
           {blog.description}
         </p>
       </div>
