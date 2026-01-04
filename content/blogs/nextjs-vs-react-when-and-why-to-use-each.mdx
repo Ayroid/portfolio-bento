@@ -38,14 +38,11 @@ Next.js follows a defined folder structure, while React offers complete freedom 
 
 In Next.js, you must adhere to certain conventions when naming files for pages, layouts, not-found pages, and components. The compiler relies on these conventions to render various sections of the application correctly.
 
-* **page.tsx**: These files correspond to specific endpoints in your application. The components or JSX code returned by the functions in these files are what users see when they navigate to the respective routes.
-* **layout.tsx**: These files define the layout for pages within specific routes. For instance, if you want a sidebar to appear on all pages within the `/app/admin` directory, you can create a `layout.tsx` file in that folder. This file can define the layout components and use the `children` prop to specify where the content of `page.tsx` should be rendered.
-    
-* **notfound.tsx**: These files define custom 404 pages that are displayed when a user navigates to a non-existent route. You can customize these pages to show different messages based on the route.
-* **loading.tsx**: These files are used to display a loading animation while the main `page.tsx` file is loading its content.
-    
-* **error.tsx**: These files handle errors that might occur while using the application, displaying appropriate error messages to the user.
-    
+- **page.tsx**: These files correspond to specific endpoints in your application. The components or JSX code returned by the functions in these files are what users see when they navigate to the respective routes.
+- **layout.tsx**: These files define the layout for pages within specific routes. For instance, if you want a sidebar to appear on all pages within the `/app/admin` directory, you can create a `layout.tsx` file in that folder. This file can define the layout components and use the `children` prop to specify where the content of `page.tsx` should be rendered.
+- **notfound.tsx**: These files define custom 404 pages that are displayed when a user navigates to a non-existent route. You can customize these pages to show different messages based on the route.
+- **loading.tsx**: These files are used to display a loading animation while the main `page.tsx` file is loading its content.
+- **error.tsx**: These files handle errors that might occur while using the application, displaying appropriate error messages to the user.
 
 ### Setup and Configuration
 

@@ -2,239 +2,239 @@ import Image from "next/image";
 import { BookOpen } from "lucide-react";
 
 interface Book {
-	title: string;
-	progress?: number;
-	image?: string;
-	url?: string;
+  title: string;
+  progress?: number;
+  image?: string;
+  url?: string;
 }
 
 interface AuthorBooks {
-	author: string;
-	books: Book[];
+  author: string;
+  books: Book[];
 }
 
 const bookCollection: AuthorBooks[] = [
-	{
-		author: "Darius Foroux",
-		books: [
-			{
-				title: "Do it Today",
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-			{
-				title: "Focus on what matters",
-				progress: 35,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-			{
-				title: "Think Straight",
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-			{
-				title: "Win your inner battles",
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-			{
-				title: "What it takes to be free",
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-			{
-				title: "The Road to Better Habits",
-				progress: 100,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "Paulo Coelho",
-		books: [
-			{
-				title: "The Alchemist",
-				progress: 100,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-			{
-				title: "The Archer",
-				progress: 100,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "Morgan Housel",
-		books: [
-			{
-				title: "The Psychology of Money",
-				progress: 80,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "Austin Kleon",
-		books: [
-			{
-				title: "Show your work",
-				progress: 100,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "Joseph Murphy",
-		books: [
-			{
-				title: "The Power of your Subconscious Mind",
-				progress: 30,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "Cal Newport",
-		books: [
-			{
-				title: "Deep Work",
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "Peter Thiel",
-		books: [
-			{
-				title: "Zero to One",
-				progress: 70,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "Nick Maggiulli",
-		books: [
-			{
-				title: "Just Keep Buying",
-				progress: 40,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "Mukarami",
-		books: [
-			{
-				title: "Kafka on the Shore",
-				progress: 15,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
-	{
-		author: "George S. Clason",
-		books: [
-			{
-				title: "Richest Man in Babylon",
-				progress: 50,
-				image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-			},
-		],
-	},
+  {
+    author: "Darius Foroux",
+    books: [
+      {
+        title: "Do it Today",
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+      {
+        title: "Focus on what matters",
+        progress: 35,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+      {
+        title: "Think Straight",
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+      {
+        title: "Win your inner battles",
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+      {
+        title: "What it takes to be free",
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+      {
+        title: "The Road to Better Habits",
+        progress: 100,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "Paulo Coelho",
+    books: [
+      {
+        title: "The Alchemist",
+        progress: 100,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+      {
+        title: "The Archer",
+        progress: 100,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "Morgan Housel",
+    books: [
+      {
+        title: "The Psychology of Money",
+        progress: 80,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "Austin Kleon",
+    books: [
+      {
+        title: "Show your work",
+        progress: 100,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "Joseph Murphy",
+    books: [
+      {
+        title: "The Power of your Subconscious Mind",
+        progress: 30,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "Cal Newport",
+    books: [
+      {
+        title: "Deep Work",
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "Peter Thiel",
+    books: [
+      {
+        title: "Zero to One",
+        progress: 70,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "Nick Maggiulli",
+    books: [
+      {
+        title: "Just Keep Buying",
+        progress: 40,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "Mukarami",
+    books: [
+      {
+        title: "Kafka on the Shore",
+        progress: 15,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
+  {
+    author: "George S. Clason",
+    books: [
+      {
+        title: "Richest Man in Babylon",
+        progress: 50,
+        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+      },
+    ],
+  },
 ];
 
 export default function BooksPage() {
-	// Flatten all books into a single array
-	const allBooks = bookCollection.flatMap((author) =>
-		author.books.map((book) => ({
-			...book,
-			author: author.author,
-		}))
-	);
+  // Flatten all books into a single array
+  const allBooks = bookCollection.flatMap((author) =>
+    author.books.map((book) => ({
+      ...book,
+      author: author.author,
+    }))
+  );
 
-	const totalBooks = allBooks.length;
-	const completedBooks = allBooks.filter(
-		(book) => book.progress === 100
-	).length;
-	const inProgressBooks = allBooks.filter(
-		(book) => book.progress && book.progress > 0 && book.progress < 100
-	).length;
+  const totalBooks = allBooks.length;
+  const completedBooks = allBooks.filter(
+    (book) => book.progress === 100
+  ).length;
+  const inProgressBooks = allBooks.filter(
+    (book) => book.progress && book.progress > 0 && book.progress < 100
+  ).length;
 
-	return (
-		<div className="flex flex-col gap-8 pb-12">
-			{/* Header */}
-			<div className="flex flex-col gap-4 mt-12">
-				<div className="flex items-center gap-3">
-					<div className="w-12 h-12 rounded-xl bg-zinc-900  flex items-center justify-center">
-						<BookOpen className="w-6 h-6 text-zinc-400" />
-					</div>
-					<h1 className="text-3xl sm:text-4xl font-bold text-white">
-						Book Collection
-					</h1>
-				</div>
-				<p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-2xl">
-					My personal reading list, tracking progress across various topics
-					including personal development, finance, and philosophy.
-				</p>
-			</div>
+  return (
+    <div className="flex flex-col gap-8 pb-12">
+      {/* Header */}
+      <div className="mt-12 flex flex-col gap-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900">
+            <BookOpen className="h-6 w-6 text-zinc-400" />
+          </div>
+          <h1 className="text-3xl font-bold text-white sm:text-4xl">
+            Book Collection
+          </h1>
+        </div>
+        <p className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+          My personal reading list, tracking progress across various topics
+          including personal development, finance, and philosophy.
+        </p>
+      </div>
 
-			{/* Stats */}
-			<div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-8">
-				<div className="bg-zinc-900 rounded-xl p-4 sm:p-6">
-					<div className="text-2xl sm:text-3xl font-bold text-white mb-1">
-						{totalBooks}
-					</div>
-					<div className="text-zinc-400 text-sm sm:text-base">Total Books</div>
-				</div>
-				<div className="bg-zinc-900 rounded-xl p-4 sm:p-6">
-					<div className="text-2xl sm:text-3xl font-bold text-green-500 mb-1">
-						{completedBooks}
-					</div>
-					<div className="text-zinc-400 text-sm sm:text-base">Completed</div>
-				</div>
-				<div className="bg-zinc-900 rounded-xl p-4 sm:p-6">
-					<div className="text-2xl sm:text-3xl font-bold text-blue-500 mb-1">
-						{inProgressBooks}
-					</div>
-					<div className="text-zinc-400 text-sm sm:text-base">Reading</div>
-				</div>
-			</div>
+      {/* Stats */}
+      <div className="grid grid-cols-2 gap-2 sm:gap-8 lg:grid-cols-3">
+        <div className="rounded-xl bg-zinc-900 p-4 sm:p-6">
+          <div className="mb-1 text-2xl font-bold text-white sm:text-3xl">
+            {totalBooks}
+          </div>
+          <div className="text-sm text-zinc-400 sm:text-base">Total Books</div>
+        </div>
+        <div className="rounded-xl bg-zinc-900 p-4 sm:p-6">
+          <div className="mb-1 text-2xl font-bold text-green-500 sm:text-3xl">
+            {completedBooks}
+          </div>
+          <div className="text-sm text-zinc-400 sm:text-base">Completed</div>
+        </div>
+        <div className="rounded-xl bg-zinc-900 p-4 sm:p-6">
+          <div className="mb-1 text-2xl font-bold text-blue-500 sm:text-3xl">
+            {inProgressBooks}
+          </div>
+          <div className="text-sm text-zinc-400 sm:text-base">Reading</div>
+        </div>
+      </div>
 
-			{/* Books Grid */}
-			<div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-8">
-				{allBooks.map((book) => {
-					const BookCard = (
-						<div className="group relative overflow-hidden bg-zinc-900 hover:border-zinc-700 transition-all cursor-pointer aspect-2/3">
-							{book.image && (
-								<Image
-									src={book.image}
-									alt={book.title}
-									fill
-									className="object-cover"
-								/>
-							)}
+      {/* Books Grid */}
+      <div className="grid grid-cols-2 gap-2 sm:gap-8 lg:grid-cols-4">
+        {allBooks.map((book) => {
+          const BookCard = (
+            <div className="group relative aspect-2/3 cursor-pointer overflow-hidden bg-zinc-900 transition-all hover:border-zinc-700">
+              {book.image && (
+                <Image
+                  src={book.image}
+                  alt={book.title}
+                  fill
+                  className="object-cover"
+                />
+              )}
 
-							<div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-end p-3">
-								<div className="w-full">
-									<div className="text-white text-sm font-semibold mb-1">
-										{book.title}
-									</div>
-									<div className="text-zinc-400 text-xs mb-2">
-										{book.author}
-									</div>
-									{book.progress !== undefined ? (
-										<div className="text-zinc-500 text-xs">
-											{book.progress}% complete
-										</div>
-									) : (
-										<div className="text-zinc-500 text-xs">Not started</div>
-									)}
-								</div>
-							</div>
-						</div>
-					);
+              <div className="absolute inset-0 flex translate-y-full items-end bg-linear-to-t from-black/95 via-black/60 to-transparent p-3 transition-transform duration-300 group-hover:translate-y-0">
+                <div className="w-full">
+                  <div className="mb-1 text-sm font-semibold text-white">
+                    {book.title}
+                  </div>
+                  <div className="mb-2 text-xs text-zinc-400">
+                    {book.author}
+                  </div>
+                  {book.progress !== undefined ? (
+                    <div className="text-xs text-zinc-500">
+                      {book.progress}% complete
+                    </div>
+                  ) : (
+                    <div className="text-xs text-zinc-500">Not started</div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
 
-					return <div key={`${book.author}-${book.title}`}>{BookCard}</div>;
-				})}
-			</div>
-		</div>
-	);
+          return <div key={`${book.author}-${book.title}`}>{BookCard}</div>;
+        })}
+      </div>
+    </div>
+  );
 }

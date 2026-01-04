@@ -42,37 +42,37 @@ export default async function BlogPage({ params }: BlogPageProps) {
       {/* Back Button */}
       <Link
         href="/blogs"
-        className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors w-fit"
+        className="inline-flex w-fit items-center gap-2 text-zinc-400 transition-colors hover:text-white"
       >
-        <ArrowLeft className="w-4 h-4" />
+        <ArrowLeft className="h-4 w-4" />
         Back to Blogs
       </Link>
 
       {/* Header */}
       <header className="flex flex-col gap-4">
-        <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex flex-wrap items-center gap-3">
           <Badge variant="outline" className="text-xs">
             {blog.category}
           </Badge>
           {blog.isNew && (
             <Badge
               variant="secondary"
-              className="text-xs bg-green-900/50 text-green-400 border-green-800"
+              className="border-green-800 bg-green-900/50 text-xs text-green-400"
             >
               New
             </Badge>
           )}
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+        <h1 className="text-3xl leading-tight font-bold text-white sm:text-4xl">
           {blog.title}
         </h1>
 
-        <p className="text-zinc-400 text-lg">{blog.description}</p>
+        <p className="text-lg text-zinc-400">{blog.description}</p>
 
         <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
           <span className="flex items-center gap-1.5">
-            <Calendar className="w-4 h-4" />
+            <Calendar className="h-4 w-4" />
             {new Date(blog.date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
@@ -80,19 +80,19 @@ export default async function BlogPage({ params }: BlogPageProps) {
             })}
           </span>
           <span className="flex items-center gap-1.5">
-            <Clock className="w-4 h-4" />
+            <Clock className="h-4 w-4" />
             {blog.readingTime}
           </span>
         </div>
 
         {blog.tags.length > 0 && (
           <div className="flex flex-wrap items-center gap-2">
-            <Tag className="w-4 h-4 text-zinc-500" />
+            <Tag className="h-4 w-4 text-zinc-500" />
             {blog.tags.map((tag) => (
               <Badge
                 key={tag}
                 variant="outline"
-                className="border-zinc-700 text-zinc-400 text-xs"
+                className="border-zinc-700 text-xs text-zinc-400"
               >
                 {tag}
               </Badge>
@@ -110,12 +110,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
       {/* Footer */}
       <hr className="border-zinc-800" />
-      <div className="flex justify-between items-center pb-8">
+      <div className="flex items-center justify-between pb-8">
         <Link
           href="/blogs"
-          className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="h-4 w-4" />
           All Blogs
         </Link>
       </div>

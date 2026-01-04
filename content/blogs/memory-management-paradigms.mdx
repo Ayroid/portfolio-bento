@@ -24,12 +24,10 @@ Next, we have languages like C and C++, where you're given complete control over
 
 However, it is notoriously error-prone, with some common issues being:
 
-* Memory leaks: Forgetting to free allocated memory, causing your program to gradually consume more memory over time
-* Double frees: Attempting to free the same memory twice, corruptting your memory management system
-    
-* Use-after-free: Accessing memory after it has been freed, leading to undefined behavior
-* Buffer overflows: Writing beyond the bounds of allocated memory, which can corrupt adjacent memory regions
-    
+- Memory leaks: Forgetting to free allocated memory, causing your program to gradually consume more memory over time
+- Double frees: Attempting to free the same memory twice, corruptting your memory management system
+- Use-after-free: Accessing memory after it has been freed, leading to undefined behavior
+- Buffer overflows: Writing beyond the bounds of allocated memory, which can corrupt adjacent memory regions
 
 These issues aren't just programming inconveniences; they're serious security vulnerabilities that have led to countless exploits over the years. In fact, Microsoft has reported that approximately 70% of their security vulnerabilities are memory safety issues.
 
@@ -62,11 +60,9 @@ This might seem restrictive at first, and indeed, many developers find themselve
 
 The ownership system also enables other powerful features in Rust:
 
-* Zero-cost abstractions: Rust's ownership rules allow it to provide high-level abstractions that compile down to efficient machine code
-* Fearless concurrency: The ownership and borrowing rules prevent data races at compile time
-    
-* Memory safety without garbage collection: You get the safety of managed languages with the performance of manual memory management
-    
+- Zero-cost abstractions: Rust's ownership rules allow it to provide high-level abstractions that compile down to efficient machine code
+- Fearless concurrency: The ownership and borrowing rules prevent data races at compile time
+- Memory safety without garbage collection: You get the safety of managed languages with the performance of manual memory management
 
 Through this unique approach to memory management, Rust has managed to achieve what was long thought impossible: memory safety without runtime overhead. It's no wonder that companies like Microsoft, Amazon, and Meta are increasingly adopting Rust for their performance-critical and security-sensitive components.
 

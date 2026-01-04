@@ -41,14 +41,14 @@ function GitHubBanner() {
   };
 
   return (
-    <div className="w-full h-full bg-[#0d1117] flex items-center justify-center p-3">
+    <div className="flex h-full w-full items-center justify-center bg-[#0d1117] p-3">
       <div className="flex gap-[3px]">
         {Array.from({ length: cols }).map((_, col) => (
           <div key={col} className="flex flex-col gap-[3px]">
             {Array.from({ length: rows }).map((_, row) => (
               <div
                 key={row}
-                className="w-2.5 h-2.5 rounded-sm"
+                className="h-2.5 w-2.5 rounded-sm"
                 style={{ backgroundColor: getColor(row, col) }}
               />
             ))}
@@ -62,13 +62,23 @@ function GitHubBanner() {
 // Twitter/X style banner with geometric pattern
 function TwitterBanner() {
   return (
-    <div className="w-full h-full bg-black relative overflow-hidden">
+    <div className="relative h-full w-full overflow-hidden bg-black">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-20">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="xgrid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#333" strokeWidth="0.5" />
+            <pattern
+              id="xgrid"
+              width="20"
+              height="20"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 20 0 L 0 0 0 20"
+                fill="none"
+                stroke="#333"
+                strokeWidth="0.5"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#xgrid)" />
@@ -76,7 +86,11 @@ function TwitterBanner() {
       </div>
       {/* X logo watermark */}
       <div className="absolute inset-0 flex items-center justify-center opacity-10">
-        <svg viewBox="0 0 24 24" className="w-16 h-16 text-white" fill="currentColor">
+        <svg
+          viewBox="0 0 24 24"
+          className="h-16 w-16 text-white"
+          fill="currentColor"
+        >
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       </div>
@@ -87,21 +101,69 @@ function TwitterBanner() {
 // LinkedIn style professional blue gradient
 function LinkedInBanner() {
   return (
-    <div className="w-full h-full relative overflow-hidden bg-linear-to-br from-[#0077b5] via-[#0a66c2] to-[#004182]">
+    <div className="relative h-full w-full overflow-hidden bg-linear-to-br from-[#0077b5] via-[#0a66c2] to-[#004182]">
       {/* Network nodes pattern */}
-      <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="absolute inset-0 h-full w-full opacity-20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
-          <pattern id="linkedindots" width="30" height="30" patternUnits="userSpaceOnUse">
+          <pattern
+            id="linkedindots"
+            width="30"
+            height="30"
+            patternUnits="userSpaceOnUse"
+          >
             <circle cx="15" cy="15" r="1.5" fill="white" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#linkedindots)" />
         {/* Connection lines */}
-        <line x1="15" y1="15" x2="45" y2="45" stroke="white" strokeWidth="0.5" opacity="0.3" />
-        <line x1="45" y1="15" x2="75" y2="45" stroke="white" strokeWidth="0.5" opacity="0.3" />
-        <line x1="75" y1="15" x2="105" y2="45" stroke="white" strokeWidth="0.5" opacity="0.3" />
-        <line x1="135" y1="15" x2="165" y2="45" stroke="white" strokeWidth="0.5" opacity="0.3" />
-        <line x1="195" y1="15" x2="225" y2="45" stroke="white" strokeWidth="0.5" opacity="0.3" />
+        <line
+          x1="15"
+          y1="15"
+          x2="45"
+          y2="45"
+          stroke="white"
+          strokeWidth="0.5"
+          opacity="0.3"
+        />
+        <line
+          x1="45"
+          y1="15"
+          x2="75"
+          y2="45"
+          stroke="white"
+          strokeWidth="0.5"
+          opacity="0.3"
+        />
+        <line
+          x1="75"
+          y1="15"
+          x2="105"
+          y2="45"
+          stroke="white"
+          strokeWidth="0.5"
+          opacity="0.3"
+        />
+        <line
+          x1="135"
+          y1="15"
+          x2="165"
+          y2="45"
+          stroke="white"
+          strokeWidth="0.5"
+          opacity="0.3"
+        />
+        <line
+          x1="195"
+          y1="15"
+          x2="225"
+          y2="45"
+          stroke="white"
+          strokeWidth="0.5"
+          opacity="0.3"
+        />
       </svg>
     </div>
   );
@@ -110,12 +172,17 @@ function LinkedInBanner() {
 // Hashnode style tech blog gradient
 function HashnodeBanner() {
   return (
-    <div className="w-full h-full relative overflow-hidden bg-linear-to-br from-[#2962ff] via-[#3d5afe] to-[#536dfe]">
+    <div className="relative h-full w-full overflow-hidden bg-linear-to-br from-[#2962ff] via-[#3d5afe] to-[#536dfe]">
       {/* Code/blog aesthetic pattern */}
       <div className="absolute inset-0 opacity-15">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="hashcode" width="60" height="20" patternUnits="userSpaceOnUse">
+            <pattern
+              id="hashcode"
+              width="60"
+              height="20"
+              patternUnits="userSpaceOnUse"
+            >
               <rect x="0" y="8" width="25" height="4" rx="2" fill="white" />
               <rect x="30" y="8" width="15" height="4" rx="2" fill="white" />
             </pattern>
@@ -124,8 +191,8 @@ function HashnodeBanner() {
         </svg>
       </div>
       {/* Hashnode logo hint */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-20">
-        <div className="w-10 h-10 rounded-full border-4 border-white" />
+      <div className="absolute top-1/2 right-4 -translate-y-1/2 opacity-20">
+        <div className="h-10 w-10 rounded-full border-4 border-white" />
       </div>
     </div>
   );
@@ -142,7 +209,9 @@ function PlatformBanner({ platform }: { platform: SocialProfile["platform"] }) {
     case "hashnode":
       return <HashnodeBanner />;
     default:
-      return <div className="w-full h-full bg-linear-to-r from-zinc-800 to-zinc-700" />;
+      return (
+        <div className="h-full w-full bg-linear-to-r from-zinc-800 to-zinc-700" />
+      );
   }
 }
 
@@ -201,7 +270,7 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
   const Icon = profile.icon;
 
   return (
-    <div className="w-72 bg-zinc-900 rounded-sm overflow-hidden border border-zinc-800 shadow-xl">
+    <div className="w-72 overflow-hidden rounded-sm border border-zinc-800 bg-zinc-900 shadow-xl">
       {/* Banner */}
       <div className="relative h-20 bg-zinc-800">
         {profile.bannerImage && !imageError.banner ? (
@@ -221,7 +290,7 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
       <div className="px-4 pb-4">
         {/* Profile Image */}
         <div className="relative -mt-8 mb-2">
-          <div className="w-16 h-16 rounded-full border-4 border-zinc-900 overflow-hidden bg-zinc-800">
+          <div className="h-16 w-16 overflow-hidden rounded-full border-4 border-zinc-900 bg-zinc-800">
             {!imageError.profile ? (
               <Image
                 src={profile.profileImage}
@@ -234,8 +303,8 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
                 }
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <Icon className="w-8 h-8 text-zinc-500" />
+              <div className="flex h-full w-full items-center justify-center">
+                <Icon className="h-8 w-8 text-zinc-500" />
               </div>
             )}
           </div>
@@ -244,12 +313,12 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
         {/* Name and Username */}
         <div className="mb-2">
           <div className="flex items-center">
-            <span className="font-semibold text-white text-sm">
+            <span className="text-sm font-semibold text-white">
               {profile.displayName}
             </span>
             {profile.verified && (
               <svg
-                className="w-4 h-4 text-blue-500"
+                className="h-4 w-4 text-blue-500"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -257,11 +326,11 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
               </svg>
             )}
           </div>
-          <span className="text-zinc-500 text-xs">@{profile.username}</span>
+          <span className="text-xs text-zinc-500">@{profile.username}</span>
         </div>
 
         {/* Bio */}
-        <p className="text-zinc-400 text-xs mb-3 line-clamp-2">{profile.bio}</p>
+        <p className="mb-3 line-clamp-2 text-xs text-zinc-400">{profile.bio}</p>
 
         {/* Stats */}
         <div className="flex gap-4 text-xs">
@@ -270,7 +339,7 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
               <span className="font-semibold text-white">
                 {formatNumber(stats.following)}
               </span>
-              <span className="text-zinc-500 ml-1">Following</span>
+              <span className="ml-1 text-zinc-500">Following</span>
             </div>
           )}
           {stats.followers !== undefined && (
@@ -278,7 +347,7 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
               <span className="font-semibold text-white">
                 {formatNumber(stats.followers)}
               </span>
-              <span className="text-zinc-500 ml-1">Followers</span>
+              <span className="ml-1 text-zinc-500">Followers</span>
             </div>
           )}
           {stats.posts !== undefined && profile.stats.postsLabel && (
@@ -286,7 +355,7 @@ export function SocialPreviewCard({ profile }: SocialPreviewCardProps) {
               <span className="font-semibold text-white">
                 {formatNumber(stats.posts)}
               </span>
-              <span className="text-zinc-500 ml-1">
+              <span className="ml-1 text-zinc-500">
                 {profile.stats.postsLabel}
               </span>
             </div>

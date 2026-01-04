@@ -10,12 +10,10 @@ isNew: false
 
 This is what a normal HTTP request looks like - [https://www.google.com/api/search?q=home](https://www.google.com/api/search?q=home). Where,
 
-* **https** - Scheme used to tell the browser which protocol to use while connecting
-* [www.google.com](http://www.google.com) - Domain to which we want to connect to
-    
-* **/api/search** - path to the resource on the website we are accessing
-* **?q=home** - optional query params to pass additional information in the request
-    
+- **https** - Scheme used to tell the browser which protocol to use while connecting
+- [www.google.com](http://www.google.com) - Domain to which we want to connect to
+- **/api/search** - path to the resource on the website we are accessing
+- **?q=home** - optional query params to pass additional information in the request
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1735826987539/f619ac3e-b5db-4704-824b-28755fc93b1d.png)
 
@@ -27,10 +25,8 @@ The browser does a **DNS lookup** to get the associated IP Address. When you ent
 
 1. The operating system's DNS cache
 2. Local hosts file
-    
 3. Browser cache
 4. ISP cache
-    
 
 A DNS record is an IP address that matches the **fully-qualified domain name**.
 
@@ -64,9 +60,7 @@ After the resolution, the browser gets the IP address to connect to. It then:
 
 1. Establishes a TCP connection with the server
 2. If HTTPS performs a TLS handshake for secure communication
-    
 3. HTTP/3, uses QUIC protocol instead of TCP
-    
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1735827003448/a7b505b9-2356-4214-8d0d-498e74a2d3bd.png)
 
@@ -78,11 +72,10 @@ The browser then compiles the request into HTTP specifications. A typical HTTP r
 
 Common HTTP verbs include:
 
-* **GET** - Fetch data without body
-* **POST** - Send data in the request body
-* **PUT** - Update existing resource
-* **DELETE** - Remove resource
-    
+- **GET** - Fetch data without body
+- **POST** - Send data in the request body
+- **PUT** - Update existing resource
+- **DELETE** - Remove resource
 
 ### Parsing the Request
 
@@ -92,12 +85,10 @@ Request is then parsed by the server to understand what needs to be done. It can
 
 Common status codes:
 
-* 2xx: Success (200 OK, 201 Created)
-* 3xx: Redirection
-    
-* 4xx: Client errors
-* 5xx: Server errors
-    
+- 2xx: Success (200 OK, 201 Created)
+- 3xx: Redirection
+- 4xx: Client errors
+- 5xx: Server errors
 
 ### Rendering the Response
 
@@ -111,8 +102,6 @@ When you enter a URL in your browser, several steps occur:
 
 1. URL parsing (protocol, domain, path, query params)
 2. DNS resolution to convert domain to IP address (checking caches, querying DNS servers)
-    
 3. TCP connection establishment (with TLS handshake for HTTPS)
 4. HTTP request sending and response handling
-    
 5. Content rendering (HTML, CSS, JS processing)

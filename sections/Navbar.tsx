@@ -8,66 +8,66 @@ import { BentoItem } from "../components/BentoItem";
  */
 
 const links = [
-	{ href: "/blogs", label: "Blogs" },
-	{ href: "/projects", label: "Projects" },
-	{ href: "/books", label: "Books" },
+  { href: "/blogs", label: "Blogs" },
+  { href: "/projects", label: "Projects" },
+  { href: "/books", label: "Books" },
 ];
 
 const Navbar = () => {
-	return (
-		<div
-			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)] gap-2"
-			style={{
-				gridAutoRows: "35px", // Base row height
-			}}
-		>
-			{/* Navbar - 30 cols × 2 rows */}
-			<BentoItem
-				colSpan={30}
-				rowSpan={2}
-				className="md:col-span-2 lg:col-span-30"
-			>
-				<div className="p-4 sm:p-6 flex items-center justify-between">
-					<Link className="flex items-center gap-3" href="/">
-						<div className="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center overflow-hidden">
-							<Image src="/profile.jpg" alt="Profile" width={32} height={32} />
-						</div>
-						<h1 className="text-xl sm:text-2xl font-bold text-white font-mono">
-							Ayroid
-						</h1>
-					</Link>
+  return (
+    <div
+      className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
+      style={{
+        gridAutoRows: "35px", // Base row height
+      }}
+    >
+      {/* Navbar - 30 cols × 2 rows */}
+      <BentoItem
+        colSpan={30}
+        rowSpan={2}
+        className="md:col-span-2 lg:col-span-30"
+      >
+        <div className="flex items-center justify-between p-4 sm:p-6">
+          <Link className="flex items-center gap-3" href="/">
+            <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-yellow-400">
+              <Image src="/profile.jpg" alt="Profile" width={32} height={32} />
+            </div>
+            <h1 className="font-mono text-xl font-bold text-white sm:text-2xl">
+              Ayroid
+            </h1>
+          </Link>
 
-					<nav className="hidden md:flex gap-6 lg:gap-8 text-zinc-400 text-sm lg:text-base">
-						{links.map((link) => (
-							<Link
-								key={link.href}
-								href={link.href}
-								className="hover:text-white transition-colors"
-							>
-								{link.label}
-							</Link>
-						))}
-					</nav>
+          <nav className="hidden gap-6 text-sm text-zinc-400 md:flex lg:gap-8 lg:text-base">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="transition-colors hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-					<button className="md:hidden text-zinc-400 hover:text-white transition-colors">
-						<svg
-							className="w-6 h-6"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M4 6h16M4 12h16M4 18h16"
-							/>
-						</svg>
-					</button>
-				</div>
-			</BentoItem>
-		</div>
-	);
+          <button className="text-zinc-400 transition-colors hover:text-white md:hidden">
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </BentoItem>
+    </div>
+  );
 };
 
 export default Navbar;

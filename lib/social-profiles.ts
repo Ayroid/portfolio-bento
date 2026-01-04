@@ -54,7 +54,7 @@ export const socialProfiles: SocialProfile[] = [
     },
     verified: false,
   },
-    {
+  {
     platform: "linkedin",
     username: "ayroid",
     displayName: "Ayush Singh Kushwah",

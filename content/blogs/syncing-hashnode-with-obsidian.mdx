@@ -19,9 +19,10 @@ To streamline my workflow, I came up with the idea of syncing my Obsidian direct
 After researching the Hashnode GraphQL API, which enables managing blogs on your account, I decided to integrate it with a specific folder in my Obsidian workspace. This setup would track file changes in that folder and allow me to publish updates directly to Hashnode with a single command, streamlining the entire process.
 
 # Execution
+
 I got my HASHNODE_API_KEY & HASHNODE_PUBLICATION_ID from Hashnode developer site and wrote a python script to automate the posting.
 
-> Note: Define your HASHNODE_API_KEY, HASHNODE_PUBLICATION_ID and  OBSIDIAN_BLOG_FOLDER in constanst.py
+> Note: Define your HASHNODE_API_KEY, HASHNODE_PUBLICATION_ID and OBSIDIAN_BLOG_FOLDER in constanst.py
 
 ### The Script
 
@@ -192,6 +193,7 @@ if __name__ == "__main__":
 ```
 
 # Automation
+
 Rather than fully automating the process by setting up a cron job to run the code at regular intervals, I opted for a more manual approach. I created an alias for the command that allows me to sync the blogs with Hashnode whenever needed.
 
 Thank you for reading! I hope you found something new and interesting.
