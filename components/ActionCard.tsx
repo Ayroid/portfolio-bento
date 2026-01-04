@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface ActionCardProps {
   href?: string;
   label: string;
@@ -44,8 +46,8 @@ export function ActionCard({
   }
 
   return (
-    <a href={href} className={className}>
+    <Link href={href} className={className}>
       {content}
-    </a>
+    </Link>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 interface BentoItemProps {
   children?: React.ReactNode;
@@ -81,9 +82,13 @@ export const BentoItem = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       {redirectTo ? (
-        <a href={redirectTo} target={redirectTarget} rel="noopener noreferrer">
+        <Link
+          href={redirectTo}
+          target={redirectTarget}
+          rel="noopener noreferrer"
+        >
           {content}
-        </a>
+        </Link>
       ) : (
         content
       )}
