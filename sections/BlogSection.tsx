@@ -39,16 +39,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => (
 		redirectTarget={blog.redirectTarget || "_self"}
 	>
 		<div className="h-full w-full overflow-hidden p-4 sm:p-6 flex flex-col">
-			<Badge variant="outline">{blog.category}</Badge>
-			<h3 className="text-white font-bold mb-0 text-sm sm:text-base transition-all duration-300 ">
-				{blog.title}
-			</h3>
+			<div className="flex justify-between items-center">
+				<Badge variant="outline">{blog.category}</Badge>
+				<p className="text-zinc-400 text-xs">{blog.date}</p>
+			</div>
+			<h3 className="text-white font-bold text-xl">{blog.title}</h3>
 			<p className="text-zinc-300 text-xs leading-relaxed overflow-hidden max-h-20 opacity-100 transition-all duration-300">
 				{blog.description}
 			</p>
-			<div className="flex items-center gap-3 overflow-hidden max-h-10 opacity-100 mt-2 transition-all duration-300">
-				<p className="text-zinc-400 text-xs">{blog.date}</p>
-			</div>
 		</div>
 	</BentoItem>
 );
@@ -56,7 +54,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => (
 const blogData: BlogItemData[] = [
 	{
 		colSpan: 10,
-		rowSpan: 4,
+		rowSpan: 5,
 		mdColSpan: 1,
 		redirectTo: "/blogs/memory-management-paradigms",
 		redirectTarget: "_self",
@@ -73,7 +71,7 @@ const blogData: BlogItemData[] = [
 	},
 	{
 		colSpan: 10,
-		rowSpan: 4,
+		rowSpan: 5,
 		mdColSpan: 1,
 		redirectTo:
 			"/blogs/from-url-to-webpage-dns-networking-and-browser-internals",
@@ -91,7 +89,7 @@ const blogData: BlogItemData[] = [
 	},
 	{
 		colSpan: 10,
-		rowSpan: 4,
+		rowSpan: 5,
 		mdColSpan: 1,
 		redirectTo: "/blogs/dockerize-deploy-mern-stack-application-on-aws-ec2",
 		redirectTarget: "_self",
@@ -108,7 +106,7 @@ const blogData: BlogItemData[] = [
 	},
 	{
 		colSpan: 10,
-		rowSpan: 4,
+		rowSpan: 5,
 		mdColSpan: 2,
 		redirectTo: "/blogs/build-and-manage-aws-infrastructure-with-terraform",
 		redirectTarget: "_self",
@@ -125,7 +123,7 @@ const blogData: BlogItemData[] = [
 	},
 	{
 		colSpan: 10,
-		rowSpan: 4,
+		rowSpan: 5,
 		mdColSpan: 1,
 		redirectTo:
 			"/blogs/from-chaos-to-clarity-how-conventional-commits-revolutionize-version-control",
@@ -156,7 +154,7 @@ const BlogSection = () => {
 
 				<BentoItem
 					colSpan={10}
-					rowSpan={4}
+					rowSpan={5}
 					className="md:col-span-2 lg:col-span-10"
 				>
 					<ActionCard

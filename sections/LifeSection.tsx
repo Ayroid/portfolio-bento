@@ -1,13 +1,43 @@
-import React from "react";
 import { BentoItem } from "@/components/BentoItem";
-import { ActionCard } from "@/components/ActionCard";
 import FadeUpReveal from "@/components/FadeUpReveal";
-import { BookOpen, Wrench, Youtube, Coffee } from "lucide-react";
+import { BookOpen, Wrench, Youtube } from "lucide-react";
 
 /**
  * LATTICE STRUCTURE (30 columns)
  * Base row height: 50px
  */
+
+const LifeCard = ({
+	title,
+	description,
+	icon: Icon,
+	redirectTo,
+	redirectTarget = "_self",
+}: {
+	title: string;
+	description: string;
+	icon: React.ComponentType<{ className?: string }>;
+	redirectTo: string;
+	redirectTarget?: "_self" | "_blank";
+}) => {
+	return (
+		<BentoItem
+			colSpan={10}
+			rowSpan={3}
+			className="md:col-span-1 lg:col-span-10"
+			redirectTo={redirectTo}
+			redirectTarget={redirectTarget}
+		>
+			<div className="h-full flex flex-col justify-between p-4 sm:p-6">
+				<div>
+					<Icon className="w-8 h-8 text-white mb-3" />
+					<h3 className="text-white font-bold text-xl">{title}</h3>
+					<p className="text-zinc-400 text-sm">{description}</p>
+				</div>
+			</div>
+		</BentoItem>
+	);
+};
 
 const LifeSection = () => {
 	return (
@@ -35,67 +65,29 @@ const LifeSection = () => {
 				</BentoItem>
 
 				{/* Books Card */}
-				<BentoItem
-					colSpan={10}
-					rowSpan={4}
-					className="md:col-span-1 lg:col-span-10 overflow-hidden group"
+				<LifeCard
+					title="Books & Articles"
+					description="What I'm reading and recommend"
+					icon={BookOpen}
 					redirectTo="/books"
-				>
-					<div className="h-full flex flex-col justify-between p-4 sm:p-6">
-						<div>
-							<BookOpen className="w-8 h-8 text-white mb-3 group-hover:scale-110 transition-transform" />
-							<h3 className="text-white font-bold text-lg mb-2">
-								Reading List
-							</h3>
-							<p className="text-zinc-400 text-sm">
-								Books I'm reading and recommend
-							</p>
-						</div>
-						<div className="text-xs text-zinc-500">→ Explore</div>
-					</div>
-				</BentoItem>
+				/>
 
 				{/* Tools Card */}
-				<BentoItem
-					colSpan={10}
-					rowSpan={4}
-					className="md:col-span-1 lg:col-span-10 overflow-hidden group"
+				<LifeCard
+					title="Tools & Resources"
+					description="My favorite dev tools and resources"
+					icon={Wrench}
 					redirectTo="/tools"
-				>
-					<div className="h-full flex flex-col justify-between p-4 sm:p-6">
-						<div>
-							<Wrench className="w-8 h-8 text-white mb-3 group-hover:scale-110 transition-transform" />
-							<h3 className="text-white font-bold text-lg mb-2">
-								Tools & Setup
-							</h3>
-							<p className="text-zinc-400 text-sm">
-								Software and tools I use daily
-							</p>
-						</div>
-						<div className="text-xs text-zinc-500">→ Explore</div>
-					</div>
-				</BentoItem>
+				/>
 
 				{/* Recommendations Card */}
-				<BentoItem
-					colSpan={10}
-					rowSpan={4}
-					className="md:col-span-1 lg:col-span-10 overflow-hidden group"
-					redirectTo="/recommendations"
-				>
-					<div className="h-full flex flex-col justify-between p-4 sm:p-6">
-						<div>
-							<Youtube className="w-8 h-8 text-white mb-3 group-hover:scale-110 transition-transform" />
-							<h3 className="text-white font-bold text-lg mb-2">
-								Recommendations
-							</h3>
-							<p className="text-zinc-400 text-sm">
-								YouTube channels, podcasts, and more
-							</p>
-						</div>
-						<div className="text-xs text-zinc-500">→ Explore</div>
-					</div>
-				</BentoItem>
+				<LifeCard
+					title="Recommendations"
+					description="My favorite YouTube channels and podcasts"
+					icon={Youtube}
+					redirectTo="https://www.youtube.com/playlist?list=PLayroidRecs"
+					redirectTarget="_blank"
+				/>
 			</div>
 		</FadeUpReveal>
 	);
