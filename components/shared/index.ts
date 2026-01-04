@@ -6,3 +6,4 @@ export { MDXComponents } from "./MDXComponents";
 export { PageContainer } from "./PageContainer";
 export { SmoothScroll } from "./SmoothScroll";
 export { VisitorCount } from "./VisitorCount";
+export { Separator } from "./Separator";

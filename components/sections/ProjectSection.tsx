@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FadeUpReveal, ActionCard, BentoItem } from "@/components/shared/";
+import { ActionCard, BentoItem, Separator } from "@/components/shared/";
 import {
   Tooltip,
   TooltipContent,
@@ -392,7 +392,8 @@ const LandingPageCard = ({ title, slug, info }: LandingPageCardProps) => {
 
 export const ProjectSection = () => {
   return (
-    <FadeUpReveal>
+    <>
+      <Separator />
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{
@@ -494,6 +495,6 @@ export const ProjectSection = () => {
           />
         </BentoItem>
       </div>
-    </FadeUpReveal>
+    </>
   );
 };

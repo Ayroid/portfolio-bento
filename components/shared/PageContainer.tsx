@@ -31,23 +31,23 @@ export function PageContainer({
   const maxWidth = isNarrow ? "56rem" : "1520px";
 
   return (
-    <div className="w-full">
+    <div className="flex w-full flex-col">
       <div
-        className="mx-auto w-full p-2 transition-all duration-500 ease-initial sm:p-4"
+        className="mx-auto w-full px-2 transition-all duration-500 ease-initial sm:px-4"
         style={{ maxWidth }}
       >
         {navbar}
       </div>
 
       <div
-        className="mx-auto flex w-full flex-col gap-8 p-2 sm:p-4"
+        className="mx-auto flex w-full flex-col px-2 sm:px-4"
         style={{ maxWidth: isNarrow ? "56rem" : "1520px" }}
       >
         {children}
       </div>
 
       <div
-        className="mx-auto w-full p-2 transition-all duration-500 ease-initial sm:p-4"
+        className="mx-auto w-full px-2 transition-all duration-500 ease-initial sm:px-4"
         style={{ maxWidth }}
       >
         {footer}

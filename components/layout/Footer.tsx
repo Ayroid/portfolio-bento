@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  FadeUpReveal,
-  ActionCard,
-  BentoItem,
-  VisitorCount,
-} from "@/components/shared";
+import { ActionCard, BentoItem, VisitorCount } from "@/components/shared";
 import { siteConfig } from "@/config";
 
 /**
@@ -15,7 +10,7 @@ import { siteConfig } from "@/config";
 
 const Footer = () => {
   return (
-    <FadeUpReveal>
+    <>
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{
@@ -55,7 +50,7 @@ const Footer = () => {
           <br />© 2026 All rights reserved.
         </p>
       </div>
-    </FadeUpReveal>
+    </>
   );
 };
 

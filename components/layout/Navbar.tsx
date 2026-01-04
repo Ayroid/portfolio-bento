@@ -1,25 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BentoItem } from "@/components/shared/BentoItem";
+import { BentoItem } from "@/components/shared";
 import { navLinks } from "@/config";
 
 /**
- * LATTICE STRUCTURE (30 columns × 2 rows)
- * Base row height: 50px
+ * LATTICE STRUCTURE (30 columns × 1 rows)
+ * Base row height: 80px
  */
 
 const Navbar = () => {
   return (
     <div
-      className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
       style={{
-        gridAutoRows: "35px", // Base row height
+        gridAutoRows: "80px", // Base row height
       }}
     >
-      {/* Navbar - 30 cols × 2 rows */}
+      {/* Navbar - 30 cols × 1 rows */}
       <BentoItem
         colSpan={30}
-        rowSpan={2}
+        rowSpan={1}
         className="md:col-span-2 lg:col-span-30"
       >
         <div className="flex items-center justify-between p-4 sm:p-6">

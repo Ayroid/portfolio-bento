@@ -2,7 +2,7 @@ import React from "react";
 import { BentoItem } from "@/components/shared/BentoItem";
 import { ActionCard } from "@/components/shared";
 import { Badge } from "@/components/ui/badge";
-import { FadeUpReveal } from "@/components/shared";
+import { Separator } from "@/components/shared";
 import { blogs, type BlogItemData } from "@/data/blog-data";
 
 /**
@@ -55,7 +55,8 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
 export const BlogSection = () => {
   return (
-    <FadeUpReveal>
+    <>
+      <Separator />
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{
@@ -86,6 +87,7 @@ export const BlogSection = () => {
           <BlogCard key={index} blog={blog} />
         ))}
       </div>
-    </FadeUpReveal>
+      <Separator />
+    </>
   );
 };

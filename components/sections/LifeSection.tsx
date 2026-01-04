@@ -1,5 +1,5 @@
 import { BentoItem } from "@/components/shared/BentoItem";
-import { FadeUpReveal } from "@/components/shared";
+import { Separator } from "@/components/shared";
 import { BookOpen, Wrench, Play, LucideIcon } from "lucide-react";
 
 /**
@@ -69,7 +69,8 @@ export const LifeCard = ({
 
 export const LifeSection = () => {
   return (
-    <FadeUpReveal>
+    <>
+      <Separator />
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
         style={{
@@ -116,6 +117,6 @@ export const LifeSection = () => {
           icon={Play}
         />
       </div>
-    </FadeUpReveal>
+    </>
   );
 };

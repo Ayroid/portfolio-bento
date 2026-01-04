@@ -1,6 +1,6 @@
 import GitHubCard from "@/components/landing/GitHub";
 import TechStackCard from "@/components/landing/TechStack";
-import { FadeUpReveal, BentoItem } from "@/components/shared";
+import { BentoItem, Separator } from "@/components/shared";
 
 /**
  * LATTICE STRUCTURE (30 columns × 8 rows)
@@ -9,7 +9,8 @@ import { FadeUpReveal, BentoItem } from "@/components/shared";
 
 export const StatsSection = () => {
   return (
-    <FadeUpReveal>
+    <>
+      <Separator />
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
         style={{
@@ -34,6 +35,6 @@ export const StatsSection = () => {
           </div>
         </BentoItem>
       </div>
-    </FadeUpReveal>
+    </>
   );
 };

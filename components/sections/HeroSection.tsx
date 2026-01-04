@@ -3,7 +3,7 @@ import Experience from "@/components/landing/Experience";
 import AboutCard from "@/components/landing/About";
 import Connect from "@/components/landing/Connect";
 import { NameCard } from "@/components/landing/Name";
-import { FadeUpReveal, ActionCard, BentoItem } from "@/components/shared";
+import { ActionCard, BentoItem, Separator } from "@/components/shared";
 import Resume from "@/components/landing/Resume";
 import { siteConfig } from "@/config";
 
@@ -14,7 +14,8 @@ import { siteConfig } from "@/config";
 
 export const HeroSection = () => {
   return (
-    <FadeUpReveal>
+    <>
+      <Separator />
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
         style={{
@@ -91,6 +92,6 @@ export const HeroSection = () => {
           <Connect />
         </BentoItem>
       </div>
-    </FadeUpReveal>
+    </>
   );
 };
