@@ -19,7 +19,7 @@ const Footer = () => {
         }}
       >
         {/* Open to Work Section */}
-        <BentoItem colSpan={30} rowSpan={4}>
+        <BentoItem colSpan={20} rowSpan={4}>
           <div className="flex h-full flex-col items-start justify-end p-6 sm:p-8">
             <h3 className="font-sans text-2xl font-semibold text-white sm:text-3xl">
               Let&apos;s build something real
@@ -30,7 +30,7 @@ const Footer = () => {
           </div>
         </BentoItem>
 
-        <BentoItem colSpan={15} rowSpan={3}>
+        <BentoItem colSpan={10} rowSpan={4}>
           <ActionCard
             href="https://cal.com/ayroid/general-meeting"
             label="CONTACT"
@@ -38,16 +38,6 @@ const Footer = () => {
             hoverBgColor="hover:bg-accent-hover"
             textColor="text-accent-foreground"
             iconColor="text-accent-foreground"
-          />
-        </BentoItem>
-        <BentoItem colSpan={15} rowSpan={3}>
-          <ActionCard
-            href="/projects"
-            label="PROJECTS"
-            bgColor="bg-[#1a1a1a]"
-            hoverBgColor="hover:bg-[#222222]"
-            textColor="text-white"
-            iconColor="text-white"
           />
         </BentoItem>
       </div>
