@@ -10,7 +10,7 @@ export default function SmoothScroll({
 }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 2, // slower deceleration (was 1.2)
+      duration: 1.5, // slower deceleration (was 1.2)
       easing: (t) => 1 - Math.pow(1 - t, 4), // quartic ease-out (softer)
       orientation: "vertical",
       gestureOrientation: "vertical",
