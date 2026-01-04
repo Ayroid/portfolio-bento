@@ -29,7 +29,7 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between p-4 sm:p-6">
           <Link className="flex items-center gap-3" href="/">
-            <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-yellow-400">
+            <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-black">
               <Image src="/profile.jpg" alt="Profile" width={32} height={32} />
             </div>
             <h1 className="font-mono text-xl font-bold text-white sm:text-2xl">

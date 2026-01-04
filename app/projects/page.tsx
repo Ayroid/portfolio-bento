@@ -3,9 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, Star, Calendar } from "lucide-react";
-import { projectsData, statusColors } from "@/lib/projects-data";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { ArrowUpRight } from "lucide-react";
+import { projectsData, statusColors, techStack } from "@/lib/projects-data";
 
 interface ProjectCardProps {
   project: (typeof projectsData)[0];
@@ -57,7 +61,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         style={{ zIndex: 2 }}
       >
         {/* Project Image */}
-        <div className="relative h-48 w-full overflow-hidden">
+        <div className="relative h-72 w-full overflow-hidden">
           <Image
             src={project.image}
             alt={project.title}
@@ -81,42 +85,35 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
         {/* Content */}
         <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
-          {/* Header with badges */}
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="outline" className="mb-0 text-xs">
-                {project.category}
-              </Badge>
-              {project.featured && (
-                <Badge
-                  variant="secondary"
-                  className="mb-0 border-amber-800 bg-amber-900/50 text-xs text-amber-400"
-                >
-                  <Star className="mr-1 h-3 w-3 fill-amber-400" />
-                  Featured
-                </Badge>
-              )}
-            </div>
-            <ArrowUpRight className="h-4 w-4 text-zinc-500 transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
-          </div>
-
           {/* Title */}
-          <h3 className="text-base leading-tight font-semibold text-white transition-colors group-hover:text-zinc-100 sm:text-lg">
+          <h3 className="text-xl font-bold text-white">
             {project.title}
           </h3>
 
           {/* Description */}
-          <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-zinc-400">
+          <p className="text-sm leading-relaxed text-zinc-400">
             {project.description}
           </p>
 
-          {/* Footer with date */}
-          {project.date && (
-            <div className="flex items-center gap-2 border-t border-zinc-800 pt-2">
-              <Calendar className="h-3.5 w-3.5 text-zinc-500" />
-              <span className="text-xs text-zinc-500">{project.date}</span>
+          {/* Technologies */}
+          <div className="flex flex-col flex-wrap gap-2 text-zinc-400">
+            <span>Technologies</span>
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.map((tech) => {
+                const TechIcon = techStack[tech]?.icon;
+                return TechIcon ? (
+                  <Tooltip key={tech}>
+                    <TooltipTrigger asChild>
+                      <span>
+                        <TechIcon className="h-6 w-6 text-white" />
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent>{techStack[tech].name}</TooltipContent>
+                  </Tooltip>
+                ) : null;
+              })}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </Link>
@@ -208,7 +205,7 @@ export default function ProjectsPage() {
           <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
             Featured
           </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {filteredFeatured.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
@@ -222,7 +219,7 @@ export default function ProjectsPage() {
           <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
             {filteredFeatured.length > 0 ? "More Projects" : "All Projects"}
           </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {filteredOther.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

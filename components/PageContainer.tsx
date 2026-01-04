@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 
 function isDetailPage(pathname: string): boolean {
   const detailPatterns = [
-    /^\/blogs\/[^/]+$/, // /blogs/[slug]
-    /^\/projects\/[^/]+$/, // /projects/[slug]
+    /^\/blogs(\/[^/]+)?$/, // /blogs and /blogs/[slug]
+    /^\/projects(\/[^/]+)?$/, // /projects and /projects/[slug]
   ];
   return detailPatterns.some((pattern) => pattern.test(pathname));
 }
