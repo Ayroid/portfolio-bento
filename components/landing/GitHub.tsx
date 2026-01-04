@@ -21,7 +21,20 @@ interface APIContribution {
 const SKELETON_WEEKS = 52;
 const SKELETON_DAYS = 7;
 const LEVELS = [0, 1, 2, 3, 4] as const;
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 const getLevelColor = (level: number) => {
   const colors: Record<number, string> = {
@@ -36,7 +49,11 @@ const getLevelColor = (level: number) => {
 
 const Legend = ({ isLoading }: { isLoading: boolean }) => (
   <figcaption className="mt-2 flex items-center justify-end gap-2">
-    <span className={`text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}>Less</span>
+    <span
+      className={`text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}
+    >
+      Less
+    </span>
     <div className="flex gap-[3px]" aria-hidden="true">
       {LEVELS.map((level) => (
         <div
@@ -45,7 +62,11 @@ const Legend = ({ isLoading }: { isLoading: boolean }) => (
         />
       ))}
     </div>
-    <span className={`text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}>More</span>
+    <span
+      className={`text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}
+    >
+      More
+    </span>
   </figcaption>
 );
 
@@ -71,15 +92,26 @@ const SkeletonGrid = () => (
     {Array.from({ length: SKELETON_WEEKS }).map((_, weekIndex) => (
       <div key={weekIndex} className="flex flex-col gap-[3px]">
         {Array.from({ length: SKELETON_DAYS }).map((_, dayIndex) => (
-          <div key={dayIndex} className="h-3.5 w-3.5 animate-pulse bg-zinc-800" />
+          <div
+            key={dayIndex}
+            className="h-3.5 w-3.5 animate-pulse bg-zinc-800"
+          />
         ))}
       </div>
     ))}
   </div>
 );
 
-const ContributionGrid = ({ contributions }: { contributions: ContributionWeek[] }) => (
-  <div className="flex gap-[3px]" role="grid" aria-label="GitHub contribution graph">
+const ContributionGrid = ({
+  contributions,
+}: {
+  contributions: ContributionWeek[];
+}) => (
+  <div
+    className="flex gap-[3px]"
+    role="grid"
+    aria-label="GitHub contribution graph"
+  >
     {contributions.map((week, weekIndex) => (
       <div key={weekIndex} className="flex flex-col gap-[3px]" role="row">
         {week.days.map((day, dayIndex) => (
@@ -205,7 +237,11 @@ const GitHubCard = ({ username }: { username: string }) => {
                 ))}
           </div>
 
-          {isLoading ? <SkeletonGrid /> : <ContributionGrid contributions={contributions} />}
+          {isLoading ? (
+            <SkeletonGrid />
+          ) : (
+            <ContributionGrid contributions={contributions} />
+          )}
 
           <Legend isLoading={isLoading} />
         </div>

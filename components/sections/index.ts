@@ -1,6 +1,6 @@
-export { default as HeroSection } from "./HeroSection";
-export { default as BlogSection } from "./BlogSection";
-export { default as ProjectSection } from "./ProjectSection";
-export { default as StatsSection } from "./StatsSection";
-export { default as LifeSection } from "./LifeSection";
-export { default as TemplateSection } from "./TemplateSection";
+export { HeroSection } from "./HeroSection";
+export { BlogSection } from "./BlogSection";
+export { ProjectSection } from "./ProjectSection";
+export { StatsSection } from "./StatsSection";
+export { LifeSection } from "./LifeSection";
+export { TemplateSection } from "./TemplateSection";

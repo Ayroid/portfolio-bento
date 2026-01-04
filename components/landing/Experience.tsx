@@ -183,6 +183,6 @@ const ExperienceCard = () => {
       </div>
     </section>
   );
-}
+};
 
 export default ExperienceCard;

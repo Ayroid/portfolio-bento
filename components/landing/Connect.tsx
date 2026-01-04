@@ -11,15 +11,24 @@ import { TopRightArrow } from "@/components/icons";
 
 const Connect = () => {
   return (
-    <section className="group relative flex h-full w-full flex-col p-4 font-mono transition-colors" aria-labelledby="connect-heading">
+    <section
+      className="group relative flex h-full w-full flex-col p-4 font-mono transition-colors"
+      aria-labelledby="connect-heading"
+    >
       <TopRightArrow />
 
       <div className="flex flex-1 items-end justify-between">
-        <h2 id="connect-heading" className="text-2xl font-medium text-white sm:text-3xl lg:text-4xl">
+        <h2
+          id="connect-heading"
+          className="text-2xl font-medium text-white sm:text-3xl lg:text-4xl"
+        >
           CONNECT
         </h2>
 
-        <nav className="flex items-center gap-4 pb-1" aria-label="Social media links">
+        <nav
+          className="flex items-center gap-4 pb-1"
+          aria-label="Social media links"
+        >
           {socialProfiles.map((profile) => {
             const Icon = profile.icon;
             return (
@@ -36,7 +45,10 @@ const Connect = () => {
                     className="text-white transition-colors hover:text-zinc-400"
                     aria-label={`Connect on ${profile.platform}`}
                   >
-                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+                    <Icon
+                      className="h-5 w-5 sm:h-6 sm:w-6"
+                      aria-hidden="true"
+                    />
                   </a>
                 </HoverCardTrigger>
                 <HoverCardContent

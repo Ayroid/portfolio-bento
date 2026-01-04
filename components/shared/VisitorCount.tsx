@@ -7,7 +7,7 @@ interface UmamiStats {
   visitors: number;
 }
 
-const VisitorCount = () => {
+export const VisitorCount = () => {
   const [stats, setStats] = useState<UmamiStats | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -74,5 +74,3 @@ const VisitorCount = () => {
     </div>
   );
 };
-
-export default VisitorCount;

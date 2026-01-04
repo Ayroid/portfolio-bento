@@ -1,4 +1,4 @@
-import ActionCard from "@/components/shared/ActionCard";
+import { ActionCard } from "@/components/shared";
 import { siteConfig } from "@/config";
 
 const Resume = () => {

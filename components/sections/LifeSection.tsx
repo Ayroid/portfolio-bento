@@ -17,7 +17,7 @@ interface LifeCardProps {
   rowSpan?: number;
 }
 
-const LifeCard = ({
+export const LifeCard = ({
   title,
   description,
   redirectTo,
@@ -67,7 +67,7 @@ const LifeCard = ({
   );
 };
 
-const LifeSection = () => {
+export const LifeSection = () => {
   return (
     <FadeUpReveal>
       <div
@@ -119,5 +119,3 @@ const LifeSection = () => {
     </FadeUpReveal>
   );
 };
-
-export default LifeSection;

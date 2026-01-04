@@ -7,7 +7,7 @@ import { FadeUpReveal, BentoItem } from "@/components/shared";
  * Base row height: 50px
  */
 
-const StatsSection = () => {
+export const StatsSection = () => {
   return (
     <FadeUpReveal>
       <div
@@ -37,5 +37,3 @@ const StatsSection = () => {
     </FadeUpReveal>
   );
 };
-
-export default StatsSection;

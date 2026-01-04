@@ -10,7 +10,7 @@ interface ActionCardProps {
   asDiv?: boolean;
 }
 
-const ActionCard = ({
+export const ActionCard = ({
   href,
   label,
   bgColor,
@@ -51,5 +51,3 @@ const ActionCard = ({
     </Link>
   );
 };
-
-export default ActionCard;

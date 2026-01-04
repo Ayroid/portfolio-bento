@@ -53,7 +53,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   </BentoItem>
 );
 
-const BlogSection = () => {
+export const BlogSection = () => {
   return (
     <FadeUpReveal>
       <div
@@ -89,5 +89,3 @@ const BlogSection = () => {
     </FadeUpReveal>
   );
 };
-
-export default BlogSection;

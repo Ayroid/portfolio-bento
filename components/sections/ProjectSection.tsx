@@ -390,7 +390,7 @@ const LandingPageCard = ({ title, slug, info }: LandingPageCardProps) => {
   );
 };
 
-const ProjectSection = () => {
+export const ProjectSection = () => {
   return (
     <FadeUpReveal>
       <div
@@ -497,5 +497,3 @@ const ProjectSection = () => {
     </FadeUpReveal>
   );
 };
-
-export default ProjectSection;

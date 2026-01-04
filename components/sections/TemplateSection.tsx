@@ -5,7 +5,7 @@ import { BentoItem } from "@/components/shared";
  * Base row height: 50px
  */
 
-const TemplateSection = () => {
+export const TemplateSection = () => {
   return (
     <div
       className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-[repeat(30,2fr)]"
@@ -202,5 +202,3 @@ const TemplateSection = () => {
     </div>
   );
 };
-
-export default TemplateSection;

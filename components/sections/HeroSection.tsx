@@ -1,11 +1,9 @@
-import { BentoItem } from "@/components/shared/BentoItem";
 import { ProfileCard } from "@/components/landing/Profile";
 import Experience from "@/components/landing/Experience";
 import AboutCard from "@/components/landing/About";
-import ActionCard from "@/components/shared/ActionCard";
 import Connect from "@/components/landing/Connect";
 import { NameCard } from "@/components/landing/Name";
-import { FadeUpReveal } from "@/components/shared";
+import { FadeUpReveal, ActionCard, BentoItem } from "@/components/shared";
 import Resume from "@/components/landing/Resume";
 import { siteConfig } from "@/config";
 
@@ -14,7 +12,7 @@ import { siteConfig } from "@/config";
  * Base row height: 150px
  */
 
-const HeroSection = () => {
+export const HeroSection = () => {
   return (
     <FadeUpReveal>
       <div
@@ -96,5 +94,3 @@ const HeroSection = () => {
     </FadeUpReveal>
   );
 };
-
-export default HeroSection;
