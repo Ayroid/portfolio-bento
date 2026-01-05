@@ -134,7 +134,9 @@ export function getRelatedPosts(
     .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score);
 
-  const relatedPosts = blogsWithScore.slice(0, maxPosts).map((item) => item.blog);
+  const relatedPosts = blogsWithScore
+    .slice(0, maxPosts)
+    .map((item) => item.blog);
 
   // If not enough related posts, fill with other posts
   if (relatedPosts.length < maxPosts) {

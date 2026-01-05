@@ -29,33 +29,33 @@ const BlogCard = ({ post }: BlogCardProps) => {
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
-          {/* Category Badge on Image */}
-          <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2">
-            <Badge
-              variant="outline"
-              className="border-zinc-700 bg-black/70 text-xs text-white backdrop-blur-sm"
-            >
-              {post.category}
-            </Badge>
-            {post.isPinned && (
+            {/* Category Badge on Image */}
+            <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2">
               <Badge
-                variant="secondary"
-                className="border-amber-800 bg-amber-900/70 text-xs text-amber-400 backdrop-blur-sm"
+                variant="outline"
+                className="border-zinc-700 bg-black/70 text-xs text-white backdrop-blur-sm"
               >
-                <Pin className="mr-1 h-3 w-3" />
-                Pinned
+                {post.category}
               </Badge>
-            )}
-            {post.isNew && (
-              <Badge
-                variant="secondary"
-                className="border-green-800 bg-green-900/70 text-xs text-green-400 backdrop-blur-sm"
-              >
-                New
-              </Badge>
-            )}
+              {post.isPinned && (
+                <Badge
+                  variant="secondary"
+                  className="border-amber-800 bg-amber-900/70 text-xs text-amber-400 backdrop-blur-sm"
+                >
+                  <Pin className="mr-1 h-3 w-3" />
+                  Pinned
+                </Badge>
+              )}
+              {post.isNew && (
+                <Badge
+                  variant="secondary"
+                  className="border-green-800 bg-green-900/70 text-xs text-green-400 backdrop-blur-sm"
+                >
+                  New
+                </Badge>
+              )}
+            </div>
           </div>
-        </div>
         )}
 
         {/* Content */}

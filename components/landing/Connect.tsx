@@ -15,7 +15,7 @@ const Connect = () => {
       className="group relative flex h-full w-full flex-col p-4 font-mono transition-colors"
       aria-labelledby="connect-heading"
     >
-      <TopRightArrow />
+      <TopRightArrow iconColor="text-white" />
 
       <div className="flex flex-1 items-end justify-between">
         <h2

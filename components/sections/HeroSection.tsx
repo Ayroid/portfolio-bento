@@ -5,7 +5,7 @@ import {
   AboutCard,
   Experience,
   ProfileCard,
-  Resume
+  Resume,
 } from "@/components/landing";
 import { BentoItem, Separator } from "@/components/shared";
 
