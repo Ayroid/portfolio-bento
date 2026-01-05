@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Youtube, Podcast, Book } from "lucide-react";
-import { FadeUpReveal } from "@/components/shared";
+import { FadeUpReveal, Separator } from "@/components/shared";
 
 interface Recommendation {
   id: string;
@@ -95,6 +95,11 @@ export default function RecommendationsPage() {
         </div>
       </FadeUpReveal>
 
+      {/* Separator */}
+      <FadeUpReveal>
+        <Separator />
+      </FadeUpReveal>
+
       {/* Category Filter */}
       <FadeUpReveal>
         <div className="flex flex-wrap gap-2">
@@ -158,9 +163,14 @@ export default function RecommendationsPage() {
         </div>
       </FadeUpReveal>
 
+      {/* Separator */}
+      <FadeUpReveal>
+        <Separator />
+      </FadeUpReveal>
+
       {/* Other Lifestyle Pages */}
       <FadeUpReveal>
-        <div className="flex flex-col gap-4">
+        <div className="mb-12 flex flex-col gap-4 pt-4">
           <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
             More Lifestyle
           </h2>

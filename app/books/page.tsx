@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { FadeUpReveal } from "@/components/shared";
+import { FadeUpReveal, Separator } from "@/components/shared";
 
 interface Book {
   title: string;
@@ -161,7 +161,7 @@ export default function BooksPage() {
   ).length;
 
   return (
-    <div className="flex flex-col gap-8 pb-12">
+    <div className="flex flex-col gap-8">
       {/* Page Header */}
       <FadeUpReveal>
         <div className="flex flex-col gap-0">
@@ -177,6 +177,11 @@ export default function BooksPage() {
             </p>
           </div>
         </div>
+      </FadeUpReveal>
+
+      {/* Separator */}
+      <FadeUpReveal>
+        <Separator />
       </FadeUpReveal>
 
       {/* Stats */}
@@ -245,9 +250,14 @@ export default function BooksPage() {
         </div>
       </FadeUpReveal>
 
+      {/* Separator */}
+      <FadeUpReveal>
+        <Separator />
+      </FadeUpReveal>
+
       {/* Other Lifestyle Pages */}
       <FadeUpReveal>
-        <div className="flex flex-col gap-4">
+        <div className="mb-12 flex flex-col gap-4 pt-4">
           <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
             More Lifestyle
           </h2>
