@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Youtube, Podcast, Book, Sparkles } from "lucide-react";
+import { ExternalLink, Youtube, Podcast, Sparkles } from "lucide-react";
 import { FadeUpReveal, Separator } from "@/components/shared";
 
 interface Recommendation {
