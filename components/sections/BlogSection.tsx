@@ -64,11 +64,7 @@ export const BlogSection = () => {
         }}
       >
         {/* BLOGS CTA - Mobile (shown first on mobile) */}
-        <BentoItem
-          colSpan={10}
-          rowSpan={5}
-          className="lg:hidden"
-        >
+        <BentoItem colSpan={10} rowSpan={5} className="lg:hidden">
           <ActionCard
             href="/blogs"
             label="BLOGS"
@@ -86,7 +82,7 @@ export const BlogSection = () => {
         <BentoItem
           colSpan={10}
           rowSpan={5}
-          className="hidden lg:block md:col-span-2 lg:col-span-10"
+          className="hidden md:col-span-2 lg:col-span-10 lg:block"
         >
           <ActionCard
             href="/blogs"

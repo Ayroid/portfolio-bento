@@ -76,7 +76,7 @@ export default async function ProjectPage({
             </div>
 
             {/* Status Badge */}
-            <div className="hidden md:flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
+            <div className="hidden items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 md:flex">
               <span
                 className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
               />
