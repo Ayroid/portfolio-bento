@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Bento Grid",
-  description: "A modern portfolio with bento grid layout",
+  title: "Ayroid",
+  description: "Portfolio",
 };
 
 export default function RootLayout({
