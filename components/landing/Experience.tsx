@@ -32,7 +32,7 @@ const ExperienceCard = () => {
           <h2 id="experience-heading">EXPERIENCE</h2>
         </Link>
       </header>
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-hidden">
         {experiences.map((exp, index) => (
           <article
             key={index}
