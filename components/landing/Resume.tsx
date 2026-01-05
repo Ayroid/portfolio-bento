@@ -5,6 +5,7 @@ const Resume = () => {
   return (
     <ActionCard
       href={siteConfig.resumeUrl}
+      target="_blank"
       label="RESUME"
       bgColor="bg-accent"
       hoverBgColor="hover:bg-accent-hover"

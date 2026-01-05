@@ -6,7 +6,7 @@ export const experiences: Experience[] = [
     company: "Yamaha Motor Solutions India",
     logo: "/yamaha_logo.png",
     companyUrl: "https://www.ymsl.in/",
-    location: "Faridabad, India (On-Site)",
+    location: "Faridabad, India",
     period: "Jan 2025 - Present",
     socials: {
       website: "https://www.ymsl.in/",

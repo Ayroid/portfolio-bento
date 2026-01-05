@@ -100,6 +100,9 @@ interface WebAppProject {
 
 interface LandingPageProject {
   image: string;
+  mobileImage: string;
+  description: string;
+  technologies: TechKey[];
   demoLink?: string;
   githubLink?: string;
   status: "Live" | "In Development" | "Archived" | "Reviving";
@@ -203,11 +206,19 @@ const webApps: Record<string, WebAppProject> = {
 const landingPages: Record<string, LandingPageProject> = {
   Orbionio: {
     image: "/projects/orbionio.png",
+    mobileImage: "/projects/orbionio_full.png",
+    description:
+      "Modern landing page for Orbionio platform with sleek design and animations.",
+    technologies: ["NextJS", "TailwindCSS", "Vercel"] as TechKey[],
     demoLink: "https://orbionio.in",
     status: "Live",
   },
   UPESCSA: {
     image: "/projects/upescsa.png",
+    mobileImage: "/projects/upescsa_full.png",
+    description:
+      "Official website for UPES Computer Science Association with event management features.",
+    technologies: ["NextJS", "TailwindCSS", "Vercel"] as TechKey[],
     demoLink: "https://upescsa.in",
     status: "Live",
   },
@@ -320,73 +331,92 @@ const LandingPageCard = ({ title, slug, info }: LandingPageCardProps) => {
   };
 
   return (
-    <div
-      onClick={handleCardClick}
-      className="group flex h-full cursor-pointer flex-col p-4 sm:p-6"
-    >
-      <div className="relative -mx-2 -mt-2 mb-4 h-56 overflow-hidden">
-        <Image
-          src={info.image}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+    <>
+      {/* Mobile/Tablet: Render as WebAppCard with full image */}
+      <div className="lg:hidden">
+        <WebAppCard
+          title={title}
+          slug={slug}
+          info={{
+            description: info.description,
+            technologies: info.technologies,
+            image: info.mobileImage,
+            demoLink: info.demoLink,
+            githubLink: info.githubLink,
+            status: info.status,
+          }}
         />
       </div>
-      <div className="flex justify-between">
-        <h3 className="text-xl font-bold text-white">{title}</h3>
-        <div className="mb-2 flex items-center justify-center gap-2">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <span className="relative flex h-3 w-3">
-                <span
-                  className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${
-                    statusColors[info.status]
-                  }`}
-                />
-                <span
-                  className={`relative inline-flex h-3 w-3 rounded-full ${
-                    statusColors[info.status]
-                  }`}
-                />
-              </span>
-            </TooltipTrigger>
-            <TooltipContent>{info.status}</TooltipContent>
-          </Tooltip>
-          {info.demoLink && (
-            <a
-              href={info.demoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 transition-colors duration-300 hover:text-white"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <VscGlobe className="h-6 w-6" />
-                </TooltipTrigger>
-                <TooltipContent>Visit</TooltipContent>
-              </Tooltip>
-            </a>
-          )}
-          {info.githubLink && (
-            <a
-              href={info.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 transition-colors duration-300 hover:text-white"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <SiGithub className="h-5 w-5" />
-                </TooltipTrigger>
-                <TooltipContent>Visit</TooltipContent>
-              </Tooltip>
-            </a>
-          )}
+
+      {/* Desktop: Render minimal landing page card with logo */}
+      <div
+        onClick={handleCardClick}
+        className="group hidden h-full cursor-pointer flex-col p-4 sm:p-6 lg:flex"
+      >
+        <div className="relative -mx-2 -mt-2 mb-4 h-56 overflow-hidden">
+          <Image
+            src={info.image}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+        <div className="flex justify-between">
+          <h3 className="text-xl font-bold text-white">{title}</h3>
+          <div className="mb-2 flex items-center justify-center gap-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="relative flex h-3 w-3">
+                  <span
+                    className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${
+                      statusColors[info.status]
+                    }`}
+                  />
+                  <span
+                    className={`relative inline-flex h-3 w-3 rounded-full ${
+                      statusColors[info.status]
+                    }`}
+                  />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>{info.status}</TooltipContent>
+            </Tooltip>
+            {info.demoLink && (
+              <a
+                href={info.demoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 transition-colors duration-300 hover:text-white"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <VscGlobe className="h-6 w-6" />
+                  </TooltipTrigger>
+                  <TooltipContent>Visit</TooltipContent>
+                </Tooltip>
+              </a>
+            )}
+            {info.githubLink && (
+              <a
+                href={info.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 transition-colors duration-300 hover:text-white"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <SiGithub className="h-5 w-5" />
+                  </TooltipTrigger>
+                  <TooltipContent>Visit</TooltipContent>
+                </Tooltip>
+              </a>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

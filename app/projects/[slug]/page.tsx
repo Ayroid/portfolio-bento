@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ExternalLink, Github, Calendar } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Tooltip,
@@ -65,8 +65,8 @@ export default async function ProjectPage({
       {/* Project Header */}
       <FadeUpReveal>
         <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="flex-1">
+          <div className="flex items-start justify-between gap-4">
+            <div className="w-full">
               <h1 className="mb-3 font-mono text-3xl font-bold text-white sm:text-4xl">
                 {project.title}
               </h1>
@@ -76,7 +76,7 @@ export default async function ProjectPage({
             </div>
 
             {/* Status Badge */}
-            <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
+            <div className="hidden md:flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
               <span
                 className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
               />

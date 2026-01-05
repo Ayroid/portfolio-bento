@@ -63,14 +63,30 @@ export const BlogSection = () => {
           gridAutoRows: "40px",
         }}
       >
-        {/* First blog */}
-        <BlogCard blog={blogs[0]} />
-
-        {/* BLOGS CTA */}
+        {/* BLOGS CTA - Mobile (shown first on mobile) */}
         <BentoItem
           colSpan={10}
           rowSpan={5}
-          className="md:col-span-2 lg:col-span-10"
+          className="lg:hidden"
+        >
+          <ActionCard
+            href="/blogs"
+            label="BLOGS"
+            bgColor="bg-accent"
+            hoverBgColor="hover:bg-accent-hover"
+            textColor="text-accent-foreground"
+            iconColor="text-accent-foreground"
+          />
+        </BentoItem>
+
+        {/* First blog */}
+        <BlogCard blog={blogs[0]} />
+
+        {/* BLOGS CTA - Desktop (shown after first blog on desktop) */}
+        <BentoItem
+          colSpan={10}
+          rowSpan={5}
+          className="hidden lg:block md:col-span-2 lg:col-span-10"
         >
           <ActionCard
             href="/blogs"

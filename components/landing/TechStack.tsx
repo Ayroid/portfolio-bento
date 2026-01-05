@@ -66,10 +66,10 @@ const TechStackCard = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div
-                    className="flex cursor-pointer items-center justify-center p-3"
+                    className="flex cursor-pointer items-center justify-center py-2 px-1 md:py-3 md:px-3"
                     aria-label={tech.name}
                   >
-                    <span className="text-5xl" aria-hidden="true">
+                    <span className="text-4xl md:text-5xl" aria-hidden="true">
                       {tech.icon}
                     </span>
                   </div>

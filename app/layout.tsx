@@ -39,7 +39,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SmoothScroll>
-          <div className="min-h-screen w-full bg-[#18181b] py-3 md:py-12">
+          <div className="min-h-screen w-full bg-[#18181b] py-4 lg:py-12">
             <PageContainer navbar={<Navbar />} footer={<Footer />}>
               {children}
             </PageContainer>

@@ -21,20 +21,6 @@ interface APIContribution {
 const SKELETON_WEEKS = 52;
 const SKELETON_DAYS = 7;
 const LEVELS = [0, 1, 2, 3, 4] as const;
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
 
 const getLevelColor = (level: number) => {
   const colors: Record<number, string> = {
@@ -48,22 +34,22 @@ const getLevelColor = (level: number) => {
 };
 
 const Legend = ({ isLoading }: { isLoading: boolean }) => (
-  <figcaption className="mt-2 flex items-center justify-end gap-2">
+  <figcaption className="mt-2 flex items-center justify-end gap-1.5 sm:gap-2">
     <span
-      className={`text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}
+      className={`text-[9px] sm:text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}
     >
       Less
     </span>
-    <div className="flex gap-[3px]" aria-hidden="true">
+    <div className="flex gap-0.5 sm:gap-[3px]" aria-hidden="true">
       {LEVELS.map((level) => (
         <div
           key={level}
-          className={`h-3.5 w-3.5 ${isLoading ? "bg-zinc-800" : getLevelColor(level)}`}
+          className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 ${isLoading ? "bg-zinc-800" : getLevelColor(level)}`}
         />
       ))}
     </div>
     <span
-      className={`text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}
+      className={`text-[9px] sm:text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}
     >
       More
     </span>
@@ -74,7 +60,7 @@ const ContributionCell = ({ day }: { day: ContributionDay }) => (
   <div
     role="gridcell"
     aria-label={`${day.count} contributions on ${day.date}`}
-    className={`h-3.5 w-3.5 ${getLevelColor(day.level)} group relative cursor-pointer transition-all hover:ring-1 hover:ring-zinc-400`}
+    className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 ${getLevelColor(day.level)} group relative cursor-pointer transition-all hover:ring-1 hover:ring-zinc-400`}
     title={`${day.count} contributions on ${day.date}`}
   >
     <div
@@ -88,13 +74,13 @@ const ContributionCell = ({ day }: { day: ContributionDay }) => (
 );
 
 const SkeletonGrid = () => (
-  <div className="flex gap-[3px]" aria-hidden="true">
+  <div className="flex gap-0.5 sm:gap-[3px]" aria-hidden="true">
     {Array.from({ length: SKELETON_WEEKS }).map((_, weekIndex) => (
-      <div key={weekIndex} className="flex flex-col gap-[3px]">
+      <div key={weekIndex} className="flex flex-col gap-0.5 sm:gap-[3px]">
         {Array.from({ length: SKELETON_DAYS }).map((_, dayIndex) => (
           <div
             key={dayIndex}
-            className="h-3.5 w-3.5 animate-pulse bg-zinc-800"
+            className="h-2.5 w-2.5 animate-pulse bg-zinc-800 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5"
           />
         ))}
       </div>
@@ -108,12 +94,16 @@ const ContributionGrid = ({
   contributions: ContributionWeek[];
 }) => (
   <div
-    className="flex gap-[3px]"
+    className="flex gap-0.5 sm:gap-[3px]"
     role="grid"
     aria-label="GitHub contribution graph"
   >
     {contributions.map((week, weekIndex) => (
-      <div key={weekIndex} className="flex flex-col gap-[3px]" role="row">
+      <div
+        key={weekIndex}
+        className="flex flex-col gap-0.5 sm:gap-[3px]"
+        role="row"
+      >
         {week.days.map((day, dayIndex) => (
           <ContributionCell key={dayIndex} day={day} />
         ))}
@@ -175,23 +165,6 @@ const GitHubCard = ({ username }: { username: string }) => {
     fetchContributions();
   }, [username]);
 
-  const getMonthLabels = () => {
-    const labels: { month: string; offset: number }[] = [];
-    let lastMonth = -1;
-
-    contributions.forEach((week, weekIndex) => {
-      if (week.days[0]) {
-        const month = new Date(week.days[0].date).getMonth();
-        if (month !== lastMonth) {
-          labels.push({ month: MONTHS[month], offset: weekIndex });
-          lastMonth = month;
-        }
-      }
-    });
-
-    return labels;
-  };
-
   const isLoading = isInitialLoad && loading;
 
   return (
@@ -203,47 +176,29 @@ const GitHubCard = ({ username }: { username: string }) => {
     >
       <h3
         id={isLoading ? undefined : "github-contributions-heading"}
-        className="mb-2 text-base font-bold text-white sm:mb-3 sm:text-lg"
+        className="mb-2 text-sm font-bold text-white sm:mb-6 sm:text-base md:text-lg"
       >
         {isLoading ? (
-          <span className="inline-block h-5 w-16 animate-pulse rounded bg-zinc-700" />
+          <span className="inline-block h-4 w-12 animate-pulse rounded bg-zinc-700 sm:h-5 sm:w-16" />
         ) : (
           totalContributions
         )}{" "}
-        <span className="text-zinc-400">contributions in the last year</span>
+        <span className="text-xs text-zinc-400 sm:text-sm md:text-base">
+          contributions in the last year
+        </span>
       </h3>
 
-      <figure className="flex-1">
-        <div className="inline-flex min-w-full flex-col gap-1">
-          <div className="relative mb-1 flex h-4" aria-hidden="true">
-            {isLoading
-              ? MONTHS.map((month, i) => (
-                  <span
-                    key={i}
-                    className="absolute text-[10px] text-zinc-600"
-                    style={{ left: `${i * (52 / 12) * 17}px` }}
-                  >
-                    {month}
-                  </span>
-                ))
-              : getMonthLabels().map((label, i) => (
-                  <time
-                    key={i}
-                    className="absolute text-[10px] text-zinc-500"
-                    style={{ left: `${label.offset * 17}px` }}
-                  >
-                    {label.month}
-                  </time>
-                ))}
+      <figure className="flex-1 overflow-hidden">
+        <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 hover:scrollbar-thumb-zinc-700 md:scrollbar-none overflow-x-auto overflow-y-hidden pb-2 md:pb-0 lg:overflow-x-hidden">
+          <div className="inline-flex min-w-full flex-col gap-1">
+            {isLoading ? (
+              <SkeletonGrid />
+            ) : (
+              <ContributionGrid contributions={contributions} />
+            )}
+
+            <Legend isLoading={isLoading} />
           </div>
-
-          {isLoading ? (
-            <SkeletonGrid />
-          ) : (
-            <ContributionGrid contributions={contributions} />
-          )}
-
-          <Legend isLoading={isLoading} />
         </div>
       </figure>
     </section>

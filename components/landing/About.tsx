@@ -1,14 +1,15 @@
 const AboutCard = () => {
   return (
     <section className="h-full p-4 sm:p-6" aria-label="About me">
+      <h3 className="text-base font-bold text-white sm:text-lg mb-2">Hey,</h3>
+
       <p className="font-sans text-base leading-relaxed text-zinc-400">
-        I&apos;m a full-stack engineer who enjoys taking ideas from concept to
-        production, with a strong focus on building reliable, production-ready
-        systems. As an SWE at Yamaha Motor Solutions India, I work on
-        infrastructure and core system operations to ensure stability and
-        performance. I also build and deploy end-to-end applications, manage and
-        automate infrastructure, and enjoy exploring new technologies &
-        self-help books.
+        I&apos;m a full-stack engineer focused on building reliable,
+        production-ready systems. Currently, I&apos;m a Software
+        Engineer at Yamaha Motor Solutions India, contributing to core system
+        operations and infrastructure to ensure stability and performance.
+        Outside of work, I build and deploy end-to-end applications, automate
+        workflows, and continuously explore new technologies and ideas.
       </p>
     </section>
   );

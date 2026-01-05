@@ -9,6 +9,7 @@ interface ActionCardProps {
   textColor?: string;
   iconColor?: string;
   asDiv?: boolean;
+  target?: "_blank" | "_self" | "_parent" | "_top";
 }
 
 export const ActionCard = ({
@@ -19,12 +20,12 @@ export const ActionCard = ({
   textColor,
   iconColor,
   asDiv = false,
+  target = "_self",
 }: ActionCardProps) => {
-  const className = `${bgColor} h-full w-full text-2xl sm:text-3xl lg:text-4xl font-medium ${textColor} font-mono flex items-end justify-start p-4 relative ${hoverBgColor} transition-colors group`;
+  const className = `${bgColor} min-h-32 lg:min-h-max h-full w-full text-2xl sm:text-3xl lg:text-4xl font-medium ${textColor} font-mono flex items-end justify-start p-4 relative ${hoverBgColor} transition-colors group`;
 
   const content = (
     <>
-      {/* Arrow pointing to top-right corner */}
       <TopRightArrow iconColor={iconColor || "text-white"} />
       {label}
     </>
@@ -35,7 +36,7 @@ export const ActionCard = ({
   }
 
   return (
-    <Link href={href} className={className}>
+    <Link href={href} className={className} target={target}>
       {content}
     </Link>
   );

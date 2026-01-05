@@ -7,16 +7,13 @@ import {
 } from "@/components/ui/hover-card";
 import SocialPreview from "@/components/landing/SocialPreview";
 import { socialProfiles } from "@/config/social";
-import { TopRightArrow } from "@/components/icons";
 
 const Connect = () => {
   return (
     <section
-      className="group relative flex h-full w-full flex-col p-4 font-mono transition-colors"
+      className="group relative flex h-full min-h-32 w-full flex-col p-4 font-mono transition-colors"
       aria-labelledby="connect-heading"
     >
-      <TopRightArrow iconColor="text-white" />
-
       <div className="flex flex-1 items-end justify-between">
         <h2
           id="connect-heading"
