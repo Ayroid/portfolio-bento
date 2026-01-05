@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, MapPin, Calendar } from "lucide-react";
+import { ArrowUpRight, MapPin, Calendar, Briefcase } from "lucide-react";
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import { PiGlobeSimple } from "react-icons/pi";
 import {
@@ -292,10 +292,38 @@ export default function WorkPage() {
       {/* Page Header */}
       <FadeUpReveal>
         <div className="flex flex-col gap-0">
-          <div className="border p-12 sm:p-16">
-            <h1 className="text-center font-mono text-3xl font-bold tracking-wider text-white sm:text-5xl">
-              WORK
-            </h1>
+          <div className="relative overflow-hidden border p-12 sm:p-16">
+            {/* Corner decorations */}
+            <div className="absolute top-3 left-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+            </div>
+            <div className="absolute top-3 right-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+            </div>
+            <div className="absolute bottom-3 left-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+            </div>
+            <div className="absolute right-3 bottom-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+            </div>
+            {/* Background pattern */}
+            <div
+              className="absolute inset-0 opacity-[0.03]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(-45deg, transparent, transparent 3px, currentcolor 4px, currentcolor 4px, transparent 5px)",
+              }}
+            />
+            <div className="relative flex flex-col items-center gap-4">
+              <Briefcase className="h-8 w-8 text-zinc-600 sm:h-10 sm:w-10" />
+              <h1 className="text-center font-mono text-3xl font-bold tracking-wider text-white sm:text-5xl">
+                WORK
+              </h1>
+            </div>
           </div>
           <div className="border border-t-0 p-6">
             <p className="text-center font-sans text-sm text-zinc-400 sm:text-base">

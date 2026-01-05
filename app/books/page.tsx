@@ -1,162 +1,175 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BookOpen } from "lucide-react";
 import { FadeUpReveal, Separator } from "@/components/shared";
 
 interface Book {
   title: string;
+  author: string;
   progress?: number;
   image?: string;
   url?: string;
 }
 
-interface AuthorBooks {
-  author: string;
+interface CategoryBooks {
+  category: string;
   books: Book[];
 }
 
-const bookCollection: AuthorBooks[] = [
+const bookCollection: CategoryBooks[] = [
   {
-    author: "Darius Foroux",
+    category: "Personal Development",
     books: [
       {
-        title: "Do it Today",
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        title: "The Road to Better Habits",
+        author: "Darius Foroux",
+        progress: 100,
+        image: "/books/the-road-to-better-habits.jpg",
       },
       {
         title: "Focus on what matters",
+        author: "Darius Foroux",
         progress: 35,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        image: "/books/focus-on-what-matters.jpg",
+      },
+      {
+        title: "The Power of your Subconscious Mind",
+        author: "Joseph Murphy",
+        progress: 30,
+        image: "/books/the-power-of-your-subconscious-mind.jpg",
+      },
+      {
+        title: "Do it Today",
+        author: "Darius Foroux",
+        image: "/books/do-it-today.jpg",
       },
       {
         title: "Think Straight",
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        author: "Darius Foroux",
+        image: "/books/think-straight.jpg",
       },
       {
         title: "Win your inner battles",
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        author: "Darius Foroux",
+        image: "/books/win-your-inner-battles.jpg",
       },
       {
         title: "What it takes to be free",
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-      },
-      {
-        title: "The Road to Better Habits",
-        progress: 100,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        author: "Darius Foroux",
+        image: "/books/what-it-takes-to-be-free.jpg",
       },
     ],
   },
   {
-    author: "Paulo Coelho",
-    books: [
-      {
-        title: "The Alchemist",
-        progress: 100,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-      },
-      {
-        title: "The Archer",
-        progress: 100,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-      },
-    ],
-  },
-  {
-    author: "Morgan Housel",
-    books: [
-      {
-        title: "The Psychology of Money",
-        progress: 80,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-      },
-    ],
-  },
-  {
-    author: "Austin Kleon",
+    category: "Productivity",
     books: [
       {
         title: "Show your work",
+        author: "Austin Kleon",
         progress: 100,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        image: "/books/show-your-work.jpg",
       },
-    ],
-  },
-  {
-    author: "Joseph Murphy",
-    books: [
-      {
-        title: "The Power of your Subconscious Mind",
-        progress: 30,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-      },
-    ],
-  },
-  {
-    author: "Cal Newport",
-    books: [
       {
         title: "Deep Work",
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        author: "Cal Newport",
+        image: "/books/deep-work.jpg",
       },
     ],
   },
   {
-    author: "Peter Thiel",
+    category: "Power & Strategy",
     books: [
+      {
+        title: "The 48 Laws of Power",
+        author: "Robert Greene",
+        image: "/books/the-48-laws-of-power.jpg",
+      },
+      {
+        title: "Mastery",
+        author: "Robert Greene",
+        image: "/books/mastery.jpg",
+      },
+    ],
+  },
+  {
+    category: "Finance & Business",
+    books: [
+      {
+        title: "The Psychology of Money",
+        author: "Morgan Housel",
+        progress: 80,
+        image: "/books/the-psychology-of-money.jpg",
+      },
       {
         title: "Zero to One",
+        author: "Peter Thiel",
         progress: 70,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        image: "/books/zero-to-one.jpg",
       },
-    ],
-  },
-  {
-    author: "Nick Maggiulli",
-    books: [
-      {
-        title: "Just Keep Buying",
-        progress: 40,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-      },
-    ],
-  },
-  {
-    author: "Mukarami",
-    books: [
-      {
-        title: "Kafka on the Shore",
-        progress: 15,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
-      },
-    ],
-  },
-  {
-    author: "George S. Clason",
-    books: [
       {
         title: "Richest Man in Babylon",
+        author: "George S. Clason",
         progress: 50,
-        image: "https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg",
+        image: "/books/richest-man-in-babylon.jpg",
+      },
+      {
+        title: "Just Keep Buying",
+        author: "Nick Maggiulli",
+        progress: 40,
+        image: "/books/just-keep-buying.jpg",
+      },
+    ],
+  },
+  {
+    category: "Fiction",
+    books: [
+      {
+        title: "The Alchemist",
+        author: "Paulo Coelho",
+        progress: 100,
+        image: "/books/the-alchemist.jpg",
+      },
+      {
+        title: "The Archer",
+        author: "Paulo Coelho",
+        progress: 100,
+        image: "/books/the-archer.jpg",
+      },
+      {
+        title: "Kafka on the Shore",
+        author: "Mukarami",
+        progress: 15,
+        image: "/books/kafka-on-the-shore.jpg",
       },
     ],
   },
 ];
 
-export default function BooksPage() {
-  // Flatten all books into a single array
-  const allBooks = bookCollection.flatMap((author) =>
-    author.books.map((book) => ({
-      ...book,
-      author: author.author,
-    }))
+const BookCard = ({ book }: { book: Book }) => {
+  return (
+    <div className="relative aspect-2/3 cursor-pointer overflow-hidden border border-zinc-800 bg-zinc-900 shadow-lg transition-all duration-300 hover:border-zinc-600 hover:shadow-2xl hover:shadow-zinc-900/50">
+      {book.image && (
+        <Image
+          src={book.image}
+          alt={book.title}
+          fill
+          className="object-cover"
+        />
+      )}
+      {"z "}
+    </div>
   );
+};
 
-  const totalBooks = allBooks.length;
-  const completedBooks = allBooks.filter(
+export default function BooksPage() {
+  const allBooks = bookCollection;
+  const flattenedBooks: Book[] = allBooks.flatMap((category) => category.books);
+
+  const totalBooks = flattenedBooks.length;
+  const completedBooks = flattenedBooks.filter(
     (book) => book.progress === 100
   ).length;
-  const inProgressBooks = allBooks.filter(
+  const inProgressBooks = flattenedBooks.filter(
     (book) => book.progress && book.progress > 0 && book.progress < 100
   ).length;
 
@@ -165,10 +178,38 @@ export default function BooksPage() {
       {/* Page Header */}
       <FadeUpReveal>
         <div className="flex flex-col gap-0">
-          <div className="border p-12 sm:p-16">
-            <h1 className="text-center font-mono text-3xl font-bold tracking-wider text-white sm:text-5xl">
-              BOOKS
-            </h1>
+          <div className="relative overflow-hidden border p-12 sm:p-16">
+            {/* Corner decorations */}
+            <div className="absolute top-3 left-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+            </div>
+            <div className="absolute top-3 right-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+            </div>
+            <div className="absolute bottom-3 left-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+            </div>
+            <div className="absolute right-3 bottom-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+            </div>
+            {/* Background pattern */}
+            <div
+              className="absolute inset-0 opacity-[0.03]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(-45deg, transparent, transparent 3px, currentcolor 4px, currentcolor 4px, transparent 5px)",
+              }}
+            />
+            <div className="relative flex flex-col items-center gap-4">
+              <BookOpen className="h-8 w-8 text-zinc-600 sm:h-10 sm:w-10" />
+              <h1 className="text-center font-mono text-3xl font-bold tracking-wider text-white sm:text-5xl">
+                BOOKS
+              </h1>
+            </div>
           </div>
           <div className="border border-t-0 p-6">
             <p className="text-center font-sans text-sm text-zinc-400 sm:text-base">
@@ -211,44 +252,24 @@ export default function BooksPage() {
       </FadeUpReveal>
 
       {/* Books Grid */}
-      <FadeUpReveal>
-        <div className="grid grid-cols-2 gap-2 sm:gap-4">
-          {allBooks.map((book) => {
-            const BookCard = (
-              <div className="group relative aspect-2/3 cursor-pointer overflow-hidden bg-zinc-900 transition-all hover:border-zinc-700">
-                {book.image && (
-                  <Image
-                    src={book.image}
-                    alt={book.title}
-                    fill
-                    className="object-cover"
-                  />
-                )}
-
-                <div className="absolute inset-0 flex translate-y-full items-end bg-linear-to-t from-black/95 via-black/60 to-transparent p-3 transition-transform duration-300 group-hover:translate-y-0">
-                  <div className="w-full">
-                    <div className="mb-1 font-sans text-sm font-semibold text-white">
-                      {book.title}
-                    </div>
-                    <div className="mb-2 font-sans text-xs text-zinc-400">
-                      {book.author}
-                    </div>
-                    {book.progress !== undefined ? (
-                      <div className="text-xs text-zinc-500">
-                        {book.progress}% complete
-                      </div>
-                    ) : (
-                      <div className="text-xs text-zinc-500">Not started</div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-
-            return <div key={`${book.author}-${book.title}`}>{BookCard}</div>;
-          })}
-        </div>
-      </FadeUpReveal>
+      <div className="flex flex-col gap-12">
+        {allBooks.map((categories) => (
+          <div key={categories.category} className="flex flex-col gap-6">
+            <FadeUpReveal key={categories.category + "header"}>
+              <h2 className="text-2xl font-bold text-white">
+                {categories.category}
+              </h2>
+            </FadeUpReveal>
+            <div className="mx-2 grid grid-cols-1 gap-4 md:mx-0 md:grid-cols-2 md:gap-10">
+              {categories.books.map((book, index) => (
+                <FadeUpReveal key={index}>
+                  <BookCard book={book} />
+                </FadeUpReveal>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
 
       {/* Separator */}
       <FadeUpReveal>
