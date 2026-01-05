@@ -3,7 +3,7 @@ import Image from "next/image";
 export function ProfileCard() {
   return (
     <figure
-      className="relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden"
+      className="relative flex h-full w-full items-center justify-center overflow-hidden"
       aria-label="Profile picture"
     >
       <Image
