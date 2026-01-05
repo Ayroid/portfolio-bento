@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Youtube, Podcast, Book, Sparkles } from "lucide-react";
 import { FadeUpReveal, Separator } from "@/components/shared";
@@ -13,6 +14,7 @@ interface Recommendation {
   category: string;
   url?: string;
   creator?: string;
+  icon?: string;
 }
 
 const recommendationsData: Recommendation[] = [
@@ -24,6 +26,7 @@ const recommendationsData: Recommendation[] = [
     description: "High-intensity web development tutorials and tech news",
     category: "YouTube",
     url: "https://www.youtube.com/@Fireship",
+    icon: "/youtube/fireship.jpg",
   },
   {
     id: "2",
@@ -32,40 +35,87 @@ const recommendationsData: Recommendation[] = [
     description: "Vim, coding, and developer productivity",
     category: "YouTube",
     url: "https://www.youtube.com/@ThePrimeagen",
+    icon: "/youtube/theprimeagen.jpg",
   },
   {
     id: "3",
-    name: "Web Dev Simplified",
-    creator: "Kyle Cook",
-    description: "Clear, concise web development tutorials",
+    name: "Arpit Bhayani",
+    creator: "Arpit Bhayani",
+    description: "Programming tutorials and tech insights",
     category: "YouTube",
-    url: "https://www.youtube.com/@WebDevSimplified",
+    url: "https://www.youtube.com/@AsliEngineering",
+    icon: "/youtube/arpit-bhayani.jpg",
   },
-  // Podcasts
   {
     id: "4",
-    name: "Syntax.fm",
-    creator: "Wes Bos & Scott Tolinski",
-    description: "A tasty treats podcast for web developers",
-    category: "Podcast",
-    url: "https://syntax.fm/",
+    name: "Hitesh Choudhary",
+    creator: "Hitesh Choudhary",
+    description: "Programming tutorials and tech insights",
+    category: "YouTube",
+    url: "https://www.youtube.com/@HiteshCodeLab",
+    icon: "/youtube/hitesh-choudhary.jpg",
   },
   {
     id: "5",
-    name: "The Changelog",
-    creator: "Changelog Media",
-    description: "Conversations with hackers and open source contributors",
+    name: "Piyush Garg",
+    creator: "Piyush Garg",
+    description: "Tech tutorials and career advice",
+    category: "YouTube",
+    url: "https://www.youtube.com/@piyushgargdev",
+    icon: "/youtube/piyush-garg.jpg",
+  },
+  {
+    id: "6",
+    name: "Harkirat Singh",
+    creator: "Harkirat Singh",
+    description: "Coding tutorials and tech discussions",
+    category: "YouTube",
+    url: "https://www.youtube.com/@harkirat1",
+    icon: "/youtube/harkirat-singh.jpg",
+  },
+  {
+    id: "7",
+    name: "AI Engineer",
+    creator: "AI Engineer",
+    description: "Talks, workshops, events, and training for AI Engineers",
+    category: "YouTube",
+    url: "https://www.youtube.com/@aiDotEngineer",
+    icon: "/youtube/ai-engineer.jpg",
+  },
+  {
+    id: "8",
+    name: "Alex Hormozi",
+    creator: "Alex Hormozi",
+    description: "Business, marketing, and entrepreneurship insights",
+    category: "YouTube",
+    url: "https://www.youtube.com/@AlexHormozi",
+    icon: "/youtube/alex-hormozi.jpg",
+  },
+  {
+    id: "9",
+    name: "Raj Shamani",
+    creator: "Raj Shamani",
+    description: "Entrepreneurship and motivational content",
     category: "Podcast",
-    url: "https://changelog.com/podcast",
+    url: "https://www.youtube.com/@rajshamani",
+    icon: "/youtube/raj-shamani.jpg",
+  },
+  {
+    id: "10",
+    name: "Chris Williamson",
+    creator: "Chris Williamson",
+    description: "Personal development and productivity",
+    category: "Podcast",
+    url: "https://www.youtube.com/@ChrisWillx",
+    icon: "/youtube/chris-williamson.jpg",
   },
 ];
 
-const categories = ["All", "YouTube", "Podcast", "Blog"];
+const categories = ["All", "Engineering", "Podcast"];
 
 const categoryIcons = {
   YouTube: Youtube,
   Podcast: Podcast,
-  Blog: Book,
   All: ExternalLink,
 };
 
@@ -154,29 +204,47 @@ export default function RecommendationsPage() {
             const Icon =
               categoryIcons[rec.category as keyof typeof categoryIcons];
             return (
-              <a
+              <div
                 key={rec.id}
-                href={rec.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group relative flex flex-col gap-3 border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
               >
                 <div className="flex items-start justify-between gap-2">
-                  <div className="border border-zinc-800 bg-zinc-900 p-2 transition-colors group-hover:border-zinc-700">
-                    <Icon className="h-5 w-5 text-white" />
+                  <div className="flex items-center justify-center gap-3 p-2 transition-colors group-hover:border-zinc-700">
+                    {rec.icon ? (
+                      <Image
+                        src={rec.icon}
+                        alt={rec.name}
+                        width={32}
+                        height={32}
+                        className="h-8 w-8 rounded-full object-cover"
+                      />
+                    ) : (
+                      <Icon className="h-8 w-8 text-white" />
+                    )}
+                    <div>
+                      <h3 className="font-sans text-xl font-semibold text-white">
+                        {rec.name}
+                      </h3>
+                      {rec.creator && (
+                        <p className="font-sans text-xs text-zinc-500">
+                          {rec.creator}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <ExternalLink className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
+                  {rec.url && (
+                    <a
+                      href={rec.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-zinc-500 transition-colors hover:text-white"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
                 </div>
 
                 <div>
-                  <h3 className="mb-1 font-sans text-lg font-semibold text-white">
-                    {rec.name}
-                  </h3>
-                  {rec.creator && (
-                    <p className="mb-2 font-sans text-xs text-zinc-500">
-                      {rec.creator}
-                    </p>
-                  )}
                   <p className="font-sans text-sm leading-relaxed text-zinc-400">
                     {rec.description}
                   </p>
@@ -185,7 +253,7 @@ export default function RecommendationsPage() {
                 <Badge variant="outline" className="w-fit text-xs">
                   {rec.category}
                 </Badge>
-              </a>
+              </div>
             );
           })}
         </div>
