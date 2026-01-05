@@ -96,7 +96,6 @@ export const projectsData: Project[] = [
     githubLink: "https://github.com/Ayroid/Ideos-Frontend",
     status: "Reviving",
     featured: true,
-    date: "2024",
   },
   {
     id: "2",
@@ -204,7 +203,7 @@ export const projectsData: Project[] = [
   },
   {
     id: "7",
-    title: "UPESCSA",
+    title: "UPES CSA",
     slug: "upescsa",
     description:
       "Official website for UPES Computer Science Association with event management features.",

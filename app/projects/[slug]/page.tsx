@@ -14,7 +14,7 @@ import {
   techStack,
   statusColors,
 } from "@/lib/projects-data";
-import { FadeUpReveal } from "@/components/shared";
+import { FadeUpReveal, Separator } from "@/components/shared";
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -34,8 +34,23 @@ export default async function ProjectPage({
     notFound();
   }
 
+  // Get related projects based on position
+  const currentIndex = projectsData.findIndex((p) => p.id === project.id);
+  let relatedProjects: typeof projectsData = [];
+
+  if (currentIndex === 0) {
+    relatedProjects = projectsData.slice(1, 3);
+  } else if (currentIndex === projectsData.length - 1) {
+    relatedProjects = [projectsData[projectsData.length - 2], projectsData[0]];
+  } else {
+    relatedProjects = [
+      projectsData[currentIndex - 1],
+      projectsData[currentIndex + 1],
+    ];
+  }
+
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 pt-12">
       {/* Back Button */}
       <FadeUpReveal>
         <Link
@@ -76,12 +91,6 @@ export default async function ProjectPage({
             <Badge variant="outline" className="text-sm">
               {project.category}
             </Badge>
-            {project.date && (
-              <div className="flex items-center gap-2 text-zinc-500">
-                <Calendar className="h-4 w-4" />
-                <span className="text-sm">{project.date}</span>
-              </div>
-            )}
           </div>
 
           {/* Links */}
@@ -168,56 +177,61 @@ export default async function ProjectPage({
       </FadeUpReveal>
 
       {/* Related Projects */}
-      <FadeUpReveal>
-        <div className="border-t border-zinc-800 pt-8">
-          <h2 className="mb-4 text-xl font-bold text-white">Other Projects</h2>
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {projectsData
-              .filter((p) => p.id !== project.id)
-              .slice(0, 3)
-              .map((relatedProject) => (
-                <Link
-                  key={relatedProject.id}
-                  href={`/projects/${relatedProject.slug}`}
-                  className="group min-w-[250px] border border-zinc-800 bg-[#18181b] transition-colors hover:border-zinc-700"
-                >
-                  <div className="relative h-32 w-full overflow-hidden">
-                    <Image
-                      src={relatedProject.image}
-                      alt={relatedProject.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <h3 className="mb-1 text-sm font-semibold text-white transition-colors group-hover:text-zinc-100">
-                      {relatedProject.title}
-                    </h3>
-                    <p className="line-clamp-2 text-xs text-zinc-500">
-                      {relatedProject.description}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-          </div>
-        </div>
-      </FadeUpReveal>
+      {relatedProjects.length > 0 && (
+        <>
+          <FadeUpReveal>
+            <Separator />
+          </FadeUpReveal>
+          <FadeUpReveal>
+            <div className="flex flex-col gap-4">
+              <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
+                Other Projects
+              </h2>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                {relatedProjects.map((relatedProject) => (
+                  <Link
+                    key={relatedProject.id}
+                    href={`/projects/${relatedProject.slug}`}
+                    className="group relative block h-full bg-transparent"
+                  >
+                    <div className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-[#18181b] transition-all duration-300 hover:border-zinc-700">
+                      <div className="relative h-48 w-full overflow-hidden">
+                        <Image
+                          src={relatedProject.image}
+                          alt={relatedProject.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="flex flex-1 flex-col gap-2 p-4">
+                        <h3 className="line-clamp-2 font-sans text-base leading-tight font-semibold text-white transition-colors group-hover:text-zinc-100">
+                          {relatedProject.title}
+                        </h3>
+                        <p className="line-clamp-2 font-sans text-xs leading-relaxed text-zinc-400">
+                          {relatedProject.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </FadeUpReveal>
+        </>
+      )}
 
-      {/* Bottom Navigation */}
+      {/* Footer */}
       <FadeUpReveal>
-        <div className="flex items-center justify-between border-t border-zinc-800 pt-8">
+        <Separator />
+      </FadeUpReveal>
+      <FadeUpReveal>
+        <div className="mb-12 flex items-center justify-between pt-4">
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span className="text-sm">All Projects</span>
-          </Link>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-          >
-            <span className="text-sm">Home</span>
+            All Projects
           </Link>
         </div>
       </FadeUpReveal>

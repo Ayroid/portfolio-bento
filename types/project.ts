@@ -52,5 +52,4 @@ export interface Project {
   githubLink?: string;
   status: ProjectStatus;
   featured?: boolean;
-  date?: string;
 }

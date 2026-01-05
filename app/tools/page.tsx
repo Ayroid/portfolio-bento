@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Code, Terminal, Layout, Wrench } from "lucide-react";
 import { FadeUpReveal, Separator } from "@/components/shared";
@@ -23,43 +24,49 @@ const toolsData: Tool[] = [
     description: "Primary code editor with extensive extensions",
     category: "Development",
     url: "https://code.visualstudio.com/",
+    icon: "/tools/vscode.png",
   },
   {
     id: "2",
-    name: "Warp",
-    description: "Modern terminal with AI-powered command suggestions",
+    name: "ZSH",
+    description: "Powerful shell with Oh My Zsh configuration",
     category: "Development",
-    url: "https://www.warp.dev/",
+    url: "https://www.zsh.org/",
+    icon: "/tools/zsh.png",
   },
   {
     id: "3",
-    name: "Postman",
-    description: "API development and testing platform",
+    name: "Thunder Client",
+    description: "Lightweight REST API testing extension for VS Code",
     category: "Development",
-    url: "https://www.postman.com/",
+    url: "https://www.thunderclient.com/",
+    icon: "/tools/thunderclient.png",
   },
-  // Productivity
   {
     id: "4",
-    name: "Notion",
-    description: "All-in-one workspace for notes and documentation",
-    category: "Productivity",
-    url: "https://www.notion.so/",
+    name: "Chrome",
+    description: "Primary web browser for development and testing",
+    category: "Development",
+    url: "https://www.google.com/chrome/",
+    icon: "/tools/chrome.png",
   },
+  // Productivity
   {
     id: "5",
     name: "Obsidian",
     description: "Local-first knowledge base and note-taking",
     category: "Productivity",
     url: "https://obsidian.md/",
+    icon: "/tools/obsidian.png",
   },
   // Design
   {
     id: "6",
-    name: "Figma",
-    description: "Collaborative interface design tool",
+    name: "Eraser",
+    description: "Collaborative diagramming and documentation tool",
     category: "Design",
-    url: "https://www.figma.com/",
+    url: "https://www.eraser.io/",
+    icon: "/tools/eraser.png",
   },
 ];
 
@@ -162,8 +169,21 @@ export default function ToolsPage() {
                 className="group relative flex flex-col gap-3 border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
               >
                 <div className="flex items-start justify-between gap-2">
-                  <div className="border border-zinc-800 bg-zinc-900 p-2 transition-colors group-hover:border-zinc-700">
-                    <Icon className="h-5 w-5 text-white" />
+                  <div className="flex items-center justify-center gap-3 p-2 transition-colors group-hover:border-zinc-700">
+                    {tool.icon ? (
+                      <Image
+                        src={tool.icon}
+                        alt={tool.name}
+                        width={32}
+                        height={32}
+                        className="h-8 w-8 object-contain"
+                      />
+                    ) : (
+                      <Icon className="h-8 w-8 text-white" />
+                    )}
+                    <h2 className="font-sans text-xl font-semibold text-white">
+                      {tool.name}
+                    </h2>
                   </div>
                   {tool.url && (
                     <a
@@ -178,9 +198,6 @@ export default function ToolsPage() {
                 </div>
 
                 <div>
-                  <h3 className="mb-2 font-sans text-lg font-semibold text-white">
-                    {tool.name}
-                  </h3>
                   <p className="font-sans text-sm leading-relaxed text-zinc-400">
                     {tool.description}
                   </p>

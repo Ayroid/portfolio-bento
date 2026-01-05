@@ -3,12 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { ArrowUpRight, FolderCode } from "lucide-react";
+import { SiGithub } from "react-icons/si";
+import { VscGlobe } from "react-icons/vsc";
 import { projectsData, statusColors, techStack } from "@/lib/projects-data";
 import { FadeUpReveal, Separator } from "@/components/shared";
 
@@ -17,6 +20,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const router = useRouter();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -28,13 +32,17 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     });
   };
 
+  const handleCardClick = () => {
+    router.push(`/projects/${project.slug}`);
+  };
+
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group relative block h-full bg-transparent"
+    <div
+      className="group relative block h-full cursor-pointer bg-transparent"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleCardClick}
     >
       {/* Hover glow effect */}
       <div
@@ -86,10 +94,48 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
         {/* Content */}
         <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
-          {/* Title */}
-          <h3 className="font-sans text-xl font-bold text-white">
-            {project.title}
-          </h3>
+          {/* Title and Links */}
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="font-sans text-xl font-bold text-white">
+              {project.title}
+            </h3>
+            {(project.githubLink || project.demoLink) && (
+              <div className="flex items-center gap-2">
+                {project.demoLink && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={project.demoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-gray-400 transition-colors duration-300 hover:text-white"
+                      >
+                        <VscGlobe className="h-6 w-6" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>Visit</TooltipContent>
+                  </Tooltip>
+                )}
+                {project.githubLink && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-gray-400 transition-colors duration-300 hover:text-white"
+                      >
+                        <SiGithub className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>Github</TooltipContent>
+                  </Tooltip>
+                )}
+              </div>
+            )}
+          </div>
 
           {/* Description */}
           <p className="font-sans text-sm leading-relaxed text-zinc-400">
@@ -117,7 +163,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
