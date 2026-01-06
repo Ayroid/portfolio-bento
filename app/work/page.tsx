@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { FadeUpReveal, Separator } from "@/components/shared";
-import { techStack, TechKey } from "@/lib/projects-data";
+import { techStack, TechKey } from "@/data/projects";
 
 interface Experience {
   title: string;

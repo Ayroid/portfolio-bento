@@ -6,7 +6,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import { PiGlobeSimple } from "react-icons/pi";
 import Image from "next/image";
-import { experiences } from "@/data/experience-data";
+import { experiences } from "@/data/experience";
 import { TopRightArrow } from "@/components/icons";
 
 const ExperienceCard = () => {

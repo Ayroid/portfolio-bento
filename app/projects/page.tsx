@@ -12,7 +12,7 @@ import {
 import { ArrowUpRight, FolderCode } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { VscGlobe } from "react-icons/vsc";
-import { projectsData, statusColors, techStack } from "@/lib/projects-data";
+import { projectsData, statusColors, techStack } from "@/data/projects";
 import { FadeUpReveal, Separator } from "@/components/shared";
 
 interface ProjectCardProps {

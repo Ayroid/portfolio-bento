@@ -2,152 +2,50 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 import { FadeUpReveal, Separator } from "@/components/shared";
-
-interface Book {
-  title: string;
-  author: string;
-  progress?: number;
-  image?: string;
-  url?: string;
-}
-
-interface CategoryBooks {
-  category: string;
-  books: Book[];
-}
-
-const bookCollection: CategoryBooks[] = [
-  {
-    category: "Personal Development",
-    books: [
-      {
-        title: "The Road to Better Habits",
-        author: "Darius Foroux",
-        progress: 100,
-        image: "/books/the-road-to-better-habits.jpg",
-      },
-      {
-        title: "Focus on what matters",
-        author: "Darius Foroux",
-        progress: 35,
-        image: "/books/focus-on-what-matters.jpg",
-      },
-      {
-        title: "The Power of your Subconscious Mind",
-        author: "Joseph Murphy",
-        progress: 30,
-        image: "/books/the-power-of-your-subconscious-mind.jpg",
-      },
-      {
-        title: "Do it Today",
-        author: "Darius Foroux",
-        image: "/books/do-it-today.jpg",
-      },
-      {
-        title: "Think Straight",
-        author: "Darius Foroux",
-        image: "/books/think-straight.jpg",
-      },
-      {
-        title: "Win your inner battles",
-        author: "Darius Foroux",
-        image: "/books/win-your-inner-battles.jpg",
-      },
-      {
-        title: "What it takes to be free",
-        author: "Darius Foroux",
-        image: "/books/what-it-takes-to-be-free.jpg",
-      },
-    ],
-  },
-  {
-    category: "Productivity",
-    books: [
-      {
-        title: "Show your work",
-        author: "Austin Kleon",
-        progress: 100,
-        image: "/books/show-your-work.jpg",
-      },
-      {
-        title: "Deep Work",
-        author: "Cal Newport",
-        image: "/books/deep-work.jpg",
-      },
-    ],
-  },
-  {
-    category: "Power & Strategy",
-    books: [
-      {
-        title: "The 48 Laws of Power",
-        author: "Robert Greene",
-        image: "/books/the-48-laws-of-power.jpg",
-      },
-      {
-        title: "Mastery",
-        author: "Robert Greene",
-        image: "/books/mastery.jpg",
-      },
-    ],
-  },
-  {
-    category: "Finance & Business",
-    books: [
-      {
-        title: "The Psychology of Money",
-        author: "Morgan Housel",
-        progress: 80,
-        image: "/books/the-psychology-of-money.jpg",
-      },
-      {
-        title: "Zero to One",
-        author: "Peter Thiel",
-        progress: 70,
-        image: "/books/zero-to-one.jpg",
-      },
-      {
-        title: "Richest Man in Babylon",
-        author: "George S. Clason",
-        progress: 50,
-        image: "/books/richest-man-in-babylon.jpg",
-      },
-      {
-        title: "Just Keep Buying",
-        author: "Nick Maggiulli",
-        progress: 40,
-        image: "/books/just-keep-buying.jpg",
-      },
-    ],
-  },
-  {
-    category: "Fiction",
-    books: [
-      {
-        title: "The Alchemist",
-        author: "Paulo Coelho",
-        progress: 100,
-        image: "/books/the-alchemist.jpg",
-      },
-      {
-        title: "The Archer",
-        author: "Paulo Coelho",
-        progress: 100,
-        image: "/books/the-archer.jpg",
-      },
-      {
-        title: "Kafka on the Shore",
-        author: "Mukarami",
-        progress: 15,
-        image: "/books/kafka-on-the-shore.jpg",
-      },
-    ],
-  },
-];
+import { bookCollection, Book } from "@/data/books";
+import { BsBookmarkStarFill, BsBookmarkCheckFill } from "react-icons/bs";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 const BookCard = ({ book }: { book: Book }) => {
   return (
-    <div className="relative aspect-2/3 cursor-pointer overflow-hidden border border-zinc-800 bg-zinc-900 shadow-lg transition-all duration-300 hover:border-zinc-600 hover:shadow-2xl hover:shadow-zinc-900/50">
+    <div className="relative aspect-2/3 overflow-hidden border border-zinc-800 bg-zinc-900 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-zinc-900/50">
+      {book.image && (
+        <div className="absolute -top-1 right-1 z-10 bg-transparent">
+          {book.completedReading ? (
+            <Tooltip>
+              <TooltipTrigger>
+                <BsBookmarkCheckFill
+                  height={40}
+                  width={40}
+                  className="h-7 w-7 text-black"
+                />
+              </TooltipTrigger>
+              <TooltipContent className="">
+                <span>Completed</span>
+              </TooltipContent>
+            </Tooltip>
+          ) : book.currentlyReading ? (
+            <Tooltip>
+              <TooltipTrigger>
+                <BsBookmarkStarFill
+                  height={40}
+                  width={40}
+                  className="h-7 w-7 text-black"
+                />
+              </TooltipTrigger>
+              <TooltipContent className="">
+                <span>Reading</span>
+              </TooltipContent>
+            </Tooltip>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
       {book.image && (
         <Image
           src={book.image}
@@ -167,10 +65,10 @@ export default function BooksPage() {
 
   const totalBooks = flattenedBooks.length;
   const completedBooks = flattenedBooks.filter(
-    (book) => book.progress === 100
+    (book) => book.completedReading === true
   ).length;
   const inProgressBooks = flattenedBooks.filter(
-    (book) => book.progress && book.progress > 0 && book.progress < 100
+    (book) => book.currentlyReading === true
   ).length;
 
   return (

@@ -13,7 +13,7 @@ import {
   getProjectBySlug,
   techStack,
   statusColors,
-} from "@/lib/projects-data";
+} from "@/data/projects";
 import { FadeUpReveal, Separator } from "@/components/shared";
 
 export async function generateStaticParams() {

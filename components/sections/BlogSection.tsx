@@ -3,7 +3,7 @@ import { BentoItem } from "@/components/shared/BentoItem";
 import { ActionCard } from "@/components/shared";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/shared";
-import { blogs, type BlogItemData } from "@/data/blog-data";
+import { blogs, type BlogItemData } from "@/data/blog";
 
 /**
  * LATTICE STRUCTURE (30 columns × 10 rows)
