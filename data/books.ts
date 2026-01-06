@@ -70,6 +70,12 @@ export const bookCollection: BookCategories[] = [
         image: "/books/deep-work.jpg",
         currentlyReading: true,
       },
+      {
+        title: "Rework",
+        author: "Jason Fried & David Heinemeier Hansson",
+        image: "/books/rework.jpg",
+        currentlyReading: true,
+      }
     ],
   },
   {
