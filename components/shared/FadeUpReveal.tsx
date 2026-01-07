@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface FadeUpRevealProps {
   children: React.ReactNode;
-  delay?: number;
+  delay?:  number;
   duration?: number;
   className?: string;
 }
@@ -28,19 +28,29 @@ export function FadeUpReveal({
       },
       {
         threshold: 0.1,
-        rootMargin: "0px 0px 0px 0px",
+        rootMargin: "50px 0px 50px 0px", // Trigger earlier
       }
     );
 
     const currentRef = ref.current;
 
     if (currentRef) {
-      observer.observe(currentRef);
+      // Check if element is already in viewport
+      const rect = currentRef.getBoundingClientRect();
+      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+      
+      if (isInViewport) {
+        // Element is already visible, show it immediately
+        setIsVisible(true);
+      } else {
+        // Element not in viewport, use observer
+        observer.observe(currentRef);
+      }
     }
 
     return () => {
       if (currentRef) {
-        observer.unobserve(currentRef);
+        observer. unobserve(currentRef);
       }
     };
   }, []);
@@ -51,7 +61,7 @@ export function FadeUpReveal({
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(30px)",
+        transform: isVisible ?  "translateY(0)" : "translateY(30px)",
         transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
       }}
     >
