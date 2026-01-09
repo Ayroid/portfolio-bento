@@ -18,10 +18,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Ayroid",
-  description: "Ayroid's part on the web",
+  description: "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
   openGraph: {
-    title: "Ayush Singh Kushwah",
-    description: "Portfolio, projects, and writings by Ayush Singh Kushwah.",
+    title: "Ayroid",
+    description:
+      "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
     url: "https://ayroid.in",
     siteName: "Ayroid",
     images: [
@@ -35,8 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayush Singh Kushwah",
-    description: "Portfolio, projects, and writings by Ayush Singh Kushwah.",
+    title: "Ayroid",
+    description:
+      "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
     images: ["https://ayroid.in/og_image.png"],
   },
 };
