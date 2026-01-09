@@ -17,29 +17,47 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ayroid",
-  description: "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
+  metadataBase: new URL("https://ayroid.in"),
+  title: "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
+  description:
+    "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
+  keywords: [
+    "full-stack engineer",
+    "software developer",
+    "web development",
+    "scalable systems",
+    "clean interfaces",
+    "React developer",
+    "Next.js developer",
+    "TypeScript",
+    "portfolio",
+    "Ayroid",
+  ],
+  authors: [{ name: "Ayroid" }],
   openGraph: {
-    title: "Ayroid",
+    title: "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
     description:
       "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
     url: "https://ayroid.in",
     siteName: "Ayroid",
     images: [
       {
-        url: "https://ayroid.in/og_image.png",
+        url: "/og_image.png",
         width: 1200,
         height: 630,
+        alt: "Ayroid - Full-Stack Engineer Portfolio",
       },
     ],
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayroid",
+    title: "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
     description:
       "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
-    images: ["https://ayroid.in/og_image.png"],
+    images: ["/og_image.png"],
+    creator: "@ayroids",
   },
 };
 
