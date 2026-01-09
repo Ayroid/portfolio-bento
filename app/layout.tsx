@@ -18,7 +18,27 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Ayroid",
-  description: "Portfolio",
+  description: "Ayroid's part on the web",
+  openGraph: {
+    title: "Ayush Singh Kushwah",
+    description: "Portfolio, projects, and writings by Ayush Singh Kushwah.",
+    url: "https://ayroid.in",
+    siteName: "Ayroid",
+    images: [
+      {
+        url: "https://ayroid.in/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ayush Singh Kushwah",
+    description: "Portfolio, projects, and writings by Ayush Singh Kushwah.",
+    images: ["https://ayroid.in/og-image.png"],
+  },
 };
 
 export default function RootLayout({
