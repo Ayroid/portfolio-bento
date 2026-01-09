@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "Ayroid",
     images: [
       {
-        url: "https://ayroid.in/og-image.png",
+        url: "https://ayroid.in/og_image.png",
         width: 1200,
         height: 630,
       },
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ayush Singh Kushwah",
     description: "Portfolio, projects, and writings by Ayush Singh Kushwah.",
-    images: ["https://ayroid.in/og-image.png"],
+    images: ["https://ayroid.in/og_image.png"],
   },
 };
 
