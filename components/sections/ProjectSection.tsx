@@ -167,7 +167,8 @@ const webApps: Record<string, WebAppProject> = {
       "Nginx",
     ] as TechKey[],
     image: "/projects/validuct.png",
-    status: "In Development",
+    status: "Live",
+    demoLink: "https://validuct.com",
   },
   Parko: {
     description:
