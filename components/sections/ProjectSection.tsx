@@ -155,7 +155,7 @@ const webApps: Record<string, WebAppProject> = {
   },
   Validuct: {
     description:
-      "AI-powered code validation platform offering real-time feedback, error detection, and optimization suggestions to enhance coding efficiency and quality.",
+      "Idea validation platform that helps builders validate product ideas with structured community feedback and real demand signals before investing time and resources.",
     technologies: [
       "NextJS",
       "NodeJS",

@@ -127,9 +127,10 @@ export const projectsData: Project[] = [
     title: "Validuct",
     slug: "validuct",
     description:
-      "AI-powered code validation platform offering real-time feedback, error detection, and optimization suggestions to enhance coding efficiency and quality.",
+      "Idea validation platform that helps builders validate product ideas with structured community feedback and real demand signals before investing time and resources.",
     longDescription:
-      "Validuct is an intelligent code review assistant that provides real-time feedback on your code. Using advanced AI models, it detects potential errors, suggests optimizations, and helps maintain code quality across your projects. The platform integrates seamlessly into your development workflow and supports multiple programming languages.",
+      "Validuct is an idea validation platform built to help entrepreneurs and builders stop guessing and start validating. Instead of unstructured opinions, it provides real demand signals like ‘Would Pay’ and ‘Problem Real’, structured category-based feedback, and clear idea lifecycle tracking from draft to launch. Builders can discover trending ideas, collect actionable insights, and validate market demand before investing serious time or resources. Validuct bridges the gap between noisy discussions and true validation by focusing on signals, structure, and follow-through.",
+
     category: "Web App",
     tags: ["Frontend", "Backend", "AI", "Development"],
     technologies: [
@@ -143,7 +144,8 @@ export const projectsData: Project[] = [
       "Nginx",
     ],
     image: "/projects/validuct.png",
-    status: "In Development",
+    status: "Live",
+    demoLink: "https://validuct.com",
     featured: true,
   },
   {
