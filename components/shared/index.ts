@@ -4,6 +4,7 @@ export { CodeCopyButton } from "./CodeCopyButton";
 export { FadeUpReveal } from "./FadeUpReveal";
 export { MDXComponents } from "./MDXComponents";
 export { PageContainer } from "./PageContainer";
+export { ProjectTimeline } from "./ProjectTimeline";
 export { SmoothScroll } from "./SmoothScroll";
 export { VisitorCount } from "./VisitorCount";
 export { Separator } from "./Separator";

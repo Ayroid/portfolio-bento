@@ -95,7 +95,7 @@ interface WebAppProject {
   image: string;
   demoLink?: string;
   githubLink?: string;
-  status: "Live" | "In Development" | "Archived" | "Reviving";
+  status: "Live" | "Building" | "Archived" | "Reviving";
 }
 
 interface LandingPageProject {
@@ -105,12 +105,12 @@ interface LandingPageProject {
   technologies: TechKey[];
   demoLink?: string;
   githubLink?: string;
-  status: "Live" | "In Development" | "Archived" | "Reviving";
+  status: "Live" | "Building" | "Archived" | "Reviving";
 }
 
 const statusColors = {
   Live: "bg-green-500",
-  "In Development": "bg-yellow-500",
+  "Building": "bg-yellow-500",
   Archived: "bg-amber-800",
   Reviving: "bg-blue-500",
 };
@@ -151,7 +151,7 @@ const webApps: Record<string, WebAppProject> = {
     ] as TechKey[],
     image: "/projects/darch.png",
     demoLink: "https://darch.ayroid.in",
-    status: "In Development",
+    status: "Building",
   },
   Validuct: {
     description:

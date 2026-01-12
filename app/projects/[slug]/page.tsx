@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import {
   Tooltip,
   TooltipContent,
@@ -14,7 +13,7 @@ import {
   techStack,
   statusColors,
 } from "@/data/projects";
-import { FadeUpReveal, Separator } from "@/components/shared";
+import { FadeUpReveal, ProjectTimeline, Separator } from "@/components/shared";
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -65,18 +64,55 @@ export default async function ProjectPage({
       {/* Project Header */}
       <FadeUpReveal>
         <div className="flex flex-col gap-4">
+          {/* Title and Links row */}
           <div className="flex items-start justify-between gap-4">
-            <div className="w-full">
-              <h1 className="mb-3 font-mono text-3xl font-bold text-white sm:text-4xl">
-                {project.title}
-              </h1>
-              <p className="font-sans text-base leading-relaxed text-zinc-400 sm:text-lg">
-                {project.description}
-              </p>
-            </div>
+            <h1 className="font-mono text-3xl font-bold text-white sm:text-4xl">
+              {project.title}
+            </h1>
 
-            {/* Status Badge */}
-            <div className="hidden items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 md:flex">
+            {/* Status Badge and Links - hidden on mobile */}
+            <div className="hidden items-center gap-3 md:flex">
+              <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
+                <span
+                  className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
+                />
+                <span className="text-sm font-medium text-white">
+                  {project.status}
+                </span>
+              </div>
+              {project.demoLink && (
+                <a
+                  href={project.demoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Visit
+                </a>
+              )}
+              {project.githubLink && (
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
+                >
+                  <Github className="h-4 w-4" />
+                  Source
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="font-sans text-base leading-relaxed text-zinc-400 sm:text-lg">
+            {project.description}
+          </p>
+
+          {/* Mobile Links - shown only on mobile */}
+          <div className="flex items-center gap-3 md:hidden">
+            <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
               <span
                 className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
               />
@@ -84,17 +120,6 @@ export default async function ProjectPage({
                 {project.status}
               </span>
             </div>
-          </div>
-
-          {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-4">
-            <Badge variant="outline" className="text-sm">
-              {project.category}
-            </Badge>
-          </div>
-
-          {/* Links */}
-          <div className="flex items-center gap-3">
             {project.demoLink && (
               <a
                 href={project.demoLink}
@@ -103,7 +128,7 @@ export default async function ProjectPage({
                 className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
               >
                 <ExternalLink className="h-4 w-4" />
-                Live Demo
+                Visit
               </a>
             )}
             {project.githubLink && (
@@ -111,10 +136,10 @@ export default async function ProjectPage({
                 href={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-zinc-800 px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white"
+                className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
               >
                 <Github className="h-4 w-4" />
-                View Source
+                Source
               </a>
             )}
           </div>
@@ -145,6 +170,13 @@ export default async function ProjectPage({
               {project.longDescription}
             </p>
           </div>
+        </FadeUpReveal>
+      )}
+
+      {/* Project Timeline */}
+      {project.timeline && project.timeline.length > 0 && (
+        <FadeUpReveal>
+          <ProjectTimeline stages={project.timeline} />
         </FadeUpReveal>
       )}
 

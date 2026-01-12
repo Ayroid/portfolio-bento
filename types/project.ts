@@ -29,13 +29,20 @@ export type TechKey =
   | "Typescript"
   | "Vercel";
 
-export type ProjectStatus = "Live" | "In Development" | "Archived" | "Reviving";
+export type ProjectStatus = "Live" | "Building" | "Archived" | "Reviving";
 
 export type ProjectCategory = "Web App" | "Landing Page" | "Tool";
 
 export interface TechStackItem {
   icon: IconType;
   name: string;
+}
+
+export interface ProjectTimelineStage {
+  label: string;
+  completed: boolean;
+  date?: string;
+  tooltip: string;
 }
 
 export interface Project {
@@ -52,4 +59,5 @@ export interface Project {
   githubLink?: string;
   status: ProjectStatus;
   featured?: boolean;
+  timeline?: ProjectTimelineStage[];
 }

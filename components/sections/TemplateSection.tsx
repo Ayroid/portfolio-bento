@@ -50,7 +50,7 @@ export const TemplateSection = () => {
           <h3 className="mb-2 font-bold text-white sm:mb-3">Pasandida Aurat</h3>
           <p className="mb-2 text-sm text-zinc-400">Dating Platform</p>
           <p className="mb-3 text-xs text-zinc-600 sm:mb-4">
-            Emphasizing authentic connections (in development)
+            Emphasizing authentic connections (Building)
           </p>
           <div className="flex flex-wrap gap-2">
             {["Next.js", "Dating", "Social", "MVP"].map((tag) => (

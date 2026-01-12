@@ -119,8 +119,29 @@ export const projectsData: Project[] = [
     ],
     image: "/projects/darch.png",
     demoLink: "https://darch.ayroid.in",
-    status: "In Development",
+    status: "Building",
     featured: true,
+    timeline: [
+      {
+        label: "Draft",
+        completed: true,
+        date: "01-Aug-2025",
+        tooltip: "Idea drafted",
+      },
+      {
+        label: "Validated",
+        completed: true,
+        date: "05-Aug-2025",
+        tooltip: "Idea Validated",
+      },
+      {
+        label: "Building",
+        completed: true,
+        date: "05-Aug-2025",
+        tooltip: "Development in Progress",
+      },
+      { label: "Launched", completed: false, tooltip: "Yet to be launched" },
+    ],
   },
   {
     id: "3",
@@ -147,6 +168,32 @@ export const projectsData: Project[] = [
     status: "Live",
     demoLink: "https://validuct.com",
     featured: true,
+    timeline: [
+      {
+        label: "Draft",
+        completed: true,
+        date: "01-Jan-2026",
+        tooltip: "Idea drafted",
+      },
+      {
+        label: "Validated",
+        completed: true,
+        date: "02-Jan-2026",
+        tooltip: "Idea Validated",
+      },
+      {
+        label: "Building",
+        completed: true,
+        date: "02-Jan-2026",
+        tooltip: "Development Done",
+      },
+      {
+        label: "Launched",
+        completed: true,
+        date: "12-Jan-2026",
+        tooltip: "Project launched",
+      },
+    ],
   },
   {
     id: "4",
@@ -186,7 +233,35 @@ export const projectsData: Project[] = [
     technologies: ["NextJS", "Typescript", "Linux", "TailwindCSS", "Vercel"],
     image: "/projects/termfolio.png",
     githubLink: "https://github.com/Ayroid/terminal-portfolio",
+    demoLink: "https://terminal.ayroid.in",
     status: "Live",
+    featured: true,
+    timeline: [
+      {
+        label: "Draft",
+        completed: true,
+        date: "14-Dec-2024",
+        tooltip: "Idea drafted",
+      },
+      {
+        label: "Validated",
+        completed: true,
+        date: "14-Dec-2024",
+        tooltip: "Idea Validated",
+      },
+      {
+        label: "Building",
+        completed: true,
+        date: "14-Dec-2024",
+        tooltip: "Development Done",
+      },
+      {
+        label: "Launched",
+        completed: true,
+        date: "16-Dec-2024",
+        tooltip: "Project launched",
+      },
+    ],
   },
   {
     id: "6",
@@ -237,7 +312,7 @@ export const projectsData: Project[] = [
 
 export const statusColors: Record<ProjectStatus, string> = {
   Live: "bg-green-500",
-  "In Development": "bg-yellow-500",
+  Building: "bg-yellow-500",
   Archived: "bg-amber-800",
   Reviving: "bg-blue-500",
 };
