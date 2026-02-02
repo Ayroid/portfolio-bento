@@ -69,7 +69,7 @@ export const techStack = {
   Terraform: { icon: SiTerraform, name: "Terraform" },
   Typescript: { icon: SiTypescript, name: "TypeScript" },
   Vercel: { icon: SiVercel, name: "Vercel" },
-};
+} as const;
 
 export type TechKey = keyof typeof techStack;
 

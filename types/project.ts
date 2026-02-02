@@ -9,6 +9,7 @@ export type TechKey =
   | "Express"
   | "Git"
   | "Github"
+  | "Go"
   | "Javascript"
   | "Kubernetes"
   | "Linux"
