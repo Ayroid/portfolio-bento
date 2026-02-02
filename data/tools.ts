@@ -11,11 +11,11 @@ export const toolsData: Tool[] = [
   // Development Tools
   {
     id: "1",
-    name: "VS Code",
-    description: "Primary code editor with extensive extensions",
+    name: "NeoVim",
+    description: "Primary code editor with productive plugins",
     category: "Development",
-    url: "https://code.visualstudio.com/",
-    icon: "/tools/vscode.png",
+    url: "https://neovim.io/",
+    icon: "/tools/neovim.png",
   },
   {
     id: "2",
@@ -27,11 +27,11 @@ export const toolsData: Tool[] = [
   },
   {
     id: "3",
-    name: "Thunder Client",
-    description: "Lightweight REST API testing extension for VS Code",
+    name: "Postman",
+    description: "API testing tool",
     category: "Development",
-    url: "https://www.thunderclient.com/",
-    icon: "/tools/thunderclient.png",
+    url: "https://www.postman.com/",
+    icon: "/tools/postman.png",
   },
   {
     id: "4",
@@ -60,3 +60,4 @@ export const toolsData: Tool[] = [
     icon: "/tools/eraser.png",
   },
 ];
+
