@@ -1,7 +1,7 @@
-import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaXTwitter, FaGithub, FaLinkedin, FaBluesky, FaInstagram } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
-export type SocialPlatform = "github" | "twitter" | "linkedin" | "hashnode";
+export type SocialPlatform = "github" | "twitter" | "linkedin" | "hashnode" | "bluesky" | "instagram";
 
 export interface SocialProfile {
   platform: SocialPlatform;
@@ -68,6 +68,40 @@ export const socialProfiles: SocialProfile[] = [
     stats: {
       followers: 1515,
       postsLabel: "Connections",
+    },
+    verified: false,
+  },
+  {
+    platform: "bluesky",
+    username: "ayroids",
+    displayName: "Ayush ☁️",
+    bio: "23 • Engineer",
+    url: "https://bsky.app/profile/ayroids.bsky.social",
+    profileImage: "/socials/github_profile.jpg",
+    bannerImage: "/socials/twitter_banner.png",
+    icon: FaBluesky,
+    stats: {
+      followers: 0,
+      following: 0,
+      posts: 0,
+      postsLabel: "Posts",
+    },
+    verified: false,
+  },
+  {
+    platform: "instagram",
+    username: "ayroids",
+    displayName: "Ayush ☁️",
+    bio: "23 • Engineer",
+    url: "https://www.instagram.com/ayroids/",
+    profileImage: "/socials/github_profile.jpg",
+    bannerImage: "/socials/twitter_banner.png",
+    icon: FaInstagram,
+    stats: {
+      followers: 0,
+      following: 0,
+      posts: 0,
+      postsLabel: "Posts",
     },
     verified: false,
   },

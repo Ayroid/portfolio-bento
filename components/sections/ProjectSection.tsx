@@ -16,6 +16,7 @@ import {
   SiExpress,
   SiGit,
   SiGithub,
+  SiGo,
   SiJavascript,
   SiKubernetes,
   SiLinux,
@@ -51,6 +52,7 @@ const techStack = {
   Express: { icon: SiExpress, name: "Express" },
   Git: { icon: SiGit, name: "Git" },
   Github: { icon: SiGithub, name: "GitHub" },
+  Go: { icon: SiGo, name: "Go" },
   Javascript: { icon: SiJavascript, name: "JavaScript" },
   Kubernetes: { icon: SiKubernetes, name: "Kubernetes" },
   Linux: { icon: SiLinux, name: "Linux" },
@@ -110,7 +112,7 @@ interface LandingPageProject {
 
 const statusColors = {
   Live: "bg-green-500",
-  "Building": "bg-yellow-500",
+  Building: "bg-yellow-500",
   Archived: "bg-amber-800",
   Reviving: "bg-blue-500",
 };
@@ -200,6 +202,21 @@ const webApps: Record<string, WebAppProject> = {
     ] as TechKey[],
     image: "/projects/termfolio.png",
     githubLink: "https://github.com/Ayroid/PARKO-Frontend",
+    status: "Live",
+  },
+  Vault: {
+    description:
+      "Lightweight CLI tool for managing reusable React and Next.js components with local registry and GitHub sync capabilities.",
+    technologies: [
+      "Go",
+      "Git",
+      "Github",
+      "React",
+      "NextJS",
+      "Linux",
+    ] as TechKey[],
+    image: "/projects/vault_full.png",
+    githubLink: "https://github.com/Ayroid/vault",
     status: "Live",
   },
 };
@@ -500,30 +517,13 @@ export const ProjectSection = () => {
           />
         </BentoItem>
 
-        {/* Orbionio - 5 cols × 6 rows */}
+        {/* Vault - 10 cols × 6 rows */}
         <BentoItem
-          colSpan={5}
+          colSpan={10}
           rowSpan={6}
-          className="md:col-span-2 lg:col-span-5"
+          className="md:col-span-2 lg:col-span-10"
         >
-          <LandingPageCard
-            title="Orbionio"
-            slug="orbionio"
-            info={landingPages.Orbionio}
-          />
-        </BentoItem>
-
-        {/* UPESCSA - 5 cols × 6 rows */}
-        <BentoItem
-          colSpan={5}
-          rowSpan={6}
-          className="md:col-span-2 lg:col-span-5"
-        >
-          <LandingPageCard
-            title="UPESCSA"
-            slug="upescsa"
-            info={landingPages.UPESCSA}
-          />
+          <WebAppCard title="Vault" slug="vault" info={webApps.Vault} />
         </BentoItem>
       </div>
     </>

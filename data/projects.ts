@@ -8,6 +8,7 @@ import {
   SiFlask,
   SiGit,
   SiGithub,
+  SiGo,
   SiGrafana,
   SiJavascript,
   SiKubernetes,
@@ -47,6 +48,7 @@ export const techStack = {
   GenAI: { icon: SiOpenai, name: "GenAI" },
   Git: { icon: SiGit, name: "Git" },
   Github: { icon: SiGithub, name: "GitHub" },
+  Go: { icon: SiGo, name: "Go" },
   Javascript: { icon: SiJavascript, name: "JavaScript" },
   Kubernetes: { icon: SiKubernetes, name: "Kubernetes" },
   Linux: { icon: SiLinux, name: "Linux" },
@@ -307,6 +309,48 @@ export const projectsData: Project[] = [
     image: "/projects/terraform.jpg",
     githubLink: "https://github.com/Ayroid/terraform-ec2",
     status: "Live",
+  },
+  {
+    id: "9",
+    title: "Vault",
+    slug: "vault",
+    description:
+      "Lightweight CLI tool for managing reusable React and Next.js components with local registry and GitHub sync capabilities.",
+    longDescription:
+      "Vault is a filesystem-based CLI tool built with Go that streamlines component reuse across React and Next.js projects. Instead of copy-pasting components or maintaining separate libraries, Vault provides a fast workflow to save, list, and retrieve components from a global registry stored in your home directory. Features include duplicate detection, custom naming, automatic TSX/JSX organization, and planned GitHub sync for cross-machine sharing. Perfect for developers who want to maintain a personal component library without the overhead of npm packages.",
+    category: "Tool",
+    tags: ["CLI", "Developer Tools", "Go"],
+    technologies: ["Go", "Git", "Github", "React", "NextJS", "Linux"],
+    image: "/projects/vault_full.png",
+    githubLink: "https://github.com/Ayroid/vault",
+    status: "Live",
+    featured: true,
+    timeline: [
+      {
+        label: "Draft",
+        completed: true,
+        date: "28-Jan-2026",
+        tooltip: "Idea drafted",
+      },
+      {
+        label: "Validated",
+        completed: true,
+        date: "28-Jan-2026",
+        tooltip: "Idea Validated",
+      },
+      {
+        label: "Building",
+        completed: true,
+        date: "01-Feb-2026",
+        tooltip: "Development Done",
+      },
+      {
+        label: "Launched",
+        completed: true,
+        date: "01-Feb-2026",
+        tooltip: "Project launched",
+      },
+    ],
   },
 ];
 
