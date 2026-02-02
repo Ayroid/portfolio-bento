@@ -100,4 +100,13 @@ export const recommendationsData: Recommendation[] = [
     url: "https://www.youtube.com/@ChrisWillx",
     icon: "/youtube/chris-williamson.jpg",
   },
+  {
+    id: "11",
+    name: "Dan Koe",
+    creator: "Dan Koe",
+    description: "Building in public, content creation, and digital entrepreneurship",
+    category: "YouTube",
+    url: "https://www.youtube.com/@thedankoe",
+    icon: "/youtube/dan-koe.jpg",
+  },
 ];
