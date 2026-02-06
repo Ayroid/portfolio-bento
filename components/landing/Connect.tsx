@@ -1,11 +1,3 @@
-"use client";
-
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import SocialPreview from "@/components/landing/SocialPreview";
 import { socialProfiles } from "@/config/social";
 
 const Connect = () => {
@@ -22,43 +14,17 @@ const Connect = () => {
           CONNECT
         </h2>
 
-        <nav
-          className="flex items-center gap-4 pb-1"
-          aria-label="Social media links"
-        >
+        <div className="flex items-center gap-4 pb-1" aria-hidden="true">
           {socialProfiles.map((profile) => {
             const Icon = profile.icon;
             return (
-              <HoverCard
+              <Icon
                 key={profile.platform}
-                openDelay={200}
-                closeDelay={100}
-              >
-                <HoverCardTrigger asChild>
-                  <a
-                    href={profile.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white transition-colors hover:text-zinc-400"
-                    aria-label={`Connect on ${profile.platform}`}
-                  >
-                    <Icon
-                      className="h-5 w-5 sm:h-6 sm:w-6"
-                      aria-hidden="true"
-                    />
-                  </a>
-                </HoverCardTrigger>
-                <HoverCardContent
-                  className="w-auto border-0 bg-transparent p-0"
-                  side="top"
-                  sideOffset={8}
-                >
-                  <SocialPreview profile={profile} />
-                </HoverCardContent>
-              </HoverCard>
+                className="h-5 w-5 text-white sm:h-6 sm:w-6"
+              />
             );
           })}
-        </nav>
+        </div>
       </div>
     </section>
   );

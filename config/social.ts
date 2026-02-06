@@ -1,7 +1,7 @@
-import { FaXTwitter, FaGithub, FaLinkedin, FaBluesky, FaInstagram } from "react-icons/fa6";
+import { FaXTwitter, FaGithub, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
-export type SocialPlatform = "github" | "twitter" | "linkedin" | "hashnode" | "bluesky" | "instagram";
+export type SocialPlatform = "github" | "twitter" | "linkedin" | "hashnode" | "instagram" | "youtube";
 
 export interface SocialProfile {
   platform: SocialPlatform;
@@ -49,9 +49,9 @@ export const socialProfiles: SocialProfile[] = [
     bannerImage: "/socials/twitter_banner.png",
     icon: FaXTwitter,
     stats: {
-      followers: 1150,
-      following: 850,
-      posts: 3220,
+      followers: 1200,
+      following: 950,
+      posts: 3350,
       postsLabel: "Posts",
     },
     verified: false,
@@ -72,23 +72,6 @@ export const socialProfiles: SocialProfile[] = [
     verified: false,
   },
   {
-    platform: "bluesky",
-    username: "ayroids",
-    displayName: "Ayush ☁️",
-    bio: "23 • Engineer",
-    url: "https://bsky.app/profile/ayroids.bsky.social",
-    profileImage: "/socials/github_profile.jpg",
-    bannerImage: "/socials/twitter_banner.png",
-    icon: FaBluesky,
-    stats: {
-      followers: 0,
-      following: 0,
-      posts: 0,
-      postsLabel: "Posts",
-    },
-    verified: false,
-  },
-  {
     platform: "instagram",
     username: "ayroids",
     displayName: "Ayush ☁️",
@@ -100,8 +83,22 @@ export const socialProfiles: SocialProfile[] = [
     stats: {
       followers: 0,
       following: 0,
-      posts: 0,
+      posts: 2,
       postsLabel: "Posts",
+    },
+    verified: false,
+  },
+  {
+    platform: "youtube",
+    username: "ayroids",
+    displayName: "Ayroids",
+    bio: "Tech, Engineering & More",
+    url: "https://www.youtube.com/@ayroids",
+    profileImage: "/socials/github_profile.jpg",
+    icon: FaYoutube,
+    stats: {
+      posts: 1,
+      postsLabel: "Videos",
     },
     verified: false,
   },

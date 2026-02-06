@@ -87,6 +87,8 @@ export const HeroSection = () => {
           colSpan={10}
           rowSpan={1}
           className="md:col-span-2 lg:col-span-10 lg:row-span-1"
+          redirectTo="/connect"
+          redirectTarget="_self"
         >
           <Connect />
         </BentoItem>
