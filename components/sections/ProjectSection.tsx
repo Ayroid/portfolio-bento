@@ -482,10 +482,10 @@ export const ProjectSection = () => {
           <WebAppCard title="Darch" slug="darch" info={webApps.Darch} />
         </BentoItem>
 
-        {/* Validuct - 10 cols × 8 rows */}
+        {/* Validuct - 10 cols × 7 rows */}
         <BentoItem
           colSpan={10}
-          rowSpan={8}
+          rowSpan={7}
           className="md:col-span-2 lg:col-span-10"
         >
           <WebAppCard
@@ -517,10 +517,10 @@ export const ProjectSection = () => {
           />
         </BentoItem>
 
-        {/* Vault - 10 cols × 6 rows */}
+        {/* Vault - 10 cols × 7 rows */}
         <BentoItem
           colSpan={10}
-          rowSpan={6}
+          rowSpan={7}
           className="md:col-span-2 lg:col-span-10"
         >
           <WebAppCard title="Vault" slug="vault" info={webApps.Vault} />
