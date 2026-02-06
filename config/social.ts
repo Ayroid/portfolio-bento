@@ -81,8 +81,6 @@ export const socialProfiles: SocialProfile[] = [
     bannerImage: "/socials/twitter_banner.png",
     icon: FaInstagram,
     stats: {
-      followers: 0,
-      following: 0,
       posts: 2,
       postsLabel: "Posts",
     },
@@ -91,7 +89,7 @@ export const socialProfiles: SocialProfile[] = [
   {
     platform: "youtube",
     username: "ayroids",
-    displayName: "Ayroids",
+    displayName: "Ayush ☁️",
     bio: "Tech, Engineering & More",
     url: "https://www.youtube.com/@ayroids",
     profileImage: "/socials/github_profile.jpg",
