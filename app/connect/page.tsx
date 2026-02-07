@@ -1,7 +1,34 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ExternalLink, Users } from "lucide-react";
 import { FadeUpReveal, Separator } from "@/components/shared";
 import { socialProfiles } from "@/config/social";
+
+export const metadata: Metadata = {
+  title: "Connect | Ayroid",
+  description:
+    "Connect with me across social platforms. Find me on GitHub, Twitter, LinkedIn, Instagram, and YouTube.",
+  openGraph: {
+    title: "Connect | Ayroid",
+    description:
+      "Connect with me across social platforms. Find me on GitHub, Twitter, LinkedIn, Instagram, and YouTube.",
+    images: [
+      {
+        url: "/og_connect.png",
+        width: 1200,
+        height: 630,
+        alt: "Connect with Ayroid",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Connect | Ayroid",
+    description:
+      "Connect with me across social platforms. Find me on GitHub, Twitter, LinkedIn, Instagram, and YouTube.",
+    images: ["/og_connect.png"],
+  },
+};
 
 const formatNumber = (num: number): string => {
   if (num >= 1000000) {
