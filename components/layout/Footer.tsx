@@ -19,11 +19,11 @@ const Footer = () => {
       >
         {/* Open to Work Section */}
         <BentoItem colSpan={20} rowSpan={4}>
-          <div className="flex h-full flex-col items-start justify-end p-6 sm:p-8">
+          <div className="group/cta flex h-full flex-col items-start justify-end p-6 sm:p-8">
             <h3 className="font-sans text-2xl font-semibold text-white sm:text-3xl">
               Let&apos;s build something real
             </h3>
-            <p className="max-w-xl font-sans text-base text-zinc-500 sm:text-xl">
+            <p className="max-w-xl font-sans text-base text-zinc-500 transition-colors duration-500 group-hover/cta:text-zinc-400 sm:text-xl">
               Open to full-time roles, contracts, and serious collaborations.
             </p>
           </div>
@@ -45,9 +45,11 @@ const Footer = () => {
       <div className="mt-8 flex flex-col items-center justify-center gap-3">
         <VisitorCount />
         <p className="text-center font-sans text-xs text-zinc-600 sm:text-sm">
-          Designed & Developed by{" "}
-          <span className="font-bold text-zinc-400">{siteConfig.name}</span>
-          <br />© 2026 All rights reserved.
+          Designed &amp; Developed by{" "}
+          <span className="font-bold text-zinc-400 transition-colors duration-300 hover:text-white">
+            {siteConfig.name}
+          </span>
+          <br />© {new Date().getFullYear()} All rights reserved.
         </p>
       </div>
     </>

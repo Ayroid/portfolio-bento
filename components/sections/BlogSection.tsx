@@ -33,7 +33,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
       <div className="flex items-center justify-between">
         <Badge
           variant="outline"
-          className="border-zinc-700 bg-transparent font-sans text-xs text-zinc-400"
+          className="border-zinc-700 bg-transparent font-sans text-xs text-zinc-400 transition-colors duration-300 group-hover:border-zinc-500 group-hover:text-white"
         >
           {blog.category}
         </Badge>
@@ -42,7 +42,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
       {/* Middle: Title & Description */}
       <div className="flex flex-1 flex-col justify-center py-4">
-        <h3 className="font-sans text-lg leading-tight font-semibold text-white transition-colors group-hover:text-zinc-200 sm:text-xl">
+        <h3 className="link-sweep font-sans text-lg leading-tight font-semibold text-white transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-0.5 group-hover:bg-[length:100%_1px] sm:text-xl">
           {blog.title}
         </h3>
         <p className="mt-2 line-clamp-2 font-sans text-sm leading-relaxed text-zinc-400">
@@ -56,7 +56,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
 export const BlogSection = () => {
   return (
     <>
-      <Separator />
+      <Separator label="04 / Writing" />
       <div
         className="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{

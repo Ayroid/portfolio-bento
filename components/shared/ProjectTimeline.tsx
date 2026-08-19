@@ -14,7 +14,7 @@ interface ProjectTimelineProps {
 
 export function ProjectTimeline({ stages }: ProjectTimelineProps) {
   return (
-    <div className="w-full bg-[#18181b]">
+    <div className="w-full bg-surface-card">
       <div className="grid w-full grid-cols-2 md:grid-cols-4">
         {stages.map((stage, index) => (
           <div

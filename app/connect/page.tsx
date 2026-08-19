@@ -103,7 +103,7 @@ export default function ConnectPage() {
                 href={profile.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex flex-col gap-4 border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+                className="group relative flex flex-col gap-4 border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
@@ -175,14 +175,14 @@ export default function ConnectPage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Link
               href="/work"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="text-lg font-semibold text-white">Work</span>
               <ExternalLink className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
             </Link>
             <Link
               href="/projects"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="text-lg font-semibold text-white">
                 Projects

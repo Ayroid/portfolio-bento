@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { CountUp } from "@/components/shared/CountUp";
 
 interface ContributionDay {
   date: string;
@@ -56,11 +57,20 @@ const Legend = ({ isLoading }: { isLoading: boolean }) => (
   </figcaption>
 );
 
-const ContributionCell = ({ day }: { day: ContributionDay }) => (
+const ContributionCell = ({
+  day,
+  delay,
+}: {
+  day: ContributionDay;
+  delay: number;
+}) => (
   <div
     role="gridcell"
     aria-label={`${day.count} contributions on ${day.date}`}
-    className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 ${getLevelColor(day.level)} group relative cursor-pointer transition-all hover:ring-1 hover:ring-zinc-400`}
+    className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 ${getLevelColor(day.level)} group relative cursor-pointer transition-transform duration-200 ease-[var(--ease-spring)] hover:scale-[1.6] hover:bg-white hover:ring-1 hover:ring-white`}
+    style={{
+      animation: `pop-in 380ms var(--ease-out-expo) ${delay}ms both`,
+    }}
     title={`${day.count} contributions on ${day.date}`}
   >
     <div
@@ -105,7 +115,12 @@ const ContributionGrid = ({
         role="row"
       >
         {week.days.map((day, dayIndex) => (
-          <ContributionCell key={dayIndex} day={day} />
+          <ContributionCell
+            key={dayIndex}
+            day={day}
+            // Diagonal wave: later weeks and later weekdays start later.
+            delay={weekIndex * 11 + dayIndex * 14}
+          />
         ))}
       </div>
     ))}
@@ -181,7 +196,7 @@ const GitHubCard = ({ username }: { username: string }) => {
         {isLoading ? (
           <span className="inline-block h-4 w-12 animate-pulse rounded bg-zinc-700 sm:h-5 sm:w-16" />
         ) : (
-          totalContributions
+          <CountUp value={totalContributions} />
         )}{" "}
         <span className="text-xs text-zinc-400 sm:text-sm md:text-base">
           contributions in the last year

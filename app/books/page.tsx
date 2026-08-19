@@ -12,7 +12,7 @@ import {
 
 const BookCard = ({ book }: { book: Book }) => {
   return (
-    <div className="relative aspect-2/3 overflow-hidden border border-zinc-800 bg-zinc-900 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-zinc-900/50">
+    <div className="relative aspect-2/3 overflow-hidden border border-zinc-800 bg-surface-card shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-zinc-900/50">
       {book.image && (
         <div className="absolute -top-1 right-1 z-10 bg-transparent">
           {book.completedReading ? (
@@ -126,7 +126,7 @@ export default function BooksPage() {
       {/* Stats */}
       <FadeUpReveal>
         <div className="grid grid-cols-2 lg:grid-cols-3">
-          <div className="flex flex-col items-center justify-center border bg-zinc-900 p-4 sm:p-6">
+          <div className="flex flex-col items-center justify-center border bg-surface-card p-4 sm:p-6">
             <div className="mb-1 text-2xl font-bold text-white sm:text-3xl">
               {totalBooks}
             </div>
@@ -134,13 +134,13 @@ export default function BooksPage() {
               Total Books
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center border bg-zinc-900 p-4 sm:p-6">
+          <div className="flex flex-col items-center justify-center border bg-surface-card p-4 sm:p-6">
             <div className="mb-1 text-2xl font-bold text-white sm:text-3xl">
               {completedBooks}
             </div>
             <div className="text-sm text-zinc-400 sm:text-base">Completed</div>
           </div>
-          <div className="flex flex-col items-center justify-center border bg-zinc-900 p-4 sm:p-6">
+          <div className="flex flex-col items-center justify-center border bg-surface-card p-4 sm:p-6">
             <div className="mb-1 text-2xl font-bold text-white sm:text-3xl">
               {inProgressBooks}
             </div>
@@ -183,7 +183,7 @@ export default function BooksPage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Link
               href="/tools"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="text-lg font-semibold text-white">
                 Tools & Setup
@@ -192,7 +192,7 @@ export default function BooksPage() {
             </Link>
             <Link
               href="/recommendations"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="text-lg font-semibold text-white">
                 Recommendations

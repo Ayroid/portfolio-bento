@@ -26,7 +26,7 @@ const ExperienceCard = () => {
       <header>
         <Link
           href="/work"
-          className="group relative flex items-end justify-start border-b bg-[#1a1a1a] px-6 py-6 font-mono text-2xl text-white transition-colors hover:bg-[#222222] sm:px-8 sm:text-3xl lg:text-4xl"
+          className="group relative flex items-end justify-start border-b bg-surface-raised px-6 py-6 font-mono text-2xl text-white transition-colors hover:bg-surface-raised-hover sm:px-8 sm:text-3xl lg:text-4xl"
         >
           <TopRightArrow iconColor="text-white" />
           <h2 id="experience-heading">EXPERIENCE</h2>
@@ -36,10 +36,16 @@ const ExperienceCard = () => {
         {experiences.map((exp, index) => (
           <article
             key={index}
-            className={`overflow-hidden px-6 py-4 transition-all sm:px-4 ${
+            className={`relative overflow-hidden px-6 py-4 transition-colors duration-300 hover:bg-white/[0.02] sm:px-4 ${
               index !== experiences.length - 1 ? "border-b border-zinc-800" : ""
             }`}
           >
+            {/* Marker bar that grows down the open entry */}
+            <span
+              aria-hidden="true"
+              className="absolute top-0 left-0 w-px bg-white/50 transition-all duration-500 ease-[var(--ease-out-expo)]"
+              style={{ height: openIndex === index ? "100%" : "0%" }}
+            />
             <header
               className="cursor-pointer"
               onClick={() => toggleAccordion(index)}
@@ -54,8 +60,8 @@ const ExperienceCard = () => {
               }}
             >
               <div className="flex items-center justify-between">
-                <div className="flex items-start gap-2">
-                  <figure className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-0.5">
+                <div className="group/exp flex items-start gap-2">
+                  <figure className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-0.5 transition-transform duration-300 ease-[var(--ease-spring)] group-hover/exp:scale-110">
                     <Image
                       src={exp.logo}
                       alt={`${exp.company} logo`}
@@ -78,7 +84,7 @@ const ExperienceCard = () => {
                       href={exp.socials.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-zinc-400 transition-colors hover:text-white"
+                      className="text-zinc-400 transition-all duration-200 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:text-white"
                       onClick={(e) => e.stopPropagation()}
                       aria-label={`${exp.company} website`}
                     >
@@ -90,7 +96,7 @@ const ExperienceCard = () => {
                       href={exp.socials.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-zinc-400 transition-colors hover:text-white"
+                      className="text-zinc-400 transition-all duration-200 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:text-white"
                       onClick={(e) => e.stopPropagation()}
                       aria-label={`${exp.company} on X (Twitter)`}
                     >
@@ -102,7 +108,7 @@ const ExperienceCard = () => {
                       href={exp.socials.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-zinc-400 transition-colors hover:text-white"
+                      className="text-zinc-400 transition-all duration-200 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:text-white"
                       onClick={(e) => e.stopPropagation()}
                       aria-label={`${exp.company} on LinkedIn`}
                     >
@@ -114,7 +120,7 @@ const ExperienceCard = () => {
                       href={exp.socials.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-zinc-400 transition-colors hover:text-white"
+                      className="text-zinc-400 transition-all duration-200 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:text-white"
                       onClick={(e) => e.stopPropagation()}
                       aria-label={`${exp.company} on GitHub`}
                     >
@@ -146,36 +152,37 @@ const ExperienceCard = () => {
             </header>
 
             <section
-              className={`overflow-hidden transition-all duration-300 ${
-                openIndex === index ? "max-h-[600px]" : "max-h-0"
-              }`}
+              className="grid transition-[grid-template-rows] duration-500 ease-[var(--ease-out-expo)]"
+              style={{ gridTemplateRows: openIndex === index ? "1fr" : "0fr" }}
               aria-hidden={openIndex !== index}
             >
-              <div className="mt-3 ml-6">
-                <ul className="space-y-1">
-                  {exp.description.map((point, i) => (
-                    <li
-                      key={i}
-                      className={`flex items-start font-sans text-sm leading-snug text-zinc-400 transition-all duration-300 ${
-                        openIndex === index
-                          ? "translate-y-0 opacity-100"
-                          : "translate-y-2 opacity-0"
-                      }`}
-                      style={{
-                        transitionDelay:
-                          openIndex === index ? `${i * 50}ms` : "0ms",
-                      }}
-                    >
-                      <span
-                        className="mt-1 mr-2 text-zinc-600"
-                        aria-hidden="true"
+              <div className="overflow-hidden">
+                <div className="mt-3 ml-6">
+                  <ul className="space-y-1">
+                    {exp.description.map((point, i) => (
+                      <li
+                        key={i}
+                        className={`flex items-start font-sans text-sm leading-snug text-zinc-400 transition-all duration-300 ${
+                          openIndex === index
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-2 opacity-0"
+                        }`}
+                        style={{
+                          transitionDelay:
+                            openIndex === index ? `${i * 50}ms` : "0ms",
+                        }}
                       >
-                        •
-                      </span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+                        <span
+                          className="mt-1 mr-2 text-zinc-600"
+                          aria-hidden="true"
+                        >
+                          •
+                        </span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </section>
           </article>

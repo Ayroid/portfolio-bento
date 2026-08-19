@@ -113,7 +113,7 @@ function Aside({ children, type = "info", title }: AsideProps) {
 // ============================================
 function Sidenote({ children }: { children: React.ReactNode }) {
   return (
-    <small className="my-4 block border border-zinc-800 bg-zinc-900/50 p-4 text-sm leading-relaxed text-zinc-400">
+    <small className="my-4 block border border-zinc-800 bg-surface-card/50 p-4 text-sm leading-relaxed text-zinc-400">
       {children}
     </small>
   );
@@ -307,7 +307,7 @@ export const MDXComponents = {
         <div className="pointer-events-none absolute -inset-px bg-linear-to-r from-zinc-600/10 via-zinc-500/5 to-zinc-600/10 opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100" />
 
         {/* Code container */}
-        <div className="relative overflow-hidden bg-zinc-900">
+        <div className="relative overflow-hidden bg-surface-card">
           <pre
             className={cn(
               "overflow-x-auto p-4 font-mono text-sm leading-relaxed sm:p-5",
@@ -376,7 +376,7 @@ export const MDXComponents = {
     </div>
   ),
   thead: (props: ComponentProps<"thead">) => (
-    <thead className="border-b border-zinc-700 bg-zinc-900" {...props} />
+    <thead className="border-b border-zinc-700 bg-surface-card" {...props} />
   ),
   tbody: (props: ComponentProps<"tbody">) => (
     <tbody className="divide-y divide-zinc-800" {...props} />

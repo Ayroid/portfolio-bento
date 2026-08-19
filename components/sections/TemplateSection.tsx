@@ -56,7 +56,7 @@ export const TemplateSection = () => {
             {["Next.js", "Dating", "Social", "MVP"].map((tag) => (
               <span
                 key={tag}
-                className="rounded border border-zinc-800 bg-zinc-900 px-2 py-1 text-xs text-zinc-400"
+                className="rounded border border-zinc-800 bg-surface-card px-2 py-1 text-xs text-zinc-400"
               >
                 {tag}
               </span>
@@ -88,7 +88,7 @@ export const TemplateSection = () => {
               </p>
             </div>
           </div>
-          <div className="flex-1 rounded-lg border border-zinc-800 bg-zinc-900 p-2 sm:p-3">
+          <div className="flex-1 rounded-lg border border-zinc-800 bg-surface-card p-2 sm:p-3">
             <div className="grid grid-cols-12 gap-1">
               {Array.from({ length: 84 }).map((_, i) => {
                 const intensity = (i * 7 + i * 3) % 5;
@@ -140,7 +140,7 @@ export const TemplateSection = () => {
                 {["TypeScript", "JavaScript", "Go"].map((tech) => (
                   <span
                     key={tech}
-                    className="rounded border border-zinc-800 bg-zinc-900 px-2 py-1 text-xs text-zinc-400"
+                    className="rounded border border-zinc-800 bg-surface-card px-2 py-1 text-xs text-zinc-400"
                   >
                     {tech}
                   </span>
@@ -153,7 +153,7 @@ export const TemplateSection = () => {
                 {["Git", "Docker", "Vercel", "AWS"].map((tech) => (
                   <span
                     key={tech}
-                    className="rounded border border-zinc-800 bg-zinc-900 px-2 py-1 text-xs text-zinc-400"
+                    className="rounded border border-zinc-800 bg-surface-card px-2 py-1 text-xs text-zinc-400"
                   >
                     {tech}
                   </span>

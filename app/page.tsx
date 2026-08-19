@@ -6,16 +6,26 @@ import {
   LifeSection,
 } from "@/components/sections";
 
-import { FadeUpReveal } from "@/components/shared";
+import { Reveal } from "@/components/shared";
+
+const sections = [
+  HeroSection,
+  ProjectSection,
+  StatsSection,
+  LifeSection,
+  BlogSection,
+];
 
 export default function Home() {
+  // Each section reveals on its own as the reader reaches it, rather than the
+  // whole page fading in as one block.
   return (
-    <FadeUpReveal>
-      <HeroSection />
-      <ProjectSection />
-      <StatsSection />
-      <LifeSection />
-      <BlogSection />
-    </FadeUpReveal>
+    <>
+      {sections.map((Section, i) => (
+        <Reveal key={i}>
+          <Section />
+        </Reveal>
+      ))}
+    </>
   );
 }

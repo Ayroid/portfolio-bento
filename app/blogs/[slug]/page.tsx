@@ -93,7 +93,7 @@ function RelatedPostCard({ post }: { post: BlogMeta }) {
       href={`/blogs/${post.slug}`}
       className="group relative block h-full bg-transparent"
     >
-      <div className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-[#18181b] transition-all duration-300 hover:border-zinc-700">
+      <div className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-surface-card transition-all duration-300 hover:border-zinc-700">
         {/* Cover Image */}
         {post.coverImage && (
           <div className="relative h-48 w-full overflow-hidden">

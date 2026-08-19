@@ -76,13 +76,22 @@ const techStack = {
 
 type TechKey = keyof typeof techStack;
 
-const TechIcon = ({ techKey }: { techKey: TechKey }) => {
+const TechIcon = ({
+  techKey,
+  index = 0,
+}: {
+  techKey: TechKey;
+  index?: number;
+}) => {
   const tech = techStack[techKey];
   const Icon = tech.icon;
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <span>
+        <span
+          className="inline-block transition-all duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 hover:!-translate-y-1.5 hover:scale-110"
+          style={{ transitionDelay: `${index * 35}ms` }}
+        >
           <Icon className="h-6 w-6 text-white" />
         </span>
       </TooltipTrigger>
@@ -263,20 +272,34 @@ const WebAppCard = ({ title, slug, info }: WebAppCardProps) => {
           src={info.image}
           alt={title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
         />
+        {/* Scrim keeps the cue legible over bright screenshots */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute bottom-3 left-4 translate-y-3 font-mono text-[10px] tracking-[0.25em] text-white uppercase opacity-0 transition-all duration-500 ease-[var(--ease-out-expo)] group-hover:translate-y-0 group-hover:opacity-100"
+        >
+          View case →
+        </span>
       </div>
       <div className="mb-2 flex flex-col justify-between px-4 pb-2 sm:px-6">
         <div className="flex justify-between">
-          <h3 className="text-xl font-bold text-white">{title}</h3>
+          <h3 className="link-sweep text-xl font-bold text-white transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-0.5 group-hover:bg-[length:100%_1px]">
+            {title}
+          </h3>
           <div className="mb-2 flex items-center justify-center gap-2">
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="relative flex h-3 w-3">
                   <span
-                    className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${
+                    className={`absolute inline-flex h-full w-full rounded-full ${
                       statusColors[info.status]
                     }`}
+                    style={{ animation: "pulse-ring 2.4s ease-out infinite" }}
                   />
                   <span
                     className={`relative inline-flex h-3 w-3 rounded-full ${
@@ -327,8 +350,8 @@ const WebAppCard = ({ title, slug, info }: WebAppCardProps) => {
         <div className="flex flex-col flex-wrap gap-2 font-sans text-zinc-400">
           <span>Technologies</span>
           <div className="flex flex-wrap gap-2">
-            {info.technologies.map((tech) => (
-              <TechIcon key={tech} techKey={tech} />
+            {info.technologies.map((tech, i) => (
+              <TechIcon key={tech} techKey={tech} index={i} />
             ))}
           </div>
         </div>
@@ -376,19 +399,26 @@ const LandingPageCard = ({ title, slug, info }: LandingPageCardProps) => {
             src={info.image}
             alt={title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           />
         </div>
         <div className="flex justify-between">
-          <h3 className="text-xl font-bold text-white">{title}</h3>
+          <h3 className="link-sweep text-xl font-bold text-white transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-0.5 group-hover:bg-[length:100%_1px]">
+            {title}
+          </h3>
           <div className="mb-2 flex items-center justify-center gap-2">
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="relative flex h-3 w-3">
                   <span
-                    className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${
+                    className={`absolute inline-flex h-full w-full rounded-full ${
                       statusColors[info.status]
                     }`}
+                    style={{ animation: "pulse-ring 2.4s ease-out infinite" }}
                   />
                   <span
                     className={`relative inline-flex h-3 w-3 rounded-full ${
@@ -441,7 +471,7 @@ const LandingPageCard = ({ title, slug, info }: LandingPageCardProps) => {
 export const ProjectSection = () => {
   return (
     <>
-      <Separator />
+      <Separator label="01 / Selected work" />
       <div
         className="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{

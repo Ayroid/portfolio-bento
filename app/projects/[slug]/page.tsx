@@ -72,7 +72,7 @@ export default async function ProjectPage({
 
             {/* Status Badge and Links - hidden on mobile */}
             <div className="hidden items-center gap-3 md:flex">
-              <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
+              <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-surface-card px-4 py-2">
                 <span
                   className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
                 />
@@ -112,7 +112,7 @@ export default async function ProjectPage({
 
           {/* Mobile Links - shown only on mobile */}
           <div className="flex items-center gap-3 md:hidden">
-            <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2">
+            <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-surface-card px-4 py-2">
               <span
                 className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
               />
@@ -162,7 +162,7 @@ export default async function ProjectPage({
       {/* Long Description */}
       {project.longDescription && (
         <FadeUpReveal>
-          <div className="border border-zinc-800 bg-[#18181b] p-6 sm:p-8">
+          <div className="border border-zinc-800 bg-surface-card p-6 sm:p-8">
             <h2 className="mb-4 text-xl font-bold text-white">
               About the Project
             </h2>
@@ -182,7 +182,7 @@ export default async function ProjectPage({
 
       {/* Technologies */}
       <FadeUpReveal>
-        <div className="border border-zinc-800 bg-[#18181b] p-6 sm:p-8">
+        <div className="border border-zinc-800 bg-surface-card p-6 sm:p-8">
           <h2 className="mb-4 text-xl font-bold text-white">
             Technologies Used
           </h2>
@@ -193,7 +193,7 @@ export default async function ProjectPage({
               return (
                 <Tooltip key={tech}>
                   <TooltipTrigger asChild>
-                    <div className="flex items-center gap-2 border border-zinc-800 bg-zinc-900 px-3 py-2 transition-colors hover:border-zinc-700">
+                    <div className="flex items-center gap-2 border border-zinc-800 bg-surface-card px-3 py-2 transition-colors hover:border-zinc-700">
                       <Icon className="h-5 w-5 text-white" />
                       <span className="text-sm text-zinc-300">
                         {techInfo.name}
@@ -226,7 +226,7 @@ export default async function ProjectPage({
                     href={`/projects/${relatedProject.slug}`}
                     className="group relative block h-full bg-transparent"
                   >
-                    <div className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-[#18181b] transition-all duration-300 hover:border-zinc-700">
+                    <div className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-surface-card transition-all duration-300 hover:border-zinc-700">
                       <div className="relative h-48 w-full overflow-hidden">
                         <Image
                           src={relatedProject.image}

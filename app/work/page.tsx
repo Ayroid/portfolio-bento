@@ -158,7 +158,7 @@ const ExperienceCard = ({ exp }: { exp: Experience }) => {
 
       {/* Card content */}
       <div
-        className="relative border border-zinc-800 bg-[#18181b] transition-colors duration-300"
+        className="relative border border-zinc-800 bg-surface-card transition-colors duration-300"
         style={{ zIndex: 2 }}
       >
         {/* Header */}
@@ -362,7 +362,7 @@ export default function WorkPage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Link
               href="/projects"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="font-sans text-lg font-semibold text-white">
                 Projects
@@ -371,7 +371,7 @@ export default function WorkPage() {
             </Link>
             <Link
               href="/blogs"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="font-sans text-lg font-semibold text-white">
                 Blogs

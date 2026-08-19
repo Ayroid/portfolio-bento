@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/layout";
-import { SmoothScroll, PageContainer } from "@/components/shared";
+import {
+  SmoothScroll,
+  PageContainer,
+  ScrollProgress,
+} from "@/components/shared";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +22,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ayroid.in"),
-  title: "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
+  title:
+    "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
   description:
     "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
   keywords: [
@@ -35,7 +40,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Ayroid" }],
   openGraph: {
-    title: "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
+    title:
+      "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
     description:
       "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
     url: "https://ayroid.in",
@@ -53,7 +59,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
+    title:
+      "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
     description:
       "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
     images: ["/og_image.png"],
@@ -78,8 +85,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ScrollProgress />
         <SmoothScroll>
-          <div className="min-h-screen w-full bg-[#18181b] py-4 lg:py-12">
+          <div className="grain relative min-h-screen w-full bg-surface-page py-4 lg:py-12">
             <PageContainer navbar={<Navbar />} footer={<Footer />}>
               {children}
             </PageContainer>

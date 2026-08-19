@@ -10,7 +10,7 @@ import { BentoItem, Separator } from "@/components/shared";
 export const StatsSection = () => {
   return (
     <>
-      <Separator />
+      <Separator label="02 / Stack & signal" />
       <div
         className="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
         style={{

@@ -22,12 +22,33 @@ export const ActionCard = ({
   asDiv = false,
   target = "_self",
 }: ActionCardProps) => {
-  const className = `${bgColor} min-h-32 lg:min-h-max h-full w-full text-2xl sm:text-3xl lg:text-4xl font-medium ${textColor} font-mono flex items-end justify-start p-4 relative ${hoverBgColor} transition-colors group`;
+  // Light tiles need a dark sheen to be visible, and vice versa.
+  const isLightTile = /bg-white|bg-accent(?!-)/.test(bgColor ?? "");
+
+  const className = [
+    bgColor,
+    "sheen",
+    isLightTile ? "sheen-dark" : "",
+    "min-h-32 lg:min-h-max h-full w-full text-2xl sm:text-3xl lg:text-4xl font-medium",
+    textColor,
+    "font-mono flex items-end justify-start p-4 relative group",
+    hoverBgColor,
+    "transition-colors duration-300",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const content = (
     <>
       <TopRightArrow iconColor={iconColor || "text-white"} />
-      {label}
+      <span className="relative z-[2] inline-block transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1">
+        {label}
+      </span>
+      {/* Hairline that draws itself under the label on hover */}
+      <span
+        aria-hidden="true"
+        className="absolute bottom-3 left-4 z-[2] h-px w-0 bg-current opacity-40 transition-[width] duration-500 ease-[var(--ease-out-expo)] group-hover:w-[calc(100%-2rem)]"
+      />
     </>
   );
 

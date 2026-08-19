@@ -66,7 +66,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
       {/* Card content */}
       <div
-        className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-[#18181b] transition-colors duration-300"
+        className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-surface-card transition-colors duration-300"
         style={{ zIndex: 2 }}
       >
         {/* Project Image */}
@@ -342,7 +342,7 @@ export default function ProjectsPage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Link
               href="/work"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="font-sans text-lg font-semibold text-white">
                 Work Experience
@@ -351,7 +351,7 @@ export default function ProjectsPage() {
             </Link>
             <Link
               href="/blogs"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="font-sans text-lg font-semibold text-white">
                 Blogs

@@ -237,7 +237,7 @@ const SocialPreview = ({ profile }: SocialPreviewProps) => {
 
   return (
     <article
-      className="w-72 overflow-hidden rounded-sm border border-zinc-800 bg-zinc-900 shadow-xl"
+      className="w-72 overflow-hidden rounded-sm border border-zinc-800 bg-surface-card shadow-xl"
       aria-label={`${profile.displayName}'s ${profile.platform} profile`}
     >
       <header className="relative h-20 bg-zinc-800">

@@ -104,7 +104,7 @@ export default function ToolsPage() {
             return (
               <div
                 key={tool.id}
-                className="group relative flex flex-col gap-3 border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+                className="group relative flex flex-col gap-3 border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center justify-center gap-3 p-2 transition-colors group-hover:border-zinc-700">
@@ -164,14 +164,14 @@ export default function ToolsPage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Link
               href="/books"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="text-lg font-semibold text-white">Books</span>
               <ExternalLink className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-white" />
             </Link>
             <Link
               href="/recommendations"
-              className="group flex items-center justify-between border border-zinc-800 bg-[#18181b] p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
+              className="group flex items-center justify-between border border-zinc-800 bg-surface-card p-5 transition-all duration-300 hover:border-zinc-700 sm:p-6"
             >
               <span className="text-lg font-semibold text-white">
                 Recommendations

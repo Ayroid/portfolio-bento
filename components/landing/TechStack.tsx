@@ -61,15 +61,21 @@ const TechStackCard = () => {
           className="flex flex-1 list-none flex-wrap content-start"
           role="list"
         >
-          {TechStackData.map((tech) => (
+          {TechStackData.map((tech, i) => (
             <li key={tech.name}>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div
                     className="flex cursor-pointer items-center justify-center px-1 py-2 md:px-3 md:py-3"
                     aria-label={tech.name}
+                    style={{
+                      animation: `pop-in 420ms var(--ease-out-expo) ${i * 35}ms both`,
+                    }}
                   >
-                    <span className="text-4xl md:text-5xl" aria-hidden="true">
+                    <span
+                      className="text-4xl text-white transition-transform duration-300 ease-[var(--ease-spring)] hover:-translate-y-1 hover:scale-110 md:text-5xl"
+                      aria-hidden="true"
+                    >
                       {tech.icon}
                     </span>
                   </div>

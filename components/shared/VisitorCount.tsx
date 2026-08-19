@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { CountUp } from "./CountUp";
 
 interface UmamiStats {
   pageviews: number;
@@ -53,21 +54,38 @@ export const VisitorCount = () => {
   }
 
   return (
-    <div className="flex items-center gap-4 text-zinc-600">
+    <div
+      className="flex items-center gap-4 text-zinc-600"
+      style={{
+        animation: "reveal-up 500ms var(--ease-out-expo) both",
+      }}
+    >
       <div className="flex items-center gap-1.5">
-        <span className="inline-block h-2 w-2 rounded-full bg-green-500" />
+        {/* Live indicator */}
+        <span className="relative flex h-2 w-2">
+          <span
+            className="absolute inline-flex h-full w-full rounded-full bg-white"
+            style={{ animation: "pulse-ring 2.4s ease-out infinite" }}
+            aria-hidden="true"
+          />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+        </span>
         <span className="text-xs sm:text-sm">
-          <span className="font-semibold text-zinc-400">
-            {formatNumber(stats.visitors)}
-          </span>{" "}
+          <CountUp
+            value={stats.visitors}
+            format={formatNumber}
+            className="font-semibold text-zinc-400"
+          />{" "}
           visitors
         </span>
       </div>
       <div className="flex items-center gap-1.5">
         <span className="text-xs sm:text-sm">
-          <span className="font-semibold text-zinc-400">
-            {formatNumber(stats.pageviews)}
-          </span>{" "}
+          <CountUp
+            value={stats.pageviews}
+            format={formatNumber}
+            className="font-semibold text-zinc-400"
+          />{" "}
           views
         </span>
       </div>
