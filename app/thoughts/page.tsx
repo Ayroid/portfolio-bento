@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { FadeUpReveal } from "@/components/shared";
+import { desc } from "drizzle-orm";
+import { FadeUpReveal, LikeButton } from "@/components/shared";
 import { siteConfig } from "@/config";
-import { thoughts } from "@/data/thoughts";
+import { db, schema } from "@/db";
+
+// Re-read the feed periodically so a newly added thought appears without a
+// redeploy; likes come back fresh on each regeneration.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: `Thoughts — ${siteConfig.name}`,
@@ -17,15 +22,20 @@ export const metadata: Metadata = {
 };
 
 /** Fixed locale + UTC so the server and client agree on the rendered string. */
-const formatDate = (iso: string) =>
+const formatDate = (value: Date) =>
   new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
     timeZone: "UTC",
-  }).format(new Date(iso));
+  }).format(value);
 
-export default function ThoughtsPage() {
+export default async function ThoughtsPage() {
+  const thoughts = await db
+    .select()
+    .from(schema.thoughts)
+    .orderBy(desc(schema.thoughts.postedAt));
+
   return (
     <div className="w-full py-8">
       <FadeUpReveal>
@@ -72,10 +82,10 @@ export default function ThoughtsPage() {
                   ·
                 </span>
                 <time
-                  dateTime={thought.date}
+                  dateTime={thought.postedAt.toISOString()}
                   className="font-sans text-sm text-zinc-500"
                 >
-                  {formatDate(thought.date)}
+                  {formatDate(thought.postedAt)}
                 </time>
               </div>
 
@@ -104,16 +114,19 @@ export default function ThoughtsPage() {
                 </div>
               )}
 
-              {thought.source && (
-                <a
-                  href={thought.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-block font-mono text-[11px] text-zinc-600 underline-offset-4 transition-colors hover:text-zinc-400 hover:underline"
-                >
-                  originally on X
-                </a>
-              )}
+              <div className="mt-3 flex items-center gap-4">
+                <LikeButton id={thought.id} initialLikes={thought.likes} />
+                {thought.source && (
+                  <a
+                    href={thought.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[11px] text-zinc-600 underline-offset-4 transition-colors hover:text-zinc-400 hover:underline"
+                  >
+                    originally on X
+                  </a>
+                )}
+              </div>
 
               {thought.tags && thought.tags.length > 0 && (
                 <ul className="mt-3 flex flex-wrap gap-2">

@@ -17,23 +17,16 @@ export const thoughts: Thought[] = [
   {
     id: "finding-the-truth",
     date: "2026-08-21T00:00:00Z",
-    body: "If something changes then it's not true\n\nLife if all about finding the truth & recognising yourself & getting what you want out of it",
+    body: "If something changes then it's not true.\nLife if all about finding the truth & recognising yourself & getting what you want out of it",
     tags: ["life"],
     source: "https://x.com/ayroids/status/2090879722943398324",
   },
   {
     id: "amazing-people",
     date: "2026-08-20T00:00:00Z",
-    body: "Honestly, you meet amazing people at unexpected yet at the right times when you need their wise mindset and thoughts",
+    body: "Honestly, you meet amazing people at unexpected yet at the right times when you need their wise mindset and thoughts.",
     tags: ["life"],
     source: "https://x.com/ayroids/status/2090499856095904023",
-  },
-  {
-    id: "only-social-media",
-    date: "2026-08-19T00:00:00Z",
-    body: "I don't have any social media except for X and this alone helps find so many amazing people online and even the YT algorithm has been blessing me with tons of wise creators who just sit down, hit record and start sharing experiences.",
-    tags: ["life"],
-    source: "https://x.com/ayroids/status/2090121045999341812",
   },
   {
     id: "everything-uncertain",
@@ -45,7 +38,7 @@ export const thoughts: Thought[] = [
   {
     id: "build-a-routine",
     date: "2026-08-04T00:00:00Z",
-    body: "Heard this recently - If you don't build a routine for yourself, you'll be assigned one.",
+    body: "If you don't build a routine for yourself, you'll be assigned one.",
     tags: ["life"],
     source: "https://x.com/ayroids/status/2084681151105712394",
   },

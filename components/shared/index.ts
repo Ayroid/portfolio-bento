@@ -3,6 +3,7 @@ export { BentoItem } from "./BentoItem";
 export { CodeCopyButton } from "./CodeCopyButton";
 export { CountUp } from "./CountUp";
 export { FadeUpReveal, Reveal } from "./FadeUpReveal";
+export { LikeButton } from "./LikeButton";
 export { MDXComponents } from "./MDXComponents";
 export { PageContainer } from "./PageContainer";
 export { ProjectTimeline } from "./ProjectTimeline";

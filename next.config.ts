@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
         hostname: "github.com",
       },
       {
+        // Photos on thoughts pulled from X are referenced at their source.
+        protocol: "https",
+        hostname: "pbs.twimg.com",
+      },
+      {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
       },
