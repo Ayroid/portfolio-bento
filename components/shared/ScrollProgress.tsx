@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 /**
  * Hairline reading-progress bar pinned to the top of the viewport.
- * Driven by rAF-throttled scroll so it stays smooth alongside Lenis.
+ * Driven by rAF-throttled scroll.
  */
 export const ScrollProgress = () => {
   const [progress, setProgress] = useState(0);

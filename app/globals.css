@@ -377,6 +377,7 @@
 
   html {
     scrollbar-color: #3f3f46 transparent;
+    scroll-behavior: smooth;
   }
 
   ::-webkit-scrollbar {

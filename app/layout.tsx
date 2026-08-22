@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/layout";
-import {
-  SmoothScroll,
-  PageContainer,
-  ScrollProgress,
-} from "@/components/shared";
+import { PageContainer, ScrollProgress } from "@/components/shared";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,13 +82,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ScrollProgress />
-        <SmoothScroll>
-          <div className="grain relative min-h-screen w-full bg-surface-page py-4 lg:py-12">
-            <PageContainer navbar={<Navbar />} footer={<Footer />}>
-              {children}
-            </PageContainer>
-          </div>
-        </SmoothScroll>
+        <div className="grain relative min-h-screen w-full bg-surface-page py-4 lg:py-12">
+          <PageContainer navbar={<Navbar />} footer={<Footer />}>
+            {children}
+          </PageContainer>
+        </div>
       </body>
     </html>
   );
