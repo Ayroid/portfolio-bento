@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { MessageCircle } from "lucide-react";
 import { desc } from "drizzle-orm";
 import { FadeUpReveal, LikeButton } from "@/components/shared";
 import { siteConfig } from "@/config";
@@ -11,12 +12,10 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: `Thoughts — ${siteConfig.name}`,
-  description:
-    "Short notes on building things. The stuff too small for a blog post.",
+  description: "Thoughts and views about life in general.",
   openGraph: {
     title: `Thoughts — ${siteConfig.name}`,
-    description:
-      "Short notes on building things. The stuff too small for a blog post.",
+    description: "Thoughts and views about life in general.",
     url: "https://thoughts.ayroid.in",
   },
 };
@@ -37,37 +36,49 @@ export default async function ThoughtsPage() {
     .orderBy(desc(schema.thoughts.postedAt));
 
   return (
-    <div className="w-full py-8">
+    <div className="flex w-full flex-col gap-8 py-8">
+      {/* Page Header */}
       <FadeUpReveal>
-        <header className="bg-surface-card mb-6 border border-zinc-800 p-6">
-          <div className="flex items-center gap-4">
-            <a
-              href={siteConfig.url}
-              aria-label={`${siteConfig.name} — back to the main site`}
-              className="group shrink-0"
-            >
-              <Image
-                src="/profile.jpg"
-                alt={siteConfig.name}
-                width={56}
-                height={56}
-                className="h-14 w-14 rounded-full object-cover ring-1 ring-white/0 transition-all duration-500 ease-[var(--ease-out-expo)] group-hover:ring-white/40"
-              />
-            </a>
-            <div className="min-w-0">
-              <h1 className="font-mono text-xl font-bold tracking-wider text-white">
+        <div className="flex flex-col gap-0">
+          <div className="relative overflow-hidden border p-12 sm:p-16">
+            {/* Corner decorations */}
+            <div className="absolute top-3 left-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+            </div>
+            <div className="absolute top-3 right-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+            </div>
+            <div className="absolute bottom-3 left-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+            </div>
+            <div className="absolute right-3 bottom-3 flex gap-1">
+              <div className="h-1.5 w-1.5 bg-zinc-700" />
+              <div className="h-1.5 w-1.5 bg-zinc-800" />
+            </div>
+            {/* Background pattern */}
+            <div
+              className="absolute inset-0 opacity-[0.03]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(-45deg, transparent, transparent 3px, currentcolor 4px, currentcolor 4px, transparent 5px)",
+              }}
+            />
+            <div className="relative flex flex-col items-center gap-4">
+              <MessageCircle className="h-8 w-8 text-zinc-600 sm:h-10 sm:w-10" />
+              <h1 className="text-center font-mono text-3xl font-bold tracking-wider text-white sm:text-5xl">
                 THOUGHTS
               </h1>
-              <p className="font-sans text-sm text-zinc-500">
-                @{siteConfig.username} · {thoughts.length} notes
-              </p>
             </div>
           </div>
-          <p className="mt-4 font-sans text-sm leading-relaxed text-zinc-400">
-            Short notes on building things — the stuff too small for a blog
-            post.
-          </p>
-        </header>
+          <div className="border border-t-0 p-6">
+            <p className="text-center font-sans text-sm text-zinc-400 sm:text-base">
+              Thoughts and views about life in general.
+            </p>
+          </div>
+        </div>
       </FadeUpReveal>
 
       <div className="flex flex-col">
