@@ -27,10 +27,9 @@ const formatDate = (iso: string) =>
 
 export default function ThoughtsPage() {
   return (
-    // Twitter's own column is 600px; anything wider stops reading like a feed.
-    <div className="mx-auto w-full max-w-[600px] py-8">
+    <div className="w-full py-8">
       <FadeUpReveal>
-        <header className="bg-surface-card mb-2 border border-zinc-800 p-6">
+        <header className="bg-surface-card border border-zinc-800 p-6">
           <div className="flex items-center gap-4">
             <Image
               src="/profile.jpg"
