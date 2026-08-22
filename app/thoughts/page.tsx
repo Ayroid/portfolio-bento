@@ -85,6 +85,37 @@ export default function ThoughtsPage() {
                 {thought.body}
               </p>
 
+              {thought.images && thought.images.length > 0 && (
+                <div
+                  className={`mt-3 grid gap-2 ${
+                    thought.images.length > 1 ? "grid-cols-2" : "grid-cols-1"
+                  }`}
+                >
+                  {thought.images.map((src) => (
+                    <Image
+                      key={src}
+                      src={src}
+                      alt=""
+                      width={1200}
+                      height={1200}
+                      // Intrinsic ratio wins; the numbers above are only a hint.
+                      className="h-auto w-full border border-zinc-800 object-cover"
+                    />
+                  ))}
+                </div>
+              )}
+
+              {thought.source && (
+                <a
+                  href={thought.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block font-mono text-[11px] text-zinc-600 underline-offset-4 transition-colors hover:text-zinc-400 hover:underline"
+                >
+                  originally on X
+                </a>
+              )}
+
               {thought.tags && thought.tags.length > 0 && (
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {thought.tags.map((tag) => (
