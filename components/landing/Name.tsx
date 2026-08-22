@@ -19,7 +19,7 @@ export function NameCard() {
             />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
           </span>
-          Full-stack engineer
+          Software Engineer
         </p>
 
         <hgroup className="flex items-start gap-4">

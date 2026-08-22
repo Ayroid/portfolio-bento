@@ -19,11 +19,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://ayroid.in"),
   title:
-    "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
+    "Ayroid - Software Engineer | Building Scalable Systems & Clean Interfaces",
   description:
-    "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
+    "Software Engineer focused on building scalable systems, clean interfaces, and products that matter.",
   keywords: [
-    "full-stack engineer",
+    "software engineer",
     "software developer",
     "web development",
     "scalable systems",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Ayroid" }],
   openGraph: {
     title:
-      "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
+      "Ayroid - Software Engineer | Building Scalable Systems & Clean Interfaces",
     description:
-      "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
+      "Software Engineer focused on building scalable systems, clean interfaces, and products that matter.",
     url: "https://ayroid.in",
     siteName: "Ayroid",
     images: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         url: "/og_image.png",
         width: 1200,
         height: 630,
-        alt: "Ayroid - Full-Stack Engineer Portfolio",
+        alt: "Ayroid - Software Engineer Portfolio",
       },
     ],
     locale: "en_US",
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Ayroid - Full-Stack Engineer | Building Scalable Systems & Clean Interfaces",
+      "Ayroid - Software Engineer | Building Scalable Systems & Clean Interfaces",
     description:
-      "Full-stack engineer focused on building scalable systems, clean interfaces, and products that matter.",
+      "Software Engineer focused on building scalable systems, clean interfaces, and products that matter.",
     images: ["/og_image.png"],
     creator: "@ayroids",
   },

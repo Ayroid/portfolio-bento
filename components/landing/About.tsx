@@ -4,12 +4,12 @@ const AboutCard = () => {
       <h3 className="mb-2 text-base font-bold text-white sm:text-lg">Hey,</h3>
 
       <p className="font-sans text-base leading-relaxed text-zinc-400">
-        I&apos;m a full-stack engineer focused on building reliable,
-        production-ready systems. Currently, I&apos;m a Software Engineer at
-        Yamaha Motor Solutions India, contributing to core system operations and
-        infrastructure to ensure stability and performance. Outside of work, I
-        build and deploy end-to-end applications, automate workflows, and
-        continuously explore new technologies and ideas.
+        I&apos;m a Software Engineer focused on building reliable,
+        production-ready systems. Currently at Yamaha Motor Solutions India,
+        contributing to core system operations and infrastructure to ensure
+        stability and performance. Outside of work, I build and deploy
+        end-to-end applications, automate workflows, and continuously explore
+        new technologies and ideas.
       </p>
     </section>
   );

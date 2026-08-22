@@ -40,12 +40,6 @@ const ExperienceCard = () => {
               index !== experiences.length - 1 ? "border-b border-zinc-800" : ""
             }`}
           >
-            {/* Marker bar that grows down the open entry */}
-            <span
-              aria-hidden="true"
-              className="absolute top-0 left-0 w-px bg-white/50 transition-all duration-500 ease-[var(--ease-out-expo)]"
-              style={{ height: openIndex === index ? "100%" : "0%" }}
-            />
             <header
               className="cursor-pointer"
               onClick={() => toggleAccordion(index)}
