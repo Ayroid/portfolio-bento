@@ -4,8 +4,8 @@ export const siteConfig = {
   title: "Ayroid",
   description: "Software Engineer",
   email: "ayushsk.work@gmail.com",
-  resumeUrl:
-    "https://drive.google.com/file/d/1TIDYNaseyA11HRNvMjx8BQuCHbTZGCHK/view?usp=sharing",
+  resumeUrl: "/resume",
+  resumePdf: "/resume.pdf",
   calendarUrl: "https://cal.com/ayroid/general-meeting",
   url: "https://ayroid.in",
 } as const;
