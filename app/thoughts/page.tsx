@@ -39,7 +39,7 @@ export default async function ThoughtsPage() {
   return (
     <div className="w-full py-8">
       <FadeUpReveal>
-        <header className="bg-surface-card border border-zinc-800 p-6">
+        <header className="bg-surface-card mb-6 border border-zinc-800 p-6">
           <div className="flex items-center gap-4">
             <Image
               src="/profile.jpg"
@@ -65,11 +65,14 @@ export default async function ThoughtsPage() {
       </FadeUpReveal>
 
       <div className="flex flex-col">
-        {thoughts.map((thought) => (
+        {thoughts.map((thought, index) => (
           <FadeUpReveal key={thought.id}>
             <article
               id={thought.id}
-              className="bg-surface-card border border-t-0 border-zinc-800 p-6 transition-colors duration-300 hover:bg-white/[0.02]"
+              // The stack shares borders, so only the first note keeps a top one.
+              className={`bg-surface-card border border-zinc-800 p-6 transition-colors duration-300 hover:bg-white/[0.02] ${
+                index === 0 ? "" : "border-t-0"
+              }`}
             >
               <div className="flex items-baseline gap-2">
                 <span className="font-sans text-sm font-semibold text-white">
