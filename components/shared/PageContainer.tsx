@@ -11,6 +11,7 @@ function isDetailPage(pathname: string): boolean {
     /^\/tools$/, // /tools
     /^\/recommendations$/, // /recommendations
     /^\/resume$/, // /resume
+    /^\/connect$/, // /connect
   ];
   return detailPatterns.some((pattern) => pattern.test(pathname));
 }
