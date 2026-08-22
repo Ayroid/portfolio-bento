@@ -31,24 +31,7 @@ export function PageContainer({
   const pathname = usePathname();
   const isNarrow = isDetailPage(pathname);
 
-  // The thoughts feed is its own site at thoughts.ayroid.in, so it carries no
-  // chrome from the main one.
-  const isBare = pathname === "/thoughts";
-
   const maxWidth = isNarrow ? "56rem" : "1520px";
-
-  if (isBare) {
-    return (
-      <div className="flex w-full flex-col">
-        <div
-          className="mx-auto flex w-full flex-col px-4 sm:px-4"
-          style={{ maxWidth }}
-        >
-          {children}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="flex w-full flex-col">

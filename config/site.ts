@@ -14,7 +14,7 @@ export const navLinks = [
   { href: "/work", label: "Work" },
   { href: "/projects", label: "Projects" },
   { href: "/blogs", label: "Blogs" },
-  { href: "https://thoughts.ayroid.in", label: "Thoughts" },
+  { href: "/thoughts", label: "💭" },
 ] as const;
 
 export type NavLink = (typeof navLinks)[number];

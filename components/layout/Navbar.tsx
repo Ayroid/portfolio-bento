@@ -97,7 +97,7 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="flex flex-col bg-surface-sunken text-white"
+                className="bg-surface-sunken flex flex-col text-white"
               >
                 <SheetHeader className="border-b">
                   <SheetTitle>
@@ -132,9 +132,7 @@ const Navbar = () => {
                         <span
                           aria-hidden="true"
                           className={`h-px bg-current transition-all duration-300 ease-[var(--ease-out-expo)] ${
-                            isActive(link.href)
-                              ? "w-6"
-                              : "w-0 group-hover:w-6"
+                            isActive(link.href) ? "w-6" : "w-0 group-hover:w-6"
                           }`}
                         />
                         {link.label}

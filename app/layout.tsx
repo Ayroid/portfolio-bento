@@ -82,7 +82,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ScrollProgress />
-        <div className="grain relative min-h-screen w-full bg-surface-page py-4 lg:py-12">
+        <div className="grain bg-surface-page relative min-h-screen w-full py-4 lg:py-12">
           <PageContainer navbar={<Navbar />} footer={<Footer />}>
             {children}
           </PageContainer>

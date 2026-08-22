@@ -41,13 +41,19 @@ export default async function ThoughtsPage() {
       <FadeUpReveal>
         <header className="bg-surface-card mb-6 border border-zinc-800 p-6">
           <div className="flex items-center gap-4">
-            <Image
-              src="/profile.jpg"
-              alt={siteConfig.name}
-              width={56}
-              height={56}
-              className="h-14 w-14 shrink-0 rounded-full object-cover"
-            />
+            <a
+              href={siteConfig.url}
+              aria-label={`${siteConfig.name} — back to the main site`}
+              className="group shrink-0"
+            >
+              <Image
+                src="/profile.jpg"
+                alt={siteConfig.name}
+                width={56}
+                height={56}
+                className="h-14 w-14 rounded-full object-cover ring-1 ring-white/0 transition-all duration-500 ease-[var(--ease-out-expo)] group-hover:ring-white/40"
+              />
+            </a>
             <div className="min-w-0">
               <h1 className="font-mono text-xl font-bold tracking-wider text-white">
                 THOUGHTS
