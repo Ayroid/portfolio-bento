@@ -26,9 +26,9 @@ const ExperienceCard = () => {
       <header>
         <Link
           href="/work"
-          className="group relative flex items-end justify-start border-b bg-surface-raised px-6 py-6 font-mono text-2xl text-white transition-colors hover:bg-surface-raised-hover sm:px-8 sm:text-3xl lg:text-4xl"
+          className="group relative flex items-end justify-start border-b bg-white px-6 py-6 font-mono text-2xl text-black transition-colors hover:bg-[#dddddd] sm:px-8 sm:text-3xl lg:text-4xl"
         >
-          <TopRightArrow iconColor="text-white" />
+          <TopRightArrow iconColor="text-black" />
           <h2 id="experience-heading">EXPERIENCE</h2>
         </Link>
       </header>
