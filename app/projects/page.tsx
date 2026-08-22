@@ -70,7 +70,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         style={{ zIndex: 2 }}
       >
         {/* Project Image */}
-        <div className="relative h-80 w-full overflow-hidden">
+        <div className="relative h-56 w-full overflow-hidden">
           <Image
             src={project.image}
             alt={project.title}
