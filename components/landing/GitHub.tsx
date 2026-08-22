@@ -67,20 +67,13 @@ const ContributionCell = ({
   <div
     role="gridcell"
     aria-label={`${day.count} contributions on ${day.date}`}
-    className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 ${getLevelColor(day.level)} group relative cursor-pointer transition-transform duration-200 ease-[var(--ease-spring)] hover:scale-[1.6] hover:bg-white hover:ring-1 hover:ring-white`}
+    data-date={day.date}
+    data-count={day.count}
+    className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 ${getLevelColor(day.level)} cursor-pointer transition-transform duration-200 ease-[var(--ease-spring)] hover:scale-[1.6] hover:bg-white hover:ring-1 hover:ring-white`}
     style={{
       animation: `pop-in 380ms var(--ease-out-expo) ${delay}ms both`,
     }}
-    title={`${day.count} contributions on ${day.date}`}
-  >
-    <div
-      className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded border border-zinc-700 bg-zinc-800 px-2 py-1 text-[10px] whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100"
-      role="tooltip"
-    >
-      <p className="font-semibold">{day.count} contributions</p>
-      <time className="text-zinc-400">{day.date}</time>
-    </div>
-  </div>
+  />
 );
 
 const SkeletonGrid = () => (
@@ -132,6 +125,7 @@ const GitHubCard = ({ username }: { username: string }) => {
   const [totalContributions, setTotalContributions] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchContributions = async () => {
@@ -189,23 +183,44 @@ const GitHubCard = ({ username }: { username: string }) => {
         ? { role: "status", "aria-label": "Loading GitHub contributions" }
         : { "aria-labelledby": "github-contributions-heading" })}
     >
-      <h3
-        id={isLoading ? undefined : "github-contributions-heading"}
-        className="mb-2 text-sm font-bold text-white sm:mb-6 sm:text-base md:text-lg"
-      >
-        {isLoading ? (
-          <span className="inline-block h-4 w-12 animate-pulse rounded bg-zinc-700 sm:h-5 sm:w-16" />
-        ) : (
-          <CountUp value={totalContributions} />
-        )}{" "}
-        <span className="text-xs text-zinc-400 sm:text-sm md:text-base">
-          contributions in the last year
-        </span>
-      </h3>
+      <div className="mb-2 flex items-baseline justify-between gap-3 sm:mb-6">
+        <h3
+          id={isLoading ? undefined : "github-contributions-heading"}
+          className="text-sm font-bold text-white sm:text-base md:text-lg"
+        >
+          {isLoading ? (
+            <span className="inline-block h-4 w-12 animate-pulse rounded bg-zinc-700 sm:h-5 sm:w-16" />
+          ) : (
+            <CountUp value={totalContributions} />
+          )}{" "}
+          <span className="text-xs text-zinc-400 sm:text-sm md:text-base">
+            contributions in the last year
+          </span>
+        </h3>
+        <p
+          className="shrink-0 font-mono text-[10px] whitespace-nowrap text-zinc-400 transition-opacity sm:text-xs"
+          style={{ opacity: hovered ? 1 : 0 }}
+          aria-hidden="true"
+        >
+          {hovered}
+        </p>
+      </div>
 
       <figure className="flex-1 overflow-hidden">
         <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 hover:scrollbar-thumb-zinc-700 md:scrollbar-none overflow-x-auto overflow-y-hidden pb-2 md:pb-0 lg:overflow-x-hidden">
-          <div className="inline-flex min-w-full flex-col gap-1">
+          <div
+            className="inline-flex min-w-full flex-col gap-1"
+            onMouseOver={(e) => {
+              const cell = (e.target as HTMLElement).closest<HTMLElement>(
+                "[data-date]"
+              );
+              if (cell)
+                setHovered(
+                  `${cell.dataset.count} contributions \u00b7 ${cell.dataset.date}`
+                );
+            }}
+            onMouseLeave={() => setHovered(null)}
+          >
             {isLoading ? (
               <SkeletonGrid />
             ) : (
