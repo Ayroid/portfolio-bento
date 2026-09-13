@@ -2,23 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/config";
+import { ArrowLeft } from "lucide-react";
 
-// The homepage carries the name itself; every other page steps back one level
-// (/projects/darch -> Projects, /projects -> home).
+// Every page except the homepage gets a single way back: Home.
 const Navbar = () => {
-  const parts = usePathname().split("/").filter(Boolean);
-  if (parts.length === 0) return null;
-
-  const parent = parts.slice(0, -1);
+  if (usePathname() === "/") return null;
 
   return (
     <nav className="px-5 pt-6">
       <Link
-        href={`/${parent.join("/")}`}
-        className="text-[13px] text-neutral-500 capitalize transition-colors hover:text-neutral-100"
+        href="/"
+        className="inline-flex items-center gap-1.5 text-[13px] text-neutral-500 transition-colors hover:text-neutral-100"
       >
-        ← {parent.length ? parent[parent.length - 1] : siteConfig.name}
+        <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+        Home
       </Link>
     </nav>
   );

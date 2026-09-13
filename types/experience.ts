@@ -1,3 +1,5 @@
+import type { TechKey } from "@/data/projects";
+
 export interface Experience {
   title: string;
   company: string;
@@ -11,6 +13,6 @@ export interface Experience {
     twitter?: string;
     github?: string;
   };
-  technologies: string[];
+  technologies: TechKey[];
   description: string[];
 }

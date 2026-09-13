@@ -6,7 +6,7 @@ const quiet = "transition-colors hover:text-neutral-100";
 
 const Footer = () => {
   return (
-    <footer className="border-y border-white/[0.06] px-5 py-8 text-[13px] text-neutral-500">
+    <footer className="border-t border-white/[0.06] px-5 py-8 text-[13px] text-neutral-500">
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           {socialProfiles.map(({ platform, url, icon: Icon }) => (

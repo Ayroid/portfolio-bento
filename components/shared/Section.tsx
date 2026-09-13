@@ -12,18 +12,33 @@ export const rowTitle =
 export const pill =
   "inline-flex items-center gap-1.5 rounded-md border border-white/10 px-2.5 py-1 text-[13px] text-neutral-300 transition-colors hover:border-white/25 hover:text-neutral-100";
 
+// With an href the /label becomes a link that lights up while the section is
+// hovered (a named group, so it doesn't clash with the rows' own `group`).
 export function Section({
   label,
+  href,
   more,
   children,
 }: {
   label: string;
+  href?: string;
   more?: { href: string; text: string };
   children: React.ReactNode;
 }) {
   return (
-    <section className="border-t border-white/[0.06] px-5 py-8">
-      <h2 className="mb-4 font-mono text-[11px] text-neutral-500">/{label}</h2>
+    <section className="group/section border-t border-white/[0.06] px-5 py-8">
+      <h2 className="mb-4 font-mono text-[11px] text-neutral-500">
+        {href ? (
+          <Link
+            href={href}
+            className="underline-offset-4 transition-colors group-hover/section:text-neutral-100 hover:underline"
+          >
+            /{label}
+          </Link>
+        ) : (
+          `/${label}`
+        )}
+      </h2>
       {children}
       {more && (
         <Link
