@@ -5,6 +5,8 @@ import { useEffect, useId, useRef, memo } from 'react';
 import './DotField.css';
 
 const TWO_PI = Math.PI * 2;
+// Below this much movement per frame (px) a dot counts as at rest.
+const REST = 0.01;
 
 /** @type {import('react').NamedExoticComponent<Record<string, any>>} */
 const DotField = memo(({
@@ -48,6 +50,16 @@ const DotField = memo(({
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let resizeTimer;
 
+    // The loop only runs while something is changing: wake() starts it, and
+    // tick() stops rescheduling itself once every dot, the glow and the
+    // engagement have settled. Idle, the field costs nothing.
+    let running = false;
+    function wake() {
+      if (running) return;
+      running = true;
+      rafRef.current = requestAnimationFrame(tick);
+    }
+
     function resize() {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(doResize, 100);
@@ -72,6 +84,7 @@ const DotField = memo(({
       };
 
       buildDots(w, h);
+      wake();
     }
 
     function buildDots(w, h) {
@@ -110,11 +123,15 @@ const DotField = memo(({
         }
         m.x = x;
         m.y = y;
-      } else {
+      } else if (m.x !== -9999) {
         m.x = m.y = m.prevX = m.prevY = -9999;
+      } else {
+        return; // still outside: nothing changed, stay asleep
       }
+      wake();
     }
 
+    // Eased once per frame; only the non-bulge mode reads it.
     function updateMouseSpeed() {
       const m = mouseRef.current;
       const dx = m.prevX - m.x;
@@ -126,14 +143,13 @@ const DotField = memo(({
       m.prevY = m.y;
     }
 
-    const speedInterval = setInterval(updateMouseSpeed, 20);
-
     let frameCount = 0;
     // Displaced dots this frame, flat [x, y, alpha, ...], redrawn on top in activeColor.
     const active = [];
 
     function tick() {
       frameCount++;
+      updateMouseSpeed();
       const dots = dotsRef.current;
       const m = mouseRef.current;
       const { w, h } = sizeRef.current;
@@ -142,13 +158,15 @@ const DotField = memo(({
       const t = frameCount * 0.02;
 
       // Engaged for as long as the cursor is over the field (it's parked at
-      // -9999 outside), not only while it moves.
+      // -9999 outside), not only while it moves. Both eases snap to their
+      // target once close, so they can settle and let the loop sleep.
       const targetEngagement = m.x === -9999 ? 0 : 1;
       engagement.current += (targetEngagement - engagement.current) * 0.06;
-      if (engagement.current < 0.001) engagement.current = 0;
+      if (Math.abs(targetEngagement - engagement.current) < 0.001) engagement.current = targetEngagement;
       const eng = engagement.current;
 
       glowOpacity.current += (eng - glowOpacity.current) * 0.08;
+      if (Math.abs(eng - glowOpacity.current) < 0.001) glowOpacity.current = eng;
 
       if (glowEl) {
         glowEl.setAttribute('cx', m.x);
@@ -168,11 +186,14 @@ const DotField = memo(({
       const rad = p.dotRadius / 2;
       const isBulge = p.bulgeOnly;
       const arSq = p.activeRadius * p.activeRadius;
+      let moving = false;
 
       ctx.beginPath();
 
       for (let i = 0; i < len; i++) {
         const d = dots[i];
+        const ox = d.sx;
+        const oy = d.sy;
         const dx = m.x - d.ax;
         const dy = m.y - d.ay;
         const distSq = dx * dx + dy * dy;
@@ -203,7 +224,10 @@ const DotField = memo(({
           d.y = d.ay + d.vy;
           d.sx += (d.x - d.sx) * 0.1;
           d.sy += (d.y - d.sy) * 0.1;
+          if (Math.abs(d.vx) + Math.abs(d.vy) > REST) moving = true;
         }
+
+        if (Math.abs(d.sx - ox) + Math.abs(d.sy - oy) > REST) moving = true;
 
         let drawX = d.sx;
         let drawY = d.sy;
@@ -213,7 +237,7 @@ const DotField = memo(({
         }
 
         // Only dots within activeRadius of the cursor turn red, strongest at the
-        // centre; scaling by engagement fades them out when the cursor stops.
+        // centre; scaling by engagement fades them out when the cursor leaves.
         if (eng > 0.01 && distSq < arSq) {
           active.push(drawX, drawY, (1 - Math.sqrt(distSq) / p.activeRadius) * eng);
         }
@@ -247,27 +271,40 @@ const DotField = memo(({
         active.length = 0;
       }
 
-      rafRef.current = requestAnimationFrame(tick);
+      // Wave and sparkle animate on their own, so those modes never sleep.
+      const settled =
+        !moving &&
+        m.speed === 0 &&
+        engagement.current === targetEngagement &&
+        glowOpacity.current === eng &&
+        !p.sparkle &&
+        !(p.waveAmplitude > 0);
+
+      if (settled) {
+        running = false;
+      } else {
+        rafRef.current = requestAnimationFrame(tick);
+      }
     }
 
     doResize();
     window.addEventListener('resize', resize);
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    rafRef.current = requestAnimationFrame(tick);
 
     rebuildRef.current = () => {
       const { w, h } = sizeRef.current;
-      if (w > 0 && h > 0) buildDots(w, h);
+      if (w > 0 && h > 0) {
+        buildDots(w, h);
+        wake();
+      }
     };
 
     return () => {
       cancelAnimationFrame(rafRef.current);
-      clearInterval(speedInterval);
       clearTimeout(resizeTimer);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMouseMove);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
