@@ -32,7 +32,7 @@ import {
 } from "react-icons/si";
 import { TbCloudCog, TbAutomation, TbDatabase } from "react-icons/tb";
 import { VscGlobe } from "react-icons/vsc";
-import type { ProjectStatus, Project } from "@/types";
+import type { Project } from "@/types";
 
 export const techStack = {
   AmazonWebServices: { icon: SiAmazonwebservices, name: "Amazon Web Services" },
@@ -354,18 +354,6 @@ export const projectsData: Project[] = [
   },
 ];
 
-export const statusColors: Record<ProjectStatus, string> = {
-  Live: "bg-green-500",
-  Building: "bg-yellow-500",
-  Archived: "bg-amber-800",
-  Reviving: "bg-blue-500",
-};
-
 export function getProjectBySlug(slug: string): Project | undefined {
-  console.log("Getting project for slug: ", slug);
   return projectsData.find((project) => project.slug === slug);
-}
-
-export function getFeaturedProjects(): Project[] {
-  return projectsData.filter((project) => project.featured);
 }

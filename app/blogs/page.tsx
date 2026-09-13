@@ -1,4 +1,5 @@
 import { ViewTransition } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllBlogs } from "@/lib/blog-utils";
 import type { BlogMeta } from "@/types";
@@ -8,6 +9,12 @@ import {
   row,
   rowTitle,
 } from "@/components/shared/Section";
+
+export const metadata: Metadata = {
+  title: "Blog | Ayroid",
+  description:
+    "Technical blogs about software engineering, DevOps, and technology.",
+};
 
 const PostRow = ({ post }: { post: BlogMeta }) => (
   <Link

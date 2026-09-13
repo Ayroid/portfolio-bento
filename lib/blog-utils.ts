@@ -79,33 +79,6 @@ export function getBlogBySlug(slug: string): BlogPost | null {
   };
 }
 
-// Get pinned blogs
-export function getPinnedBlogs(): BlogMeta[] {
-  return getAllBlogs().filter((blog) => blog.isPinned);
-}
-
-// Get featured blogs (for homepage)
-export function getFeaturedBlogs(count: number = 5): BlogMeta[] {
-  const blogs = getAllBlogs();
-  const pinned = blogs.filter((b) => b.isPinned);
-  const nonPinned = blogs.filter((b) => !b.isPinned);
-  return [...pinned, ...nonPinned].slice(0, count);
-}
-
-// Get all unique tags from published posts
-export function getAllTags(): string[] {
-  const publishedBlogs = getAllBlogs();
-  const tagsSet = new Set<string>();
-
-  publishedBlogs.forEach((blog) => {
-    blog.tags.forEach((tag) => {
-      tagsSet.add(tag.toLowerCase());
-    });
-  });
-
-  return Array.from(tagsSet).sort();
-}
-
 // Get related posts based on tags (excluding the current post)
 export function getRelatedPosts(
   currentSlug: string,
