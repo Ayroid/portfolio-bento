@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import Link from "next/link";
 import { getAllBlogs } from "@/lib/blog-utils";
 import type { BlogMeta } from "@/types";
@@ -16,7 +17,9 @@ const PostRow = ({ post }: { post: BlogMeta }) => (
     <span className="text-neutral-500 tabular-nums">
       {new Date(post.date).getFullYear()}
     </span>
-    <span className={rowTitle}>{post.title}</span>
+    <ViewTransition name={`post-${post.slug}`}>
+      <span className={rowTitle}>{post.title}</span>
+    </ViewTransition>
     <span className="hidden text-neutral-500 sm:block">{post.readingTime}</span>
   </Link>
 );

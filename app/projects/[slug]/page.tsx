@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -47,7 +48,11 @@ export default async function ProjectPage({
 
   return (
     <>
-      <PageHeader title={project.title} description={project.description}>
+      <PageHeader
+        title={project.title}
+        titleTransition={`project-${project.slug}`}
+        description={project.description}
+      >
         <div className="mt-4 flex flex-wrap items-center gap-2">
           <span className="mr-1 text-[13px] text-neutral-500">
             {project.status}
@@ -118,7 +123,9 @@ export default async function ProjectPage({
               href={`/projects/${p.slug}`}
               className={`${row} grid-cols-[minmax(0,1fr)_auto] items-baseline sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)_auto]`}
             >
-              <span className={`truncate ${rowTitle}`}>{p.title}</span>
+              <ViewTransition name={`project-${p.slug}`}>
+                <span className={`truncate ${rowTitle}`}>{p.title}</span>
+              </ViewTransition>
               <span className="hidden truncate text-neutral-400 sm:block">
                 {p.description}
               </span>

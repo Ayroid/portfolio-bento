@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHeader, Section } from "@/components/shared/Section";
@@ -25,7 +26,11 @@ const ProjectCard = ({ project }: { project: (typeof projectsData)[0] }) => (
           href={`/projects/${project.slug}`}
           className="decoration-neutral-600 underline-offset-4 group-hover:underline after:absolute after:inset-0"
         >
-          {project.title}
+          {/* Named on an inner span: the Link's stretched ::after would make the
+              snapshot the size of the whole card. */}
+          <ViewTransition name={`project-${project.slug}`}>
+            <span>{project.title}</span>
+          </ViewTransition>
         </Link>
       </h3>
       <div className="flex shrink-0 gap-1.5">

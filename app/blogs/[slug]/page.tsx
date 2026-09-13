@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, ViewTransition } from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -93,7 +93,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <>
-      <PageHeader title={blog.title} description={blog.description}>
+      <PageHeader
+        title={blog.title}
+        titleTransition={`post-${slug}`}
+        description={blog.description}
+      >
         <p className="mt-3 text-[13px] text-neutral-500">
           {new Date(blog.date).toLocaleDateString("en-US", {
             year: "numeric",
@@ -136,7 +140,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
               <span className="text-neutral-500 tabular-nums">
                 {new Date(post.date).getFullYear()}
               </span>
-              <span className={rowTitle}>{post.title}</span>
+              <ViewTransition name={`post-${post.slug}`}>
+                <span className={rowTitle}>{post.title}</span>
+              </ViewTransition>
             </Link>
           ))}
         </Section>

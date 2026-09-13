@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Lets list titles glide into the detail page heading via <ViewTransition>.
+    viewTransition: true,
+  },
   images: {
     remotePatterns: [
       {

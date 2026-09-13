@@ -94,7 +94,19 @@
   animation-delay: 5s;
 }
 
+/* Page-to-page view transitions: short and ease-out so navigation stays snappy. */
+::view-transition-group(*) {
+  animation-duration: 250ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  /* The * rule below doesn't reach view transition pseudo-elements. */
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
   *,
   *::before,
   *::after {

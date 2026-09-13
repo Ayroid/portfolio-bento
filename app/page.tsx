@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, ChevronDown, Mail } from "lucide-react";
@@ -151,7 +152,9 @@ export default function Home() {
               href={`/projects/${p.slug}`}
               className={`${row} grid-cols-[minmax(0,1fr)_auto] items-baseline sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)_auto]`}
             >
-              <span className={`truncate ${rowTitle}`}>{p.title}</span>
+              <ViewTransition name={`project-${p.slug}`}>
+                <span className={`truncate ${rowTitle}`}>{p.title}</span>
+              </ViewTransition>
               <span className="hidden truncate text-neutral-400 sm:block">
                 {p.description}
               </span>
@@ -170,7 +173,11 @@ export default function Home() {
             <span className="text-neutral-500 tabular-nums">
               {b.date.slice(-4)}
             </span>
-            <span className={rowTitle}>{b.title}</span>
+            <ViewTransition
+              name={`post-${b.redirectTo.replace("/blogs/", "")}`}
+            >
+              <span className={rowTitle}>{b.title}</span>
+            </ViewTransition>
           </Link>
         ))}
       </Section>
