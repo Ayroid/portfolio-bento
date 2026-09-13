@@ -307,7 +307,7 @@ export const projectsData: Project[] = [
     tags: ["DevOps", "Cloud", "Infrastructure"],
     technologies: ["Terraform", "AmazonWebServices", "Docker", "Git"],
     image: "/projects/terraform.jpg",
-    githubLink: "https://github.com/Ayroid/terraform-ec2",
+    githubLink: "https://github.com/Ayroid/terraform-ec2-project",
     status: "Live",
   },
   {
