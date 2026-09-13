@@ -13,7 +13,7 @@ const PostRow = ({ post }: { post: BlogMeta }) => (
     href={`/blogs/${post.slug}`}
     className={`${row} grid-cols-[3rem_minmax(0,1fr)_auto] items-baseline`}
   >
-    <span className="tabular text-neutral-500">
+    <span className="text-neutral-500 tabular-nums">
       {new Date(post.date).getFullYear()}
     </span>
     <span className={rowTitle}>{post.title}</span>

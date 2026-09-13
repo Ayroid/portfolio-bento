@@ -140,7 +140,7 @@ export default function WorkPage() {
               </div>
             </div>
             <div className="shrink-0 text-right text-[13px] text-neutral-500">
-              <p className="tabular">{exp.period}</p>
+              <p className="tabular-nums">{exp.period}</p>
               <p>{exp.location}</p>
             </div>
           </div>

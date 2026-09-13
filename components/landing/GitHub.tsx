@@ -139,7 +139,7 @@ const GitHubCard = ({ username }: { username: string }) => {
       )}
 
       <figcaption className="mt-3 flex items-center justify-between gap-3">
-        <span className="tabular">
+        <span className="tabular-nums">
           {hovered ?? (
             <>
               <span className="text-neutral-200">

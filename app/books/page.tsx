@@ -13,7 +13,7 @@ export default function BooksPage() {
         title="Books"
         description="My reading list across personal development, finance and philosophy."
       >
-        <p className="tabular mt-3 text-[13px] text-neutral-500">
+        <p className="mt-3 text-[13px] text-neutral-500 tabular-nums">
           {books.length} books · {read} read · {reading} reading
         </p>
       </PageHeader>

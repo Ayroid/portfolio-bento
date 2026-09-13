@@ -71,7 +71,7 @@ export default function ConnectPage() {
                 @{profile.username}
               </span>
             </span>
-            <span className="tabular text-neutral-500">
+            <span className="text-neutral-500 tabular-nums">
               {profile.stats.followers !== undefined
                 ? `${formatNumber(profile.stats.followers)} followers`
                 : profile.stats.posts !== undefined &&

@@ -1,7 +1,19 @@
-import { FaXTwitter, FaGithub, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa6";
+import {
+  FaXTwitter,
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
-export type SocialPlatform = "github" | "twitter" | "linkedin" | "hashnode" | "instagram" | "youtube";
+export type SocialPlatform =
+  | "github"
+  | "twitter"
+  | "linkedin"
+  | "hashnode"
+  | "instagram"
+  | "youtube";
 
 export interface SocialProfile {
   platform: SocialPlatform;

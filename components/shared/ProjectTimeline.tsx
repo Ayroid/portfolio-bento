@@ -22,7 +22,7 @@ export function ProjectTimeline({ stages }: ProjectTimelineProps) {
             </p>
             <p className="text-[13px] text-neutral-500">{stage.tooltip}</p>
           </div>
-          <span className="tabular text-[13px] text-neutral-500">
+          <span className="text-[13px] text-neutral-500 tabular-nums">
             {stage.completed ? (stage.date ?? "Done") : "Upcoming"}
           </span>
         </li>

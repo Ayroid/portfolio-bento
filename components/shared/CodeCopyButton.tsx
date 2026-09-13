@@ -1,13 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
 import { Copy, CopyCheck } from "lucide-react";
 
 interface CodeCopyButtonProps {
@@ -30,24 +23,20 @@ export function CodeCopyButton({ code }: CodeCopyButtonProps) {
   return (
     <form
       action={copyToClipboard}
-      className="absolute top-3 right-3 rounded-md opacity-0 transition-all duration-200 group-hover:opacity-100 hover:cursor-pointer"
-      title={isCopied ? "Copied!" : "Copy code"}
+      className="absolute top-3 right-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-within:opacity-100"
     >
-      {isCopied ? (
-        <Tooltip>
-          <TooltipTrigger className="cursor-pointer">
-            <CopyCheck className="h-4 w-4 text-emerald-400" />
-          </TooltipTrigger>
-          <TooltipContent>Copied to clipboard!</TooltipContent>
-        </Tooltip>
-      ) : (
-        <Tooltip>
-          <TooltipTrigger className="cursor-pointer">
-            <Copy className="h-4 w-4 text-zinc-400 transition-colors hover:text-white" />
-          </TooltipTrigger>
-          <TooltipContent>Copy to clipboard</TooltipContent>
-        </Tooltip>
-      )}
+      <button
+        type="submit"
+        aria-label={isCopied ? "Copied to clipboard" : "Copy code"}
+        title={isCopied ? "Copied!" : "Copy code"}
+        className="cursor-pointer"
+      >
+        {isCopied ? (
+          <CopyCheck className="h-4 w-4 text-neutral-200" />
+        ) : (
+          <Copy className="h-4 w-4 text-neutral-500 transition-colors hover:text-neutral-100" />
+        )}
+      </button>
     </form>
   );
 }

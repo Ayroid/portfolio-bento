@@ -133,7 +133,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
               href={`/blogs/${post.slug}`}
               className={`${row} grid-cols-[3rem_1fr] items-baseline`}
             >
-              <span className="tabular text-neutral-500">
+              <span className="text-neutral-500 tabular-nums">
                 {new Date(post.date).getFullYear()}
               </span>
               <span className={rowTitle}>{post.title}</span>

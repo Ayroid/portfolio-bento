@@ -114,7 +114,7 @@ export default function Home() {
             <span className="hidden text-neutral-400 sm:block">
               {exp.title}
             </span>
-            <span className="tabular text-neutral-500">
+            <span className="text-neutral-500 tabular-nums">
               {years(exp.period)}
             </span>
           </Link>
@@ -153,7 +153,9 @@ export default function Home() {
             href={b.redirectTo}
             className={`${row} grid-cols-[3rem_1fr] items-baseline`}
           >
-            <span className="tabular text-neutral-500">{b.date.slice(-4)}</span>
+            <span className="text-neutral-500 tabular-nums">
+              {b.date.slice(-4)}
+            </span>
             <span className={rowTitle}>{b.title}</span>
           </Link>
         ))}
