@@ -83,23 +83,18 @@ function Aside({ children, type = "info", title }: AsideProps) {
   return (
     <aside
       className={cn(
-        "my-8 border-l-4 p-5 sm:p-6",
+        "my-6 rounded-r-md border-l-2 p-4",
         config.borderColor,
         config.bgColor
       )}
     >
       <div className="flex items-start gap-3">
-        <Icon className={cn("mt-0.5 h-5 w-5 shrink-0", config.iconColor)} />
+        <Icon className={cn("mt-0.5 h-4 w-4 shrink-0", config.iconColor)} />
         <div className="min-w-0 flex-1">
-          <p
-            className={cn(
-              "mb-2 font-mono text-sm font-semibold",
-              config.titleColor
-            )}
-          >
+          <p className={cn("mb-1 text-sm", config.titleColor)}>
             {displayTitle}
           </p>
-          <div className="text-sm leading-relaxed text-zinc-300 [&>p]:mb-2 [&>p:last-child]:mb-0">
+          <div className="text-sm leading-relaxed text-neutral-300 [&>p]:mb-2 [&>p:last-child]:mb-0">
             {children}
           </div>
         </div>
@@ -113,7 +108,7 @@ function Aside({ children, type = "info", title }: AsideProps) {
 // ============================================
 function Sidenote({ children }: { children: React.ReactNode }) {
   return (
-    <small className="my-4 block border border-zinc-800 bg-surface-card/50 p-4 text-sm leading-relaxed text-zinc-400">
+    <small className="my-4 block rounded-md border border-white/[0.06] p-4 text-sm leading-relaxed text-neutral-400">
       {children}
     </small>
   );
@@ -124,37 +119,25 @@ function Sidenote({ children }: { children: React.ReactNode }) {
 // ============================================
 export const MDXComponents = {
   // ==========================================
-  // Headings - monospace with scroll margin
+  // Headings - same face as the body, set apart by size and colour only
   // ==========================================
   h1: ({ children, ...props }: ComponentProps<"h1">) => (
-    <h1
-      className="mt-12 mb-6 scroll-mt-24 font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl"
-      {...props}
-    >
+    <h1 className="mt-10 mb-4 scroll-mt-24 text-xl text-neutral-100" {...props}>
       {children}
     </h1>
   ),
   h2: ({ children, ...props }: ComponentProps<"h2">) => (
-    <h2
-      className="mt-12 mb-5 scroll-mt-24 border-b border-zinc-800 pb-3 font-mono text-2xl font-bold tracking-tight text-white sm:text-3xl"
-      {...props}
-    >
+    <h2 className="mt-10 mb-4 scroll-mt-24 text-lg text-neutral-100" {...props}>
       {children}
     </h2>
   ),
   h3: ({ children, ...props }: ComponentProps<"h3">) => (
-    <h3
-      className="mt-10 mb-4 scroll-mt-24 font-mono text-xl font-semibold text-white"
-      {...props}
-    >
+    <h3 className="mt-8 mb-3 scroll-mt-24 text-neutral-100" {...props}>
       {children}
     </h3>
   ),
   h4: ({ children, ...props }: ComponentProps<"h4">) => (
-    <h4
-      className="mt-8 mb-3 scroll-mt-24 font-mono text-lg font-semibold text-zinc-100"
-      {...props}
-    >
+    <h4 className="mt-6 mb-2 scroll-mt-24 text-neutral-200" {...props}>
       {children}
     </h4>
   ),
@@ -163,10 +146,7 @@ export const MDXComponents = {
   // Paragraph - optimized for reading
   // ==========================================
   p: (props: ComponentProps<"p">) => (
-    <p
-      className="mb-6 font-sans text-base leading-7 text-zinc-300 sm:text-lg sm:leading-8"
-      {...props}
-    />
+    <p className="mb-5 leading-7 text-neutral-300" {...props} />
   ),
 
   // ==========================================
@@ -175,7 +155,7 @@ export const MDXComponents = {
   a: ({ href, children, ...props }: ComponentProps<"a">) => {
     const isExternal = href?.startsWith("http");
     const baseClass =
-      "font-medium text-white underline decoration-zinc-500 decoration-1 underline-offset-[3px] transition-all duration-200 hover:decoration-white hover:decoration-2";
+      "text-neutral-100 underline decoration-neutral-600 underline-offset-4 transition-colors hover:decoration-neutral-300";
 
     if (isExternal) {
       return (
@@ -183,23 +163,10 @@ export const MDXComponents = {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(baseClass, "inline-flex items-center gap-0.5")}
+          className={baseClass}
           {...props}
         >
           {children}
-          <svg
-            className="h-3.5 w-3.5 opacity-50"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-            <polyline points="15 3 21 3 21 9" />
-            <line x1="10" y1="14" x2="21" y2="3" />
-          </svg>
         </a>
       );
     }
@@ -215,17 +182,17 @@ export const MDXComponents = {
   // Lists - custom bullet styling
   // ==========================================
   ul: (props: ComponentProps<"ul">) => (
-    <ul className="mb-6 space-y-3 text-zinc-300" {...props} />
+    <ul className="mb-5 space-y-2 text-neutral-300" {...props} />
   ),
   ol: (props: ComponentProps<"ol">) => (
     <ol
-      className="mb-6 list-none space-y-3 text-zinc-300 [counter-reset:list-counter]"
+      className="mb-5 list-none space-y-2 text-neutral-300 [counter-reset:list-counter]"
       {...props}
     />
   ),
   li: ({ children, ...props }: ComponentProps<"li">) => (
     <li
-      className="relative pl-7 text-base leading-7 text-zinc-300 before:absolute before:top-[0.6rem] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-zinc-500 sm:text-lg [ol>&]:[counter-increment:list-counter] [ol>&]:before:top-[0.35rem] [ol>&]:before:h-auto [ol>&]:before:w-auto [ol>&]:before:rounded-none [ol>&]:before:bg-transparent [ol>&]:before:font-mono [ol>&]:before:text-sm [ol>&]:before:font-medium [ol>&]:before:text-zinc-500 [ol>&]:before:content-[counter(list-counter)'.']"
+      className="relative pl-5 leading-7 text-neutral-300 before:absolute before:top-[0.7rem] before:left-1 before:h-1 before:w-1 before:rounded-full before:bg-neutral-600 [ol>&]:pl-6 [ol>&]:[counter-increment:list-counter] [ol>&]:before:top-0 [ol>&]:before:left-0 [ol>&]:before:h-auto [ol>&]:before:w-auto [ol>&]:before:rounded-none [ol>&]:before:bg-transparent [ol>&]:before:text-neutral-500 [ol>&]:before:content-[counter(list-counter)'.']"
       {...props}
     >
       {children}
@@ -233,11 +200,11 @@ export const MDXComponents = {
   ),
 
   // ==========================================
-  // Blockquote - elegant quote styling
+  // Blockquote
   // ==========================================
   blockquote: (props: ComponentProps<"blockquote">) => (
     <blockquote
-      className="my-8 border-l-4 border-zinc-600 pl-6 [&>p]:mb-0 [&>p]:text-lg [&>p]:text-zinc-400 [&>p]:italic"
+      className="my-6 border-l-2 border-white/15 pl-5 [&>p]:mb-0 [&>p]:text-neutral-400"
       {...props}
     />
   ),
@@ -254,7 +221,7 @@ export const MDXComponents = {
       // Inline code styling
       return (
         <code
-          className="bg-zinc-800/80 px-1.5 py-0.5 font-mono text-base text-zinc-200"
+          className="rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[0.9em] text-neutral-200"
           {...props}
         />
       );
@@ -264,7 +231,7 @@ export const MDXComponents = {
   },
 
   // ==========================================
-  // Code block - styled with hover glow and copy button
+  // Code block - with copy button
   // ==========================================
   pre: ({
     children,
@@ -302,50 +269,44 @@ export const MDXComponents = {
     const isShiki = className?.includes("shiki");
 
     return (
-      <div className="group relative my-6">
-        {/* Subtle glow on hover */}
-        <div className="pointer-events-none absolute -inset-px bg-linear-to-r from-zinc-600/10 via-zinc-500/5 to-zinc-600/10 opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100" />
-
-        {/* Code container */}
-        <div className="relative overflow-hidden bg-surface-card">
-          <pre
-            className={cn(
-              "overflow-x-auto p-4 font-mono text-sm leading-relaxed sm:p-5",
-              isShiki ? "[&>code]:bg-transparent" : "text-zinc-200",
-              className
-            )}
-            {...props}
-          >
-            {children}
-          </pre>
-          <CodeCopyButton code={codeText} />
-        </div>
+      <div className="group relative my-6 overflow-hidden rounded-md border border-white/[0.06]">
+        <pre
+          className={cn(
+            "overflow-x-auto p-4 font-mono text-[13px] leading-relaxed",
+            isShiki ? "[&>code]:bg-transparent" : "text-neutral-200",
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </pre>
+        <CodeCopyButton code={codeText} />
       </div>
     );
   },
 
   // ==========================================
-  // Image - styled with hover effect (span-based to avoid hydration issues)
+  // Image (span-based to avoid hydration issues)
   // ==========================================
   img: (props: ComponentProps<"img">) => {
     const { src, alt, width, height } = props;
     if (src && typeof src === "string") {
       return (
-        <span className="group my-10 block">
-          <span className="relative block overflow-hidden rounded-sm border border-zinc-800 transition-all duration-300 hover:border-zinc-700">
+        <span className="my-8 block">
+          <span className="block overflow-hidden rounded-md border border-white/10">
             <Image
               src={src}
               alt={alt || ""}
               width={typeof width === "number" ? width : 800}
               height={typeof height === "number" ? height : 450}
-              className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+              className="h-auto w-full object-cover"
               loading="lazy"
               unoptimized={src.startsWith("http")}
             />
           </span>
           {alt && (
-            <span className="mt-4 block text-center font-mono text-sm text-zinc-500">
-              — {alt}
+            <span className="mt-3 block text-center text-[13px] text-neutral-500">
+              {alt}
             </span>
           )}
         </span>
@@ -354,57 +315,44 @@ export const MDXComponents = {
     return null;
   },
 
-  // ==========================================
-  // Horizontal rule - decorative divider
-  // ==========================================
-  hr: () => (
-    <div className="my-12 flex items-center justify-center gap-2">
-      <span className="h-1 w-1 rounded-full bg-zinc-700" />
-      <span className="h-1 w-1 rounded-full bg-zinc-600" />
-      <span className="h-1 w-1 rounded-full bg-zinc-700" />
-    </div>
-  ),
+  hr: () => <hr className="my-10 border-white/[0.06]" />,
 
   // ==========================================
   // Table - clean bordered style
   // ==========================================
   table: (props: ComponentProps<"table">) => (
-    <div className="my-8 overflow-hidden border border-zinc-800">
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm" {...props} />
-      </div>
+    <div className="my-6 overflow-x-auto rounded-md border border-white/[0.06]">
+      <table className="w-full text-sm" {...props} />
     </div>
   ),
   thead: (props: ComponentProps<"thead">) => (
-    <thead className="border-b border-zinc-700 bg-surface-card" {...props} />
+    <thead className="border-b border-white/[0.06]" {...props} />
   ),
   tbody: (props: ComponentProps<"tbody">) => (
-    <tbody className="divide-y divide-zinc-800" {...props} />
+    <tbody className="divide-y divide-white/[0.06]" {...props} />
   ),
-  tr: (props: ComponentProps<"tr">) => (
-    <tr className="transition-colors hover:bg-zinc-800/50" {...props} />
-  ),
+  tr: (props: ComponentProps<"tr">) => <tr {...props} />,
   th: (props: ComponentProps<"th">) => (
     <th
-      className="px-4 py-3 text-left font-mono text-xs font-semibold tracking-wider text-zinc-400 uppercase"
+      className="px-4 py-2.5 text-left font-normal text-neutral-500"
       {...props}
     />
   ),
   td: (props: ComponentProps<"td">) => (
-    <td className="px-4 py-3 text-zinc-300" {...props} />
+    <td className="px-4 py-2.5 text-neutral-300" {...props} />
   ),
 
   // ==========================================
   // Text styling
   // ==========================================
   strong: (props: ComponentProps<"strong">) => (
-    <strong className="font-semibold text-white" {...props} />
+    <strong className="font-medium text-neutral-100" {...props} />
   ),
   em: (props: ComponentProps<"em">) => (
-    <em className="text-zinc-200 italic" {...props} />
+    <em className="text-neutral-200 italic" {...props} />
   ),
   del: (props: ComponentProps<"del">) => (
-    <del className="text-zinc-500 line-through" {...props} />
+    <del className="text-neutral-500 line-through" {...props} />
   ),
   mark: (props: ComponentProps<"mark">) => (
     <mark

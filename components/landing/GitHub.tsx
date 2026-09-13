@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CountUp } from "@/components/shared/CountUp";
 
 interface ContributionDay {
   date: string;
@@ -19,219 +18,149 @@ interface APIContribution {
   level: number;
 }
 
-const SKELETON_WEEKS = 52;
-const SKELETON_DAYS = 7;
+const SKELETON_WEEKS = 53;
 const LEVELS = [0, 1, 2, 3, 4] as const;
 
 const getLevelColor = (level: number) => {
   const colors: Record<number, string> = {
-    0: "bg-zinc-500/5",
-    1: "bg-zinc-500/20",
-    2: "bg-zinc-500/40",
-    3: "bg-zinc-500/60",
-    4: "bg-zinc-500/80",
+    0: "bg-white/[0.04]",
+    1: "bg-white/15",
+    2: "bg-white/30",
+    3: "bg-white/50",
+    4: "bg-white/75",
   };
   return colors[level] ?? colors[0];
 };
 
-const Legend = ({ isLoading }: { isLoading: boolean }) => (
-  <figcaption className="mt-2 flex items-center justify-end gap-1.5 sm:gap-2">
-    <span
-      className={`text-[9px] sm:text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}
-    >
-      Less
-    </span>
-    <div className="flex gap-0.5 sm:gap-[3px]" aria-hidden="true">
-      {LEVELS.map((level) => (
-        <div
-          key={level}
-          className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 ${isLoading ? "bg-zinc-800" : getLevelColor(level)}`}
-        />
-      ))}
-    </div>
-    <span
-      className={`text-[9px] sm:text-[10px] ${isLoading ? "text-zinc-600" : "text-zinc-500"}`}
-    >
-      More
-    </span>
-  </figcaption>
-);
-
-const ContributionCell = ({
-  day,
-  delay,
+// Columns stretch to fill whatever width the page gives the graph.
+const Weeks = ({
+  count,
+  children,
 }: {
-  day: ContributionDay;
-  delay: number;
+  count: number;
+  children: React.ReactNode;
 }) => (
   <div
-    role="gridcell"
-    aria-label={`${day.count} contributions on ${day.date}`}
-    data-date={day.date}
-    data-count={day.count}
-    className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 ${getLevelColor(day.level)} cursor-pointer transition-transform duration-200 ease-[var(--ease-spring)] hover:scale-[1.6] hover:bg-white hover:ring-1 hover:ring-white`}
-    style={{
-      animation: `pop-in 380ms var(--ease-out-expo) ${delay}ms both`,
-    }}
-  />
-);
-
-const SkeletonGrid = () => (
-  <div className="flex gap-0.5 sm:gap-[3px]" aria-hidden="true">
-    {Array.from({ length: SKELETON_WEEKS }).map((_, weekIndex) => (
-      <div key={weekIndex} className="flex flex-col gap-0.5 sm:gap-[3px]">
-        {Array.from({ length: SKELETON_DAYS }).map((_, dayIndex) => (
-          <div
-            key={dayIndex}
-            className="h-2.5 w-2.5 animate-pulse bg-zinc-800 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5"
-          />
-        ))}
-      </div>
-    ))}
-  </div>
-);
-
-const ContributionGrid = ({
-  contributions,
-}: {
-  contributions: ContributionWeek[];
-}) => (
-  <div
-    className="flex gap-0.5 sm:gap-[3px]"
-    role="grid"
-    aria-label="GitHub contribution graph"
+    className="grid gap-[2px]"
+    style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
   >
-    {contributions.map((week, weekIndex) => (
-      <div
-        key={weekIndex}
-        className="flex flex-col gap-0.5 sm:gap-[3px]"
-        role="row"
-      >
-        {week.days.map((day, dayIndex) => (
-          <ContributionCell
-            key={dayIndex}
-            day={day}
-            // Diagonal wave: later weeks and later weekdays start later.
-            delay={weekIndex * 11 + dayIndex * 14}
-          />
-        ))}
-      </div>
-    ))}
+    {children}
   </div>
 );
+
+const cell = "aspect-square w-full rounded-[2px]";
 
 const GitHubCard = ({ username }: { username: string }) => {
   const [contributions, setContributions] = useState<ContributionWeek[]>([]);
-  const [totalContributions, setTotalContributions] = useState(0);
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchContributions = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          `https://github-contributions-api.jogruber.de/v4/${username}?y=last`
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch contributions");
-        }
-
-        const data = await response.json();
-
+    fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch contributions");
+        return res.json();
+      })
+      .then((data) => {
         const weeks: ContributionWeek[] = [];
-        let currentWeek: ContributionDay[] = [];
-        let total = 0;
+        let week: ContributionDay[] = [];
+        let sum = 0;
 
-        data.contributions.forEach(
-          (contribution: APIContribution, index: number) => {
-            const { date, count, level } = contribution;
-            total += count;
-
-            currentWeek.push({ date, count, level });
-
-            const dayOfWeek = new Date(date).getDay();
-            if (dayOfWeek === 6 || index === data.contributions.length - 1) {
-              weeks.push({ days: [...currentWeek] });
-              currentWeek = [];
-            }
+        data.contributions.forEach((c: APIContribution, i: number) => {
+          sum += c.count;
+          week.push({ date: c.date, count: c.count, level: c.level });
+          if (
+            new Date(c.date).getDay() === 6 ||
+            i === data.contributions.length - 1
+          ) {
+            weeks.push({ days: week });
+            week = [];
           }
-        );
+        });
 
         setContributions(weeks);
-        setTotalContributions(total);
-        setLoading(false);
-        setIsInitialLoad(false);
-      } catch (error) {
-        console.error("Error fetching contributions:", error);
-        setLoading(false);
-        setIsInitialLoad(false);
-      }
-    };
-
-    fetchContributions();
+        setTotal(sum);
+      })
+      .catch((error) => console.error("Error fetching contributions:", error))
+      .finally(() => setLoading(false));
   }, [username]);
 
-  const isLoading = isInitialLoad && loading;
-
   return (
-    <section
-      className="flex h-full flex-col"
-      {...(isLoading
-        ? { role: "status", "aria-label": "Loading GitHub contributions" }
-        : { "aria-labelledby": "github-contributions-heading" })}
+    <figure
+      className="text-[13px] text-neutral-500"
+      {...(loading && {
+        role: "status",
+        "aria-label": "Loading GitHub contributions",
+      })}
     >
-      <div className="mb-2 flex items-baseline justify-between gap-3 sm:mb-6">
-        <h3
-          id={isLoading ? undefined : "github-contributions-heading"}
-          className="text-sm font-bold text-white sm:text-base md:text-lg"
+      {loading ? (
+        <Weeks count={SKELETON_WEEKS}>
+          {Array.from({ length: SKELETON_WEEKS }).map((_, w) => (
+            <div key={w} className="flex flex-col gap-[2px]">
+              {Array.from({ length: 7 }).map((_, d) => (
+                <div
+                  key={d}
+                  className={`${cell} animate-pulse bg-white/[0.04]`}
+                />
+              ))}
+            </div>
+          ))}
+        </Weeks>
+      ) : (
+        <div
+          role="grid"
+          aria-label="GitHub contribution graph"
+          onMouseOver={(e) => {
+            const el = (e.target as HTMLElement).closest<HTMLElement>(
+              "[data-date]"
+            );
+            if (el) setHovered(`${el.dataset.count} on ${el.dataset.date}`);
+          }}
+          onMouseLeave={() => setHovered(null)}
         >
-          {isLoading ? (
-            <span className="inline-block h-4 w-12 animate-pulse rounded bg-zinc-700 sm:h-5 sm:w-16" />
-          ) : (
-            <CountUp value={totalContributions} />
-          )}{" "}
-          <span className="text-xs text-zinc-400 sm:text-sm md:text-base">
-            contributions in the last year
-          </span>
-        </h3>
-        <p
-          className="shrink-0 font-mono text-[10px] whitespace-nowrap text-zinc-400 transition-opacity sm:text-xs"
-          style={{ opacity: hovered ? 1 : 0 }}
-          aria-hidden="true"
-        >
-          {hovered}
-        </p>
-      </div>
-
-      <figure className="flex-1 overflow-hidden">
-        <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 hover:scrollbar-thumb-zinc-700 md:scrollbar-none overflow-x-auto overflow-y-hidden pb-2 md:pb-0 lg:overflow-x-hidden">
-          <div
-            className="inline-flex min-w-full flex-col gap-1"
-            onMouseOver={(e) => {
-              const cell = (e.target as HTMLElement).closest<HTMLElement>(
-                "[data-date]"
-              );
-              if (cell)
-                setHovered(
-                  `${cell.dataset.count} contributions \u00b7 ${cell.dataset.date}`
-                );
-            }}
-            onMouseLeave={() => setHovered(null)}
-          >
-            {isLoading ? (
-              <SkeletonGrid />
-            ) : (
-              <ContributionGrid contributions={contributions} />
-            )}
-
-            <Legend isLoading={isLoading} />
-          </div>
+          <Weeks count={contributions.length}>
+            {contributions.map((week, w) => (
+              <div key={w} role="row" className="flex flex-col gap-[2px]">
+                {week.days.map((day) => (
+                  <div
+                    key={day.date}
+                    role="gridcell"
+                    aria-label={`${day.count} contributions on ${day.date}`}
+                    data-date={day.date}
+                    data-count={day.count}
+                    className={`${cell} ${getLevelColor(day.level)} transition-colors hover:bg-white`}
+                  />
+                ))}
+              </div>
+            ))}
+          </Weeks>
         </div>
-      </figure>
-    </section>
+      )}
+
+      <figcaption className="mt-3 flex items-center justify-between gap-3">
+        <span className="tabular">
+          {hovered ?? (
+            <>
+              <span className="text-neutral-200">
+                {loading ? "—" : total.toLocaleString()}
+              </span>{" "}
+              contributions in the last year
+            </>
+          )}
+        </span>
+        <span className="flex items-center gap-1.5" aria-hidden="true">
+          Less
+          {LEVELS.map((level) => (
+            <span
+              key={level}
+              className={`h-2.5 w-2.5 rounded-[2px] ${getLevelColor(level)}`}
+            />
+          ))}
+          More
+        </span>
+      </figcaption>
+    </figure>
   );
 };
 

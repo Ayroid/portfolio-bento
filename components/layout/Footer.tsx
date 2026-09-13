@@ -1,58 +1,62 @@
-"use client";
+import Link from "next/link";
+import { Mail } from "lucide-react";
+import { navLinks, siteConfig, socialProfiles } from "@/config";
 
-import { ActionCard, BentoItem, VisitorCount } from "@/components/shared";
-import { siteConfig } from "@/config";
-
-/**
- * LATTICE STRUCTURE (30 columns × 5 rows)
- * Base row height: 50px
- */
+const quiet = "transition-colors hover:text-neutral-100";
 
 const Footer = () => {
   return (
-    <>
-      <div
-        className="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(30,1fr)]"
-        style={{
-          gridAutoRows: "40px",
-        }}
-      >
-        {/* Open to Work Section */}
-        <BentoItem colSpan={20} rowSpan={4}>
-          <div className="group/cta flex h-full flex-col items-start justify-end p-6 sm:p-8">
-            <h3 className="font-sans text-2xl font-semibold text-white sm:text-3xl">
-              Let&apos;s build something real
-            </h3>
-            <p className="max-w-xl font-sans text-base text-zinc-500 transition-colors duration-500 group-hover/cta:text-zinc-400 sm:text-xl">
-              Open to full-time roles, contracts, and serious collaborations.
-            </p>
-          </div>
-        </BentoItem>
+    <footer className="border-y border-white/[0.06] px-5 py-8 text-[13px] text-neutral-500">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          {socialProfiles.map(({ platform, url, icon: Icon }) => (
+            <a
+              key={platform}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={platform}
+              className={quiet}
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          ))}
+          <a
+            href={`mailto:${siteConfig.email}`}
+            aria-label="Email"
+            className={quiet}
+          >
+            <Mail className="h-4 w-4" />
+          </a>
+        </div>
 
-        <BentoItem colSpan={10} rowSpan={4}>
-          <ActionCard
+        <div className="flex items-center gap-4">
+          <Link href={siteConfig.resumeUrl} className={quiet}>
+            Resume
+          </Link>
+          <a
             href={siteConfig.calendarUrl}
-            label="CONTACT"
-            bgColor="bg-accent"
-            hoverBgColor="hover:bg-accent-hover"
-            textColor="text-accent-foreground"
-            iconColor="text-accent-foreground"
-          />
-        </BentoItem>
+            target="_blank"
+            rel="noopener noreferrer"
+            className={quiet}
+          >
+            Book a call
+          </a>
+        </div>
       </div>
 
-      {/* Footer Credits - Plain centered text */}
-      <div className="mt-8 flex flex-col items-center justify-center gap-3">
-        <VisitorCount />
-        <p className="text-center font-sans text-xs text-zinc-600 sm:text-sm">
-          Designed &amp; Developed by{" "}
-          <span className="font-bold text-zinc-400 transition-colors duration-300 hover:text-white">
-            {siteConfig.name}
-          </span>
-          <br />© {new Date().getFullYear()} All rights reserved.
-        </p>
-      </div>
-    </>
+      <nav className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+        {navLinks.map((l) => (
+          <Link key={l.href} href={l.href} className={quiet}>
+            {l.label}
+          </Link>
+        ))}
+      </nav>
+
+      <p className="mt-6 text-neutral-600">
+        © {new Date().getFullYear()} {siteConfig.name}
+      </p>
+    </footer>
   );
 };
 

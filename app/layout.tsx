@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/layout";
-import { PageContainer, ScrollProgress } from "@/components/shared";
+import { PageContainer } from "@/components/shared";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,8 +81,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ScrollProgress />
-        <div className="grain bg-surface-page relative min-h-screen w-full py-4 lg:py-12">
+        <div className="bg-surface-page min-h-screen w-full">
           <PageContainer navbar={<Navbar />} footer={<Footer />}>
             {children}
           </PageContainer>

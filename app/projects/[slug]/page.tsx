@@ -1,19 +1,16 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
+import { projectsData, getProjectBySlug, techStack } from "@/data/projects";
+import { ProjectTimeline } from "@/components/shared";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
-  projectsData,
-  getProjectBySlug,
-  techStack,
-  statusColors,
-} from "@/data/projects";
-import { FadeUpReveal, ProjectTimeline, Separator } from "@/components/shared";
+  PageHeader,
+  Section,
+  pill,
+  row,
+  rowTitle,
+} from "@/components/shared/Section";
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -49,224 +46,87 @@ export default async function ProjectPage({
   }
 
   return (
-    <div className="flex flex-col gap-8 pt-12">
-      {/* Back Button */}
-      <FadeUpReveal>
-        <Link
-          href="/projects"
-          className="inline-flex w-fit items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span className="text-sm">Back to Projects</span>
-        </Link>
-      </FadeUpReveal>
-
-      {/* Project Header */}
-      <FadeUpReveal>
-        <div className="flex flex-col gap-4">
-          {/* Title and Links row */}
-          <div className="flex items-start justify-between gap-4">
-            <h1 className="font-mono text-3xl font-bold text-white sm:text-4xl">
-              {project.title}
-            </h1>
-
-            {/* Status Badge and Links - hidden on mobile */}
-            <div className="hidden items-center gap-3 md:flex">
-              <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-surface-card px-4 py-2">
-                <span
-                  className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
-                />
-                <span className="text-sm font-medium text-white">
-                  {project.status}
-                </span>
-              </div>
-              {project.demoLink && (
-                <a
-                  href={project.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Visit
-                </a>
-              )}
-              {project.githubLink && (
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
-                >
-                  <Github className="h-4 w-4" />
-                  Source
-                </a>
-              )}
-            </div>
-          </div>
-
-          {/* Description */}
-          <p className="font-sans text-base leading-relaxed text-zinc-400 sm:text-lg">
-            {project.description}
-          </p>
-
-          {/* Mobile Links - shown only on mobile */}
-          <div className="flex items-center gap-3 md:hidden">
-            <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-surface-card px-4 py-2">
-              <span
-                className={`h-2.5 w-2.5 rounded-full ${statusColors[project.status]}`}
-              />
-              <span className="text-sm font-medium text-white">
-                {project.status}
-              </span>
-            </div>
-            {project.demoLink && (
-              <a
-                href={project.demoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
-              >
-                <ExternalLink className="h-4 w-4" />
-                Visit
-              </a>
-            )}
-            {project.githubLink && (
-              <a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
-              >
-                <Github className="h-4 w-4" />
-                Source
-              </a>
-            )}
-          </div>
+    <>
+      <PageHeader title={project.title} description={project.description}>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-[13px] text-neutral-500">
+            {project.status}
+          </span>
+          {project.demoLink && (
+            <a
+              href={project.demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={pill}
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+              Visit
+            </a>
+          )}
+          {project.githubLink && (
+            <a
+              href={project.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={pill}
+            >
+              <Github className="h-3.5 w-3.5" />
+              Source
+            </a>
+          )}
         </div>
-      </FadeUpReveal>
+      </PageHeader>
 
-      {/* Project Image */}
-      <FadeUpReveal>
-        <div className="relative h-[400px] w-full overflow-hidden border border-zinc-800">
+      <div className="border-t border-white/[0.06] px-5 py-8">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-white/10">
           <Image
             src={project.image}
             alt={project.title}
             fill
+            sizes="600px"
             className="object-cover"
             priority
           />
         </div>
-      </FadeUpReveal>
+      </div>
 
-      {/* Long Description */}
       {project.longDescription && (
-        <FadeUpReveal>
-          <div className="border border-zinc-800 bg-surface-card p-6 sm:p-8">
-            <h2 className="mb-4 text-xl font-bold text-white">
-              About the Project
-            </h2>
-            <p className="leading-relaxed text-zinc-400">
-              {project.longDescription}
-            </p>
-          </div>
-        </FadeUpReveal>
+        <Section label="about">
+          <p className="leading-relaxed text-neutral-300">
+            {project.longDescription}
+          </p>
+        </Section>
       )}
 
-      {/* Project Timeline */}
       {project.timeline && project.timeline.length > 0 && (
-        <FadeUpReveal>
+        <Section label="timeline">
           <ProjectTimeline stages={project.timeline} />
-        </FadeUpReveal>
+        </Section>
       )}
 
-      {/* Technologies */}
-      <FadeUpReveal>
-        <div className="border border-zinc-800 bg-surface-card p-6 sm:p-8">
-          <h2 className="mb-4 text-xl font-bold text-white">
-            Technologies Used
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            {project.technologies.map((tech) => {
-              const techInfo = techStack[tech];
-              const Icon = techInfo.icon;
-              return (
-                <Tooltip key={tech}>
-                  <TooltipTrigger asChild>
-                    <div className="flex items-center gap-2 border border-zinc-800 bg-surface-card px-3 py-2 transition-colors hover:border-zinc-700">
-                      <Icon className="h-5 w-5 text-white" />
-                      <span className="text-sm text-zinc-300">
-                        {techInfo.name}
-                      </span>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent>{techInfo.name}</TooltipContent>
-                </Tooltip>
-              );
-            })}
-          </div>
-        </div>
-      </FadeUpReveal>
+      <Section label="stack">
+        <p className="leading-relaxed text-neutral-300">
+          {project.technologies.map((t) => techStack[t].name).join(" · ")}
+        </p>
+      </Section>
 
-      {/* Related Projects */}
       {relatedProjects.length > 0 && (
-        <>
-          <FadeUpReveal>
-            <Separator />
-          </FadeUpReveal>
-          <FadeUpReveal>
-            <div className="flex flex-col gap-4">
-              <h2 className="text-sm font-medium tracking-wider text-zinc-500 uppercase">
-                Other Projects
-              </h2>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                {relatedProjects.map((relatedProject) => (
-                  <Link
-                    key={relatedProject.id}
-                    href={`/projects/${relatedProject.slug}`}
-                    className="group relative block h-full bg-transparent"
-                  >
-                    <div className="relative flex h-full w-full flex-col overflow-hidden border border-zinc-800 bg-surface-card transition-all duration-300 hover:border-zinc-700">
-                      <div className="relative h-48 w-full overflow-hidden">
-                        <Image
-                          src={relatedProject.image}
-                          alt={relatedProject.title}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="flex flex-1 flex-col gap-2 p-4">
-                        <h3 className="line-clamp-2 font-sans text-base leading-tight font-semibold text-white transition-colors group-hover:text-zinc-100">
-                          {relatedProject.title}
-                        </h3>
-                        <p className="line-clamp-2 font-sans text-xs leading-relaxed text-zinc-400">
-                          {relatedProject.description}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </FadeUpReveal>
-        </>
+        <Section label="more">
+          {relatedProjects.map((p) => (
+            <Link
+              key={p.id}
+              href={`/projects/${p.slug}`}
+              className={`${row} grid-cols-[minmax(0,1fr)_auto] items-baseline sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)_auto]`}
+            >
+              <span className={`truncate ${rowTitle}`}>{p.title}</span>
+              <span className="hidden truncate text-neutral-400 sm:block">
+                {p.description}
+              </span>
+              <span className="text-neutral-500">{p.status}</span>
+            </Link>
+          ))}
+        </Section>
       )}
-
-      {/* Footer */}
-      <FadeUpReveal>
-        <Separator />
-      </FadeUpReveal>
-      <FadeUpReveal>
-        <div className="mb-12 flex items-center justify-between pt-4">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            All Projects
-          </Link>
-        </div>
-      </FadeUpReveal>
-    </div>
+    </>
   );
 }
