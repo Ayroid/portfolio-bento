@@ -1,149 +1,134 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 import { Section, pill } from "@/components/shared/Section";
 import { DOMAINS, STACKS } from "@/data/atlas";
 import {
   DEFAULT_MODE,
   domainSkills,
-  findSkill,
   isMode,
   sameMode,
-  skills,
   type Mode,
 } from "@/lib/atlas";
 import { Panel } from "./Panel";
+import { Search } from "./Search";
 import { SkillGuide } from "./SkillGuide";
 import { Wheel } from "./Wheel";
 import "./atlas.css";
 
+// The selection is remembered across visits; storage may be unavailable.
 const KEY = "atlas-mode";
+function readSaved(): Mode | undefined {
+  try {
+    const saved: unknown = JSON.parse(localStorage.getItem(KEY) ?? "null");
+    return isMode(saved) ? saved : undefined;
+  } catch {}
+}
+function writeSaved(m: Mode) {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(m));
+  } catch {}
+}
 const chip = `${pill} shrink-0 cursor-pointer whitespace-nowrap aria-pressed:border-neutral-100 aria-pressed:bg-neutral-100 aria-pressed:text-neutral-900`;
 
+// The guide never depends on the wheel's selection, so it's memoised with no
+// props and skips re-rendering its 104 cards when the selection changes. Its
+// "Show on the wheel" buttons are handled by one click listener in Atlas.
+const Guide = memo(function Guide() {
+  return DOMAINS.map((d) => (
+    <Section key={d.id} label={d.name.toLowerCase()}>
+      <p className="mb-4 text-neutral-500">{d.desc}</p>
+      {domainSkills[d.id].map((s) => (
+        <details
+          key={s.id}
+          id={`g-${s.id}`}
+          data-d={s.d}
+          className="group/card scroll-mt-4 border-t border-white/[0.06]"
+        >
+          <summary className="grid cursor-pointer list-none gap-1 py-3 [&::-webkit-details-marker]:hidden">
+            <span className="flex items-center gap-2.5">
+              <span className="c-dot" />
+              <span className="text-neutral-100 decoration-neutral-600 underline-offset-4 group-hover/card:underline">
+                {s.name}
+              </span>
+              <span className="ml-auto font-mono text-[11px] text-neutral-600">
+                {s.links.length} links
+              </span>
+            </span>
+            <span className="text-neutral-500">{s.desc}</span>
+          </summary>
+          <div className="pb-8">
+            <SkillGuide skill={s} />
+            <button className={`${pill} mt-6 cursor-pointer`} data-show={s.id}>
+              Show on the wheel →
+            </button>
+          </div>
+        </details>
+      ))}
+    </Section>
+  ));
+});
+
 export function Atlas() {
-  const [query, setQuery] = useState("");
-  const [miss, setMiss] = useState(false);
   const [mode, setModeState] = useState<Mode>(DEFAULT_MODE);
   const dialog = useRef<HTMLDialogElement>(null);
   const panel = useRef<HTMLElement>(null);
 
-  // The selection is remembered across visits; storage may be unavailable.
-  function save(m: Mode) {
+  // A new selection always starts at the top of its panel.
+  function setMode(m: Mode) {
     setModeState(m);
-    try {
-      localStorage.setItem(KEY, JSON.stringify(m));
-    } catch {}
+    writeSaved(m);
+    if (panel.current) panel.current.scrollTop = 0;
   }
 
-  function setMode(m: Mode) {
-    save(m);
-    const p = panel.current;
-    if (!p) return;
-    p.scrollTop = 0;
-    // Stacked layout: bring the panel into view so the tap visibly does something.
+  // Wheel taps only: in the stacked layout, bring the panel into view so the
+  // tap visibly does something. Chips stay put so the lit wheel stays visible.
+  function selectSkill(id: string) {
+    setMode({ type: "skill", id });
     if (!matchMedia("(min-width: 1024px)").matches)
-      p.scrollIntoView({ behavior: "smooth", block: "start" });
+      panel.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   // Clicking the active chip again goes back to the default selection.
   const toggle = (m: Mode) => setMode(sameMode(m, mode) ? DEFAULT_MODE : m);
 
-  // Opens on the given skill, else on the last saved selection.
+  // Opens on the given skill, else on the last saved selection, scrolled to
+  // the top.
   function openWheel(m?: Mode) {
-    let next = m;
-    if (!next)
-      try {
-        const saved: unknown = JSON.parse(localStorage.getItem(KEY) ?? "null");
-        if (isMode(saved)) next = saved;
-      } catch {}
-    if (next) save(next);
+    const next = m ?? readSaved();
+    if (next) {
+      setModeState(next);
+      writeSaved(next);
+    }
     dialog.current?.showModal();
-  }
-
-  // Opens the matching skill's guide card and scrolls it into view.
-  function search() {
-    const s = findSkill(query);
-    setMiss(!s && query.trim() !== "");
-    if (!s) return;
-    const card = document.getElementById(
-      `g-${s.id}`
-    ) as HTMLDetailsElement | null;
-    if (!card) return;
-    card.open = true;
-    card.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Reset after opening: a closed dialog isn't rendered, so it can't scroll.
+    const p = panel.current;
+    if (p) {
+      p.scrollTop = 0;
+      // The stacked layout scrolls the panel's parent instead.
+      if (p.parentElement) p.parentElement.scrollTop = 0;
+    }
   }
 
   return (
-    <div className="atlas">
-      <div className="px-5 pb-8">
-        <div className="flex flex-wrap gap-2">
-          <input
-            type="search"
-            list="atlas-skills"
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setMiss(false);
-            }}
-            onKeyDown={(e) => e.key === "Enter" && search()}
-            placeholder="Find a skill, e.g. Negotiation"
-            aria-label="Find a skill"
-            className="min-w-0 flex-1 rounded-md border border-white/10 bg-transparent px-3 py-1.5 text-neutral-100 placeholder:text-neutral-600 focus:border-white/25 focus:outline-none"
-          />
-          <datalist id="atlas-skills">
-            {Object.values(skills).map((s) => (
-              <option key={s.id} value={s.name} />
-            ))}
-          </datalist>
-          <button
-            className={`${pill} cursor-pointer`}
-            onClick={() => openWheel()}
-          >
-            Open the wheel
-          </button>
-        </div>
-        {miss && (
-          <p className="mt-2 text-[13px] text-neutral-500" role="status">
-            No skill matches “{query.trim()}”.
-          </p>
-        )}
-      </div>
+    <div
+      className="atlas"
+      onClick={(e) => {
+        const id = (e.target as Element).closest<HTMLElement>("[data-show]")
+          ?.dataset.show;
+        if (id) openWheel({ type: "skill", id });
+      }}
+    >
+      <Search>
+        <button
+          className={`${pill} cursor-pointer`}
+          onClick={() => openWheel()}
+        >
+          Open the wheel
+        </button>
+      </Search>
 
-      {DOMAINS.map((d) => (
-        <Section key={d.id} label={d.name.toLowerCase()}>
-          <p className="mb-4 text-neutral-500">{d.desc}</p>
-          {domainSkills[d.id].map((s) => (
-            <details
-              key={s.id}
-              id={`g-${s.id}`}
-              data-d={s.d}
-              className="group/card scroll-mt-4 border-t border-white/[0.06]"
-            >
-              <summary className="grid cursor-pointer list-none gap-1 py-3 [&::-webkit-details-marker]:hidden">
-                <span className="flex items-center gap-2.5">
-                  <span className="c-dot" />
-                  <span className="text-neutral-100 decoration-neutral-600 underline-offset-4 group-hover/card:underline">
-                    {s.name}
-                  </span>
-                  <span className="ml-auto font-mono text-[11px] text-neutral-600">
-                    {s.links.length} links
-                  </span>
-                </span>
-                <span className="text-neutral-500">{s.desc}</span>
-              </summary>
-              <div className="pb-8">
-                <SkillGuide skill={s} />
-                <button
-                  className={`${pill} mt-6 cursor-pointer`}
-                  onClick={() => openWheel({ type: "skill", id: s.id })}
-                >
-                  Show on the wheel →
-                </button>
-              </div>
-            </details>
-          ))}
-        </Section>
-      ))}
+      <Guide />
 
       <dialog
         ref={dialog}
@@ -186,10 +171,7 @@ export function Atlas() {
           <div className="min-h-0 flex-1 overflow-y-auto lg:grid lg:grid-cols-[minmax(0,1fr)_400px] lg:overflow-hidden">
             <div className="overflow-x-auto lg:flex lg:items-center lg:overflow-auto">
               <div className="min-w-[740px] lg:min-w-0 lg:flex-1">
-                <Wheel
-                  mode={mode}
-                  onSelect={(id) => setMode({ type: "skill", id })}
-                />
+                <Wheel mode={mode} onSelect={selectSkill} />
               </div>
             </div>
             <aside
