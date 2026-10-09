@@ -12,7 +12,8 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "thought:add": "tsx scripts/add-thought.ts",
-    "thought:seed": "tsx scripts/seed-thoughts.ts"
+    "thought:seed": "tsx scripts/seed-thoughts.ts",
+    "atlas:check": "tsx scripts/check-atlas.ts"
   },
   "dependencies": {
     "@shikijs/rehype": "^3.20.0",
