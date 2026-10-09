@@ -109,8 +109,9 @@ for (const s of Object.values(skills)) {
   [s.x, s.y] = pt(s.angle, R);
 }
 
-// One coloured arc per domain inside the ring of skills, with its label just
-// outside the ring on a path that reads upright on the top or bottom half.
+// One coloured arc per domain inside the ring of skills. Its label reads
+// upright on the top or bottom half, and sits either outside the ring (inline
+// wheel, no skill names) or inside it (full screen, skill names outside).
 export const arcs = DOMAINS.map((d) => {
   const a0 = ang(span[d.id][0]) - 1.2;
   const a1 = ang(span[d.id][1]) + 1.2;
@@ -119,16 +120,19 @@ export const arcs = DOMAINS.map((d) => {
   const [x1, y1] = pt(a1, r);
   const mid = ((((a0 + a1) / 2) % 360) + 360) % 360;
   const bottom = mid > 0 && mid < 180;
-  const rl = bottom ? R + 44 : R + 24;
-  const [lx0, ly0] = pt(a0, rl);
-  const [lx1, ly1] = pt(a1, rl);
+  const labelAt = (rl: number) => {
+    const [lx0, ly0] = pt(a0, rl);
+    const [lx1, ly1] = pt(a1, rl);
+    return bottom
+      ? `M${f(lx1)},${f(ly1)} A${rl},${rl} 0 0 0 ${f(lx0)},${f(ly0)}`
+      : `M${f(lx0)},${f(ly0)} A${rl},${rl} 0 0 1 ${f(lx1)},${f(ly1)}`;
+  };
   return {
     d: d.id,
     name: d.name,
     arc: `M${f(x0)},${f(y0)} A${r},${r} 0 0 1 ${f(x1)},${f(y1)}`,
-    label: bottom
-      ? `M${f(lx1)},${f(ly1)} A${rl},${rl} 0 0 0 ${f(lx0)},${f(ly0)}`
-      : `M${f(lx0)},${f(ly0)} A${rl},${rl} 0 0 1 ${f(lx1)},${f(ly1)}`,
+    labelOut: labelAt(bottom ? R + 44 : R + 24),
+    labelIn: labelAt(bottom ? R - 38 : R - 46),
   };
 });
 

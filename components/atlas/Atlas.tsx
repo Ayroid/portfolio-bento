@@ -1,6 +1,8 @@
 "use client";
 
-import { memo, useState, useSyncExternalStore } from "react";
+import { Maximize2, Minimize2 } from "lucide-react";
+import { memo, useRef, useState, useSyncExternalStore } from "react";
+import { flushSync } from "react-dom";
 import { Section, pill } from "@/components/shared/Section";
 import { DOMAINS, STACKS } from "@/data/atlas";
 import {
@@ -94,6 +96,26 @@ export function Atlas() {
   // Clicking the active chip again goes back to the default selection.
   const toggle = (m: Mode) => setMode(sameMode(m, mode) ? DEFAULT_MODE : m);
 
+  const [full, setFull] = useState(false);
+  const dialog = useRef<HTMLDialogElement>(null);
+
+  // The wheel glides between its inline spot and full screen while the rest of
+  // the page fades. Without view transitions (or with reduced motion) it just
+  // switches.
+  function setFullscreen(on: boolean) {
+    const run = () => {
+      flushSync(() => setFull(on));
+      if (on) dialog.current?.showModal();
+      else dialog.current?.close();
+    };
+    if (
+      !document.startViewTransition ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return run();
+    document.startViewTransition(run);
+  }
+
   return (
     <div
       className="atlas"
@@ -138,11 +160,23 @@ export function Atlas() {
               </button>
             ))}
           </div>
-          <div className="mt-6">
-            <Wheel
-              mode={mode}
-              onSelect={(id) => setMode({ type: "skill", id })}
-            />
+          <div className="relative mt-6">
+            <button
+              className={`${pill} absolute top-0 right-0 z-10 cursor-pointer`}
+              onClick={() => setFullscreen(true)}
+            >
+              <Maximize2 className="h-3.5 w-3.5" />
+              Full screen
+            </button>
+            {/* While full screen, hold the wheel's space so the page doesn't jump. */}
+            {full ? (
+              <div className="aspect-square" />
+            ) : (
+              <Wheel
+                mode={mode}
+                onSelect={(id) => setMode({ type: "skill", id })}
+              />
+            )}
           </div>
         </Section>
       </div>
@@ -152,6 +186,42 @@ export function Atlas() {
       </Section>
 
       <Guide />
+
+      <dialog
+        ref={dialog}
+        aria-label="Skill wheel, full screen"
+        className="atlas-full bg-surface-page m-0 h-dvh max-h-none w-screen max-w-none border-0 p-0 text-neutral-300 backdrop:bg-transparent"
+        onCancel={(e) => {
+          // Esc animates out like the button does.
+          e.preventDefault();
+          setFullscreen(false);
+        }}
+        onClose={() => setFull(false)}
+      >
+        {full && (
+          <>
+            <button
+              className={`${pill} bg-surface-page fixed top-4 right-4 z-10 cursor-pointer`}
+              onClick={() => setFullscreen(false)}
+              autoFocus
+            >
+              <Minimize2 className="h-3.5 w-3.5" />
+              Exit full screen
+            </button>
+            {/* As big as the screen allows; phones scroll a 740px wheel so the
+                names stay readable, as on the original Atlas. */}
+            <div className="grid h-full place-items-center overflow-auto">
+              <div className="w-[max(740px,min(100vw,100dvh))] md:w-[min(100vw,100dvh)]">
+                <Wheel
+                  labels
+                  mode={mode}
+                  onSelect={(id) => setMode({ type: "skill", id })}
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </dialog>
     </div>
   );
 }

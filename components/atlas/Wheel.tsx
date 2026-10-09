@@ -14,14 +14,18 @@ import {
   type Mode,
 } from "@/lib/atlas";
 
-// Sized for the 640px column: no per-skill labels (they'd be ~6px), so the
-// centre names whatever is hovered or selected instead.
+// Inline, at column width, there are no per-skill labels (they'd be ~6px), so
+// the centre names whatever is hovered or selected. Full screen (`labels`)
+// brings the skill names back around the ring, as on the original Atlas.
+// Both share a view-transition name so one morphs into the other.
 export function Wheel({
   mode,
   onSelect,
+  labels = false,
 }: {
   mode: Mode;
   onSelect: (id: string) => void;
+  labels?: boolean;
 }) {
   const [hover, setHover] = useState<string | null>(null);
   const shown: Mode = hover ? { type: "skill", id: hover } : mode;
@@ -42,17 +46,26 @@ export function Wheel({
 
   return (
     <svg
-      viewBox="-385 -385 770 770"
+      viewBox={labels ? "-580 -580 1160 1160" : "-385 -385 770 770"}
       role="group"
       aria-label="Skill wheel: skills grouped by domain, lines show how they strengthen each other"
-      className="wheel block h-auto w-full"
+      className={`wheel block h-auto w-full ${labels ? "labels" : ""}`}
+      style={{ viewTransitionName: "atlas-wheel" }}
     >
       {arcs.map((a) => (
         <g key={a.d} data-d={a.d}>
           <path className="arc" d={a.arc} />
-          <path id={`dp-${a.d}`} d={a.label} fill="none" />
+          <path
+            id={`dp-${a.d}${labels ? "-in" : ""}`}
+            d={labels ? a.labelIn : a.labelOut}
+            fill="none"
+          />
           <text className="dlabel">
-            <textPath href={`#dp-${a.d}`} startOffset="50%" textAnchor="middle">
+            <textPath
+              href={`#dp-${a.d}${labels ? "-in" : ""}`}
+              startOffset="50%"
+              textAnchor="middle"
+            >
               {a.name}
             </textPath>
           </text>
@@ -79,6 +92,7 @@ export function Wheel({
 
       <g>
         {Object.values(skills).map((s) => {
+          const n = nodeLayout(s);
           const cls = [
             "node",
             focus.nodes.has(s.id) && "on",
@@ -117,8 +131,16 @@ export function Wheel({
               <circle
                 cx={s.x.toFixed(1)}
                 cy={s.y.toFixed(1)}
-                r={nodeLayout(s).r.toFixed(1)}
+                r={n.r.toFixed(1)}
               />
+              {labels && (
+                <text
+                  transform={n.transform}
+                  textAnchor={n.left ? "end" : "start"}
+                >
+                  {s.name}
+                </text>
+              )}
             </g>
           );
         })}

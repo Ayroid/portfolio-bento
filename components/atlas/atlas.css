@@ -121,17 +121,51 @@
   fill: #737373;
   text-anchor: middle;
 }
-/* Phones render the wheel at ~0.45x, so the text needs more units. */
+/* Phones render the inline wheel at ~0.45x, so the text needs more units. */
 @media (max-width: 640px) {
-  .wheel .dlabel {
+  .wheel:not(.labels) .dlabel {
     font-size: 21px;
   }
-  .wheel .center-t {
+  .wheel:not(.labels) .center-t {
     font-size: 36px;
   }
-  .wheel .center-s {
+  .wheel:not(.labels) .center-s {
     font-size: 20px;
   }
+}
+
+/* Full screen: skill names around the ring, domain names inside it. */
+.wheel.labels .dlabel {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+}
+.wheel .node text {
+  font-size: 12.5px;
+  fill: #a3a3a3;
+  dominant-baseline: middle;
+}
+.wheel .node:hover text,
+.wheel .node.on text {
+  fill: #f5f5f5;
+  font-weight: 600;
+}
+.wheel .node.sel text {
+  font-weight: 700;
+  fill: var(--c);
+}
+
+/* Going full screen: the wheel glides between its inline spot and the full
+   view while the rest of the page fades out (the default root cross-fade). */
+::view-transition-group(atlas-wheel) {
+  animation-duration: 0.5s;
+  animation-timing-function: var(--ease-out-expo);
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+html:has(.atlas-full[open]) {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
