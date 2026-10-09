@@ -14,7 +14,8 @@ import {
   type Mode,
 } from "@/lib/atlas";
 
-// Hovering a skill previews its connections; leaving falls back to the selection.
+// Sized for the 640px column: no per-skill labels (they'd be ~6px), so the
+// centre names whatever is hovered or selected instead.
 export function Wheel({
   mode,
   onSelect,
@@ -29,16 +30,19 @@ export function Wheel({
   const order = links
     .map((_, i) => i)
     .sort((a, b) => Number(focus.links.has(a)) - Number(focus.links.has(b)));
-  const [count, caption] =
+  const [name, caption] =
     shown.type === "skill"
-      ? [skills[shown.id].links.length, "connections"]
+      ? [
+          skills[shown.id].name,
+          `${skills[shown.id].links.length} connections · ${domainById[skills[shown.id].d].name}`,
+        ]
       : shown.type === "domain"
-        ? [domainSkills[shown.id].length, `${domainById[shown.id].name} skills`]
-        : [STACKS[shown.i].ids.length, "skills in stack"];
+        ? [domainById[shown.id].full, `${domainSkills[shown.id].length} skills`]
+        : [STACKS[shown.i].name, `${STACKS[shown.i].ids.length} skill stack`];
 
   return (
     <svg
-      viewBox="-580 -580 1160 1160"
+      viewBox="-385 -385 770 770"
       role="group"
       aria-label="Skill wheel: skills grouped by domain, lines show how they strengthen each other"
       className="wheel block h-auto w-full"
@@ -66,19 +70,15 @@ export function Wheel({
         ))}
       </g>
 
-      <text className="center-s" y={-14}>
-        Skill Atlas
+      <text className="center-t" y={-4}>
+        {name}
       </text>
-      <text className="center-t" y={22}>
-        {count}
-      </text>
-      <text className="center-s" y={48}>
+      <text className="center-s" y={30}>
         {caption}
       </text>
 
       <g>
         {Object.values(skills).map((s) => {
-          const n = nodeLayout(s);
           const cls = [
             "node",
             focus.nodes.has(s.id) && "on",
@@ -94,6 +94,7 @@ export function Wheel({
               tabIndex={0}
               role="button"
               aria-label={s.name}
+              aria-pressed={mode.type === "skill" && mode.id === s.id}
               onClick={() => onSelect(s.id)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -103,18 +104,21 @@ export function Wheel({
               }}
               onMouseEnter={() => setHover(s.id)}
               onMouseLeave={() => setHover(null)}
+              onFocus={() => setHover(s.id)}
+              onBlur={() => setHover(null)}
             >
+              {/* Invisible, larger target: the dots alone are a few px wide. */}
+              <circle
+                className="hit"
+                cx={s.x.toFixed(1)}
+                cy={s.y.toFixed(1)}
+                r={9}
+              />
               <circle
                 cx={s.x.toFixed(1)}
                 cy={s.y.toFixed(1)}
-                r={n.r.toFixed(1)}
+                r={nodeLayout(s).r.toFixed(1)}
               />
-              <text
-                transform={n.transform}
-                textAnchor={n.left ? "end" : "start"}
-              >
-                {s.name}
-              </text>
             </g>
           );
         })}

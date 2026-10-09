@@ -57,34 +57,36 @@
   color: var(--c);
 }
 
-/* Wheel. Everything dims except what the current selection or hover touches. */
+/* Wheel. Everything dims except what the current selection or hover touches.
+   Sizes are SVG units: the 770-unit viewBox renders ~0.8x in the column. */
 .wheel .link {
   fill: none;
   stroke: var(--c);
   stroke-width: 0.9;
-  opacity: 0.035;
+  opacity: 0.05;
   transition: opacity 0.2s;
 }
 .wheel .link.on {
-  opacity: 0.9;
-  stroke-width: 1.7;
+  opacity: 0.85;
+  stroke-width: 1.6;
 }
 .wheel .arc {
   fill: none;
   stroke: var(--c);
-  stroke-width: 7;
+  stroke-width: 5;
   stroke-linecap: round;
+  opacity: 0.8;
 }
 .wheel .dlabel {
   font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.14em;
+  font-size: 15px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   fill: var(--c);
 }
 .wheel .node {
   cursor: pointer;
-  opacity: 0.22;
+  opacity: 0.25;
   transition: opacity 0.2s;
 }
 .wheel .node.on {
@@ -93,53 +95,43 @@
 .wheel .node:focus {
   outline: none;
 }
-.wheel .node circle {
+.wheel .node .hit {
+  fill: transparent;
+}
+.wheel .node circle:not(.hit) {
   fill: var(--c);
   stroke: var(--surface-page);
   stroke-width: 1.5;
 }
-.wheel .node:focus-visible circle {
-  stroke: #fafafa;
-  stroke-width: 3;
-}
-.wheel .node text {
-  font-size: 12.5px;
-  fill: #a3a3a3;
-  dominant-baseline: middle;
-}
-.wheel .node:hover text,
-.wheel .node.on text {
-  fill: #f5f5f5;
-}
-.wheel .node.on text {
-  font-weight: 600;
-}
-.wheel .node.sel circle {
+.wheel .node:focus-visible circle:not(.hit),
+.wheel .node.sel circle:not(.hit) {
   stroke: #fafafa;
   stroke-width: 2.5;
-}
-.wheel .node.sel text {
-  font-weight: 700;
-  fill: var(--c);
 }
 .wheel .center-t {
   fill: #f5f5f5;
   text-anchor: middle;
-  font-size: 34px;
-  font-weight: 600;
+  font-size: 28px;
 }
 .wheel .center-s {
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 13px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   fill: #737373;
   text-anchor: middle;
 }
-
-/* The page behind the open wheel must not scroll. */
-html:has(.atlas-dialog[open]) {
-  overflow: hidden;
+/* Phones render the wheel at ~0.45x, so the text needs more units. */
+@media (max-width: 640px) {
+  .wheel .dlabel {
+    font-size: 21px;
+  }
+  .wheel .center-t {
+    font-size: 36px;
+  }
+  .wheel .center-s {
+    font-size: 20px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

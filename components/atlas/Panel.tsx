@@ -1,4 +1,4 @@
-import { pill } from "@/components/shared/Section";
+import { pill, row, rowTitle } from "@/components/shared/Section";
 import { DOMAINS, STACKS } from "@/data/atlas";
 import {
   domainById,
@@ -10,6 +10,7 @@ import {
 } from "@/lib/atlas";
 import { SkillGuide, h3 } from "./SkillGuide";
 
+// A hairline row like every other list on the site: dot + name, note beneath.
 function Row({
   id,
   title,
@@ -22,25 +23,19 @@ function Row({
   onClick: () => void;
 }) {
   return (
-    <li>
-      <button
-        onClick={onClick}
-        data-d={skills[id].d}
-        className="grid w-full cursor-pointer grid-cols-[8px_minmax(0,1fr)] items-baseline gap-x-3 rounded-md px-2 py-2 text-left transition-colors hover:bg-white/[0.04]"
-      >
-        <span className="c-dot" />
-        <span className="text-neutral-100">{title}</span>
-        <span className="col-start-2 text-[13px] leading-snug text-neutral-500">
-          {note}
-        </span>
-      </button>
-    </li>
+    <button
+      onClick={onClick}
+      data-d={skills[id].d}
+      className={`${row} w-full cursor-pointer grid-cols-[8px_minmax(0,1fr)] items-baseline gap-x-3 gap-y-1 text-left`}
+    >
+      <span className="c-dot -translate-y-px" />
+      <span className={rowTitle}>{title}</span>
+      <span className="col-start-2 text-neutral-500">{note}</span>
+    </button>
   );
 }
 
-const kicker =
-  "flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider";
-const title = "mt-2 mb-2 text-2xl text-neutral-100";
+const heading = "text-xl text-neutral-100";
 const order = DOMAINS.map((d) => d.id);
 
 // What the wheel's current selection means, and where to go from it.
@@ -61,12 +56,10 @@ export function Panel({
     const stacks = stacksOf(s.id);
     return (
       <div data-d={s.d}>
-        <div className={`${kicker} c-text`}>
-          <span className="c-dot" />
-          {domainById[s.d].full}
-        </div>
-        <h2 className={title}>{s.name}</h2>
-        <p className="text-neutral-400">{s.desc}</p>
+        <h2 className={heading}>{s.name}</h2>
+        <p className="mt-1 text-neutral-500">
+          <span className="c-text">{domainById[s.d].full}</span> · {s.desc}
+        </p>
         <SkillGuide skill={s} />
         {stacks.length > 0 && (
           <>
@@ -85,7 +78,7 @@ export function Panel({
           </>
         )}
         <h3 className={h3}>Complements {related.length} skills</h3>
-        <ul>
+        <div>
           {related.map((l) => (
             <Row
               key={l.to}
@@ -95,7 +88,7 @@ export function Panel({
               onClick={go(l.to)}
             />
           ))}
-        </ul>
+        </div>
       </div>
     );
   }
@@ -104,14 +97,10 @@ export function Panel({
     const d = domainById[mode.id];
     return (
       <div data-d={d.id}>
-        <div className={`${kicker} c-text`}>
-          <span className="c-dot" />
-          Domain
-        </div>
-        <h2 className={title}>{d.full}</h2>
-        <p className="text-neutral-400">{d.desc}</p>
+        <h2 className={heading}>{d.full}</h2>
+        <p className="mt-1 text-neutral-500">{d.desc}</p>
         <h3 className={h3}>{domainSkills[d.id].length} skills</h3>
-        <ul>
+        <div>
           {domainSkills[d.id].map((t) => (
             <Row
               key={t.id}
@@ -121,7 +110,7 @@ export function Panel({
               onClick={go(t.id)}
             />
           ))}
-        </ul>
+        </div>
       </div>
     );
   }
@@ -130,11 +119,10 @@ export function Panel({
   const inner = stackLinks(mode.i);
   return (
     <div>
-      <div className={`${kicker} text-neutral-400`}>Skill stack</div>
-      <h2 className={title}>{st.name}</h2>
-      <p className="text-neutral-400">{st.desc}</p>
+      <h2 className={heading}>{st.name}</h2>
+      <p className="mt-1 text-neutral-500">{st.desc}</p>
       <h3 className={h3}>The skills</h3>
-      <ul>
+      <div>
         {st.ids.map((id) => (
           <Row
             key={id}
@@ -144,9 +132,9 @@ export function Panel({
             onClick={go(id)}
           />
         ))}
-      </ul>
+      </div>
       <h3 className={h3}>Why they compound ({inner.length} links)</h3>
-      <ul>
+      <div>
         {inner.map((l) => (
           <Row
             key={`${l.a}-${l.b}`}
@@ -156,7 +144,7 @@ export function Panel({
             onClick={go(l.a)}
           />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

@@ -109,8 +109,8 @@ for (const s of Object.values(skills)) {
   [s.x, s.y] = pt(s.angle, R);
 }
 
-// One coloured arc per domain, with its label on a path that reads upright
-// whether the arc is on the top or bottom half.
+// One coloured arc per domain inside the ring of skills, with its label just
+// outside the ring on a path that reads upright on the top or bottom half.
 export const arcs = DOMAINS.map((d) => {
   const a0 = ang(span[d.id][0]) - 1.2;
   const a1 = ang(span[d.id][1]) + 1.2;
@@ -119,7 +119,7 @@ export const arcs = DOMAINS.map((d) => {
   const [x1, y1] = pt(a1, r);
   const mid = ((((a0 + a1) / 2) % 360) + 360) % 360;
   const bottom = mid > 0 && mid < 180;
-  const rl = bottom ? R - 38 : R - 46;
+  const rl = bottom ? R + 44 : R + 24;
   const [lx0, ly0] = pt(a0, rl);
   const [lx1, ly1] = pt(a1, rl);
   return {
