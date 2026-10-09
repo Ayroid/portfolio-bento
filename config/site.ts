@@ -18,6 +18,7 @@ export const navLinks = [
   { href: "/books", label: "Books" },
   { href: "/tools", label: "Tools" },
   { href: "/recommendations", label: "Media" },
+  { href: "/atlas", label: "Atlas" },
   { href: "/connect", label: "Connect" },
 ] as const;
 
