@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // The Skill Atlas is a self-contained static page in public/atlas.
-  async rewrites() {
-    return [{ source: "/atlas", destination: "/atlas/index.html" }];
-  },
   experimental: {
     // Lets list titles glide into the detail page heading via <ViewTransition>.
     viewTransition: true,

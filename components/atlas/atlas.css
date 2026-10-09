@@ -1,0 +1,58 @@
+/* Domain colours (the original Atlas's dark palette). Anything inside a
+   [data-d] element can colour itself with var(--c). */
+.atlas {
+  --d-mind: #9a8cff;
+  --d-self: #d08ae6;
+  --d-soft: #f27896;
+  --d-comm: #f2a254;
+  --d-tech: #4acd86;
+  --d-biz: #6b9cfa;
+  --d-money: #ddbb45;
+  --d-earn: #f76f4f;
+  --d-body: #33c6bd;
+  --c: #e5e5e5;
+}
+.atlas [data-d="mind"] {
+  --c: var(--d-mind);
+}
+.atlas [data-d="self"] {
+  --c: var(--d-self);
+}
+.atlas [data-d="soft"] {
+  --c: var(--d-soft);
+}
+.atlas [data-d="comm"] {
+  --c: var(--d-comm);
+}
+.atlas [data-d="tech"] {
+  --c: var(--d-tech);
+}
+.atlas [data-d="biz"] {
+  --c: var(--d-biz);
+}
+.atlas [data-d="money"] {
+  --c: var(--d-money);
+}
+.atlas [data-d="earn"] {
+  --c: var(--d-earn);
+}
+.atlas [data-d="body"] {
+  --c: var(--d-body);
+}
+
+.atlas .c-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+  flex: none;
+}
+.atlas .c-text {
+  color: var(--c);
+}
+.atlas .c-border {
+  border-color: var(--c);
+}
+.atlas .c-marker li::marker {
+  color: var(--c);
+}
