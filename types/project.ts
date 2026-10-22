@@ -2,11 +2,15 @@ import { IconType } from "react-icons";
 
 export type TechKey =
   | "AmazonWebServices"
+  | "Android"
   | "AWS"
   | "Cloudinary"
+  | "Dart"
   | "Demo"
   | "Docker"
   | "Express"
+  | "FastAPI"
+  | "Flutter"
   | "Git"
   | "Github"
   | "Go"
@@ -20,6 +24,7 @@ export type TechKey =
   | "PostgreSQL"
   | "Prisma"
   | "PWA"
+  | "Python"
   | "RaspberryPi"
   | "React"
   | "Redis"
@@ -32,7 +37,7 @@ export type TechKey =
 
 export type ProjectStatus = "Live" | "Building" | "Archived" | "Reviving";
 
-export type ProjectCategory = "Web App" | "Landing Page" | "Tool";
+export type ProjectCategory = "Web App" | "Mobile App" | "Landing Page" | "Tool";
 
 export interface TechStackItem {
   icon: IconType;
